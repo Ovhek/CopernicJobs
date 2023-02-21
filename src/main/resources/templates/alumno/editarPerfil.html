@@ -13,12 +13,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <main>
             <!-- Datos Perfil -->
             <div id="perfil">
-                <img src="" alt="Foto Perfil"/>
-                <p th:text="${nombrePerfil}"></p>
-                <p th:text="${correoPerfil}"></p>
-                <p th:text="${direccionPerfil}"></p>
-                <p th:text="${movilPerfil}"></p>
-                <p th:text="${generoPerfil}"></p>
+                <form method="post">
+                    <div>
+                        <img src="" alt="Foto Perfil"/>
+                        <button>+</button>
+                    </div>
+                </form>
+                <div>
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" placeholder="John">
+
+                    <label for="cognoms">Cognoms:</label>
+                    <input type="text" id="cognoms" name="cognoms" placeholder="Doe">
+                </div>
+
+                <div>
+                    <label for="genere">Gènere:</label>
+                    <select id="genere" name="genere">
+                        <option value="home">Home</option>
+                        <option value="dona">Dona</option>
+                        <option value="altre">Altre</option>
+                        <option value="no-dir-ho">Prefereixo no dir-ho</option>
+                    </select>
+
+                    <label for="cognoms">Mòbil</label>
+                    <input type="tel" id="mobil" name="cognoms" placeholder="+34 112112112">
+                </div>
+
             </div>
             <!-- Curriculum -->
             <div id="curriculum">

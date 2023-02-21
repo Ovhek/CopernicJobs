@@ -13,7 +13,7 @@ import lombok.Data;
  * @author joang
  */
 @Data
-public class Incidencia extends Administrador{
+public class Incidencia{
     private String descripcion;
     private Date fechaIncidencia;
     private int estado;

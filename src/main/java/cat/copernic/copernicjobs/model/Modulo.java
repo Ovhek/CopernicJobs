@@ -9,13 +9,11 @@ import lombok.Data;
 
 /**
  *
- * @author Albert
+ * @author Cole
  */
 @Data
-public class Empresa extends Persona {
-    private String nombreEmpresa;
-    private String descripcionEmpresa;
-    private String webEmpresa;
-    private String telefonoEmpresa;
-    private ArrayList<Oferta> ofertas;
+public class Modulo {
+    private int ID;
+    private String nombre;
+    private ArrayList<Rol> roles;
 }

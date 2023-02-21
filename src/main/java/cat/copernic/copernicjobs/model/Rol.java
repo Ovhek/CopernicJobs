@@ -4,18 +4,14 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import java.util.ArrayList;
 import lombok.Data;
 
 /**
  *
- * @author Albert
+ * @author Cole
  */
 @Data
-public class Empresa extends Persona {
-    private String nombreEmpresa;
-    private String descripcionEmpresa;
-    private String webEmpresa;
-    private String telefonoEmpresa;
-    private ArrayList<Oferta> ofertas;
+public class Rol {
+    private int ID;
+    private String nom;
 }

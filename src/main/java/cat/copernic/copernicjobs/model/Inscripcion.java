@@ -11,6 +11,8 @@ import java.util.Date;
  * @author Albert
  */
 public class Inscripcion {
+    private Oferta oferta;
+    private Alumno alumno;
     private Date fechaInscripcion;
     private int estado;
     private boolean baja;

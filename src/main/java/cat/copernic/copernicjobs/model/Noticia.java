@@ -13,8 +13,8 @@ import lombok.Data;
  * @author joang
  */
 @Data
-public class Noticia extends Administrador{
-    private String rol;
+public class Noticia{
+    private Rol rol;
     private String titulo;
     private String descripcion;
     private Date fechaHora;
