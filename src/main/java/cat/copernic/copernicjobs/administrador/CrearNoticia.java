@@ -1,30 +1,32 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package cat.copernic.copernicjobs.alumno;
+package cat.copernic.copernicjobs.administrador;
 
 import cat.copernic.copernicjobs.geral.utils.CargarPantallaPrincipal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author Cole
+ * @author joang
  */
 @Controller
-public class veurePerfil {
+public class CrearNoticia {
     
-    @GetMapping("/veurePerfil")
+    @GetMapping("/crearNoticia")
     public String inicio(Model model){
         
         ArrayList<String> nombreBotones = new ArrayList<>(Arrays.asList("Inici","Tancar Sessió"));
-        String ruta = "alumno/";
-        String archivo = "verPerfilAlumno";
+        String ruta = "administrador/";
+        String archivo = "crearNoticia";
         return CargarPantallaPrincipal.cargar(model, nombreBotones, ruta, archivo);
     }
         
 }
+
