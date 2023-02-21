@@ -12,8 +12,7 @@ import lombok.Data;
  * @author joang
  */
 @Data
-public class Administrador {
+public class Administrador extends Usuario {
     private String nombre;
     private String apellido;
-    
 }
