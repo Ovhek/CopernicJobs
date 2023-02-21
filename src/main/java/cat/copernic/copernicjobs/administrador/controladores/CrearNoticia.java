@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cat.copernic.copernicjobs.administrador;
+package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.geral.utils.CargarPantallaPrincipal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,10 +23,14 @@ public class CrearNoticia {
     @GetMapping("/crearNoticia")
     public String inicio(Model model){
         
-        ArrayList<String> nombreBotones = new ArrayList<>(Arrays.asList("Inici","Tancar Sessió"));
+        //Ruta donde está el archivo html 
         String ruta = "administrador/";
+        //nombre del archivo html
         String archivo = "crearNoticia";
-        return CargarPantallaPrincipal.cargar(model, nombreBotones, ruta, archivo);
+        
+        model.addAttribute("test","vivimos");
+        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
         
 }
