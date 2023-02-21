@@ -23,14 +23,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
         </header>
         <nav>
-            <div>
-                <ul th:each="nombreBoton : ${nombreBotones}">
-                    <li><a><button th:text="${nombreBoton}"></button></a></li>
-                </ul>
+            <div th:insert="@{${rutaNav}+${archivoNav}} :: nav">
+                <!-- Nav Dinamico -->
             </div>
         </nav>
         <main>
-            <div th:replace="@{${ruta}+${archivo}}">
+            <div th:insert="@{${rutaContenido}+${archivoContenido}}">
                 <!-- Contenedor vacío para añadir más contenido dinámicamente -->
             </div>
         </main>

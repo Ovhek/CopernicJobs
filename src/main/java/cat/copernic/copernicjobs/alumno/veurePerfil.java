@@ -4,7 +4,8 @@
  */
 package cat.copernic.copernicjobs.alumno;
 
-import cat.copernic.copernicjobs.geral.utils.CargarPantallaPrincipal;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
+import cat.copernic.copernicjobs.general.utils.NavBarType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Controller;
@@ -21,10 +22,14 @@ public class veurePerfil {
     @GetMapping("/veurePerfil")
     public String inicio(Model model){
         
-        ArrayList<String> nombreBotones = new ArrayList<>(Arrays.asList("Inici","Tancar Sessió"));
+        //Ruta donde está el archivo html 
         String ruta = "alumno/";
+        //nombre del archivo html
         String archivo = "verPerfilAlumno";
-        return CargarPantallaPrincipal.cargar(model, nombreBotones, ruta, archivo);
+        
+        model.addAttribute("test","vivimos");
+        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }
         
 }
