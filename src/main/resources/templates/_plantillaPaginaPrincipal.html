@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mi Página Principal</title>
+    </head>
+    <body>
+        <header>
+            <img src="" alt="Logo de la aplicación">
+
+            <div class="user-profile">
+                <img src="" alt="Foto de perfil">
+                <p>correo@ejemplo.com</p>
+                <select>
+                    <option value="vp">Veure Perfil</option>
+                    <option value="ep">Editar Perfil</option>
+                </select>
+            </div>
+        </header>
+        <nav>
+            <div th:insert="@{${rutaNav}+${archivoNav}} :: nav">
+                <!-- Nav Dinamico -->
+            </div>
+        </nav>
+        <main>
+            <div th:insert="@{${rutaContenido}+${archivoContenido}}">
+                <!-- Contenedor vacío para añadir más contenido dinámicamente -->
+            </div>
+        </main>
+        <footer>
+            <div class="izquierda">
+                <p>Carrer Torrent del Batlle 10, 08225, Terrassa Barcelona</p>
+                <p>Creado por: Albert Montero, Alexandru Ioan, Joan Galindo</p>
+                <p>© 2023 CppernicJobs, Inc. All rights reserved</p>
+            </div>
+            <div class="derecha">
+                <img src="ruta/a/logo.png" alt="Logo de la aplicación">
+            </div>
+        </footer>
+    </body>
+</html>
+
