@@ -4,22 +4,22 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Crear Notícia</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form>
+        <form method="post">
             <label for="titol">Títol:</label>
             <input type="text" id="titol" name="titol" placeholder="Introdueix el títol">
 
             <label for="descripcio">Descripció:</label>
             <input type="text" id="descripcio" name="descripcio" placeholder="Introdueix el contingut">
             
-            <button type="submit">Crear Notícia</button> 
-            <button type="button">Cancelar</button>
+            <button>Crear Notícia</button> 
+            <button>Cancelar</button>
         </form>
     </body>
 </html>

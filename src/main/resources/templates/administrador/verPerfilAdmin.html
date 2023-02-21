@@ -4,23 +4,21 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Perfil Personal</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>
-            <label for="nom">Nom:</label>
-            <text id="nom" name="nom">John</text>
-
-            <label for="cognoms">Cognoms:</label>
-            <text id="cognoms" name="cognoms">Doe</text>
-
-            <label for="adreca">Adreça:</label>
-            <text id="adreca" name="adreca">JohnDoe@gmail.com</text>
-        </div>
-        <button type="button">Editar perfil</button>
+        <main>
+            <!-- Datos Perfil -->
+            <div id="perfil">
+                <p th:text="${nombrePerfil}"></p>
+                <p th:text="${apellidosPerfil}"></p>
+                <p th:text="${direccionPerfil}"></p>
+            </div>
+            <button>Editar perfil</button>
+        </main>
     </body>
 </html>
