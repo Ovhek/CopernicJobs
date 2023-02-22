@@ -27,7 +27,6 @@ public class VerPerfil {
         //nombre del archivo html
         String archivo = "verPerfilAlumno";
         
-        model.addAttribute("test","vivimos");
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }
