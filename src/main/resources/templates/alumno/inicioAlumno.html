@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>El meu Perfil</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+            <main>
+                <div id="contenedor">
+                    <!-- Anuncios -->
+                    <div id="anuncios">
+                        <h1>Anuncis</h1>
+                        <div th:each="anuncio : ${anuncios}" th:if="${anuncio.rol.nom == 'alumno'}">
+                            <h3 th:text="${anuncio.titulo}"></h3>
+                            <p th:text="${anuncio.descripcion}"></p>
+                        </div>
+                    </div>
+                    <!-- Nuevas Ofertas -->
+                    <div id="nuevasOfertas">
+                        <h1>Noves Ofertes</h1>
+                        <div th:each="oferta : ${ofertas}">
+                            <h3 th:text="${oferta.tituloOferta}"></h3>
+                            <p th:text="${oferta.descripcionOferta}"></p>
+                            <div>
+                                <span th:text="${oferta.empresa.municipio}"></span>
+                                <span th:text="${oferta.empresa.nombreEmpresa}"></span>
+                            </div>
+                            <button>Más información</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+    </body>
+</html>
