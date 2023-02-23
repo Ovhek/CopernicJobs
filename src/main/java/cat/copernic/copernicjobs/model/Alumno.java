@@ -4,7 +4,10 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  *
@@ -12,6 +15,7 @@ import lombok.Data;
  */
 @Data
 public class Alumno extends Persona{
+    
     private String tarjetaSanitaria;
     private String segSocial;
     private String dni;

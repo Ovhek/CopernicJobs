@@ -5,8 +5,11 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  *
@@ -14,8 +17,9 @@ import lombok.Data;
  */
 @Data
 public class Noticia{
+    private int id;
     private Rol rol;
     private String titulo;
     private String descripcion;
-    private Date fechaHora;
+    private LocalDate fechaHora;
 }

@@ -5,8 +5,9 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  *
@@ -14,8 +15,9 @@ import lombok.Data;
  */
 @Data
 public class Incidencia{
+    private int id;
     private String descripcion;
-    private Date fechaIncidencia;
+    private LocalDate fechaIncidencia;
     private int estado;
     
 }

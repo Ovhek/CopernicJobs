@@ -4,9 +4,9 @@
     <title>Registra't com Alumne</title>
   </head>
   <body>
-    <img src="logo.jpg" alt="Logo"> 
+    <img th:src="@{images/logoCopernicJobs.png}" alt="Logo"> 
     <h1>Registra't com Alumne</h1>
-    <form method="post">
+    <form method="post" action="">
       <label for="nom">Nom:</label>
       <input type="text" id="nom" name="nom" placeholder="Introdueix el teu nom">
 
@@ -29,12 +29,9 @@
         <option value="altre">Altre</option>
         <option value="no-dir-ho">Prefereixo no dir-ho</option>
       </select>
-
-      <label for="cv">Currículum:</label>
-      <input type="file" id="cv" name="cv">
-
+      
       <button type="submit">Registra't</button> 
     </form>
-    <p><a href="inicia-sessio.html">Ja tens un compte? Inicia Sessió</a></p>
+    <p><a href="login">Ja tens un compte? Inicia Sessió</a></p>
   </body>
 </html>

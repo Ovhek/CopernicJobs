@@ -4,8 +4,10 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  *
@@ -13,12 +15,15 @@ import lombok.Data;
  */
 @Data
 public class Oferta {
+
     private int id_empresa;
-    private Date fechaValidacion;
+    private LocalDate fechaValidacion;
     private String enlacePDF;
     private String tituloOferta;
     private String descripcionOferta;
     private String requisitosAlumno;
-    private Date fechaPeticion;
+    private String seOfrece;
+    private LocalDate fechaPeticion;
     private boolean baja;
+    private Empresa empresa;
 }

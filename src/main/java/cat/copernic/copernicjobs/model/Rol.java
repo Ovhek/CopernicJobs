@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.model;
 
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  *
@@ -12,6 +13,7 @@ import lombok.Data;
  */
 @Data
 public class Rol {
+
     private int ID;
     private String nom;
 }

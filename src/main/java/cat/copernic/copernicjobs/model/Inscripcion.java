@@ -4,7 +4,9 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import java.time.LocalDate;
 import java.util.Date;
+import lombok.NonNull;
 
 /**
  *
@@ -13,7 +15,7 @@ import java.util.Date;
 public class Inscripcion {
     private Oferta oferta;
     private Alumno alumno;
-    private Date fechaInscripcion;
+    private LocalDate fechaInscripcion;
     private int estado;
     private boolean baja;
     private int id;

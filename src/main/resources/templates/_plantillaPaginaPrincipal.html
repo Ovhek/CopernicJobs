@@ -7,11 +7,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Mi Página Principal</title>
+        <title th:text="${titulo}">Mi Página Principal</title>
     </head>
     <body>
         <header>
-            <img src="" alt="Logo de la aplicación">
+            <img th:src="@{images/logoCopernicJobs.png}" alt="Logo de la aplicación">
 
             <div class="user-profile">
                 <img src="" alt="Foto de perfil">
@@ -39,7 +39,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p>© 2023 CppernicJobs, Inc. All rights reserved</p>
             </div>
             <div class="derecha">
-                <img src="ruta/a/logo.png" alt="Logo de la aplicación">
+                <img th:src="@{images/NicolauLogo.png}" alt="Logo de la aplicación">
             </div>
         </footer>
     </body>
