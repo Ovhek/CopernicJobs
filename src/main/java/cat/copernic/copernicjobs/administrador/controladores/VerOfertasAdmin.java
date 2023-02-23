@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author joang
  */
 @Controller
-public class VerOfertas {
+public class VerOfertasAdmin {
     
     @GetMapping("/verOfertas")
     public String inicio(Model model){
