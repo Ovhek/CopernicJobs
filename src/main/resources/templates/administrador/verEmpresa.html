@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <main>
+            <div id="empresa">
+                <h2 th:text="${empresa.nombreEmpresa}">Sección 1</h2>
+                <p th:text="${empresa.descripcionEmpresa}">Descripción de la sección 1.</p>
+                <h3>Contacte</h3>
+                <p th:text="${empresa.direccionEmpresa}">Dirección de la sección 1.</p>
+                <p th:text="${empresa.descripcionEmpresa}">Descripción de la sección 1.</p>
+                <p th:text="${empresa.codigoEmpresa}">Codigo postal de la sección 1.</p>
+                <p th:text="${empresa.municipio}">Municipio</p>
+                <p th:text="${empresa.webEmpresa}">Sitio web de la sección 1.</p>
+                <p th:text="${empresa.mobilEmpresa}">Numero de telefono de la sección 1.</p>
+            </div>
+            <div id="responsable">
+                <<h2>Responsable</h2>
+                <label for="nombre">Nom:</label>
+                <p th:text="${empresa.nombreResponsable}">Nombre sección A.</p>
+
+                <label for="apellidos">Cognoms:</label>
+                <p th:text="${empresa.apellidosResponsable}">Apellidos de la sección A.</p>
+
+                <label for="telefono">Telèfon de Contacte</label>
+                <p th:text="${empresa.telefonoResponsable}">Telefono de la sección A.</p>
+            </div>
+            <button>Editar Dades</button>
+            <button>Veure Ofertes</button>
+        </main>
+    </body>
+</html>

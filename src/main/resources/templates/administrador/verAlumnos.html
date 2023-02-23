@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Alumnos</h1>
+        <h1>Alumnes</h1>
+
+        <div>
+            <label for="search-input">Buscar:</label>
+            <input type="text" id="search-input" name="search-input">
+
+            <label for="sort-select">Ordenar por:</label>
+            <select id="sort-select" name="sort-select">
+                <option value="nombre">Nombre</option>
+                <option value="fechaRegistro">Fecha Registro</option>
+            </select>
+        </div>
+
+        <div th:each="alumno : ${alumnos}">
+            <h2 th:text="${alumno.nombreAlumno}">John Doe</h2>
+            <p th:text="${alumno.correoAlumno}">JohnDoe@gmail.com</p>
+            <a href="#">Accedeix</a>
+        </div>
+        
+        <button>Veure informes</button>
+        <button>Donar d'alta un alumne</button>
+    </body>
+</html>

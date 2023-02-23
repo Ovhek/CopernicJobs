@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Incidencias</h1>
+        <h1>Incidencies</h1>
+
+        <div>
+            <label for="search-input">Buscar:</label>
+            <input type="text" id="search-input" name="search-input">
+
+            <label for="sort-select">Ordenar por:</label>
+            <select id="sort-select" name="sort-select">
+                <option value="titulo">Título</option>
+                <option value="fechaIncidencia">Fecha</option>
+            </select>
+        </div>
+
+        <div th:each="incidencia : ${incidencias}">
+            <h2 th:text="${incidencia.tituloIncidencia}">Sección 1</h2>
+            <p th:text="${incidencia.descripcionIncidencia}">Descripción de la sección 1.</p>
+            <a href="#">Accedeix</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+            <form method="post" action="">
+                <!-- Datos Perfil -->
+                <div id="alumno">
+                    <div>
+                        <img src="" alt="Foto Alumno"/>
+                        <button>+</button>
+                    </div>
+                    <div>
+                        <label for="nom">Nom:</label>
+                        <input type="text" id="nom" name="nom" placeholder="John">
+
+                        <label for="cognoms">Cognoms:</label>
+                        <input type="text" id="cognoms" name="cognoms" placeholder="Doe">
+                    </div>
+
+                    <div>
+                        <label for="genere">Gènere:</label>
+                        <select id="genere" name="genere">
+                            <option value="home">Home</option>
+                            <option value="dona">Dona</option>
+                            <option value="altre">Altre</option>
+                            <option value="no-dir-ho">Prefereixo no dir-ho</option>
+                        </select>
+
+                        <label for="mobil">Mòbil</label>
+                        <input type="tel" id="mobil" name="mobil" placeholder="+34 112112112">
+                    </div>
+
+                    <div>
+                        <label for="municipi">Municipi:</label>
+                        <input type="text" id="municipi" name="municipi" placeholder="Terrassa">
+
+                        <label for="codPostal">Codi Postal:</label>
+                        <input type="text" id="codPostal" name="codPostal" placeholder="08226">
+                    </div>
+                </div>
+                <!-- Curriculum -->
+                <div id="curriculum">
+                    <h2>Curriculum</h2>
+                    <div>
+                        <label for="linkedin">Linkedin</label>
+                        <input type="text" id="linkedin" name="linkedin" placeholder="url">
+                    </div>
+                    <div>
+                        <label for="portPersonal">Portafoli Personal</label>
+                        <input type="text" id="portPersonal" name="portPersonal" placeholder="url">
+                    </div>
+                    <div>
+                        <label for="cvOnline">CV Online</label>
+                        <input type="text" id="cvOnline" name="cvOnline" placeholder="url">
+                    </div>
+
+                    <div>
+                        <div>
+                            <p>Curriculum Actual</p>
+                            <button>PDF</button>
+                        </div>
+                        <div>
+                            <p>Nou Curriculum</p>
+                            <button>Subir</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Otros Datos -->
+                <div id="otrosDatos">
+                    <h2>Altres dades</h2>
+                    <div>
+                        <div>
+                            <label for="dni">DNI/NIE: </label>
+                            <input type="text" id="dni" name="dni" placeholder="A">
+                        </div>
+                        <div>
+                            <label for="targSanitaria">Targeta Sanitària: </label>
+                            <input type="text" id="targSanitaria" name="targSanitaria" placeholder="A">
+                        </div>
+                        <div>
+                            <label for="numSegSocial">Número Seguretat Social: </label>
+                            <input type="text" id="numSegSocial" name="numSegSocial" placeholder="A">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button>Guardar Canvis</button>
+                    <button>Cancelar Canvis</button>
+                </div>
+
+            </form>
+        </main>
+    </body>
+</html>
