@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <h1 th:text="${ofTit}">Ofertes de Feina</h1>
+        </header>
+
+        <main>
+            <section>
+                <a href="#" th:text="${nomEmpresa}">Nom Empresa</a>
+                <div>
+                    <h2>Descripció</h2>
+                    <p th:text="${ofDesc}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
+                </div>
+                <div>
+                    <h2>Requisits</h2>
+                    <p th:text="${ofReq}"></p>
+                </div>
+                <div>
+                    <h2>S'ofereix</h2>
+                    <p th:text="${ofOfer}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
+                </div>
+                <div>
+                    <h2>Més informació</h2>
+                    <button>Descarregar PDF</button>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <p th:text="'Alumnes inscrits: ' + ${alumnesInscrits}"></p>
+                    <button th:if="${empresaAdmin}">Veure Alumnes</button>
+                </div>
+
+                <p th:text="${ofFecha}"></p>
+                <button th:if="${empresaAdmin}">Editar oferta</button>
+            </section>
+        </main>
+    </body>
+</html>

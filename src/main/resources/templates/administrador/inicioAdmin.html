@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>El meu Perfil</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+            <div id="contenedor">
+                <!-- Anuncios -->
+                <div id="anuncios">
+                    <h1>Anuncis</h1>
+                    <div th:each="anuncio : ${anuncios}">
+                        <h6 th:text="${anuncio.titulo}"></h6>
+                        <p th:text="${anuncio.descripcion}"></p>
+                        <button>Más información</button>
+                    </div>
+                </div>
+                <!-- Nuevas Ofertas -->
+                <div id="validaciones">
+                    <h1>Validacions</h1>
+                    <div th:each="validacion : ${validaciones}">
+                        <h6 th:text="${validacion.titulo}"></h6>
+                        <button>Más información</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
