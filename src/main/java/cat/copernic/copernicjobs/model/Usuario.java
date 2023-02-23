@@ -5,7 +5,9 @@
 package cat.copernic.copernicjobs.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  *
@@ -18,7 +20,7 @@ public abstract class Usuario {
     protected String contrasenya;
     protected boolean baja;
     protected Rol rol;
-    protected Date fechaRegistro;
-    protected Date fechaBaja;
+    protected LocalDate fechaRegistro;
+    protected LocalDate fechaBaja;
     protected int ID;
 }

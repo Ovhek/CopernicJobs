@@ -6,30 +6,25 @@ package cat.copernic.copernicjobs.alumno.controladores;
 
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 /**
  *
  * @author Cole
  */
 @Controller
-public class veurePerfil {
+public class EditarPerfil {
     
-    @GetMapping("/veurePerfil")
+    @GetMapping("/editarPerfil")
     public String inicio(Model model){
         
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
-        String archivo = "verPerfilAlumno";
+        String archivo = "editarPerfil";
         
-        model.addAttribute("test","vivimos");
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }
-        
 }
