@@ -6,7 +6,6 @@ package cat.copernic.copernicjobs.model;
 
 import java.util.ArrayList;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *

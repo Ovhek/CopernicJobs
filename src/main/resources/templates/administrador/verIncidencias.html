@@ -10,7 +10,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title></title>
     </head>
     <body>
-        <h1>Incidencias</h1>
         <h1>Incidencies</h1>
 
         <div>
@@ -25,8 +24,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
 
         <div th:each="incidencia : ${incidencias}">
-            <h2 th:text="${incidencia.tituloIncidencia}">Sección 1</h2>
-            <p th:text="${incidencia.descripcionIncidencia}">Descripción de la sección 1.</p>
+            <h2 th:text="${incidencia.titulo}"></h2>
+            <p th:text="${incidencia.descripcion}"></p>
             <a href="#">Accedeix</a>
         </div>
     </body>

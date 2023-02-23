@@ -16,6 +16,7 @@ import lombok.NonNull;
 @Data
 public class Incidencia{
     private int id;
+    private String titulo;
     private String descripcion;
     private LocalDate fechaIncidencia;
     private int estado;
