@@ -4,7 +4,6 @@
  */
 package cat.copernic.copernicjobs.empresa;
 
-import cat.copernic.copernicjobs.alumno.*;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import java.util.ArrayList;

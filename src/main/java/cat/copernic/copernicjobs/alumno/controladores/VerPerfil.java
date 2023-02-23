@@ -19,7 +19,7 @@ import org.springframework.ui.Model;
 @Controller
 public class VerPerfil {
     
-    @GetMapping("/veurePerfil")
+    @GetMapping("/veurePerfilAlumne")
     public String inicio(Model model){
         
         //Ruta donde está el archivo html 
