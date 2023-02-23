@@ -21,4 +21,12 @@ public class Oferta {
     private String requisitosAlumno;
     private Date fechaPeticion;
     private boolean baja;
+
+    public void setEmpresa(Empresa empresa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getEmpresa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
