@@ -19,4 +19,5 @@ public interface NoticiaDAO extends CrudRepository<Noticia,Integer>{
     //com el següent mètode, findByNom que retornarà els gossos amb el nom passat per paràmetre
     
     
+    
 }
