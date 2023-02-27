@@ -4,23 +4,47 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import java.sql.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
  * @author Cole
  */
 @Data
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="rol_id", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Usuario {
     //protected porque es superclase
-    protected String correo;
-    protected String contrasenya;
-    protected boolean baja;
-    protected Rol rol;
-    protected LocalDate fechaRegistro;
-    protected LocalDate fechaBaja;
-    protected int ID;
+    
+    @Column(name = "correo")
+    private String correo;
+    @Column(name = "contrasenya")
+    private String contrasenya;
+    @Column(name = "baja")
+    private boolean baja;
+    @Column(name = "fecha_registro")
+    private LocalDate fechaRegistro;
+    @Column(name = "fecha_baja")
+    private LocalDate fechaBaja;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private int ID;
+    
+    @OneToOne
+    @JoinColumn(name="rol_id")
+    private Rol rol;
 }
