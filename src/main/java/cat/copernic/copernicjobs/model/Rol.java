@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.NonNull;
 

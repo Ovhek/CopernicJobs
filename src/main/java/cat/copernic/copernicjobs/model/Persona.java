@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import java.sql.Date;
 import java.time.LocalDate;
 import lombok.Data;
@@ -16,29 +17,33 @@ import lombok.NonNull;
  */
 
 @Data
+@Entity
 public class Persona extends Usuario{
 
     @Column(name = "nombre")
-    protected String nombre;
+    private String nombre;
     
     @Column(name = "cod_postal")
-    protected String codPostal;
+    private String codPostal;
     
     @Column(name = "municipio")
-    protected String municipio;
+    private String municipio;
     
     @Column(name = "direccion")
-    protected String direccion;
+    private String direccion;
     
     @Column(name = "movil")
-    protected String movil;
+    private String movil;
     
     @Column(name = "sexo")
-    protected int sexo;
+    private int sexo;
+    
+    @Column(name = "sexo_desc")
+    private String sexoDesc;
     
     @Column(name = "apellidos")
-    protected String apellidos;
+    private String apellidos;
     
     @Column(name = "correo_contacto")
-    protected String correoContacto;
+    private String correoContacto;
 }

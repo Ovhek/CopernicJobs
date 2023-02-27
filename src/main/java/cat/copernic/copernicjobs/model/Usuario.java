@@ -7,6 +7,7 @@ package cat.copernic.copernicjobs.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,27 +23,28 @@ import lombok.Data;
  * @author Cole
  */
 @Data
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="rol_id", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Usuario {
     //protected porque es superclase
     
     @Column(name = "correo")
-    protected String correo;
+    private String correo;
     @Column(name = "contrasenya")
-    protected String contrasenya;
+    private String contrasenya;
     @Column(name = "baja")
-    protected boolean baja;
+    private boolean baja;
     @Column(name = "fecha_registro")
-    protected LocalDate fechaRegistro;
+    private LocalDate fechaRegistro;
     @Column(name = "fecha_baja")
-    protected LocalDate fechaBaja;
+    private LocalDate fechaBaja;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    protected int ID;
+    private int ID;
     
     @OneToOne
     @JoinColumn(name="rol_id")
-    protected Rol rol;
+    private Rol rol;
 }
