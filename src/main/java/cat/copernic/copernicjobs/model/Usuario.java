@@ -4,16 +4,20 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import java.sql.Date;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import java.time.LocalDate;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
  * @author Cole
  */
 @Data
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipus_persona", discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Usuario {
     //protected porque es superclase
     protected String correo;
