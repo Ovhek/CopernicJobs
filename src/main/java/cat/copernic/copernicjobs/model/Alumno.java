@@ -4,10 +4,9 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -15,8 +14,10 @@ import lombok.NonNull;
  */
 @Data
 public class Alumno extends Persona{
-    
+    @Column(name = "tarjeta_sanitaria")
     private String tarjetaSanitaria;
+    @Column(name = "seg_social")
     private String segSocial;
+    @Column(name = "dni")
     private String dni;
 }
