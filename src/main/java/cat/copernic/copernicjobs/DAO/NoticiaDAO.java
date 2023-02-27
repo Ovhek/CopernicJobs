@@ -20,4 +20,5 @@ public interface NoticiaDAO extends CrudRepository<Noticia,Integer>{
     
     
     
+    
 }
