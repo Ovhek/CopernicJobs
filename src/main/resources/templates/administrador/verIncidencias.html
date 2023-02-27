@@ -18,14 +18,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <label for="sort-select">Ordenar por:</label>
             <select id="sort-select" name="sort-select">
-                <option value="titulo">Título</option>
                 <option value="fechaIncidencia">Fecha</option>
             </select>
         </div>
 
         <div th:each="incidencia : ${incidencias}">
-            <h2 th:text="${incidencia.titulo}"></h2>
+            <h2>Incidencia</h2>
             <p th:text="${incidencia.descripcion}"></p>
+            <p th:text="${incidencia.fecha}"></p>
             <a href="#">Accedeix</a>
         </div>
     </body>
