@@ -5,7 +5,6 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +25,9 @@ public class CrearNoticia {
         //nombre del archivo html
         String archivo = "crearNoticia";
         
+        model.addAttribute("test","vivimos");
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
         
 }
