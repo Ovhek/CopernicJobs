@@ -5,36 +5,55 @@
 package cat.copernic.copernicjobs.alumno.controladores;
 
 import cat.copernic.copernicjobs.DAO.InscripcionDAO;
+import cat.copernic.copernicjobs.DAO.OfertaDAO;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
+import cat.copernic.copernicjobs.model.Inscripcion;
 import cat.copernic.copernicjobs.model.Oferta;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author Cole
  */
 @Controller
-public class MisInscripciones {
-
+public class VerOfertaAlumno {
     @Autowired
-    InscripcionDAO inscripcionDAO;
+    private OfertaDAO ofertaDAO;
     
-    @GetMapping("/inscripcions")
+    @Autowired
+    private InscripcionDAO inscripcionDAO;
+    
+    @GetMapping("/veureOferta")
     public String inicio(Model model) {
 
-        int id = 1;
+        int alumnoId = 1;
+        int ofertaId = 1;
         //Ruta donde está el archivo html 
-        String ruta = "alumno/";
+        String ruta = "";
         //nombre del archivo html
-        String archivo = "misInscripciones";
-        model.addAttribute("inscripciones",inscripcionDAO.findAllByAlumnoId(id));
+        String archivo = "verOferta";
+
+        var inscripciones = inscripcionDAO.findAllByOfertaId(ofertaId);
+        var alumnosInscritos = inscripciones.size();
+        
+        var alumnoInscrito =  inscripciones.stream().map(Inscripcion::getAlumno).anyMatch(alumno -> alumno.getId() == alumnoId);
+        
+        model.addAttribute("oferta", ofertaDAO.findById(ofertaId).get());
+        model.addAllAttributes(new HashMap<String,Object>(){{
+            put("empresaAdmin", false);
+            put("alumnoInscrito", alumnoInscrito);
+            put("alumnesInscrits", inscripciones.size());
+        }});
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }

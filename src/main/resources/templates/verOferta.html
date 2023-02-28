@@ -11,18 +11,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body xmlns:th="http://www.thymeleaf.org" th:object="${oferta}">
         <header>
-            <h1 tx:field="*{tituloOferta}">Ofertes de Feina</h1>
+            <h1 tx:field="*{oferta.tituloOferta}">Ofertes de Feina</h1>
         </header>
         <main>
             <section>
-                <a href="#" th:field="{oferta.nomEmpresa}">Nom Empresa</a>
+                <a href="#" th:text="${oferta.empresa.nombreEmpresa}">Nom Empresa</a>
                 <div>
                     <h2>Descripció</h2>
-                    <p th:text="${oferta.descripcion}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
+                    <p th:text="${oferta.descripcionOferta}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
                 </div>
                 <div>
                     <h2>Requisits</h2>
-                    <p th:text="${oferta.requisitos}"></p>
+                    <p th:text="${oferta.requisitosAlumno}"></p>
                 </div>
                 <div>
                     <h2>S'ofereix</h2>
@@ -40,8 +40,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <button th:if="${empresaAdmin}">Veure Alumnes</button>
                 </div>
 
-                <p th:text="${ofFecha}"></p>
-                <button th:if="${alumnoNoInscrito}">Inscriure'm</button>
+                <p th:text="${oferta.fechaPeticion}"></p>
+                <button th:if="${!alumnoInscrito}">Inscriure'm</button>
                 <button th:if="${alumnoInscrito}">Desisncriure'm</button>
                 <button th:if="${empresaAdmin}">Editar oferta</button>
             </section>
