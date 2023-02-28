@@ -10,7 +10,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title></title>
     </head>
     <body>
-        <h1>Alumnos</h1>
         <h1>Alumnes</h1>
 
         <div>
@@ -25,11 +24,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
 
         <div th:each="alumno : ${alumnos}">
-            <h2 th:text="${alumno.nombreAlumno}">John Doe</h2>
-            <p th:text="${alumno.correoAlumno}">JohnDoe@gmail.com</p>
+            <h2 th:text="${alumno.nombre}">John</h2>
+            <h2 th:text="${alumno.apellidos}">Doe</h2>
+            <p th:text="${alumno.correo}">JohnDoe@gmail.com</p>
             <a href="#">Accedeix</a>
         </div>
-        
+
         <button>Veure informes</button>
         <button>Donar d'alta un alumne</button>
     </body>

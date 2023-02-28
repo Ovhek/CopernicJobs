@@ -5,6 +5,9 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.sql.Date;
 import java.time.LocalDate;
 import lombok.Data;
@@ -15,7 +18,10 @@ import lombok.NonNull;
  * @author joang
  */
 @Data
-public class Administrador extends Usuario {    
+@Entity
+public class Administrador extends Usuario {
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apellido")
     private String apellido;
 }
