@@ -22,11 +22,10 @@ and open the template in the editor.
                         <button>Más información</button>
                     </div>
                 </div>
-                <!-- Nuevas Ofertas -->
                 <div id="validaciones">
                     <h1>Validacions</h1>
                     <div th:each="validacion : ${validaciones}">
-                        <h6 th:text="${validacion.titulo}"></h6>
+                        <h6 th:text="${validacion.nombre}"></h6>
                         <button>Más información</button>
                     </div>
                 </div>
