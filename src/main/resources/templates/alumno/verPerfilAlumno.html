@@ -13,25 +13,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <main>
             <!-- Datos Perfil -->
             <div id="perfil">
-                <img src="" alt="Foto Perfil"/>
-                <p th:text="${nombrePerfil}"></p>
-                <p th:text="${correoPerfil}"></p>
-                <p th:text="${direccionPerfil}"></p>
-                <p th:text="${movilPerfil}"></p>
-                <p th:text="${generoPerfil}"></p>
+                <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
+                <p th:text="${alumno.nombre}"></p>
+                <p th:text="${alumno.apellidos}"></p>
+                <p th:text="${alumno.correo}"></p>
+                <p th:text="${alumno.direccion}"></p>
+                <p th:text="${alumno.movil}"></p>
+                <p th:text="${alumno.sexoDesc}"></p>
             </div>
             <!-- Curriculum -->
             <div id="curriculum">
                 <div>
                     <ul>
                         <li>
-                            <i><a>Linkedin</a></i>
+                            <a th:href="${alumno.linkedin}">Linkedin</a>
                         </li>
                         <li>
-                            <i><a>Portafoli Personal</a></i>
+                            <a th:href="${alumno.portafoliPersonal}">Portafoli Personal</a>
                         </li>
                         <li>
-                            <i><a>Curriculum Online</a></i>
+                            <a th:href="${alumno.curriculumOnline}">Curriculum Online</a>
                         </li>
                     </ul>
                 </div>
@@ -40,9 +41,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <!-- Otros Datos -->
             <div id="otrosDatos">
                 <div>
-                    <span>DNI/NIE: </span><span th:text="${dni}">A</span>
-                    <span>Targeta Sanitària: </span><span th:text="${tarjSanitaria}">A</span>
-                    <span>Número Seguretat Social </span><span th:text="${numSegSocial}">A</span> 
+                    <span>DNI/NIE: </span><span th:text="${alumno.dni}">A</span>
+                    <span>Targeta Sanitària: </span><span th:text="${alumno.tarjetaSanitaria}"></span>
+                    <span>Número Seguretat Social </span><span th:text="${alumno.SegSocial}"></span> 
                 </div>
             </div>
 
