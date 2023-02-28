@@ -22,8 +22,8 @@ import lombok.Data;
 @Data
 @Entity
 public class Incidencia{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //Indica al sistema que l'atribut id és la clau primària de la BBDD
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica al sistema com generem l'id, en el nostre cas autoincremental, per això fem servir IDENTITY
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
     @Column(name = "descripcion")
