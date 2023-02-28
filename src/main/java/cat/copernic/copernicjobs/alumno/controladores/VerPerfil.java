@@ -31,7 +31,7 @@ public class VerPerfil {
         //nombre del archivo html
         String archivo = "verPerfilAlumno";
 
-        Alumno alumno = (Alumno)alumndoDAO.findByRolID(1).iterator().next();
+        Alumno alumno = (Alumno)alumndoDAO.findByRolID(1).get(0);
 
         HashMap<String, Object> datos = new HashMap<>() {
             {
