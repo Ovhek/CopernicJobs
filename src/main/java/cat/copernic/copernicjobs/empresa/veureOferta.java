@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Albert
  */
 public class veureOferta {
-    @Autowired
-    private OfertaDAO ofertaDao;
+    //@Autowired
+    //private OfertaDAO ofertaDao;
     
     @GetMapping("/veureOferta")
     public String inicio(Model model){
@@ -27,9 +27,9 @@ public class veureOferta {
         //nombre del archivo html
         String archivo = "veureOferta";
         
-        Oferta oferta = (Oferta)ofertaDao.findById(1).get();
+        //Oferta oferta = (Oferta)ofertaDao.findById(1).get();
         
-        model.addAttribute("oferta", oferta);
+        //model.addAttribute("oferta", oferta);
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
