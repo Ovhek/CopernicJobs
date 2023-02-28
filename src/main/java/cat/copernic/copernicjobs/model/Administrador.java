@@ -5,17 +5,21 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
  * @author joang
  */
 @Data
-public class Administrador extends Usuario {    
+@Entity
+@DiscriminatorValue("2")
+public class Administrador extends Usuario {
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apellidos")
     private String apellido;
 }

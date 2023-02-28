@@ -15,6 +15,7 @@ import lombok.Data;
  */
 @Data
 @Entity
+@DiscriminatorValue("1")
 public class Alumno extends Persona{
     @Column(name = "tarjeta_sanitaria")
     private String tarjetaSanitaria;
