@@ -6,6 +6,10 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import cat.copernic.copernicjobs.model.Alumno;
+import cat.copernic.copernicjobs.model.Empresa;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +29,19 @@ public class VerAlumnos {
         //nombre del archivo html
         String archivo = "verAlumnos";
         
-        model.addAttribute("test","vivimos");
+        ArrayList<Alumno> alumnos = new ArrayList<>(Arrays.asList(
+                new Alumno(),
+                new Alumno(),
+                new Alumno(),
+                new Alumno()
+        ));
+        alumnos.forEach(e -> {
+            e.setNombre("John");
+            e.setApellidos("Doe");
+            e.setCorreo("JohnDoe@gmail.com");
+        });
+        
+        model.addAttribute("alumnos", alumnos);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
