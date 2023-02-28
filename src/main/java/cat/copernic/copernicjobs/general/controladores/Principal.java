@@ -2,33 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cat.copernic.copernicjobs.empresa;
+package cat.copernic.copernicjobs.general.controladores;
 
-import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author Cole
+ * @author Albert
  */
 @Controller
-public class veurePerfil {
+public class Principal {
     
-    @GetMapping("/veurePerfilEmpresa")
+  
+    @GetMapping("/principal")
     public String inicio(Model model){
         
         //Ruta donde está el archivo html 
-        String ruta = "empresa/";
+        String ruta = "";
         //nombre del archivo html
-        String archivo = "verPerfilEmpresa";
+        String archivo = "principal";
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
         
 }

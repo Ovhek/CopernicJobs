@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
@@ -24,24 +25,30 @@ import lombok.NonNull;
 @Entity
 @Table(name="oferta")
 public class Oferta {
-    @Column(name="id_empresa")
-    private int id_empresa;
-    @Column(name="id_empresa")
+    
+    @Column(name="fecha_validacion")
     private LocalDate fechaValidacion;
-    @Column(name="id_empresa")
+    @Column(name="enlace_pdf")
     private String enlacePDF;
-    @Column(name="id_empresa")
+    @Column(name="titulo")
     private String tituloOferta;
-    @Column(name="id_empresa")
+    @Column(name="descripcion")
     private String descripcionOferta;
-    @Column(name="id_empresa")
+    @Column(name="requisitos")
     private String requisitosAlumno;
-    @Column(name="id_empresa")
+    @Column(name="se_ofrece")
     private String seOfrece;
-    @Column(name="id_empresa")
+    @Column(name="fecha_peticion")
     private LocalDate fechaPeticion;
-    @Column(name="id_empresa")
+    @Column(name="baja")
     private boolean baja;
+    
     @OneToOne
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false, unique = true)
+    private int id;
 }

@@ -6,6 +6,8 @@ package cat.copernic.copernicjobs.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import java.sql.Date;
 import java.time.LocalDate;
 import lombok.Data;
@@ -46,4 +48,5 @@ public class Persona extends Usuario{
     
     @Column(name = "correo_contacto")
     private String correoContacto;
+    
 }

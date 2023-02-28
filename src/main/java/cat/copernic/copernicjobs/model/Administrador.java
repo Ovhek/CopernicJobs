@@ -22,6 +22,6 @@ import lombok.NonNull;
 public class Administrador extends Usuario {
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "apellido")
+    @Column(name = "apellidos")
     private String apellido;
 }

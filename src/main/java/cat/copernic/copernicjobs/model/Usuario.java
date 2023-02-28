@@ -15,6 +15,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import java.time.LocalDate;
 import lombok.Data;
 
@@ -45,6 +46,6 @@ public abstract class Usuario {
     private int ID;
     
     @OneToOne
-    @JoinColumn(name="rol_id")
+    @PrimaryKeyJoinColumn(name="rol_id")
     private Rol rol;
 }
