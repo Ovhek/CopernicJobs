@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- The dialect specifies the type of database used in hibernate so that hibernate generate appropriate type of SQL statements. For connecting any hibernate application with the database, it is required to provide the configuration of SQL dialect. -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/copernicjobs?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.username">adminCopernicJobs</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
+        <mapping class="cat.copernic.copernicjobs.model.Administrador"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Alumno"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Empresa"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Incidencia"></mapping>            
+        <mapping class="cat.copernic.copernicjobs.model.Inscripcion"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Modulo"></mapping>        
+        <mapping class="cat.copernic.copernicjobs.model.Noticia"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Oferta"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Persona"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Rol"></mapping>
+        <mapping class="cat.copernic.copernicjobs.model.Usuario"></mapping>
+    </session-factory>
+</hibernate-configuration>

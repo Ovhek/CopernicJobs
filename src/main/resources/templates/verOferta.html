@@ -9,25 +9,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body xmlns:th="http://www.thymeleaf.org" th:object="${oferta}">
         <header>
-            <h1 th:text="${ofTit}">Ofertes de Feina</h1>
+            <h1 tx:field="*{tituloOferta}">Ofertes de Feina</h1>
         </header>
-
         <main>
             <section>
-                <a href="#" th:text="${nomEmpresa}">Nom Empresa</a>
+                <a href="#" th:field="{oferta.nomEmpresa}">Nom Empresa</a>
                 <div>
                     <h2>Descripció</h2>
-                    <p th:text="${ofDesc}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
+                    <p th:text="${oferta.descripcion}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
                 </div>
                 <div>
                     <h2>Requisits</h2>
-                    <p th:text="${ofReq}"></p>
+                    <p th:text="${oferta.requisitos}"></p>
                 </div>
                 <div>
                     <h2>S'ofereix</h2>
-                    <p th:text="${ofOfer}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
+                    <p th:text="${oferta.seOfrece}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
                 </div>
                 <div>
                     <h2>Més informació</h2>
