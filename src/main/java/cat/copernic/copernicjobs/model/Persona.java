@@ -6,10 +6,8 @@ package cat.copernic.copernicjobs.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -18,8 +16,8 @@ import lombok.NonNull;
 
 @Data
 @Entity
-public class Persona extends Usuario{
-
+public class Persona extends Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Column(name = "nombre")
     private String nombre;
     
@@ -46,4 +44,5 @@ public class Persona extends Usuario{
     
     @Column(name = "correo_contacto")
     private String correoContacto;
+    
 }

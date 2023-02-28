@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -22,7 +23,10 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
-    private int ID;
-    @Column(name = "nom")
+    private int id;
+    @Column(name = "nombre")
     private String nom;
+    
+    @OneToOne(mappedBy="rol")
+    private Usuario usuario;
 }

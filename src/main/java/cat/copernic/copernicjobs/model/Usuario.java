@@ -15,6 +15,8 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
 
@@ -26,9 +28,8 @@ import lombok.Data;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="rol_id", discriminatorType = DiscriminatorType.INTEGER)
-public abstract class Usuario {
-    //protected porque es superclase
-    
+public abstract class Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Column(name = "correo")
     private String correo;
     @Column(name = "contrasenya")
@@ -45,6 +46,6 @@ public abstract class Usuario {
     private int ID;
     
     @OneToOne
-    @JoinColumn(name="rol_id")
+    @PrimaryKeyJoinColumn(name="rol_id")
     private Rol rol;
 }

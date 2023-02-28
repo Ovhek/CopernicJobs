@@ -40,7 +40,6 @@ public class VerEmpresas {
         
         empresas.forEach(e -> {
             e.setMunicipio("Terrassa");
-            e.setTelefonoEmpresa("651179179");
         });
         
         model.addAttribute("empresas", empresas);
