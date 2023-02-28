@@ -6,12 +6,9 @@
 package cat.copernic.copernicjobs.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import java.sql.Date;
-import java.time.LocalDate;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -19,6 +16,7 @@ import lombok.NonNull;
  */
 @Data
 @Entity
+@DiscriminatorValue("2")
 public class Administrador extends Usuario {
     @Column(name = "nombre")
     private String nombre;
