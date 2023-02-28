@@ -46,4 +46,5 @@ public class Persona extends Usuario{
     
     @Column(name = "correo_contacto")
     private String correoContacto;
+    
 }

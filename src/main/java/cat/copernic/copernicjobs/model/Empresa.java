@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,19 +25,15 @@ import lombok.NonNull;
 @Data
 @Entity
 @Table(name="empresa")
+@DiscriminatorValue("3")
 public class Empresa extends Persona {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false, unique = true)
-    private int id;
+
     @Column(name="nombre_empresa")
     private String nombreEmpresa;
     @Column(name="descripcion_empresa")
     private String descripcionEmpresa;
     @Column(name="webEmpresa")
     private String webEmpresa;
-    @Column(name="movil")
-    private String telefonoEmpresa; 
     @OneToMany
     private ArrayList<Oferta> ofertas;
 }
