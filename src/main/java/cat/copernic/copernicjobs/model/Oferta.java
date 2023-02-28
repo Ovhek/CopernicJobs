@@ -24,7 +24,10 @@ import lombok.NonNull;
 @Entity
 @Table(name="oferta")
 public class Oferta {
-    @Column(name="empresa_id")
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "empresa_id", nullable = false, unique = true)
     private int id_empresa;
     @Column(name="fecha_validacion")
     private LocalDate fechaValidacion;

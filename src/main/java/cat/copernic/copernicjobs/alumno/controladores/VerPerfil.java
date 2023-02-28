@@ -4,10 +4,12 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
+import cat.copernic.copernicjobs.DAO.UsuarioDAO;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
-import java.util.ArrayList;
-import java.util.Arrays;
+import cat.copernic.copernicjobs.model.Alumno;
+import java.util.HashMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -18,17 +20,34 @@ import org.springframework.ui.Model;
  */
 @Controller
 public class VerPerfil {
-    
+
+    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
+    private UsuarioDAO alumndoDAO; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
+
     @GetMapping("/veurePerfilAlumne")
-    public String inicio(Model model){
-        
+    public String inicio(Model model) {
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "verPerfilAlumno";
-        
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
+
+        Alumno alumno = (Alumno)alumndoDAO.findByRolID(1).iterator().next();
+
+        HashMap<String, Object> datos = new HashMap<>() {
+            {
+                put("nombrePerfil", alumno.getNombre());
+                put("correoPerfil", alumno.getCorreo());
+                put("direccionPerfil", alumno.getDireccion());
+                put("movilPerfil", alumno.getMovil());
+                put("generoPerfil", alumno.getSexoDesc());
+                put("dni", alumno.getDni());
+                put("tarjSanitaria", alumno.getTarjetaSanitaria());
+                put("numSegSocial", alumno.getSegSocial());
+
+            }
+        };
+        model.addAllAttributes(datos);
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }
-        
+
 }
