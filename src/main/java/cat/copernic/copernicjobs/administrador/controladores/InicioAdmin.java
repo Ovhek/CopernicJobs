@@ -5,6 +5,10 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.DAO.AlumnoDAO;
+import cat.copernic.copernicjobs.DAO.EmpresaDAO;
+import cat.copernic.copernicjobs.DAO.NoticiaDAO;
+import cat.copernic.copernicjobs.DAO.OfertaDAO;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Incidencia;
@@ -15,6 +19,7 @@ import cat.copernic.copernicjobs.model.Rol;
 import cat.copernic.copernicjobs.model.Usuario;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +31,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class InicioAdmin {
     
+    @Autowired
+    private NoticiaDAO noticiaDAO;
+    
+    @Autowired 
+    private AlumnoDAO alumnoDAO;
+    
+    @Autowired
+    private EmpresaDAO empresaDAO;
+    
     @GetMapping("/inicioAdmin")
     public String inicio(Model model){
         
@@ -33,20 +47,6 @@ public class InicioAdmin {
         String ruta = "administrador/";
         //nombre del archivo html
         String archivo = "inicioAdmin";
-        
-        ArrayList<Noticia> noticias = new ArrayList<>(Arrays.asList(
-                new Noticia(),
-                new Noticia(),
-                new Noticia(),
-                new Noticia()
-        ));
-        noticias.forEach(noticia -> {
-            Rol rol = new Rol();
-            rol.setNom("administrador");
-            noticia.setTitulo("Titulo");
-            noticia.setRol(rol);
-            noticia.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu dui vitae est dictum posuere eget eu mi. Curabitur ornare urna nibh, elementum vulputate nisl dignissim sit amet. Aenean faucibus tincidunt magna, ut vulputate tortor mollis sit amet. Fusce non maximus enim, in eleifend neque. Quisque tincidunt est sapien, vitae auctor lectus fringilla pharetra. Vestibulum placerat tristique placerat. Nunc tempor leo diam, eget porttitor dui tincidunt in. Praesent nec sem erat. Suspendisse elementum, felis non hendrerit cursus, est velit porta sapien, sed tempor sem ipsum eu magna. In a arcu sodales, ullamcorper velit ac, sodales velit. Curabitur sed eros id ex sagittis facilisis non sit amet enim. In sollicitudin turpis mauris, et commodo leo feugiat tempus.");
-        });
 
         ArrayList<Persona> personas = new ArrayList<>(Arrays.asList(
                 new Persona(),
@@ -56,8 +56,9 @@ public class InicioAdmin {
             e.setNombre("Empresa nova");
         });
 
-        model.addAttribute("anuncios", noticias);
-        model.addAttribute("validaciones", personas);
+        model.addAttribute("anuncios", noticiaDAO.findAll());
+        model.addAttribute("validaciones", alumnoDAO.findAll());
+        model.addAttribute("validaciones", empresaDAO.findAll());
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
