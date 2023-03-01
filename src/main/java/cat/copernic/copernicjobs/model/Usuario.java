@@ -43,7 +43,7 @@ public abstract class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int ID;
+    private int id;
     
     @OneToOne
     @PrimaryKeyJoinColumn(name="rol_id")
