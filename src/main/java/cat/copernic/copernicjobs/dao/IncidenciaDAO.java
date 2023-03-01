@@ -4,14 +4,14 @@
  */
 package cat.copernic.copernicjobs.DAO;
 
-import cat.copernic.copernicjobs.model.Oferta;
+import cat.copernic.copernicjobs.model.Incidencia;
+import cat.copernic.copernicjobs.model.Usuario;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
- * @author Cole
+ * DAO para la integración de la entidad Inicidencia con la base de datos.
  */
-public interface OfertaDAO extends CrudRepository<Oferta,Integer>{
-    List<Oferta> findAllByEmpresaId(int id);
+public interface IncidenciaDAO extends CrudRepository<Incidencia,Integer>{ 
+
 }
