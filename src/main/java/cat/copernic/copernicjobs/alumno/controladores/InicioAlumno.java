@@ -4,36 +4,39 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
-import cat.copernic.copernicjobs.DAO.AlumnoDAO;
+import cat.copernic.copernicjobs.DAO.NoticiaDAO;
+import cat.copernic.copernicjobs.DAO.OfertaDAO;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
-import cat.copernic.copernicjobs.model.Alumno;
-import java.util.HashMap;
+import cat.copernic.copernicjobs.model.Noticia;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
  * @author Cole
  */
 @Controller
-public class VerPerfil {
+public class InicioAlumno {
+    
+    @Autowired 
+    private NoticiaDAO noticiaDAO; 
+    @Autowired
+    private OfertaDAO ofertaDAO;
 
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
-    private AlumnoDAO alumndoDAO; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
-
-    @GetMapping("/veurePerfilAlumne")
+    @GetMapping("/iniciAlumne")
     public String inicio(Model model) {
-        int id = 1;
+
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
-        String archivo = "verPerfilAlumno";
-
-        model.addAttribute("alumno",alumndoDAO.findById(id));
+        String archivo = "inicioAlumno";
+        model.addAttribute("anuncios",noticiaDAO.findAll());
+        model.addAttribute("ofertas",ofertaDAO.findAll());
+        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }
-
 }

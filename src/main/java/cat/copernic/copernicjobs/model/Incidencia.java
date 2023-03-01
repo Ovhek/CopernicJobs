@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
 
@@ -21,7 +22,8 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Incidencia{
+public class Incidencia implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id //Indica al sistema que l'atribut id és la clau primària de la BBDD
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica al sistema com generem l'id, en el nostre cas autoincremental, per això fem servir IDENTITY
     @Column(name = "ID", nullable = false, unique = true)

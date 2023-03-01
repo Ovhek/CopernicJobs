@@ -7,17 +7,10 @@ package cat.copernic.copernicjobs.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -35,6 +28,6 @@ public class Empresa extends Persona {
     private String descripcionEmpresa;
     @Column(name="webEmpresa")
     private String webEmpresa;
-    @OneToMany
+    @OneToMany(mappedBy = "empresa")
     private List<Oferta> ofertas;
 }

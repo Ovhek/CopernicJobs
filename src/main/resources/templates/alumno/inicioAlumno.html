@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <!-- Anuncios -->
                     <div id="anuncios">
                         <h1>Anuncis</h1>
-                        <div th:each="anuncio : ${anuncios}" th:if="${anuncio.rol.nom == 'alumno'}">
+                        <div th:each="anuncio : ${anuncios}" th:if="${anuncio.rol.nom == 'alumne'}">
                             <h3 th:text="${anuncio.titulo}"></h3>
                             <p th:text="${anuncio.descripcion}"></p>
                         </div>
