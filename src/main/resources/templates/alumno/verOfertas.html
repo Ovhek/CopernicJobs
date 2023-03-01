@@ -25,13 +25,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </div>
 
     <div th:each="oferta : ${ofertas}">
-        <h2 th:text="${oferta.tituloOferta}">Sección 1</h2>
-        <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
+        <h2 th:text="${oferta.tituloOferta}"></h2>
+        <p th:text="${oferta.descripcionOferta}"></p>
         <div>
             <p th:text="${oferta.empresa.nombreEmpresa}"></p>
             <p th:text="${oferta.empresa.municipio}"></p>
         </div>
-        <a href="#">Més informació</a>
+        <a href="/veureOferta">Més informació</a>
     </div>
 
 </body>
