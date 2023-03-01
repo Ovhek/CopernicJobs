@@ -5,7 +5,11 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.DAO.IncidenciaDAO;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import cat.copernic.copernicjobs.model.Incidencia;
+import java.util.HashMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class VerIncidencia {
     
+    @Autowired
+    private IncidenciaDAO incidenciaDAO;
+    
     @GetMapping("/verIncidencia")
     public String inicio(Model model){
         
@@ -25,7 +32,16 @@ public class VerIncidencia {
         //nombre del archivo html
         String archivo = "verIncidencia";
         
-        model.addAttribute("test","vivimos");
+        Incidencia incidencia = (Incidencia) incidenciaDAO.findById(1).get();
+        
+        HashMap<String, Object> datos = new HashMap<>() {
+            {
+                put("incDesc", incidencia.getDescripcion());
+                put("incFecha", incidencia.getFecha_incidencia());
+            }
+        };
+        
+        model.addAllAttributes(datos);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }

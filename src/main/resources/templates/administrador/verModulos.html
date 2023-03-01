@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form th:action="@{/guardar-modulos}" method="post">
+            <h2>Configuración de módulos</h2>
+            <ul>
+                <li><input type="checkbox" name="Alumno" th:checked="${moduloAlumnoActivo}"> Módulo Alumno</li>
+                <li><input type="checkbox" name="Empresa" th:checked="${moduloEmpresaActivo}"> Módulo Empresa</li>
+                <li><input type="checkbox" name="Administrador" th:checked="${moduloAdministradorActivo}"> Módulo Administrador</li>
+            </ul>
+            <button type="submit">Guardar</button>
+        </form>
+    </body>
+</html>
