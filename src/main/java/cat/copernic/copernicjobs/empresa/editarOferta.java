@@ -16,12 +16,12 @@ import org.springframework.ui.Model;
 @Controller
 public class editarOferta{
     
-    @GetMapping("/editarOferta")
+    @GetMapping("/editaroferta")
     public String inicio(Model model){
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
-        String archivo = "editarOferta";
+        String archivo = "editaroferta";
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);

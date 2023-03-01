@@ -8,6 +8,7 @@ import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -17,16 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Principal {
     
   
-    @GetMapping("/principal")
+    @RequestMapping("/")
     public String inicio(Model model){
-        
-        //Ruta donde está el archivo html 
-        String ruta = "";
-        //nombre del archivo html
-        String archivo = "principal";
-        
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return "principal";
     }
         
 }

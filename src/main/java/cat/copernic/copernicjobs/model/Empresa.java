@@ -24,7 +24,7 @@ import lombok.NonNull;
  */
 @Data
 @Entity
-@Table(name="empresa")
+@Table(name="usuario")
 @DiscriminatorValue("3")
 public class Empresa extends Persona {
 
