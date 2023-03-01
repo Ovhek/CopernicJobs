@@ -22,7 +22,7 @@ import lombok.NonNull;
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "ID", nullable = false, unique = true)
     private int id;
     @Column(name = "nombre")
     private String nom;

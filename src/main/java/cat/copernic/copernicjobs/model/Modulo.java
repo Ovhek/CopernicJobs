@@ -10,9 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.ArrayList;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -20,7 +20,8 @@ import lombok.NonNull;
  */
 @Data
 @Entity
-public class Modulo {
+public class Modulo implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
