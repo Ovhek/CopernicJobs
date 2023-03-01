@@ -25,7 +25,6 @@ public class CrearNoticia {
         //nombre del archivo html
         String archivo = "crearNoticia";
         
-        model.addAttribute("test","vivimos");
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }

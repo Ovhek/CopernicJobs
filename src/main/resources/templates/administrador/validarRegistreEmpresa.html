@@ -14,38 +14,37 @@ and open the template in the editor.
         <main>
             <div id="empresa">
                 <label for="nom">Nom:</label>
-                <text id="nom" name="nom">nom empresa</text>
+                <p th:text="${emNombre}"></p>
 
                 <label for="descripcio">Descripcio:</label>
-                <text id="descripcio" name="descripcio">descripcio empresa</text>
-
-                <label for="email">Email:</label>
-                <text id="email" name="email">contacte empresa</text>
+                <p th:text="${emDesc}"></p>
 
                 <label for="direccio">Direccio:</label>
-                <text id="direccio" name="direccio">direccio empresa</text>
-                
+                <p th:text="${emDir}"></p>
+
                 <label for="codi">Codi postal:</label>
-                <text id="codi" name="codi">codi postal empresa</text>
-                
+                <p th:text="${emPost}"></p>
+
                 <label for="municipi">Municipi:</label>
-                <text id="municipi" name="municipi">municipi empresa</text>
-                
-                <label for="telefon">Telèfon:</label>
-                <text id="telefon" name="telefon">telefon empresa</text>
-                
+                <p th:text="${emMun}"></p>
+
                 <label for="web">Web empresa:</label>
-                <text id="web" name="web">web de l'empresa</text>
+                <p th:text="${emWeb}"></p>
+
+                <label for="telefon">Telèfon:</label>
+                <p th:text="${emTel}"></p>
+
+
             </div>
             <div id="responsable">
                 <label for="nom">Nom:</label>
-                <text id="nom" name="nom">nom representant</text>
+                <p th:text="${resNombre}"></p>
 
                 <label for="cognoms">Cognoms:</label>
-                <text id="cognoms" name="cognoms">cognoms representant</text>
+                <p th:text="${resApellidos}"></p>
 
                 <label for="mobil">Mòbil:</label>
-                <text id="mobil" name="mobil">numero mobil representant</text>
+                <p th:text="${resMob}"></p>
             </div>
             <button>Validar Registre</button>
             <button>Invalidar Registre</button>

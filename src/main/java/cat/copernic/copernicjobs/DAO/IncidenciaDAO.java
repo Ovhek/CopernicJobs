@@ -13,5 +13,7 @@ import org.springframework.data.repository.CrudRepository;
  * DAO para la integración de la entidad Inicidencia con la base de datos.
  */
 public interface IncidenciaDAO extends CrudRepository<Incidencia,Integer>{ 
-
+    //Aqui podrem afegir altres mètodes que necessitem i que no estiguin definits a la interface CrudRepository,
+    //com el següent mètode, findByNom que retornarà els gossos amb el nom passat per paràmetre
+    List<Incidencia> findByDescripcion(String descripcion);
 }

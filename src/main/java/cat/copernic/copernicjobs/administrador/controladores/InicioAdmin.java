@@ -30,39 +30,34 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class InicioAdmin {
-    
+
     @Autowired
     private NoticiaDAO noticiaDAO;
-    
-    @Autowired 
+
+    @Autowired
     private AlumnoDAO alumnoDAO;
-    
+
     @Autowired
     private EmpresaDAO empresaDAO;
     
+    @Autowired
+    private OfertaDAO ofertaDAO;
+
     @GetMapping("/inicioAdmin")
-    public String inicio(Model model){
-        
+    public String inicio(Model model) {
+
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
         //nombre del archivo html
         String archivo = "inicioAdmin";
 
-        ArrayList<Persona> personas = new ArrayList<>(Arrays.asList(
-                new Persona(),
-                new Persona()
-        ));
-        personas.forEach(e -> {
-            e.setNombre("Empresa nova");
-        });
-
         model.addAttribute("anuncios", noticiaDAO.findAll());
         model.addAttribute("validaciones", alumnoDAO.findAll());
-        model.addAttribute("validaciones", empresaDAO.findAll());
-        
+        model.addAttribute("validaciones2", empresaDAO.findAll());
+        model.addAttribute("validaciones3", ofertaDAO.findAll());
+
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-        
-}
 
+}

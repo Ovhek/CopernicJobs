@@ -12,18 +12,33 @@ and open the template in the editor.
     </head>
     <body>
         <main>
-            <div id="datos">
+            <div id="alumno">
                 <label for="nom">Nom:</label>
-                <text id="nom" name="nom">John</text>
+                <p th:text="${nombreAlumno}"></p>
 
                 <label for="cognoms">Cognoms:</label>
-                <text id="cognoms" name="cognoms">Doe</text>
-
-                <label for="genere">Gènere:</label>
-                <text id="genere" name="genere">Dona</text>
+                <p th:text="${apellidosAlumno}"></p>
 
                 <label for="adreca">Adreça:</label>
-                <text id="adreca" name="adreca">JohnDoe@gmail.com</text>
+                <p th:text="${correoAlumno}"></p>
+
+                <label for="direccio">Direcció:</label>
+                <p th:text="${direccionAlumno}"></p>
+
+                <label for="movil">Mòvil:</label>
+                <p th:text="${movilAlumno}"></p>
+
+                <label for="genere">Gènere:</label>
+                <p th:text="${generoAlumno}"></p>
+                
+                <label for="dni">DNI/NIE:</label>
+                <p th:text="${dniAlumno}"></p>
+
+                <label for="tarjetaSanitaria">Tarjeta Sanitària:</label>
+                <p th:text="${tsAlumno}"></p>
+
+                <label for="seguretatSocial">Número de la Seguretat Social:</label>
+                <p th:text="${socialAlumno}"></p>
             </div>
             <button>Validar Registre</button>
             <button>Invalidar Registre</button>
