@@ -33,7 +33,6 @@ public class VerOfertasAlumno {
         //nombre del archivo html
         String archivo = "verOfertas";
         
-
         model.addAttribute("ofertas", ofertaDAO.findAll());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
