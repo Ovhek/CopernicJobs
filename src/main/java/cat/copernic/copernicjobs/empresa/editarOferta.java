@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 @Controller
 public class editarOferta{
     
-    @GetMapping("/editarOferta")
+    @GetMapping("/editaroferta")
     public String inicio(Model model){
         //Ruta donde está el archivo html 
         String ruta = "empresa/";

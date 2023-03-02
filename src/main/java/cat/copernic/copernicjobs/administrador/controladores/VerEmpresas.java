@@ -45,7 +45,6 @@ public class VerEmpresas {
 
         empresas.forEach(e -> {
             e.setMunicipio("Terrassa");
-            e.setMovil("666666666");
         });
 
         model.addAttribute("empresas", empresaDAO.findAll());
@@ -53,5 +52,5 @@ public class VerEmpresas {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-
+        
 }
