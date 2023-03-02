@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
@@ -24,7 +25,9 @@ import lombok.RequiredArgsConstructor;
  */
 @Data
 @Entity
-public class Noticia {
+public class Noticia implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +41,7 @@ public class Noticia {
     private LocalDate fechaHora;
 
     @OneToOne
-    @JoinColumn(name="rol_id")
+    @JoinColumn(name = "rol_id")
     private Rol rol;
 
 }
