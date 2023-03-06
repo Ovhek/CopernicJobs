@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RegistratCom {
     
-    @GetMapping("/registratCom")
+    @GetMapping("/registrat")
     public String inicio(){
         return "registratCom";
     }

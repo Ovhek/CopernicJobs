@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.alumno.controladores;
 
 import cat.copernic.copernicjobs.DAO.AlumnoDAO;
+import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
@@ -22,7 +23,7 @@ import org.springframework.ui.Model;
 public class VerPerfilAlumno {
 
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
-    private AlumnoDAO alumndoDAO; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
+    private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
     @GetMapping("/veurePerfilAlumne")
     public String inicio(Model model) {
@@ -32,8 +33,11 @@ public class VerPerfilAlumno {
         //nombre del archivo html
         String archivo = "verPerfilAlumno";
 
+        Alumno alumno = new Alumno();
+        alumno.setId(id);
+       
         
-        model.addAttribute("alumno",alumndoDAO.findById(id).get());
+        model.addAttribute("alumno",alumnoService.buscarAlumno(alumno));
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }
 

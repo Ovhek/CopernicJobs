@@ -32,6 +32,8 @@ public class Incidencia implements Serializable{
     private String descripcion;
     @Column(name = "fecha_incidencia")
     private LocalDate fecha_incidencia;
+    @Column(name = "titulo")
+    private String titulo;
     @Column(name = "estado")
     private int estado;
     

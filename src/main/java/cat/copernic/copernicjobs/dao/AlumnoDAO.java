@@ -18,13 +18,4 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface AlumnoDAO extends CrudRepository<Alumno,Integer>{ 
     
-    /**
-     * Obtener los usuarios basandonos en su rol
-     * 1 --> alumne
-     * 2 --> administrador
-     * 3 --> empresa
-     * @param rolId ID del rol.
-     * @return Lista de usuarios.
-     */
-    List<Alumno> findByRolId(int rolId);
 }

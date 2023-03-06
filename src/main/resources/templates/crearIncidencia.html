@@ -3,23 +3,23 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Crear Incidencia</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div>
             <h1>Crear Incidència</h1>
-            <form method="post" action="">
+            <form method="post" th:action="@{/crearIncidencia}" th:object="${incidencia}">
                 <div class="form-group">
                     <label for="titulo">Títol</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Introduce el título">
+                    <input type="text" th:field="*{titulo}" id="titulo" placeholder="Introdueix el títol">
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripció</label>
-                    <textarea class="form-control" id="descripcion" rows="5" placeholder="Introduce la descripción"></textarea>
+                    <textarea th:field="*{descripcion}" id="descripcion" rows="5" placeholder="Introdueix la descripció"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Crear incidència</button>
                 <button type="reset" class="btn btn-secondary">Cancelar</button>
