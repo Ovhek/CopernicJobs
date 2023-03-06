@@ -6,12 +6,16 @@ package cat.copernic.copernicjobs.DAO;
 
 import cat.copernic.copernicjobs.model.Oferta;
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Cole
  */
-public interface OfertaDAO extends CrudRepository<Oferta,Integer>{
-    List<Oferta> findAllByEmpresaId(int id);
+
+
+public interface OfertaDAO extends JpaRepository<Oferta,Integer>{
+    
+    List<Oferta> findAllByEmpresaId(int id);    
+    
 }

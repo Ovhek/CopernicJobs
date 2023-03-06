@@ -5,6 +5,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
+
 
 /**
  *
@@ -35,7 +37,7 @@ public class Incidencia implements Serializable{
     @Column(name = "estado")
     private int estado;
     
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name="usuario_id")
     private Usuario usuario;
     

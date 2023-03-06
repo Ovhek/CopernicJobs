@@ -5,6 +5,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Noticia {
     @Column(name = "fecha_envio")
     private LocalDate fechaHora;
 
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name="rol_id")
     private Rol rol;
 

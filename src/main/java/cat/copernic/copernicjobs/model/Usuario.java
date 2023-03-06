@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
@@ -45,7 +46,7 @@ public abstract class Usuario implements Serializable{
     @Column(name = "ID")
     private int id;
     
-    @OneToOne
+    @OneToOne()
     @PrimaryKeyJoinColumn(name="rol_id")
     private Rol rol;
 }

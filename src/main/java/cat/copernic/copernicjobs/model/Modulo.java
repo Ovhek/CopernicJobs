@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +29,6 @@ public class Modulo implements Serializable {
     private int ID;
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany
+    @OneToMany()
     private ArrayList<Rol> roles;
 }
