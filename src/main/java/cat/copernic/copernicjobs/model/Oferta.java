@@ -4,7 +4,6 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +43,7 @@ public class Oferta {
     @Column(name="baja")
     private boolean baja;
     
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
     

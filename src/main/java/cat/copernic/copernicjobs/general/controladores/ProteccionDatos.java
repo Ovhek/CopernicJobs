@@ -4,23 +4,20 @@
  */
 package cat.copernic.copernicjobs.general.controladores;
 
-import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
- * @author Albert
+ * @author Cole
  */
 @Controller
-public class Principal {
+public class ProteccionDatos {
     
-  
-    @GetMapping("/inici")
-    public String inicio(Model model){
-        return "principal";
+    @GetMapping("/protecciodades")
+    public String inicio(){
+        return "proteccionDatos";
     }
-        
 }

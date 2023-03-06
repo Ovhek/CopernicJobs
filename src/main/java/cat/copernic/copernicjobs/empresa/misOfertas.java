@@ -5,7 +5,6 @@
 package cat.copernic.copernicjobs.empresa;
 
 import cat.copernic.copernicjobs.DAO.OfertaDAO;
-import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +18,24 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class misOfertas {
-    
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
-    private OfertaService ofertaService;
+
+    @Autowired
+    OfertaDAO ofertaDao;
 
     @GetMapping("/misofertas")
     public String inicio(Model model) {
+
+        
         
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
-        String archivo = "misofertas";
-       
-        model.addAttribute("ofertas", ofertaService.llistarOfertas());
-
+        String archivo = "misOfertas";
+        
+        model.addAttribute("ofertas", ofertaDao.findAllByEmpresaId(1));
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }
 
-    
+    //@PostMapping()
 }

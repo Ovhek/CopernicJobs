@@ -38,19 +38,7 @@ public class VerEmpresa {
         
         Empresa empresa = (Empresa) empresaDAO.findById(3).get();
         
-        HashMap<String, Object> datos = new HashMap<>(){{
-            put("emNombre", empresa.getNombreEmpresa());
-            put("emDesc", empresa.getDescripcionEmpresa());
-            put("emDir", empresa.getDireccion());
-            put("emPost", empresa.getCodPostal());
-            put("emMun", empresa.getMunicipio());
-            put("emWeb", empresa.getWebEmpresa());            
-            put("resNombre", empresa.getNombre());
-            put("resApellidos", empresa.getApellidos());
-            put("resMob", empresa.getMovil());
-
-        }};
-        model.addAllAttributes(datos);        
+        model.addAttribute("empresa",empresa);        
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }

@@ -41,13 +41,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <!-- Otros Datos -->
             <div id="otrosDatos">
                 <div>
-                    <span>DNI/NIE: </span><span th:text="${alumno.dni}">A</span>
+                    <span>DNI/NIE: </span><span th:text="${alumno.dni}"></span>
                     <span>Targeta Sanitària: </span><span th:text="${alumno.tarjetaSanitaria}"></span>
                     <span>Número Seguretat Social </span><span th:text="${alumno.SegSocial}"></span> 
                 </div>
             </div>
 
-            <button>Editar Perfil</button>
+            <a href="/editarPerfilAlumne">Editar Perfil</a>
         </main>
     </body>
 </html>

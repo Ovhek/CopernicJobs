@@ -9,13 +9,13 @@
     <script src=""></script>
     <body>
 
-        <form method="post" action="">
+        <form method="post" th:action="@{/login}">
             <table style="margin: 0 auto;">
 
                 <tr>
                     <th>
                         <div class="imgcontainer">
-                            <img src="logoCopernicJobs.png" alt="Avatar" class="avatar"/>
+                            <img th:src="@{images/logoCopernicJobs.png}" alt="Avatar" class="avatar"/>
                         </div>
 
                     </th>
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" placeholder="Introdueix el teu correu" style="width:75%" name="uname" required>
+                            <input type="text" placeholder="Introdueix el teu correu" th:value="${correo}" name="correo" required>
                         </th>
                     </tr>
                     <tr>
@@ -47,13 +47,13 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="password" placeholder="Introdueix la teva contrasenya" style="width:75%" name="psw" required>
+                            <input type="password" placeholder="Introdueix la teva contrasenya" th:value="${contrasenya}" name="contrasenya" required>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="container" style="background-color:#f1f1f1">
-                                <span class="psw"><a href="#">Recuperar contrasenya</a></span>
+                            <div class="container">
+                                <span class="psw"><a href="/recuperarContrasenya">Recuperar contrasenya</a></span>
                             </div>
                         </th>
                     </tr>
@@ -64,15 +64,16 @@
                     </tr>
                     <tr>
                         <th>
-                            <div class="container" style="background-color:#f1f1f1">
-                                <span class="psw"><a href="#">Registra't</a></span>
+                            <span th:if="${loginIncorrecto}">Login Incorrecte</span>
+                            <div class="container">
+                                <span class="psw"><a href="/registrat">Registra't</a></span>
                             </div>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <div class="container" style="background-color:#f1f1f1">
-                                <span class="psw">Et vas donar de Baixa?<a href="#">Donat d'Alta</a></span>
+                            <div class="container">
+                                <span class="psw">Et vas donar de Baixa?<a href="/donatDalta">Donat d'Alta</a></span>
                             </div>
                         </th>
                     </tr>
