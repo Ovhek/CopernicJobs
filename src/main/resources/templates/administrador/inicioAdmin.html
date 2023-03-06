@@ -12,16 +12,26 @@ and open the template in the editor.
     </head>
     <body>
         <main>
-            <div id="contenedor">
+            <div>
                 <!-- Anuncios -->
-                <div id="anuncios">
+                <div id="noticias">
                     <h1>Anuncis</h1>
-                    <div th:each="anuncio : ${anuncios}">
-                        <h6 th:text="${anuncio.titulo}"></h6>
-                        <p th:text="${anuncio.descripcion}"></p>
-                        <a href="/modificarNoticia">Modificar anunci</a>
+                    <div th:each="noticia : ${noticias}">
+                        <h6 th:text="${noticia.titulo}"></h6>
+                        <p th:text="${noticia.descripcion}"></p>
+                        <p th:text="${noticia.fechaHora}"></p>
+
+                        <!--Enllaç mitjançant el qual accedirem a la pàgina per editar la noticia actual
+                        al qual li correspon l'id que concatenem a l'URL editar-->
+
+                        <a th:href="@{/editar/}+${noticia.id}" th:text="Editar"/>
+
+                        <!--Enllaç mitjançant el qual accedirem a la pàgina per eliminar la noticia actual
+                        al qual li correspon l'id que concatenem a l'URL d'eliminar-->
+
+                        <a th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
                     </div>
-                    <a href="/crearNoticia">Crear anunci</a>
+                    <a th:href="@{/crearNoticia}" th:text="Crear"></a>
                 </div>
                 <div id="validaciones">
                     <h1>Validacions</h1>

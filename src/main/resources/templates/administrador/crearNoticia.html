@@ -11,14 +11,37 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form method="post">
-            <label for="titol">Títol:</label>
-            <input type="text" id="titol" name="titol" placeholder="Introdueix el títol">
+        <!-- Creem un formulari per introduir les dades que rebrà el ControladorInici 
+                 i assignarà als atributs de la noticia passada com a paràmetre en el mètode 
+                 crearNoticia d'aquest controlador. 
+                 Per associar les dades a l'objecte noticia, fem servir l'element th:objecte de 
+                 Thymeleaf, al qual li assignem com a valor el paràmetre noticia del mètode 
+                 crearNoticia.-->
+        <form th:action="@{/guardarNoticia}" method="post" th:object="${noticia}">
 
-            <label for="descripcio">Descripció:</label>
-            <input type="text" id="descripcio" name="descripcio" placeholder="Introdueix el contingut">
-            
-            <button>Crear Anunci</button> 
+            <!--Thymeleaf indica que una varaible fa refèrencia a un atribut d'una classe de l'aplicació, utilitzant
+                l'element precedint el nom th:field. El valor que li assignarem a aquest element serà el nom de
+                l'atribut de la classe al que fa referència, per exemple, *{id}, fa refèrencia a l'atribut idnoticia de 
+                la classe noticia. Fixeu-vos que a diferència de les variables, quan es tracta d'un atribut, les claus de
+                l'atribut van precedides de *, en lloc de $.-->
+
+            <!-- Camp ocult on guardem el valor de l'atribut id de la classe noticia per enviar-lo juntament amb les altres dades.-->                 
+            <input type="hidden" name="id" th:field="*{id}"/>
+
+            <p>
+                <label for="titulo">Títol:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el títol de la noticia-->
+                <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut titol de l'objecte
+                    noticia assignat a th:objecte-->
+                <input type="text" name="titulo" th:field="*{titulo}"/>
+            </p>
+
+            <p>
+                <label for="descripcion">Descripció:</label> <!--Etiqueta per la descripció de la notícia-->     
+                <input type="text" name="descripcion" th:field="*{descripcion}"/> <!--Associem les dades introduïdes amb l'atribut descripcio-->
+            </p>
+
+            <!-- Botó per enviar les dades-->
+            <button type="submit" name="enviar" value="Enviar Dades">Crear Anunci</button> 
             <button>Cancelar</button>
         </form>
     </body>

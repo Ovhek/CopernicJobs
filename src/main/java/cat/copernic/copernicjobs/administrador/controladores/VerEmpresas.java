@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.DAO.EmpresaDAO;
+import cat.copernic.copernicjobs.administrador.servicios.EmpresaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class VerEmpresas {
     
     @Autowired
-    private EmpresaDAO empresaDAO;
+    private EmpresaService empresaService;
 
     @GetMapping("/verEmpresas")
     public String inicio(Model model) {
@@ -34,21 +35,7 @@ public class VerEmpresas {
         //nombre del archivo html
         String archivo = "verEmpresas";
 
-        ArrayList<Empresa> empresas = new ArrayList<>(Arrays.asList(
-                new Empresa(),
-                new Empresa()
-        ));
-        empresas.forEach(e -> {
-            e.setNombreEmpresa("NombreEmpresa");
-            e.setDescripcionEmpresa("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu dui vitae est dictum posuere eget eu mi. Curabitur ornare urna nibh, elementum vulputate nisl dignissim sit amet. Aenean faucibus tincidunt magna, ut vulputate tortor mollis sit amet. Fusce non maximus enim, in eleifend neque. Quisque tincidunt est sapien, vitae auctor lectus fringilla pharetra. Vestibulum placerat tristique placerat. Nunc tempor leo diam, eget porttitor dui tincidunt in. Praesent nec sem erat. Suspendisse elementum, felis non hendrerit cursus, est velit porta sapien, sed tempor sem ipsum eu magna. In a arcu sodales, ullamcorper velit ac, sodales velit. Curabitur sed eros id ex sagittis facilisis non sit amet enim. In sollicitudin turpis mauris, et commodo leo feugiat tempus.");
-        });
-
-        empresas.forEach(e -> {
-            e.setMunicipio("Terrassa");
-            e.setMovil("666666666");
-        });
-
-        model.addAttribute("empresas", empresaDAO.findAll());
+        model.addAttribute("empresas", empresaService.llistarEmpreses());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);

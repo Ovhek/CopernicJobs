@@ -6,12 +6,12 @@
 package cat.copernic.copernicjobs.DAO;
 
 import cat.copernic.copernicjobs.model.Rol;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author joang
  */
-public interface RolDAO extends CrudRepository<Rol,Integer>{
+public interface RolDAO extends JpaRepository<Rol,Integer>{
     
 }

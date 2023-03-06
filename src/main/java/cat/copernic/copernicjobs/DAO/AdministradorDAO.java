@@ -6,15 +6,14 @@
 package cat.copernic.copernicjobs.DAO;
 
 import cat.copernic.copernicjobs.model.Administrador;
-import cat.copernic.copernicjobs.model.Usuario;
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author joang
  */
-public interface AdministradorDAO extends CrudRepository<Administrador,Integer>{
+public interface AdministradorDAO extends JpaRepository<Administrador,Integer>{
      /**
      * Obtener los usuarios basandonos en su rol
      * 1 --> alumne
