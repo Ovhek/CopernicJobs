@@ -8,7 +8,6 @@ package cat.copernic.copernicjobs.administrador.controladores;
 import cat.copernic.copernicjobs.DAO.AlumnoDAO;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
-import cat.copernic.copernicjobs.model.Empresa;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,24 +31,34 @@ public class VerAlumno {
         String ruta = "administrador/";
         //nombre del archivo html
         String archivo = "verAlumno";
-
-        Alumno alumno = (Alumno) alumndoDAO.findById(1).get();
-
-        HashMap<String, Object> datos = new HashMap<>() {
-            {
-                put("nombreAlumno", alumno.getNombre());
-                put("apellidosAlumno", alumno.getApellidos());
-                put("correoAlumno", alumno.getCorreo());
-                put("direccionAlumno", alumno.getDireccion());
-                put("movilAlumno", alumno.getMovil());
-                put("generoAlumno", alumno.getSexoDesc());
-                put("dniAlumno", alumno.getDni());
-                put("tsAlumno", alumno.getTarjetaSanitaria());
-                put("socialAlumno", alumno.getSegSocial());
-            }
-        };
-
-        model.addAllAttributes(datos);
+        
+        Alumno alumno = new Alumno();
+        alumno.setNombre("John");
+        alumno.setApellidos("Doe");
+        alumno.setCorreo("JohnDoe@gmail.com");
+        alumno.setDireccion("Carrer vinyals 07");
+        alumno.setMovil("613157834");
+        alumno.setSexo(1);
+        alumno.setDni("56899047L");
+        alumno.setTarjetaSanitaria("4563324");
+        alumno.setSegSocial("123456789");
+        
+        
+        HashMap dummyData = new HashMap<String,Object>(){{
+            put("nombreAlumno", alumno.getNombre());
+            put("apellidosAlumno", alumno.getApellidos());
+            put("correoAlumno", alumno.getCorreo());
+            put("direccionAlumno", alumno.getDireccion());
+            put("movilAlumno", alumno.getMovil());
+            put("generoAlumno", alumno.getSexo());            
+            put("dniAlumno", alumno.getDni());            
+            put("tsAlumno", alumno.getTarjetaSanitaria());            
+            put("socialAlumno", alumno.getSegSocial());            
+        }};
+        
+        model.addAllAttributes(dummyData);
+        model.addAttribute(ruta);
+        
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }

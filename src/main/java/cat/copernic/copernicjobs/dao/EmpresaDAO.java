@@ -4,8 +4,9 @@
  */
 package cat.copernic.copernicjobs.DAO;
 
-import cat.copernic.copernicjobs.model.Alumno;
+import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Usuario;
+import java.security.spec.ECField;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,6 +17,15 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * DAO para la integración de la entidad Usuario con la base de datos.
  */
-public interface AlumnoDAO extends CrudRepository<Alumno,Integer>{ 
+public interface EmpresaDAO extends CrudRepository<Empresa,Integer>{ 
     
+    /**
+     * Obtener los usuarios basandonos en su rol
+     * 1 --> alumne
+     * 2 --> administrador
+     * 3 --> empresa
+     * @param rolId ID del rol.
+     * @return Lista de usuarios.
+     */
+    List<Empresa> findByRolId(int rolId);
 }

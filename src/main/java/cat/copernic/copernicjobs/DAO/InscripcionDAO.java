@@ -6,12 +6,12 @@ package cat.copernic.copernicjobs.DAO;
 
 import cat.copernic.copernicjobs.model.Inscripcion;
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * DAO para la integración de la entidad Inicidencia con la base de datos.
  */
-public interface InscripcionDAO extends CrudRepository<Inscripcion,Integer>{ 
+public interface InscripcionDAO extends JpaRepository<Inscripcion,Integer>{ 
 
     List<Inscripcion> findAllByAlumnoId(int id);
     List<Inscripcion> findAllByOfertaId(int id);

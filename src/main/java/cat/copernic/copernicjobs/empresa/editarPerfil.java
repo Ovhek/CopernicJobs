@@ -6,6 +6,7 @@ package cat.copernic.copernicjobs.empresa;
 
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author Albert
  */
+@Controller
 public class editarPerfil {
-        @GetMapping("/editarPerfilEmpresa")
+        @GetMapping("/editarperfilempresa")
     public String inicio(Model model){
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
