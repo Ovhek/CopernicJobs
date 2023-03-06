@@ -5,6 +5,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
@@ -25,9 +25,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Data
 @Entity
-public class Noticia implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Noticia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +38,8 @@ public class Noticia implements Serializable {
     @Column(name = "fecha_envio")
     private LocalDate fechaHora;
 
-    @OneToOne
-    @JoinColumn(name = "rol_id")
+    @OneToOne()
+    @JoinColumn(name="rol_id")
     private Rol rol;
 
 }

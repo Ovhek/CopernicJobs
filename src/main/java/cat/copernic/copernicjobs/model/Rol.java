@@ -4,15 +4,14 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import java.io.Serializable;
 import java.util.List;
 import lombok.Data;
 
@@ -22,20 +21,18 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Rol implements Serializable{
-
-    private static final long serialVersionUID = 1L;
-
+public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
     @Column(name = "nombre")
     private String nom;
-
-    @OneToOne(mappedBy = "rol")
+    
+    @OneToOne(mappedBy="rol", cascade = CascadeType.ALL, orphanRemoval = true)
     private Usuario usuario;
     
-    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "rol")
     private List<RolModulo> modulos;
+
 }

@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,9 +29,9 @@ public class Inscripcion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
-    @OneToOne
+    @OneToOne()
     private Oferta oferta;
-    @OneToOne
+    @OneToOne()
     private Alumno alumno;
     @Column(name = "fechaInscripcion")
     private LocalDate fechaInscripcion;
