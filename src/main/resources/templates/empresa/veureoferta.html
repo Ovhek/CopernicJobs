@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,11 +10,11 @@
     <body>
         <form method="post" action="">
             <table style="margin: 0 auto;">
-                <div class="container">
+                <div class="container" th:each="oferta : ${ofertas}">
                     <tr>
                         <th>
-                            <h1>
-				Programador ENTTIA
+                            <h1 th:text="${oferta.tituloOferta}">
+				
 			    </h1>
                         </th>
                     </tr>
@@ -25,11 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-				<p>
-			    Enginyeria amb una naturalesa de negoci relacionada amb les 
-			    tecnologies de la informació i especialitzada en projectes de seguretat
-			    i identificació de persones cerca programador per a desenvolupar aplicacions amb
-			    .Net, WEB i SQL.			
+				<p th:text="${oferta.descripcionOferta}">
 				</p>
                         </th>
                     </tr>
@@ -40,16 +36,7 @@
                     </tr>
                     <tr>
                         <th>
-				<p>
-				Flexibilita i gestio del canvi
-				treball en equip i cooperació
-				.Net(desitjable C#)
-				Desenvolupament web(HTML, CSS y Javascript)
-				Base de dades SQL (Principalment SQL Server)
-				Desitjable coneixements de frameworks web basats en components(React per exemple)
-				Administracio de sistemes i/o nuvol.
-
-
+				<p th:text="${oferta.requisitosAlumno}">
 				</p>
                         </th>
                     </tr>
@@ -60,9 +47,7 @@
                     </tr>
                     <tr>
                         <th>
-				<p>
-				S'informarà en l'entrevista
-				
+				<p th:text="${oferta.seOfrece}">
 				</p>
                         </th>
                     </tr>
@@ -78,7 +63,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <button type="submit">Editar Oferta</button>
+                            <a href="/editaroferta">Editar Oferta</a>
                         </th>
                     </tr>
                 </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,15 +20,22 @@
         </div>
 
         <div th:each="oferta : ${ofertas}">
-             <h2 th:text="${oferta.tituloOferta}">Sección 1</h2>
-        <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
-        <div>
-            <p th:text="${oferta.empresa.nombreEmpresa}"></p>
-            <p th:text="${oferta.empresa.municipio}"></p>
-        </div>
-        <a href="#">Mes informació</a>
-    </div>     
-
-
+            <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
+            <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
+                <div>
+                    <p th:text="${oferta.empresa.nombreEmpresa}"></p>
+                    <p th:text="${oferta.empresa.municipio}"></p>
+                </div>
+            <a href="/veureoferta">Mes informació</a>
+        </div>     
+        <div th:each="oferta : ${ofertas2}">
+            <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
+            <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
+                <div>
+                    <p th:text="${oferta.empresa.nombreEmpresa}"></p>
+                    <p th:text="${oferta.empresa.municipio}"></p>
+                </div>
+            <a href="/veureoferta">Mes informació</a>
+        </div>   
 </body>
 </html>

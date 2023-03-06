@@ -24,15 +24,15 @@ public class misOfertas {
 
     @GetMapping("/misofertas")
     public String inicio(Model model) {
-
-        
         
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "misofertas";
         
-        model.addAttribute("ofertas", ofertaDao.findAllByEmpresaId(1));
+        model.addAttribute("ofertas", ofertaDao.findAllByEmpresaId(4));
+        model.addAttribute("ofertas2", ofertaDao.findAllByEmpresaId(3));
+
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }

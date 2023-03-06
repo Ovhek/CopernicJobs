@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,7 +10,7 @@
     <body>
         <form method="post" action="">
             <table style="margin: 0 auto;">
-                <div class="container">
+                <div class="container" th:each="oferta : ${ofertas}">
                     <tr>
                         <th>
                             <label for="uname"><b>Titol de l'oferta</b></label>
@@ -18,9 +18,8 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" placeholder="Introdueix el titol de l'Oferta" style="width:75%" name="uname" required>
-				Programador ENTTIA
-			    </input>
+                            <textarea th:text="${oferta.tituloOferta}" name="uname" required>
+			    </textarea>
                         </th>
                     </tr>
                     <tr>
@@ -30,11 +29,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" placeholder="Introdueix la descripció de l'Oferta">
-			    Enginyeria amb una naturalesa de negoci relacionada amb les 
-			    tecnologies de la informació i especialitzada en projectes de seguretat
-			    i identificació de persones cerca programador per a desenvolupar aplicacions amb
-			    .Net, WEB i SQL.			
+				<textarea name="textarea" rows="10" cols="50" th:text="${oferta.descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
 				</textarea>
                         </th>
                     </tr>
@@ -45,16 +40,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" placeholder="Introdueix els Requisits de l'Alumne">
-				Flexibilita i gestio del canvi
-				treball en equip i cooperació
-				.Net(desitjable C#)
-				Desenvolupament web(HTML, CSS y Javascript)
-				Base de dades SQL (Principalment SQL Server)
-				Desitjable coneixements de frameworks web basats en components(React per exemple)
-				Administracio de sistemes i/o nuvol.
-
-
+				<textarea name="textarea" rows="10" cols="50" th:text="${oferta.requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
 				</textarea>
                         </th>
                     </tr>
@@ -65,8 +51,8 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" placeholder="Introdueix lo que ofereix l'empresa">
-				S'informarà en l'entrevista
+				<textarea name="textarea" rows="10" cols="50"  th:text="${oferta.seOfrece}" placeholder="Introdueix lo que ofereix l'empresa">
+				
 				
 				</textarea>
                         </th>

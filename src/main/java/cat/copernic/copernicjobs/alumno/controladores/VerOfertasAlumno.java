@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cat.copernic.copernicjobs.empresa;
+package cat.copernic.copernicjobs.alumno.controladores;
 
 import cat.copernic.copernicjobs.DAO.OfertaDAO;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,24 +18,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author Albert
+ * @author Cole
  */
 @Controller
-public class veureOferta {
-    
+public class VerOfertasAlumno {
     @Autowired
-    OfertaDAO ofertaDao;
-    
-    @GetMapping("/veureoferta")
-    public String inicio(Model model){
+    private OfertaDAO ofertaDAO;
+        
+    @GetMapping("/veureOfertes")
+    public String inicio(Model model) {
+
         //Ruta donde está el archivo html 
-        String ruta = "empresa/";
+        String ruta = "alumno/";
         //nombre del archivo html
-        String archivo = "veureoferta";
+        String archivo = "verOfertas";
         
-        model.addAttribute("ofertas", ofertaDao.findAllByEmpresaId(4));
-        
+
+        model.addAttribute("ofertas", ofertaDAO.findAll());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
-    } 
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+    }
 }
