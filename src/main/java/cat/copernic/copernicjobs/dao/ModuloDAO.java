@@ -6,12 +6,12 @@
 package cat.copernic.copernicjobs.DAO;
 
 import cat.copernic.copernicjobs.model.Modulo;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author joang
  */
-public interface ModuloDAO extends CrudRepository<Modulo,Integer>{
+public interface ModuloDAO extends JpaRepository<Modulo,Integer>{
     
 }

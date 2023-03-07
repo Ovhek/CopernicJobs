@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -21,13 +22,14 @@ import lombok.Data;
 @Table(name="empresa")
 @DiscriminatorValue("3")
 public class Empresa extends Persona {
-
     @Column(name="nombre_empresa")
     private String nombreEmpresa;
     @Column(name="descripcion_empresa")
     private String descripcionEmpresa;
     @Column(name="webEmpresa")
     private String webEmpresa;
-    @OneToMany(mappedBy = "empresa")
+    @Column(name="movil_empresa")
+    private String movilEmpresa;
+    @OneToMany(mappedBy = "empresa",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Oferta> ofertas;
 }

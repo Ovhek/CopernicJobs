@@ -37,7 +37,7 @@ public class VerIncidencia {
         HashMap<String, Object> datos = new HashMap<>() {
             {
                 put("incDesc", incidencia.getDescripcion());
-                put("incFecha", incidencia.getFecha_incidencia());
+                put("incFecha", incidencia.getFechaIncidencia());
             }
         };
         

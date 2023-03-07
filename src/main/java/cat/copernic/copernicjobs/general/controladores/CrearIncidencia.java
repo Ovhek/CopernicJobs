@@ -39,7 +39,7 @@ public class CrearIncidencia {
     
     @PostMapping("/crearIncidencia")
     public String login(Incidencia incidencia, Model model){
-        incidencia.setFecha_incidencia(LocalDate.now());
+        incidencia.setFechaIncidencia(LocalDate.now());
         
         incidenciaService.anadirIncidencia(incidencia);
         

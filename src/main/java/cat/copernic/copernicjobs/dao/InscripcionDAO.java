@@ -7,6 +7,7 @@ package cat.copernic.copernicjobs.DAO;
 import cat.copernic.copernicjobs.model.Inscripcion;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * DAO para la integración de la entidad Inicidencia con la base de datos.
