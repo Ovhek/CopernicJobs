@@ -9,8 +9,8 @@
     <script src=""></script>
     <body>
         <form method="post" th:action="@{/manejaroferta}" th:object="${oferta}">
-            <input type="hidden" name="id" th:field="*{id}"/>
-            <input type="hidden" name="fechaPeticion" th:field="*{fechaPeticion}"/>
+            <input type="hidden" name="id" th:field="${oferta.id}"/>
+            <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
             <table style="margin: 0 auto;">
                 <div class="container">
                     <tr>
@@ -20,7 +20,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <textarea th:field="*{tituloOferta}" name="uname" required>
+                            <textarea th:field="${oferta.tituloOferta}" name="uname" required>
 			    </textarea>
                         </th>
                     </tr>
@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" th:field="*{descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
+				<textarea name="textarea" rows="10" cols="50" th:field="${oferta.descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
 				</textarea>
                         </th>
                     </tr>
@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" th:field="*{requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
+				<textarea name="requisitos" rows="10" cols="50" th:field="${oferta.requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
 				</textarea>
                         </th>
                     </tr>
@@ -53,7 +53,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea rows="10" cols="50" th:field="*{seOfrece}"  placeholder="Introdueix lo que ofereix l'empresa">
+				<textarea rows="10" cols="50" name="seOfrece" th:field="${oferta.seOfrece}"  placeholder="Introdueix lo que ofereix l'empresa">
 				
 				
 				</textarea>
@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <button type="submit">Pujar PDF</button>
+                            <button type="submit" name="boton">Pujar PDF</button>
                         </th>
                     </tr>
                     <tr>

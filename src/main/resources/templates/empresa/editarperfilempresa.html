@@ -20,7 +20,7 @@
           </div>
           <div>
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" th:field="${empresa.direccion}" name="nombre">
+            <input type="text" id="nombre" th:field="${empresa.nombreEmpresa}" name="nombre">
           </div>
           <div>
             <label for="descripcion">Descripción:</label>
@@ -62,7 +62,7 @@
             <input type="tel" th:field="${empresa.movil}" id="mobil" name="mobil">
           </div>
           <div>
-            <input type="submit" value="Editar Perfil">
+            <input type="submit" name="editar" value="Editar Perfil">
           </div>
         </form>
     </body>

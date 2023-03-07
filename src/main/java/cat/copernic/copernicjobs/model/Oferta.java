@@ -33,12 +33,16 @@ public class Oferta {
     private String enlacePDF;
     @Column(name="titulo")
     private String tituloOferta;
+    
     @Column(name="descripcion")
     private String descripcionOferta;
+    
     @Column(name="requisitos")
     private String requisitosAlumno;
+    
     @Column(name="se_ofrece")
     private String seOfrece;
+    
     @Column(name="fecha_peticion")
     private LocalDate fechaPeticion;
     @Column(name="baja")

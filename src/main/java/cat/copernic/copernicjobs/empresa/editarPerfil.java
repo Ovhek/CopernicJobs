@@ -36,8 +36,9 @@ public class editarPerfil {
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }
     
-    @PostMapping("/guardarperfil")
+    @PostMapping("/guardarcambios")
     public String guardar(Model model,Empresa empresa){
+        
         empresaService.afegirEmpresa(empresa);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return "redirect:misofertas";
