@@ -30,4 +30,5 @@ public interface EmpresaDAO extends JpaRepository<Empresa,Integer>{
      */
     List<Empresa> findByRolId(int rolId);
     
+    Empresa findByNombreEmpresa(String nombreEmpresa);
 }
