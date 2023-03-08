@@ -27,10 +27,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <h2 th:text="${alumno.nombre}">John</h2>
             <h2 th:text="${alumno.apellidos}">Doe</h2>
             <p th:text="${alumno.correo}">JohnDoe@gmail.com</p>
-            <a href="/verAlumno">Accedeix</a>
+            <a th:href="@{/verAlumno/}+${alumno.id}">Accedeix</a>
         </div>
 
         <button>Generar Informe</button>
-        <button>Donar d'alta un alumne</button>
     </body>
 </html>

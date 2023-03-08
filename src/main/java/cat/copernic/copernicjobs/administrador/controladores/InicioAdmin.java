@@ -74,29 +74,32 @@ public class InicioAdmin {
      *constructor construeix un objecte buit) en el moment que executem aquest mètode.
      *
      */
-    @GetMapping("/crearNoticia") //URL a la pàgina amb el formulari de les dades del gos
-    public String crearNoticia(Noticia noticia) {
+    @GetMapping("/crearNoticia") //URL a la pàgina amb el formulari de les dades de la noticia
+    public String crearNoticia(Noticia noticia, Model model) {
 
-        return "administrador/crearNoticia"; //Retorna la pàgina on es mostrarà el formulari de les dades de les noticies
+        String ruta = "administrador/";
+
+        String archivo = "crearNoticia";
+
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-    
-    /*Definim el mètode per assignar els valors introduïts en el formulari a l'objecte gos
+
+    /*Definim el mètode per assignar els valors introduïts en el formulari a l'objecte noticia
      *passat com a paràmetre.
      *
      *L'anotació @PostMapping, indica al sistema que el mètode que fem servir per enviar les dades és
      *post. Com a paràmetre hem de passar el valor de l'action del formulari, d'aquesta manera el sistema 
      *identifica el mètode al qual ha d'enviar les dades introduïdes mitjançant el formulari.
-    */   
+     */
     @PostMapping("/guardarNoticia") //action=guardarNoticia
     public String guardarNoticia(Noticia noticia) {
         noticia.setFechaHora(LocalDate.now());
 
         noticiaService.afegirNoticia(noticia); //Afegim la noticia passada per paràmetre a la base de dades
-        
+
         return "redirect:/inicioAdmin"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
     }
-    
-    
+
     /*Definim el mètode que ens retornarà la pàgina crearNoticia on se'ns mostraran les dades de la noticia
      *amb l'idnoticia que enviem des de la pàgina inici.
      *El sistema Spring associa l'idnoticia passada com a paràmetre en @GetMapping a la noticia 
@@ -105,17 +108,20 @@ public class InicioAdmin {
      *IMPORTANT: id ha de tenir el mateix nom que l'atribut id de la classe a la que fa referència,
      *en el nostre cas la classe Noticia.
      */
-    
     @GetMapping("/editar/{id}")
     public String editar(Noticia noticia, Model model) {
 
         /*Cerquem la noticia passada per paràmetre, al qual li correspón l'id de @GetMapping mitjançant 
          *el mètode cercarNoticia de la capa de servei.*/
+        String ruta = "administrador/";
+
+        String archivo = "crearNoticia";
+
         model.addAttribute("noticia", noticiaService.cercarNoticia(noticia));
 
-        return "administrador/crearNoticia"; //Retorna la pàgina amb el formulari de les dades de la noticia
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-    
+
     /*Definim el mètode per eliminar la noticia en la base de dades i finalment retornar
      *a la pàgina d'inici. La noticia l'eliminarem mitjançant el mètode eliminarNoticia de
      *la classe NoticiaService.
@@ -124,13 +130,13 @@ public class InicioAdmin {
      *IMPORTANT: id ha de tenir el mateix nom que l'atribut id de la classe a la que fa referència,
      *en el nostre cas la classe Noticia.
      */
-    @GetMapping("/eliminar/{id}") 
+    @GetMapping("/eliminar/{id}")
     public String eliminar(Noticia noticia) {
 
         /*Eliminem la noticia passada per paràmetre, al qual li correspón l'id de @GetMapping mitjançant 
          *el mètode eliminarNoticia de la capa de servei.*/
         noticiaService.eliminarNoticia(noticia);
-        
-        return "redirect:/inicioAdmin"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+
+        return "redirect:/inicioAdmin"; //Retornem a la pàgina inicial mitjançant redirect
     }
 }

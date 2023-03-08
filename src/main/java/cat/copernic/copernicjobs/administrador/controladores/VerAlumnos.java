@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.DAO.AlumnoDAO;
+import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class VerAlumnos {
 
     @Autowired
-    private AlumnoDAO alumnoDAO;
+    private AlumnoService alumnoService;
 
     @GetMapping("/verAlumnos")
     public String inicio(Model model) {
@@ -34,9 +35,21 @@ public class VerAlumnos {
         //nombre del archivo html
         String archivo = "verAlumnos";
 
-        model.addAttribute("alumnos", alumnoDAO.findAll());
+        model.addAttribute("alumnos", alumnoService.listarAlumnos());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 
+    @GetMapping("/verAlumno/{id}")
+    public String ver(Alumno alumno, Model model){
+        
+        String ruta="administrador/";
+        
+        String archivo ="verAlumno";
+        
+        model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+
+    }
 }

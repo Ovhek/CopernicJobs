@@ -41,4 +41,16 @@ public class VerEmpresas {
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
         
+    @GetMapping("/verEmpresa/{id}")
+    public String ver(Empresa empresa, Model model){
+        
+        String ruta="administrador/";
+        
+        String archivo ="verEmpresa";
+        
+        model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+
+    }
 }

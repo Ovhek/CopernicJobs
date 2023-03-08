@@ -38,7 +38,7 @@ public class EmpresaService implements EmpresaServiceInterface {
         /*Cridem al mètode findAll() de CrudRepository perquè ens retorni el llistat de noticies de la BBDD.
          *findAll() retorna un objecte, per tant hem de fer un cast perquè l'objecte sigui un List de noticies
          */
-        return (List<Empresa>) empresa.findAll();
+        return (List<Empresa>) empresa.findAllByBaja(false);
     }
 
     @Override
