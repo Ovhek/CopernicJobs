@@ -4,12 +4,10 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
-import cat.copernic.copernicjobs.DAO.NoticiaDAO;
-import cat.copernic.copernicjobs.DAO.OfertaDAO;
+import cat.copernic.copernicjobs.administrador.servicios.NoticiaService;
+import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
-import cat.copernic.copernicjobs.model.Noticia;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class InicioAlumno {
     
     @Autowired 
-    private NoticiaDAO noticiaDAO; 
+    private NoticiaService noticiaService; 
     @Autowired
-    private OfertaDAO ofertaDAO;
+    private OfertaService ofertaService;
 
     @GetMapping("/iniciAlumne")
     public String inicio(Model model) {
@@ -34,8 +32,8 @@ public class InicioAlumno {
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "inicioAlumno";
-        model.addAttribute("anuncios",noticiaDAO.findAll());
-        model.addAttribute("ofertas",ofertaDAO.findAll());
+        model.addAttribute("anuncios",noticiaService.llistarNoticies());
+        model.addAttribute("ofertas",ofertaService.llistarOfertasUltimaSemana());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
     }

@@ -25,7 +25,7 @@ public class VerOfertasAlumno {
     @Autowired
     private OfertaDAO ofertaDAO;
         
-    @GetMapping("/veureOfertes")
+    @GetMapping("/veureOfertesAlumne")
     public String inicio(Model model) {
 
         //Ruta donde está el archivo html 
