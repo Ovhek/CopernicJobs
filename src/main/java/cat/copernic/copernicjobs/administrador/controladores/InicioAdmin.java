@@ -7,7 +7,6 @@ package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.DAO.AlumnoDAO;
 import cat.copernic.copernicjobs.DAO.EmpresaDAO;
-import cat.copernic.copernicjobs.DAO.NoticiaDAO;
 import cat.copernic.copernicjobs.DAO.OfertaDAO;
 import cat.copernic.copernicjobs.administrador.servicios.NoticiaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;

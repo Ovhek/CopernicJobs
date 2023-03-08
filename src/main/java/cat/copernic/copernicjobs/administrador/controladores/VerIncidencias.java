@@ -5,7 +5,6 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.DAO.IncidenciaDAO;
 import cat.copernic.copernicjobs.general.servicios.IncidenciaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Incidencia;
