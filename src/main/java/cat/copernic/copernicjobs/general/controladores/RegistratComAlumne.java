@@ -26,7 +26,7 @@ public class RegistratComAlumne {
     @GetMapping("/registratComAlumne")
     public String inicio(Model model){
         Alumno alumno = new Alumno();
-        alumno.setFechaRegistro(LocalDate.now());
+        
         model.addAttribute("alumno", new Alumno());
         return "registratComAlumne";
     }
@@ -52,7 +52,7 @@ public class RegistratComAlumne {
         }
         
         alumno.setSexoDesc(sexoDesc);
-        
+        alumno.setFechaRegistro(LocalDate.now());
         alumnoService.anadirAlumno(alumno);
         return "/registratComAlumne";
     }
