@@ -9,13 +9,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body xmlns:th="http://www.thymeleaf.org" th:object="${oferta}">
+    <body xmlns:th="http://www.thymeleaf.org">
         <header>
-            <h1 tx:field="*{oferta.tituloOferta}">Ofertes de Feina</h1>
+            <h1 th:text="${oferta.tituloOferta}"></h1>
         </header>
         <main>
             <section>
-                <a href="#" th:text="${oferta.empresa.nombreEmpresa}">Nom Empresa</a>
+                <a th:href="@{/veureEmpresaAlumne/}+${oferta.empresa.id}" th:text="${oferta.empresa.nombreEmpresa}">Nom Empresa</a>
                 <div>
                     <h2>Descripció</h2>
                     <p th:text="${oferta.descripcionOferta}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
@@ -29,21 +29,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <p th:text="${oferta.seOfrece}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
                 </div>
                 <div>
-                    <h2>Més informació</h2>
-                    <button>Descarregar PDF</button>
+                    <button th:if="${oferta.enlacePDF != null}">Descarregar PDF</button>
                 </div>
             </section>
 
             <section>
                 <div>
                     <p th:text="'Alumnes inscrits: ' + ${alumnesInscrits}"></p>
-                    <button th:if="${empresaAdmin}">Veure Alumnes</button>
                 </div>
 
                 <p th:text="${oferta.fechaPeticion}"></p>
-                <button th:if="${!alumnoInscrito}">Inscriure'm</button>
-                <button th:if="${alumnoInscrito}">Desisncriure'm</button>
-                <button th:if="${empresaAdmin}">Editar oferta</button>
+                
+                <form action="" th:action="@{/in}" th:object="${alumno}" method="post" th:if="${!alumnoInscrito}">
+                    <input type="hidden" th:field="${oferta.id}"/>
+                    <button>Inscriure'm</button>
+                </form>
+                
+                <form action="" th:action="@{/des}" th:object="${alumno}" method="post" th:if="${alumnoInscrito}">
+                    <input type="hidden" th:field="${oferta.id}"/>
+                    <button >Desisncriure'm</button>
+                </form>
+
             </section>
         </main>
     </body>

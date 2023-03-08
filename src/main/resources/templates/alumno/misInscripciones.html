@@ -5,35 +5,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h1>Les meves inscripcions</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Les meves inscripcions</h1>
 
-    <div>
-        <label for="search-input">Buscar:</label>
-        <input type="text" id="search-input" name="search-input">
-
-        <label for="sort-select">Ordenar por:</label>
-        <select id="sort-select" name="sort-select">
-            <option value="titulo">Título</option>
-            <option value="municipio">Municipio</option>
-            <option value="empresa">Empresa</option>
-        </select>
-    </div>
-
-    <div th:each="inscripcion : ${inscripciones}">
-        <h2 th:text="${inscripcion.oferta.tituloOferta}">Sección 1</h2>
-        <p th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
         <div>
-            <p th:text="${inscripcion.oferta.empresa.nombreEmpresa}"></p>
-            <p th:text="${inscripcion.oferta.empresa.municipio}"></p>
-        </div>
-        <a href="#">Mes informació</a>
-        <button>Desinscriure'm</button>
-    </div>
+            <label for="search-input">Buscar:</label>
+            <input type="text" id="search-input" name="search-input">
 
-</body>
+            <label for="sort-select">Ordenar por:</label>
+            <select id="sort-select" name="sort-select">
+                <option value="titulo">Título</option>
+                <option value="municipio">Municipio</option>
+                <option value="empresa">Empresa</option>
+            </select>
+        </div>
+
+        <div th:each="inscripcion : ${inscripciones}">
+            <h2 th:text="${inscripcion.oferta.tituloOferta}">Sección 1</h2>
+            <p th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
+            <div>
+                <p th:text="${inscripcion.oferta.empresa.nombreEmpresa}"></p>
+                <p th:text="${inscripcion.oferta.empresa.municipio}"></p>
+            </div>
+            <a th:href="@{/veureOfertaAlumne/}+${inscripcion.oferta.id}">Mes informació</a>
+            
+        </div>
+
+    </body>
 </html>
