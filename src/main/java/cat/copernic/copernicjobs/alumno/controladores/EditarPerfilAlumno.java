@@ -47,7 +47,7 @@ public class EditarPerfilAlumno {
     }
 
     @PostMapping("/editarPerfilAlumne")
-    public String inicio(@RequestParam(name = "button", required = false) String btnValue, Alumno alumno, Model model) {
+    public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, Alumno alumno, Model model) {
         //Buscamos el alumno en la BD.
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
 
