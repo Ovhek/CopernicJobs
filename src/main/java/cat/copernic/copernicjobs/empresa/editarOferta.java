@@ -62,8 +62,8 @@ public class editarOferta{
     }
     
     public String borrarOferta(Oferta oferta) {
-        Oferta o = ofertaService.cercarOferta(oferta);
-        ofertaService.eliminarOferta(o); //Afegim el gos passat per paràmetre a la base de dades
+        Oferta ofertaDel = ofertaService.cercarOferta(oferta);
+        ofertaService.eliminarOferta(ofertaDel); //Afegim el gos passat per paràmetre a la base de dades
         return "redirect:/misofertas";
     }
 }

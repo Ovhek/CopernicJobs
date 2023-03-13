@@ -28,13 +28,13 @@ public class EmpresaService implements EmpresaServiceInterface {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional()
     public void afegirEmpresa(Empresa empresa) {
         this.empresa.save(empresa);
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional()
     public void eliminarEmpresa(Empresa empresa) {
         this.empresa.delete(empresa);
     }

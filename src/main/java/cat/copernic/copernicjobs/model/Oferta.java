@@ -28,10 +28,15 @@ import lombok.NonNull;
 public class Oferta {
     
     @Column(name="fecha_validacion")
+    @Date
     private LocalDate fechaValidacion;
+    
     @Column(name="enlace_pdf")
+    @URL
     private String enlacePDF;
+    
     @Column(name="titulo")
+    @Size(max=50)
     private String tituloOferta;
     
     @Column(name="descripcion")
@@ -44,8 +49,12 @@ public class Oferta {
     private String seOfrece;
     
     @Column(name="fecha_peticion")
+    @Date
+    @NotNull
     private LocalDate fechaPeticion;
+    
     @Column(name="baja")
+    @Boolean
     private boolean baja;
     
     @OneToOne()

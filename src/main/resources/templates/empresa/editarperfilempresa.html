@@ -9,21 +9,23 @@
     <script src=""></script>
     <body>
     <h3>Dades Empresa</h3>
-        <form method="post" th:action="@{/guardarcambios}" th:each="empresa : ${empresa}">
+        <form method="post" th:action="@{/guardarcambios}" th:object="${empresa}">
+          <input type="hidden" name="id" th:field="${empresa.id}"/>
+          <input type="hidden" name="correo" th:field="${empresa.correoContacto}"/>
           <div>
             <label for="direccion">Dirección:</label>
-            <input type="text" th:field="${empresa.direccion}" id="direccion" name="direccion">
+            <input type="text" id="direccion" th:field="${empresa.direccion}" name="direccion"/>
           </div>
           <div>
             <label for="codigo_postal">Código Postal:</label>
-            <input type="text" id="codigo_postal"  th:field="${empresa.codPostal}" name="codigo_postal">
+            <input type="text" id="codigo_postal"  th:field="${empresa.codPostal}" name="codigo_postal"/>
           </div>
           <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" th:field="${empresa.nombreEmpresa}" name="nombre">
+            <label for="nombre">Nombre Empresa:</label>
+            <input type="text" id="nombre" th:field="${empresa.nombreEmpresa}" name="nombre"/>
           </div>
           <div>
-            <label for="descripcion">Descripción:</label>
+            <label for="descripcion">Descripción Empresa:</label>
             <textarea id="descripcion" th:field="${empresa.descripcionEmpresa}" name="descripcion"></textarea>
           </div>
           <div>
@@ -32,23 +34,21 @@
           </div>
           <div>
             <label for="repite_contrasena">Repite la contraseña:</label>
-            <input type="password" th:value="${contrasenyaRepetida}" id="repite_contrasena" name="repite_contrasena">
+            <input type="password" th:value="${contrasenyaRepetida}" id="repite_contrasena" name="repite_contrasena"/>
           </div>
           <div>
             <label for="municipi">Municipio:</label>
-            <input type="text" id="municipi"  th:field="${empresa.municipio}"  name="municipi">
+            <input type="text" id="municipi"  th:field="${empresa.municipio}"  name="municipi"/>
           </div>
           <div>
             <label for="mobil">Móvil:</label>
-            <input type="tel" id="mobil"  th:field="${empresa.movilEmpresa}" name="mobil">
+            <input type="tel" id="mobil"  th:field="${empresa.movilEmpresa}" name="mobil"/>
           </div>
           <div>
             <label for="web_empresa">Web Empresa:</label>
             <input type="url" id="web_empresa" th:field="${empresa.webEmpresa}" name="web_empresa">
           </div>
-        </form>
             <h3>Dades Responsable</h3>
-        <form>
           <div>
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom"  th:field="${empresa.nombre}" >
@@ -62,7 +62,7 @@
             <input type="tel" th:field="${empresa.movil}" id="mobil" name="mobil">
           </div>
           <div>
-            <input type="submit" name="editar" value="Editar Perfil">
+              <button type="submit" name="editar" value="Editar Perfil">Editar Perfil</button>
           </div>
         </form>
     </body>
