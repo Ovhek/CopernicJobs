@@ -36,7 +36,8 @@ public class Incidencia implements Serializable{
     private LocalDate fechaIncidencia;
     @Column(name = "estado")
     private int estado;
-    
+    @Column (name="titulo")
+    private String titulo;
     @OneToOne()
     @JoinColumn(name="usuario_id")
     private Usuario usuario;

@@ -64,16 +64,20 @@ public class crearOferta {
         return "redirect:/misofertas"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
     }
     
-        public String guardarOferta(Oferta oferta){
-        Empresa e = new Empresa();
-        e.setId(3);
-        Empresa empresa = empresaService.cercarEmpresa(e);
-        oferta.setEmpresa(empresa);
-        oferta.setFechaPeticion(LocalDate.now()); 
-        oferta.setFechaValidacion(LocalDate.now());
-        oferta.setEnlacePDF("enlacePDF");
-        ofertaService.afegirOferta(oferta); //Afegim el gos passat per paràmetre a la base de dades
-        return "redirect:/misofertas";
+        public String guardarOferta(@Valid Oferta oferta, Errors errors){
+            if errors.hasErrors(){
+                return "redirect:/misofertas"
+            }else{    
+            Empresa e = new Empresa();
+            e.setId(3);
+            Empresa empresa = empresaService.cercarEmpresa(e);
+            oferta.setEmpresa(empresa);
+            oferta.setFechaPeticion(LocalDate.now()); 
+            oferta.setFechaValidacion(LocalDate.now());
+            oferta.setEnlacePDF("enlacePDF");
+            ofertaService.afegirOferta(oferta); //Afegim el gos passat per paràmetre a la base de dades
+            return "redirect:/misofertas";
+            }
         }
     
 }

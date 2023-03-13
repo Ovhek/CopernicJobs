@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Principal {
     
   
-    @RequestMapping("/")
+    @GetMapping("/inici")
     public String inicio(Model model){
         return "principal";
     }

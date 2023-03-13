@@ -12,21 +12,44 @@ and open the template in the editor.
     </head>
     <body>
         <main>
-            <div id="contenedor">
+            <div>
                 <!-- Anuncios -->
-                <div id="anuncios">
+                <div id="noticias">
                     <h1>Anuncis</h1>
-                    <div th:each="anuncio : ${anuncios}">
-                        <h6 th:text="${anuncio.titulo}"></h6>
-                        <p th:text="${anuncio.descripcion}"></p>
-                        <button>Más información</button>
+                    <div th:each="noticia : ${noticias}">
+                        <h6 th:text="${noticia.titulo}"></h6>
+                        <p th:text="${noticia.descripcion}"></p>
+                        <p th:text="${noticia.fechaHora}"></p>
+
+                        <!--Enllaç mitjançant el qual accedirem a la pàgina per editar la noticia actual
+                        al qual li correspon l'id que concatenem a l'URL editar-->
+
+                        <a th:href="@{/editar/}+${noticia.id}" th:text="Editar"/>
+
+                        <!--Enllaç mitjançant el qual accedirem a la pàgina per eliminar la noticia actual
+                        al qual li correspon l'id que concatenem a l'URL d'eliminar-->
+
+                        <a th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
                     </div>
+                    <a th:href="@{/crearNoticia}" th:text="Crear"></a>
                 </div>
                 <div id="validaciones">
                     <h1>Validacions</h1>
                     <div th:each="validacion : ${validaciones}">
                         <h6 th:text="${validacion.nombre}"></h6>
-                        <button>Más información</button>
+                        <a href="/validarRegistreAlumne">Validar Alumne</a>
+                    </div>
+                    <div id="validaciones2">
+                        <div th:each="validacion2 : ${validaciones2}">
+                            <h6 th:text="${validacion2.nombreEmpresa}"></h6>
+                            <a href="/validarRegistreEmpresa">Validar Empresa</a>
+                        </div>
+                    </div>
+                    <div id="validaciones3">
+                        <div th:each="validacion3 : ${validaciones3}">
+                            <h6 th:text="${validacion3.tituloOferta}"></h6>
+                            <a href="/validarOferta">Validar Oferta</a>
+                        </div>
                     </div>
                 </div>
             </div>

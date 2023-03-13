@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+    </style>
+    <script src=""></script>
+    <body>
+	<div>
+            <table style="margin: 0 auto;">
+                <tr>
+                    <th>
+                        <strong><h1 th:text="${empresa.nombreEmpresa}">Institut Nicolau Copernic</h1></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><h3 th:text="${empresa.descripcionEmpresa}">Centre Educatiu</h3></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><h3>Contacte</h3></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><p th:text="${empresa.direccion}">Avenida Cervantes, 31</p></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><p th:text="${empresa.codPostal}">08225</p></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><p th:text="${empresa.municipio}">Barcelona</p></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><p th:text="${empresa.correoContacto}">JohnDoe@gmail.com</p></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><p th:text="${empresa.webEmpresa}">www.insnicolaucopernic.cat/</p></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><p th:text="${empresa.movil}">+34 655719719</p></strong>
+                    </th>
+                </tr>
+            </table>
+
+	<table style="margin: 0 auto;">
+                <tr>
+                    <th>
+                        <strong><h1>Responsable</h1></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><span>Nom: </span><span th:text="${empresa.nombre}">John</span></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><span>Cognoms: </span><span th:text="${empresa.apellidos}">Doe</span></strong>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <strong><span>Telèfon de Contacte: </span><span th:text="${empresa.movilEmpresa}">655719719</span></strong>
+                    </th>
+                </tr>
+
+	</table>
+	</div>
+
+    </body>
+</html>

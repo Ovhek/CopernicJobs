@@ -6,24 +6,36 @@ and open the template in the editor.
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Titulo OFERTA</title>
+        <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <header>
+            <h1 th:text="${ofTit}"></h1>
+        </header>
+
         <main>
-            <div id="datos">
-                <label for="descripcio">Descripcio:</label>
-                <textArea id="descripcio" name="descripcio">Enginyeria amb una naturalesa de negoci relacionada amb les tecnologies de la informació i especialitzada en projectes de seguretat i identificació de persones cerca programador per a desenvolupar aplicacions amb . Net, WEB i SQL</textArea>
-
-                <label for="requisits">Requisits:</label>
-                <textArea id="requisits" name="requisits">Flexibilitat i gestió del canviTreball en equip i cooperació.NET (desitjable C#)Desenvolupament web (HTML, CSS, JavaScript)Base de dades SQL (principalment SQL Server)Desitjable coneixements de frameworks web basats en components (React, per exemple) i administració de sistemes i/o núvol.</textArea>
-
-                <label for="condicions">Condicions:</label>
-                <textArea id="condicions" name="condicions">S'informarà en l'entrevista</textArea>
-            </div>
-            <!-- Oferta info -->
-            <div id="informacio">
+            <section>
+                <h1 th:text="${nomEmpresa}"></h1>
+                <div>
+                    <h2>Descripció</h2>
+                    <p th:text="${ofDesc}"></p>
+                </div>
+                <div>
+                    <h2>Requisits</h2>
+                    <p th:text="${ofReq}"></p>
+                </div>
+                <div>
+                    <h2>S'ofereix</h2>
+                    <p th:text="${ofOfer}"></p>
+                </div>
+                <div>
+                    <h2>Més informació</h2>
+                    <button>Descarregar PDF</button>
+                </div>
+            </section>
+            <div id="validacio">
                 <button>Validar Oferta</button>
                 <button>Invalidar Oferta</button>
             </div>

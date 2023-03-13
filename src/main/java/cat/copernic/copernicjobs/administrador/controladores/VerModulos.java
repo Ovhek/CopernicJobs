@@ -15,20 +15,17 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author joang
  */
 @Controller
-public class CrearNoticia {
+public class VerModulos {
     
-    @GetMapping("/crearNoticia")
+    @GetMapping("/verModulos")
     public String inicio(Model model){
         
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
         //nombre del archivo html
-        String archivo = "crearNoticia";
+        String archivo = "verModulos";
         
-        model.addAttribute("test","vivimos");
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-        
 }
-
