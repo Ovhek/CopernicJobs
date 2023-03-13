@@ -38,7 +38,7 @@ public class VerPerfilAdmin {
             {
                 put("nombrePerfil", administrador.getNombre());
                 put("apellidosPerfil", administrador.getApellido());
-                put("correoPerfil", administrador.getCorreo());
+                put("correoPerfil", administrador.getUsername());
             }
         };
         model.addAllAttributes(datos);

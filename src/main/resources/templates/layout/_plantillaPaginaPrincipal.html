@@ -7,15 +7,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title th:text="${titulo}">Mi Página Principal</title>
+        <title th:if="${titulo != null}" th:text="${titulo}"></title>
     </head>
     <body>
         <header>
             <img th:src="@{images/logoCopernicJobs.png}" alt="Logo de la aplicación">
 
             <div class="user-profile">
-                <img src="" alt="Foto de perfil">
-                <p>correo@ejemplo.com</p>
+                <img th:if="${usuario != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}">
+                <p th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></p>
             </div>
         </header>
         <nav>
@@ -30,9 +30,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </main>
         <footer>
             <div class="izquierda">
-                <p>Carrer Torrent del Batlle 10, 08225, Terrassa Barcelona</p>
-                <p>Creado por: Albert Montero, Alexandru Ioan, Joan Galindo</p>
-                <p>© 2023 CppernicJobs, Inc. All rights reserved</p>
+                <p>[[#{plantilla.footer.direccion}]]</p>
+                <p>[[#{plantilla.footer.creadorpor}]]</p>
+                <p>[[#{plantilla.footer.copyright}]]</p>
             </div>
             <div class="derecha">
                 <img th:src="@{images/NicolauLogo.png}" alt="Logo de la aplicación">

@@ -10,6 +10,7 @@ import cat.copernic.copernicjobs.model.Incidencia;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -21,21 +22,25 @@ public class IncidenciaService implements IncidenciaServiceInterface{
     @Autowired
     IncidenciaDAO incidenciaDAO;
     
+    @Transactional(readOnly=true) 
     @Override
     public List<Incidencia> listarIncidencias() {
         return (List<Incidencia>) incidenciaDAO.findAll();
     }
 
+    @Transactional
     @Override
     public void anadirIncidencia(Incidencia incidencia) {
         incidenciaDAO.save(incidencia);
     }
 
+    @Transactional
     @Override
     public void eliminarIncidencia(Incidencia incidencia) {
         incidenciaDAO.delete(incidencia);
     }
 
+    @Transactional(readOnly=true) 
     @Override
     public Incidencia buscarIncidencia(Incidencia incidencia) {
         return incidenciaDAO.findById(incidencia.getId()).orElse(null);

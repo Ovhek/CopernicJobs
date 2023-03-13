@@ -36,6 +36,6 @@ public class VerOfertasAlumno {
         
         model.addAttribute("ofertas", ofertaService.llistarOfertas());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Veure ofertes");
     }
 }

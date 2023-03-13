@@ -37,6 +37,6 @@ public class MisInscripciones {
         String archivo = "misInscripciones";
         model.addAttribute("inscripciones",inscripcionService.buscarInscripcionPorAlumnoId(id));
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Les meves inscripcions");
     }
 }
