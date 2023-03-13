@@ -5,7 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.servicios;
 
-import cat.copernic.copernicjobs.DAO.EmpresaDAO;
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Noticia;
 import java.util.List;
