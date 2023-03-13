@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.general.controladores;
 
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
+import cat.copernic.copernicjobs.general.utils.EncriptarContrasenya;
 import cat.copernic.copernicjobs.model.Alumno;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class RegistratComAlumne {
     
     @PostMapping("/registrarAlumne")
     public String registrarAlumne(Alumno alumno, String contrasenyaRepetida){
+        
+        if(!alumno.getPassword().equals(contrasenyaRepetida)){
+            return "redirect:/registrarAlumne";
+        }
         String sexoDesc = "";
         switch (alumno.getSexo()) {
             case 1:
@@ -53,6 +58,7 @@ public class RegistratComAlumne {
         
         alumno.setSexoDesc(sexoDesc);
         alumno.setFechaRegistro(LocalDate.now());
+        alumno.setPassword(EncriptarContrasenya.encryptar(alumno.getPassword()));
         alumnoService.anadirAlumno(alumno);
         return "/registratComAlumne";
     }

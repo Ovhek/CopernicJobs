@@ -17,6 +17,8 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
@@ -28,25 +30,36 @@ import lombok.Data;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="rol_id", discriminatorType = DiscriminatorType.INTEGER)
-public abstract class Usuario implements Serializable{
+@DiscriminatorColumn(name = "rol_id", discriminatorType = DiscriminatorType.INTEGER)
+public abstract class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Column(name = "correo")
-    private String correo;
-    @Column(name = "contrasenya")
-    private String contrasenya;
+
+    @Size(max = 128)
+    @NotEmpty
+    @Column(name = "username")
+    private String username;
+
+    @Size(max = 128)
+    @NotEmpty
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "baja")
     private boolean baja;
+
     @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
+
     @Column(name = "fecha_baja")
     private LocalDate fechaBaja;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
-    
+
     @OneToOne()
-    @PrimaryKeyJoinColumn(name="rol_id")
+    @PrimaryKeyJoinColumn(name = "rol_id")
     private Rol rol;
 }

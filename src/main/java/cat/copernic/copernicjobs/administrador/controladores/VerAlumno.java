@@ -35,7 +35,7 @@ public class VerAlumno {
         Alumno alumno = new Alumno();
         alumno.setNombre("John");
         alumno.setApellidos("Doe");
-        alumno.setCorreo("JohnDoe@gmail.com");
+        alumno.setUsername("JohnDoe@gmail.com");
         alumno.setDireccion("Carrer vinyals 07");
         alumno.setMovil("613157834");
         alumno.setSexo(1);
@@ -47,7 +47,7 @@ public class VerAlumno {
         HashMap dummyData = new HashMap<String,Object>(){{
             put("nombreAlumno", alumno.getNombre());
             put("apellidosAlumno", alumno.getApellidos());
-            put("correoAlumno", alumno.getCorreo());
+            put("correoAlumno", alumno.getUsername());
             put("direccionAlumno", alumno.getDireccion());
             put("movilAlumno", alumno.getMovil());
             put("generoAlumno", alumno.getSexo());            

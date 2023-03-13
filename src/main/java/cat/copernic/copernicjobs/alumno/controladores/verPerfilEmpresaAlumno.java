@@ -32,6 +32,6 @@ public class verPerfilEmpresaAlumno {
         String ruta = "alumno/";
         String archivo = "verEmpresaAlumno";
 
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Empresa - " + empresa.getNombreEmpresa());
     }
 }

@@ -43,7 +43,7 @@ public class EditarPerfilAlumno {
         alumno.setId(id);
 
         model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Editar Perfil");
     }
 
     @PostMapping("/editarPerfilAlumne")
@@ -90,6 +90,10 @@ public class EditarPerfilAlumno {
                     }
                 }
             }
+            else if (btnValue.equals("baixa")){
+                alumnoDB.setBaja(true);
+            }
+            else return "redirect:/veurePerfilAlumne";
             alumnoService.anadirAlumno(alumnoDB);
         }
         return "redirect:/veurePerfilAlumne";
