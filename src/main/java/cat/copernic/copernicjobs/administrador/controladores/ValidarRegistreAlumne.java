@@ -38,7 +38,7 @@ public class ValidarRegistreAlumne {
             {
                 put("nombreAlumno", alumno.getNombre());
                 put("apellidosAlumno", alumno.getApellidos());
-                put("correoAlumno", alumno.getCorreo());
+                put("correoAlumno", alumno.getUsername());
                 put("direccionAlumno", alumno.getDireccion());
                 put("movilAlumno", alumno.getMovil());
                 put("generoAlumno", alumno.getSexoDesc());

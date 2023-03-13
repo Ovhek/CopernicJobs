@@ -68,7 +68,7 @@ public class VerOfertaAlumno {
         });
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Oferta - "+oferta.getTituloOferta());
     }
 
     @PostMapping("/in")

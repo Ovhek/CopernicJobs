@@ -35,6 +35,6 @@ public class InicioAlumno {
         model.addAttribute("anuncios",noticiaService.llistarNoticies());
         model.addAttribute("ofertas",ofertaService.llistarOfertasUltimaSemana());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Inici");
     }
 }
