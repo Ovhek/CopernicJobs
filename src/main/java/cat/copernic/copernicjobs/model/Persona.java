@@ -31,24 +31,30 @@ public class Persona extends Usuario implements Serializable {
     @Pattern(regexp = "/^(?:0[1-9]|[1-4]\\d|5[0-2])\\d{3}$/")
     @Size(min = 5, max = 5)
     @Column(name = "cod_postal")
+    @NotEmpty
     private String codPostal;
 
     @Size(max = 50)
     @Column(name = "municipio")
+    @NotEmpty
     private String municipio;
 
     @Size(max = 200)
     @Column(name = "direccion")
+    @NotEmpty
     private String direccion;
 
     @Pattern(regexp = "(^$|[0-9]{10})")
     @Column(name = "movil")
+    @NotEmpty
     private String movil;
 
     @Column(name = "sexo")
+    @NotEmpty
     private int sexo;
 
     @Column(name = "sexo_desc")
+    @NotEmpty
     private String sexoDesc;
 
     @Size(max = 200)
@@ -59,6 +65,7 @@ public class Persona extends Usuario implements Serializable {
     @Email
     @Size(max = 50)
     @Column(name = "correo_contacto")
+    @NotEmpty
     private String correoContacto;
 
 }

@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -46,5 +48,45 @@ public class LoginConfig {
     public void autenticacio(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
     }
+    @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        return http.authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/alumne/**").hasRole("alumne")
+                .requestMatchers("/empresa/**").hasRole("empresa")
+                .requestMatchers("/administrador/**").hasRole("administrador")
+                .requestMatchers("/**").permitAll()
+                .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
+                )
+                .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
+                .loginPage("/login")  //Pàgina on es troba el formulari per fer login personalitzat
+                .permitAll() //Permet acceddir a tothom
+                )
+                .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
+                .accessDeniedPage("/errors/error403"))
+                .build();
+        
+    }
+    /*@GetMapping("/login")
+    public String inicio(){
+        return "login";
+    }
+    
+    @PostMapping("/login")
+    public String login(String correo, String contrasenya, Model model){
+        boolean loginValido = false;
+        
+        loginValido = correo.equals("alex") && contrasenya.equals("1234");
+        
+        String redirect = "redirect:";
+        
+        if(loginValido) redirect += "/inici";
+        else {
+            model.addAttribute("loginIncorrecto",true);
+            redirect += "/login";
+        }
+        
+        return redirect;
+        
+    }*/
 }

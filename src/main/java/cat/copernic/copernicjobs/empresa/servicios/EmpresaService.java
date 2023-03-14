@@ -4,7 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa.servicios;
 
-import cat.copernic.copernicjobs.DAO.EmpresaDAO;
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.model.Empresa;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +28,13 @@ public class EmpresaService implements EmpresaServiceInterface {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional()
     public void afegirEmpresa(Empresa empresa) {
         this.empresa.save(empresa);
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional()
     public void eliminarEmpresa(Empresa empresa) {
         this.empresa.delete(empresa);
     }
@@ -44,7 +44,11 @@ public class EmpresaService implements EmpresaServiceInterface {
     public Empresa cercarEmpresa(Empresa empresa) {
         return this.empresa.findById(empresa.getId()).orElse(null);
     }
-    
-    
+
+    @Override
+    public Empresa buscarPorNombre(String nombreEmpresa) {
+        return this.empresa.findByNombreEmpresa(nombreEmpresa);
+    }
+      
 
 }

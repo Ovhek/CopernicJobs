@@ -5,7 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.servicios;
 
-import cat.copernic.copernicjobs.DAO.NoticiaDAO;
+import cat.copernic.copernicjobs.dao.NoticiaDAO;
 import cat.copernic.copernicjobs.model.Noticia;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

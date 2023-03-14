@@ -4,7 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa.servicios;
 
-import cat.copernic.copernicjobs.DAO.OfertaDAO;
+import cat.copernic.copernicjobs.dao.OfertaDAO;
 import cat.copernic.copernicjobs.model.Oferta;
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;

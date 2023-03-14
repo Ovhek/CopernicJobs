@@ -4,9 +4,9 @@
  */
 package cat.copernic.copernicjobs.general.servicios;
 
-import cat.copernic.copernicjobs.DAO.AdministradorDAO;
-import cat.copernic.copernicjobs.DAO.AlumnoDAO;
-import cat.copernic.copernicjobs.DAO.EmpresaDAO;
+import cat.copernic.copernicjobs.dao.AdministradorDAO;
+import cat.copernic.copernicjobs.dao.AlumnoDAO;
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.model.Rol;
 import cat.copernic.copernicjobs.model.Usuario;
 import java.util.ArrayList;

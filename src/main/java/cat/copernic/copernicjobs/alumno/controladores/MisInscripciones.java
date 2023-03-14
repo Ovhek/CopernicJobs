@@ -4,7 +4,7 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
-import cat.copernic.copernicjobs.DAO.InscripcionDAO;
+import cat.copernic.copernicjobs.dao.InscripcionDAO;
 import cat.copernic.copernicjobs.alumno.servicios.InscripcionService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;

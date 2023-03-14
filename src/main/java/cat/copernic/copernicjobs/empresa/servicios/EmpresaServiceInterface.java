@@ -21,4 +21,5 @@ public interface EmpresaServiceInterface {
     
     public Empresa cercarEmpresa(Empresa empresa); //Mètode que implementarem per cercar un gos
     
+    public Empresa buscarPorNombre(String nombreEmpresa);
 }
