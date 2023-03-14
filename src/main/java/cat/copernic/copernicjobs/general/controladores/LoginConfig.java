@@ -60,33 +60,12 @@ public class LoginConfig {
                 )
                 .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
                 .loginPage("/login")  //Pàgina on es troba el formulari per fer login personalitzat
-                .permitAll() //Permet acceddir a tothom
+                .permitAll()
+                .defaultSuccessUrl("/inici")//Permet acceddir a tothom
                 )
                 .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
                 .accessDeniedPage("/errors/error403"))
                 .build();
         
     }
-    /*@GetMapping("/login")
-    public String inicio(){
-        return "login";
-    }
-    
-    @PostMapping("/login")
-    public String login(String correo, String contrasenya, Model model){
-        boolean loginValido = false;
-        
-        loginValido = correo.equals("alex") && contrasenya.equals("1234");
-        
-        String redirect = "redirect:";
-        
-        if(loginValido) redirect += "/inici";
-        else {
-            model.addAttribute("loginIncorrecto",true);
-            redirect += "/login";
-        }
-        
-        return redirect;
-        
-    }*/
 }

@@ -13,13 +13,10 @@ and open the template in the editor.
     <body>
         <main>
             <section>
-                <div>
-                    <p th:text="${incDesc}"></p>
-                    <p th:text="${incFecha}"></p>
-                </div>
-                <div>
-                    <button>Cancelar</button>
-                    <button>Descartar Incidència</button>
+                <div id="incidencia">
+                    <h2 th:text="${incidencia.titulo}"></h2>
+                    <p th:text="${incidencia.descripcion}"></p>
+                    <p th:text="${incidencia.fecha_incidencia}"></p>
                 </div>
             </section>
         </main>

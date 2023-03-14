@@ -5,7 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.DAO.IncidenciaDAO;
+import cat.copernic.copernicjobs.general.servicios.IncidenciaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Incidencia;
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class VerIncidencias {
     
     @Autowired
-    private IncidenciaDAO incidenciaDAO;
+    private IncidenciaService incidenciaService;
     
     @GetMapping("/verIncidencias")
     public String inicio(Model model){
@@ -34,10 +34,32 @@ public class VerIncidencias {
         //nombre del archivo html
         String archivo = "verIncidencias";
         
-        model.addAttribute("incidencias", incidenciaDAO.findAll());
+        model.addAttribute("incidencias", incidenciaService.listarIncidencias());
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
+    
+    @GetMapping("/verIncidencia/{id}")
+    public String ver(Incidencia incidencia, Model model){
         
+        String ruta="administrador/";
+        
+        String archivo ="verIncidencia";
+        
+        model.addAttribute("incidencia", incidenciaService.buscarIncidencia(incidencia));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+
+    }
+    
+    @GetMapping("/eliminarIncidencia/{id}") 
+    public String eliminar(Incidencia incidencia) {
+
+        /*Eliminem la noticia passada per paràmetre, al qual li correspón l'id de @GetMapping mitjançant 
+         *el mètode eliminarNoticia de la capa de servei.*/
+        incidenciaService.eliminarIncidencia(incidencia);
+        
+        return "redirect:/verIncidencias"; //Retornem a la pàgina inicial de les incidencies mitjançant redirect
+    }
 }

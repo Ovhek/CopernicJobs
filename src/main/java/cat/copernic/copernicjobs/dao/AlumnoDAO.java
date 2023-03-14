@@ -6,8 +6,11 @@ package cat.copernic.copernicjobs.dao;
 
 import cat.copernic.copernicjobs.dao.UsuarioDAO;
 import cat.copernic.copernicjobs.model.Alumno;
-import java.io.Serializable;
+import cat.copernic.copernicjobs.model.Empresa;
+import cat.copernic.copernicjobs.model.Usuario;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
@@ -16,6 +19,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * DAO para la integración de la entidad Usuario con la base de datos.
  */
-public interface AlumnoDAO extends UsuarioDAO<Alumno, Integer>{ 
-   
+public interface AlumnoDAO extends UsuarioDAO<Alumno, Integer> {
+
+    List<Alumno> findAllByBaja(boolean baja);
+
 }

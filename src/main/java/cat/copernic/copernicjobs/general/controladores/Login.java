@@ -7,6 +7,8 @@ package cat.copernic.copernicjobs.general.controladores;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class Login {
 
+    @GetMapping("/")
+    public String login(@AuthenticationPrincipal User user) {
+        return "login";
+    }
+    
     @GetMapping("/login")
-    public String login() {
-        
+    public String login_(@AuthenticationPrincipal User user) {
         return "login";
     }
 }

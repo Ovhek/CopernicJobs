@@ -11,52 +11,61 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <h1>Dades de l'Empresa</h1>
 
-        <form method="post" action="">
-            <div>
+        <form th:action="@{/guardarEmpresa}" method="post" th:object="${empresa}">
+            <div id="empresa">
                 <h2>Dades Empresa</h2>
-                <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" placeholder="Ins Nicolau Copèrnic"><br>
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{fechaRegistro}"/>
+                <input type="hidden" th:field="*{contrasenya}"/>
+                <label for="nombre">Nom:</label>
+                <input type="text" id="nombre" th:field="*{nombreEmpresa}" th:placeholder="empresa.nombreEmpresa"><br>
 
-                <label for="descripcio">Descripció:</label>
-                <input type="text" id="descripcio" name="descripcio" placeholder="Centre educatiu"><br>
-
-                <label for="contrasenya">Contrasenya:</label>
-                <input type="password" id="contrasenya" name="contrasenya" placeholder="****"><br>
-
-                <label for="repeteix_contrasenya">Repeteix la Contrasenya:</label>
-                <input type="password" id="repeteix_contrasenya" name="repeteix_contrasenya" placeholder="****"><br>
+                <label for="descripcion">Descripció:</label>
+                <input type="text" id="descripcion" th:field="*{descripcionEmpresa}" placeholder="empresa.descripcionEmpresa"><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="nicolau.copernic@gmail.com"><br>
+                <input type="email" id="email" th:field="*{correo}" placeholder="empresa.correo"><br>
 
                 <label for="direccio">Direcció:</label>
-                <input type="text" id="direccio" name="direccio" placeholder="c/ Torrent del Batlle, Terrassa, Barcleona"><br>
+                <input type="text" id="direccio" th:field="*{direccion}" placeholder="empresa.direccion"><br>
 
                 <label for="codi_postal">Codi Postal:</label>
-                <input type="text" id="codi_postal" name="codi_postal" placeholder="08225"><br>
+                <input type="text" id="codi_postal" th:field="*{codPostal}" placeholder="empresa.codPostal"><br>
 
                 <label for="municipi">Municipi:</label>
-                <input type="text" id="municipi" name="municipi" placeholder="Barcelona"><br>
+                <input type="text" id="municipi" th:field="*{municipio}" placeholder="empresa.municipio"><br>
 
                 <label for="mobil">Mòbil:</label>
-                <input type="tel" id="mobil" name="mobil" placeholder="655719719"><br>
+                <input type="tel" id="mobil" th:field="*{movil}" placeholder="empresa.movil"><br>
 
                 <label for="web">Web Empresa:</label>
-                <input type="text" id="web" name="web" placeholder="www.insnicolaucopernic.cat/"><br>
+                <input type="text" id="web" th:field="*{webEmpresa}" placeholder="empresa.webEmpresa"><br>
             </div>
 
             <div>
                 <h2>Dades Responsable</h2>
                 <label for="nom_resp">Nom:</label>
-                <input type="text" id="nom_resp" name="nom_resp" placeholder="John"><br>
+                <input type="text" id="nom_resp" th:field="*{nombre}" placeholder="empresa.nombre"><br>
 
                 <label for="cognoms_resp">Cognoms:</label>
-                <input type="text" id="cognoms_resp" name="cognoms_resp" placeholder="Doe"><br>
+                <input type="text" id="cognoms_resp" th:field="*{apellidos}" placeholder="empresa.apellidos"><br>
 
-                <label for="mobil_resp">Mòbil de Contacte:</label>
-                <input type="tel" id="mobil_resp" name="mobil_resp" placeholder="655719711"><br>
+                <label for="correo_resp">Correo de contacte:</label>
+                <input type="text" id="correo_resp" th:field="*{correoContacto}" placeholder="empresa.correoContacto"><br>
+
+                <label for="genere">Gènere:</label>
+                <select th:field="*{sexo}" id="genere" name="genere">
+                    <option th:selected="${empresa.sexoDesc == 'Home'}" value="1">Home</option>
+                    <option th:selected="${empresa.sexoDesc == 'Dona'}" value="2">Dona</option>
+                    <option th:selected="${empresa.sexoDesc == 'Altre'}" value="3">Altre</option>
+                    <option th:selected="${empresa.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
+                </select>
             </div>
-            <button>Guardar dades</button>
+            <div>
+                <button name="button" value="guardar">Guardar Canvis</button>
+                <button name="button" value="bajar">Donar de baixa</button>
+                <button name="button" value="cancelar">Cancelar Canvis</button>
+            </div>
         </form>
     </body>
 </html>

@@ -31,24 +31,24 @@ and open the template in the editor.
 
                         <a th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
                     </div>
-                    <a th:href="@{/crearNoticia}" th:text="Crear"></a>
+                    <a th:href="@{/crearNoticia}" th:text="Crear">Crear Anunci</a>
                 </div>
                 <div id="validaciones">
                     <h1>Validacions</h1>
                     <div th:each="validacion : ${validaciones}">
                         <h6 th:text="${validacion.nombre}"></h6>
-                        <a href="/validarRegistreAlumne">Validar Alumne</a>
+                        <a th:href="@{/validarRegistreAlumne/}+${validacion.id}">Validar Alumne</a>
                     </div>
                     <div id="validaciones2">
                         <div th:each="validacion2 : ${validaciones2}">
                             <h6 th:text="${validacion2.nombreEmpresa}"></h6>
-                            <a href="/validarRegistreEmpresa">Validar Empresa</a>
+                            <a th:href="@{/validarRegistreEmpresa/}+${validacion2.id}">Validar Empresa</a>
                         </div>
                     </div>
                     <div id="validaciones3">
                         <div th:each="validacion3 : ${validaciones3}">
                             <h6 th:text="${validacion3.tituloOferta}"></h6>
-                            <a href="/validarOferta">Validar Oferta</a>
+                            <a th:href="@{/validarOferta/}+${validacion3.id}">Validar Oferta</a>
                         </div>
                     </div>
                 </div>

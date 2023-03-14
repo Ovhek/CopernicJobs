@@ -31,7 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p th:text="${empresa.movil}"></p>
                 <p th:text="${empresa.municipio}"></p>
             </div>
-            <a href="/verEmpresa">Més informació</a>
+            <a th:href="@{/verEmpresa/}+${empresa.id}">Més informació</a>
         </div>
         <button>Generar Informe</button>
     </body>

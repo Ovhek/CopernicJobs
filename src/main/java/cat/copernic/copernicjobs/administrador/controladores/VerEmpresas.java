@@ -5,13 +5,9 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
-import cat.copernic.copernicjobs.model.Oferta;
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,5 +36,17 @@ public class VerEmpresas {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
+        
+    @GetMapping("/verEmpresa/{id}")
+    public String ver(Empresa empresa, Model model){
+        
+        String ruta="administrador/";
+        
+        String archivo ="verEmpresa";
+        
+        model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
 
+    }
 }

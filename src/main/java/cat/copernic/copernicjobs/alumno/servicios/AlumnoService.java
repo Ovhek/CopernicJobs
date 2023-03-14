@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Cole
  */
 @Service
-public class AlumnoService implements AlumnoServiceInterface{
+public class AlumnoService implements AlumnoServiceInterface {
 
     @Autowired
     AlumnoDAO alumnoDAO;
@@ -26,7 +26,7 @@ public class AlumnoService implements AlumnoServiceInterface{
     @Transactional(readOnly=true) 
     @Override
     public List<Alumno> listarAlumnos() {
-        return (List<Alumno>) alumnoDAO.findAll();
+        return (List<Alumno>) alumnoDAO.findAllByBaja(false);
     }
 
     @Transactional 

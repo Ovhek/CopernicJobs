@@ -5,39 +5,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <header>
-            <h1 th:text="${ofTit}">Ofertes de Feina</h1>
-        </header>
-
         <main>
-            <section>
-                <input type="text" id="nom" name="nom" placeholder="Programador ENTTIA"><br>
+            <form th:action="@{/guardarOferta}" method="post" th:object="${oferta}">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{fechaPeticion}"/>
+                <div>
+                    <h2>Títol</h2>
+                    <input type="text" id="nom" th:field="*{tituloOferta}" placeholder="${oferta.tituloOferta"><br>
+                </div>
                 <div>
                     <h2>Descripció</h2>
-                    <input type="text" id="descripcio" name="descripcio" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam."><br>
+                    <textarea name="textarea" rows="10" cols="50" th:field="*{descripcionOferta}" th:placeholder="${oferta.descripcionOferta}">
+                    </textarea>
                 </div>
                 <div>
                     <h2>Requisits</h2>
-                    <input type="text" id="requisits" name="requisits" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam."><br>
+                    <textarea name="requisitos" rows="10" cols="50" th:field="*{requisitosAlumno}" th:placeholder="${oferta.requisitosAlumno}">
+                    </textarea>
                 </div>
                 <div>
                     <h2>S'ofereix</h2>
-                    <input type="text" id="ofereix" name="ofereix" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam."><br>
+                    <textarea name="seOfrece" rows="10" cols="50" th:field="*{seOfrece}" th:placeholder="${oferta.seOfrece}">
+                    </textarea>
                 </div>
                 <div>
                     <h2>Tens un PDF amb la informació de la oferta?</h2>
                     <text>Navega i escull els fitxers que vols pujar des del teu ordinador</text>
                     <button>+</button>
                 </div>
-            </section>
-            
-            <button>Esborrar Oferta</button>
-            <button>Guardar Canvis</button>
+                
+                <button type="submit" name="boton" value="borrar">Esborrar Oferta</button>
+                <button type="submit" name="boton" value="guardar">Guardar Canvis</button>
+            </form>
         </main>
     </body>
 </html>

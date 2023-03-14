@@ -5,6 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.dao.OfertaDAO;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -25,30 +28,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class VerOfertaAdmin {
     
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
-    private OfertaDAO ofertaDAO; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
-
-    @GetMapping("/verOfertaAdmin")
-    public String inicio(Model model){
+    private OfertaService ofertaService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
+    
+    @PostMapping("/guardarOferta")
+    public String guardarOferta(@RequestParam(name = "boton")String btnOferta,Oferta oferta){
+        if(btnOferta.equals("guardar")) guardar(oferta);
+        else borrar(oferta);
         
-        //Ruta donde está el archivo html 
+        return "redirect:/verOfertasAdmin";
+    }
+    
+    public void guardar(Oferta oferta){
+        ofertaService.afegirOferta(oferta);;
+    }
+    
+    public String borrar(Oferta oferta){
+        ofertaService.eliminarOferta(oferta);
+        return "redirect:/verOfertasAdmin";
+    }
+    
+    @GetMapping("/editarOferta/{id}")
+    public String editar(Oferta oferta, Model model) {
+        
         String ruta = "administrador/";
-        //nombre del archivo html
-        String archivo = "verOfertaAdmin";
         
-        Oferta oferta = (Oferta) ofertaDAO.findById(1).get();        
+        String archivo = "editarOferta";
         
-        HashMap<String, Object> datos = new HashMap<>(){{
-            put("ofTit", oferta.getTituloOferta());
-            put("nomEmpresa", oferta.getEmpresa().getNombreEmpresa());
-            put("ofDesc", oferta.getDescripcionOferta());
-            put("ofReq", oferta.getRequisitosAlumno());
-            put("ofOfer", oferta.getSeOfrece());
-            put("alumnesInscrits", 10);
-            put("alumnoNoInscrito", true);
-            put("ofFecha", oferta.getFechaValidacion());
-        }};
-        model.addAllAttributes(datos);
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
+        model.addAttribute("oferta", ofertaService.cercarOferta(oferta));
+        
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
         

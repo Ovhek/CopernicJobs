@@ -20,4 +20,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface EmpresaDAO extends UsuarioDAO<Empresa, Serializable>{ 
     
     Empresa findByNombreEmpresa(String nombre);
+    /**
+     * Obtener los usuarios basandonos en su rol
+     * 1 --> alumne
+     * 2 --> administrador
+     * 3 --> empresa
+     * @param baja ID del rol.
+     * @return Lista de usuarios.
+     */
+    List<Empresa> findAllByBaja(boolean baja);
 }

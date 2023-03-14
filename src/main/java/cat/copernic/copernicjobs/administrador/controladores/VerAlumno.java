@@ -6,13 +6,18 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
+import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
+import java.lang.reflect.Method;
+import java.time.LocalDate;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -22,44 +27,71 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class VerAlumno {
 
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
-    private AlumnoDAO alumndoDAO; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
+    private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
-    @GetMapping("/verAlumno")
-    public String inicio(Model model) {
+    @PostMapping("/guardarAlumno") //action=guardarAlumno
+    public String guardarAlumno(@RequestParam(name = "button", required = false) String btnValue, Alumno alumno, Model model) {
+        //Buscamos el alumno en la BD.
+        Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
 
-        //Ruta donde está el archivo html 
+        //Comprobamos que el valor del botón de acción del post no sea nulo
+        if (btnValue != null) {
+
+            //Comprobamos que el botón pulsado es "Guardar Canvis"
+            if (btnValue.equals("guardar")) {
+
+                //Obtenemos los metodos de la entidad alumno.
+                Method[] metodos = alumnoDB.getClass().getMethods();
+
+                //Iteramos sobre los metodos
+                for (Method metodo : metodos) {
+
+                    //Comprobamos que el metodo comienza con "get" --> es un getter.
+                    if (metodo.getName().startsWith("get") && metodo.getParameterCount() == 0) {
+                        try {
+
+                            //Nombre del metodo
+                            String nombreMetodo = metodo.getName();
+
+                            //Valor del metodo en la entidad Alumno de la BD
+                            Object valueAlumnoDB = metodo.invoke(alumnoDB);
+
+                            //Valor del metodo en la entidad Alumno del Post
+                            Object valueAlumnoPost = metodo.invoke(alumno);
+
+                            //Si el valor del alumno del Post es diferente de nulo lo sobreeescribimso en AlumnoDB.
+                            if (valueAlumnoPost != null && !nombreMetodo.contains("Class")) {
+                                String nombreMetodoSetter = nombreMetodo.replace("get", "set");
+                                Method metodoSetter = Alumno.class.getMethod(nombreMetodoSetter, metodo.getReturnType());
+
+                                metodoSetter.invoke(alumnoDB, valueAlumnoPost);
+                            }
+
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+            alumnoService.anadirAlumno(alumnoDB);
+            if(btnValue.equals("bajar")){
+                alumno.setBaja(true);
+                alumnoService.anadirAlumno(alumno);
+            }
+        }
+
+        return "redirect:/verAlumnos"; //Retornem a la pàgina alumne mitjançant redirect
+    }
+
+    @GetMapping("/editarAlumno/{id}")
+    public String editar(Alumno alumno, Model model) {
+
         String ruta = "administrador/";
-        //nombre del archivo html
-        String archivo = "verAlumno";
-        
-        Alumno alumno = new Alumno();
-        alumno.setNombre("John");
-        alumno.setApellidos("Doe");
-        alumno.setUsername("JohnDoe@gmail.com");
-        alumno.setDireccion("Carrer vinyals 07");
-        alumno.setMovil("613157834");
-        alumno.setSexo(1);
-        alumno.setDni("56899047L");
-        alumno.setTarjetaSanitaria("4563324");
-        alumno.setSegSocial("123456789");
-        
-        
-        HashMap dummyData = new HashMap<String,Object>(){{
-            put("nombreAlumno", alumno.getNombre());
-            put("apellidosAlumno", alumno.getApellidos());
-            put("correoAlumno", alumno.getUsername());
-            put("direccionAlumno", alumno.getDireccion());
-            put("movilAlumno", alumno.getMovil());
-            put("generoAlumno", alumno.getSexo());            
-            put("dniAlumno", alumno.getDni());            
-            put("tsAlumno", alumno.getTarjetaSanitaria());            
-            put("socialAlumno", alumno.getSegSocial());            
-        }};
-        
-        model.addAllAttributes(dummyData);
-        model.addAttribute(ruta);
-        
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
+
+        String archivo = "editarAlumno";
+
+        model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
+
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 

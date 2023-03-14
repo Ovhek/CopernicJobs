@@ -50,7 +50,7 @@ public class OfertaService implements OfertaServiceInterface {
     public List<Oferta> llistarOfertasUltimaSemana() {
         
         //Listado de todas las ofertas
-        List<Oferta> ofertas = this.ofertaDao.findAll();
+        List<Oferta> ofertas = (List<Oferta>) ofertaDao.findAll();
         
         //Devuelve la semana de la fecha actual.
         TemporalField semanaDelAño = WeekFields.of(java.util.Locale.getDefault()).weekOfWeekBasedYear();
