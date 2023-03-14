@@ -4,7 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa.servicios;
 
-import cat.copernic.copernicjobs.DAO.EmpresaDAO;
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.model.Empresa;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -104,38 +104,4 @@ public class VerOfertaAlumno {
 
         return "redirect:/veureOfertaAlumne/"+oferta.getId();
     }
-
-    @PostMapping("/in")
-    public String inscribirAlumnoAOFerta(Oferta ofertaGet) {
-
-        alumnoTemp.setId(1);
-        Alumno alumno = alumnoService.buscarAlumno(alumnoTemp);
-
-        Oferta oferta = ofertaService.cercarOferta(ofertaGet);
-
-        Inscripcion inscripcion = new Inscripcion();
-        inscripcion.setAlumno(alumno);
-        inscripcion.setOferta(oferta);
-        inscripcion.setEstado(0);
-        inscripcion.setFechaInscripcion(LocalDate.now());
-
-        inscripcionService.anadirInscripcion(inscripcion);
-
-        return "redirect:/veureOfertaAlumne/"+oferta.getId();
-    }
-
-    @PostMapping("/des")
-    public String desinscribirAlumnoAOFerta(Oferta ofertaGet) {
-
-        alumnoTemp.setId(1);
-        Alumno alumno = alumnoService.buscarAlumno(alumnoTemp);
-
-        Oferta oferta = ofertaService.cercarOferta(ofertaGet);
-
-        List<Inscripcion> inscripciones = inscripcionService.buscarInscripcionPorOfertaId(oferta.getId());
-        Inscripcion inscripcionABorrar = inscripciones.stream().filter(inscripcion_ -> inscripcion_.getAlumno().equals(alumno)).findFirst().get();
-        if(inscripcionABorrar != null)inscripcionService.eliminarInscripcion(inscripcionABorrar);
-
-        return "redirect:/veureOfertaAlumne/"+oferta.getId();
-    }
 }

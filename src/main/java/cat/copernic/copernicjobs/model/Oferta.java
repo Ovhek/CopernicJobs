@@ -13,10 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
 import lombok.NonNull;
+import org.hibernate.validator.constraints.URL;
 
 /**
  *
@@ -28,7 +30,6 @@ import lombok.NonNull;
 public class Oferta {
     
     @Column(name="fecha_validacion")
-    @Date
     private LocalDate fechaValidacion;
     
     @Column(name="enlace_pdf")
@@ -49,12 +50,9 @@ public class Oferta {
     private String seOfrece;
     
     @Column(name="fecha_peticion")
-    @Date
-    @NotNull
     private LocalDate fechaPeticion;
     
     @Column(name="baja")
-    @Boolean
     private boolean baja;
     
     @OneToOne()

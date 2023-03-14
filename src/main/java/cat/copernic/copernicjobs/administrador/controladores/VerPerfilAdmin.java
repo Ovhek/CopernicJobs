@@ -5,7 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.DAO.AdministradorDAO;
+import cat.copernic.copernicjobs.dao.AdministradorDAO;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Administrador;
 import cat.copernic.copernicjobs.model.Alumno;

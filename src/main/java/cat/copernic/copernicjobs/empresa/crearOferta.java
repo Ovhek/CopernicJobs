@@ -10,10 +10,12 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,13 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class crearOferta {
-    
+
     @Autowired
     OfertaService ofertaService;
 
     @Autowired
     EmpresaService empresaService;
-    
+
     @GetMapping("/empresa") //Pàgina inicial dels gossos
     public String empresa(Model model) {
         Empresa empresa = new Empresa();
@@ -40,9 +42,9 @@ public class crearOferta {
 
         return "crearOferta"; //Retorna la pàgina iniciEnviarDades
     }
-    
+
     @GetMapping("/crearoferta")
-    public String inicio(Model model){
+    public String inicio(Model model) {
         Oferta oferta = new Oferta();
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
@@ -53,31 +55,31 @@ public class crearOferta {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }
-    
+
     @PostMapping("/registraroferta")
-    public String registrarOferta(@RequestParam(name = "boton")String btnOferta,Oferta oferta){
-        
-        if(btnOferta.equals("registrar")){
-            guardarOferta(oferta);
+    public String registrarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errors) {
+
+        if (btnOferta.equals("registrar")) {
+            guardarOferta(oferta,errors);
         }
         //else borrarOferta(oferta);
         return "redirect:/misofertas"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
     }
-    
-        public String guardarOferta(@Valid Oferta oferta, Errors errors){
-            if errors.hasErrors(){
-                return "redirect:/misofertas"
-            }else{    
+
+    public String guardarOferta(@Valid Oferta oferta, Errors errors) {
+        if (errors.hasErrors()) {
+            return "redirect:/misofertas";
+        } else {
             Empresa e = new Empresa();
             e.setId(3);
             Empresa empresa = empresaService.cercarEmpresa(e);
             oferta.setEmpresa(empresa);
-            oferta.setFechaPeticion(LocalDate.now()); 
+            oferta.setFechaPeticion(LocalDate.now());
             oferta.setFechaValidacion(LocalDate.now());
             oferta.setEnlacePDF("enlacePDF");
             ofertaService.afegirOferta(oferta); //Afegim el gos passat per paràmetre a la base de dades
             return "redirect:/misofertas";
-            }
         }
-    
+    }
+
 }

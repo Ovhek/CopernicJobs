@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -38,7 +37,6 @@ public class Inscripcion {
     private Alumno alumno;
     
     @Column(name = "fechaInscripcion")
-    @Date
     private LocalDate fechaInscripcion;
     
     @Column(name="estado")
