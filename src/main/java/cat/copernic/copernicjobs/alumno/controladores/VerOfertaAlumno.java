@@ -40,7 +40,7 @@ public class VerOfertaAlumno {
 
     private Alumno alumnoTemp = new Alumno();
 
-    @GetMapping("/veureOfertaAlumne/{id}")
+    @GetMapping("/alumne/veureOfertaAlumne/{id}")
     public String inicio(Oferta ofertaGet, Model model) {
 
         Oferta oferta = ofertaService.cercarOferta(ofertaGet);

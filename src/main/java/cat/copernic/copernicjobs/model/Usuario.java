@@ -40,7 +40,7 @@ public abstract class Usuario implements Serializable {
     @Column(name = "username")
     private String username;
 
-    @Size(max = 128)
+    @Size(min = 8, max = 128)
     @NotEmpty
     @Column(name = "password")
     private String password;

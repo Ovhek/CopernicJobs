@@ -31,7 +31,7 @@ public class EditarPerfilAlumno {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
-    @GetMapping("/editarPerfilAlumne")
+    @GetMapping("/alumne/editarPerfilAlumne")
     public String inicio(Model model) {
         int id = 1;
         //Ruta donde está el archivo html 

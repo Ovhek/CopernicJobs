@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" placeholder="Introdueix el teu correu" th:value="${username}" name="correo" required>
+                            <input type="text" placeholder="Introdueix el teu correu" th:value="${username}" name="username" required>
                         </th>
                     </tr>
                     <tr>
@@ -47,7 +47,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="password" placeholder="Introdueix la teva contrasenya" th:value="${contrasenya}" name="contrasenya" required>
+                            <input type="password" placeholder="Introdueix la teva contrasenya" th:value="${password}" name="password" required>
                         </th>
                     </tr>
                     <tr>
@@ -64,7 +64,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <span th:if="${loginIncorrecto}">Login Incorrecte</span>
+                            <div th:if="${param.error}" th:text="#{error.credenciales}"></div>
                             <div class="container">
                                 <span class="psw"><a href="/registrat">Registra't</a></span>
                             </div>

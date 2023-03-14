@@ -24,7 +24,7 @@ public class verPerfilEmpresaAlumno {
     @Autowired
     EmpresaService empresaService;
 
-    @GetMapping("/veureEmpresaAlumne/{id}")
+    @GetMapping("/alumne/veureEmpresaAlumne/{id}")
     public String inicio(Empresa empresaGet, Model model) {
         Empresa empresa = empresaService.cercarEmpresa(empresaGet);
         model.addAttribute("empresa", empresa);

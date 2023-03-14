@@ -26,7 +26,7 @@ public class VerOfertasAlumno {
     @Autowired
     private OfertaService ofertaService;
         
-    @GetMapping("/veureOfertesAlumne")
+    @GetMapping("/alumne/veureOfertesAlumne")
     public String inicio(Model model) {
 
         //Ruta donde está el archivo html 

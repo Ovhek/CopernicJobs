@@ -25,7 +25,7 @@ public class VerPerfilAlumno {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
-    @GetMapping("/veurePerfilAlumne")
+    @GetMapping("/alumne/veurePerfilAlumne")
     public String inicio(Model model) {
         int id = 1;
         //Ruta donde está el archivo html 

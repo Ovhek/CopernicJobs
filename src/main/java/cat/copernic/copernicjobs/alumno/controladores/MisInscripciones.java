@@ -27,7 +27,7 @@ public class MisInscripciones {
     @Autowired
     InscripcionService inscripcionService;
     
-    @GetMapping("/inscripcions")
+    @GetMapping("/alumne/inscripcions")
     public String inicio(Model model) {
 
         int id = 1;

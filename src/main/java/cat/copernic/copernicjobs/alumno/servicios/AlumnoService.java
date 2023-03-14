@@ -47,8 +47,10 @@ public class AlumnoService implements AlumnoServiceInterface{
     public Alumno buscarAlumno(Alumno alumno) {
         return alumnoDAO.findById(alumno.getId()).orElse(null);
     }
-    
 
-
-    
+    @Transactional(readOnly = true)
+    @Override
+    public Alumno buscarAlumnoPorUsername(String username) {
+        return alumnoDAO.findByUsername(username);
+    }
 }
