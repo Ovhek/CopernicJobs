@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface OfertaServiceInterface {
     
-    public List<Oferta> llistarOfertes(int id); //Mètode que implementarem per llistar ofertes
+    public List<Oferta> llistarOfertes(); //Mètode que implementarem per llistar ofertes
     
     public void afegirOferta(Oferta oferta); //Mètode que implementarem per afegir una oferta
     

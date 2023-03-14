@@ -24,8 +24,8 @@ public class OfertaService implements OfertaServiceInterface{
     
     @Override
     @Transactional(readOnly=true)
-    public List<Oferta> llistarOfertes(int id) {
-        return(List<Oferta>) oferta.findAllByEmpresaId(id);
+    public List<Oferta> llistarOfertes() {
+        return(List<Oferta>) oferta.findAll();
     }
 
     @Override

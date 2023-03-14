@@ -14,40 +14,43 @@ and open the template in the editor.
         <main>
             <div id="empresa">
                 <label for="nom">Nom:</label>
-                <p th:text="${emNombre}"></p>
+                <p th:text="${empresa.nombreEmpresa}"></p>
 
                 <label for="descripcio">Descripcio:</label>
-                <p th:text="${emDesc}"></p>
+                <p th:text="${empresa.descripcionEmpresa}"></p>
 
+                <label for="correu">Correu:</label>
+                <p th:text="${empresa.correo}"></p>
+                
                 <label for="direccio">Direccio:</label>
-                <p th:text="${emDir}"></p>
+                <p th:text="${empresa.direccion}"></p>
 
                 <label for="codi">Codi postal:</label>
-                <p th:text="${emPost}"></p>
+                <p th:text="${empresa.codPostal}"></p>
 
                 <label for="municipi">Municipi:</label>
-                <p th:text="${emMun}"></p>
+                <p th:text="${empresa.municipio}"></p>
 
                 <label for="web">Web empresa:</label>
-                <p th:text="${emWeb}"></p>
+                <p th:text="${empresa.webEmpresa}"></p>
 
                 <label for="telefon">Telèfon:</label>
-                <p th:text="${emTel}"></p>
+                <p th:text="${empresa.movil}"></p>
 
 
             </div>
             <div id="responsable">
                 <label for="nom">Nom:</label>
-                <p th:text="${resNombre}"></p>
+                <p th:text="${empresa.nombre}"></p>
 
                 <label for="cognoms">Cognoms:</label>
-                <p th:text="${resApellidos}"></p>
+                <p th:text="${empresa.apellidos}"></p>
 
                 <label for="mobil">Mòbil:</label>
-                <p th:text="${resMob}"></p>
+                <p th:text="${empresa.correoContacto}"></p>
             </div>
-            <button>Validar Registre</button>
-            <button>Invalidar Registre</button>
+            <a th:href="@{/inicioAdmin}" th:text="Validar"/>
+            <a th:href="@{/inicioAdmin}" th:text="Invalidar"/>
         </main>
     </body>
 </html>

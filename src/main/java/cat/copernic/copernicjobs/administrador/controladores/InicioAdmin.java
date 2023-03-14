@@ -5,11 +5,15 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.administrador.servicios.EmpresaService;
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.dao.OfertaDAO;
 import cat.copernic.copernicjobs.administrador.servicios.NoticiaService;
+import cat.copernic.copernicjobs.administrador.servicios.OfertaService;
+import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Incidencia;
 import cat.copernic.copernicjobs.model.Noticia;
@@ -42,13 +46,13 @@ public class InicioAdmin {
     private NoticiaService noticiaService;
 
     @Autowired
-    private AlumnoDAO alumnoDAO;
+    private AlumnoService alumnoService;
 
     @Autowired
-    private EmpresaDAO empresaDAO;
+    private EmpresaService empresaService;
 
     @Autowired
-    private OfertaDAO ofertaDAO;
+    private OfertaService ofertaService;
 
     @GetMapping("/inicioAdmin") //Pàgina inicial d'admin
     public String inicio(Model model) {
@@ -60,9 +64,9 @@ public class InicioAdmin {
 
         //llistarNoticies() retorna el llistat d'objectes noticia guardats en la taula noticies de la BBDD    
         model.addAttribute("noticias", noticiaService.llistarNoticies());
-        model.addAttribute("validaciones", alumnoDAO.findAll());
-        model.addAttribute("validaciones2", empresaDAO.findAll());
-        model.addAttribute("validaciones3", ofertaDAO.findAll());
+        model.addAttribute("validaciones", alumnoService.listarAlumnos());
+        model.addAttribute("validaciones2", empresaService.llistarEmpreses());
+        model.addAttribute("validaciones3", ofertaService.llistarOfertes());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
@@ -137,5 +141,41 @@ public class InicioAdmin {
         noticiaService.eliminarNoticia(noticia);
 
         return "redirect:/inicioAdmin"; //Retornem a la pàgina inicial mitjançant redirect
+    }
+    
+    @GetMapping("/validarRegistreAlumne/{id}")
+    public String validarAlumne(Alumno alumno, Model model){
+        
+        String ruta="administrador/";
+        
+        String archivo ="validarRegistreAlumne";
+        
+        model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+    }
+    
+    @GetMapping("/validarRegistreEmpresa/{id}")
+    public String validarEmpresa(Empresa empresa, Model model){
+        
+        String ruta ="administrador/";
+        
+        String archivo = "validarRegistreEmpresa";
+        
+        model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+    }
+    
+    @GetMapping("/validarOferta/{id}")
+    public String validarOferta(Oferta oferta, Model model){
+        
+        String ruta="administrador/";
+        
+        String archivo = "validarOferta";
+        
+        model.addAttribute("oferta", ofertaService.cercarOferta(oferta));
+        
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 }
