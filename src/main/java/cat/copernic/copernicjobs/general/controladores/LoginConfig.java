@@ -48,24 +48,26 @@ public class LoginConfig {
     public void autenticacio(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
     }
+
     @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/alumne/**").hasRole("alumne")
+                .requestMatchers("/inici").authenticated()
+                .requestMatchers("/alumne/**","/alumne/inici").hasRole("alumne")
                 .requestMatchers("/empresa/**").hasRole("empresa")
                 .requestMatchers("/administrador/**").hasRole("administrador")
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
-                )
+        )
                 .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
-                .loginPage("/login")  //Pàgina on es troba el formulari per fer login personalitzat
+                .loginPage("/login") //Pàgina on es troba el formulari per fer login personalitzat
                 .permitAll()
                 .defaultSuccessUrl("/inici")//Permet acceddir a tothom
                 )
                 .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
                 .accessDeniedPage("/errors/error403"))
                 .build();
-        
+
     }
 }

@@ -11,10 +11,10 @@
 
         <img src="img_la.jpg" alt="LA" style="width:100%">
 
-        <div class="">
-            <a href="/empresa/inici">Modulo Empresa</a>
-            <a href="/alumne/inici">Modulo Alumno</a>
-            <a href="/admin/inici">Modulo Administrador</a>
+        <div th:each="modulo : ${listaModulos}">
+            <a th:href="@{/} + ${modulo.nombre} + '/inici'">
+                Mòdul <span th:text="${#strings.capitalize(modulo.nombre)}"></span>
+            </a>
         </div>
 
     </body>
