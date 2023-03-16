@@ -49,6 +49,11 @@ public class EmpresaService implements EmpresaServiceInterface {
     public Empresa buscarPorNombre(String nombreEmpresa) {
         return this.empresa.findByNombreEmpresa(nombreEmpresa);
     }
+
+    @Override
+    public Empresa buscarPorUsername(String username) {
+        return empresa.findByUsername(username);
+    }
       
 
 }

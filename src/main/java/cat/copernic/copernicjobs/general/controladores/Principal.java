@@ -4,7 +4,9 @@
  */
 package cat.copernic.copernicjobs.general.controladores;
 
+import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.general.servicios.RolModuloService;
+import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Modulo;
 import java.util.ArrayList;
 import java.util.List;
