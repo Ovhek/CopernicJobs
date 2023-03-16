@@ -6,16 +6,19 @@ package cat.copernic.copernicjobs.dao;
 
 import cat.copernic.copernicjobs.model.Noticia;
 import cat.copernic.copernicjobs.model.Oferta;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Cole
  */
-public interface OfertaDAO extends CrudRepository<Oferta, Integer> {
+public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
 
-    //Aqui podrem afegir altres mètodes que necessitem i que no estiguin definits a la interface CrudRepository,
-    //com el següent mètode, findByNom que retornarà els gossos amb el nom passat per paràmetre
     List<Oferta> findAllByEmpresaId(int id);
+    
+    List<Oferta> findByFechaValidacionBetween(LocalDate start, LocalDate end);
 }
