@@ -12,6 +12,8 @@ import cat.copernic.copernicjobs.model.Alumno;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -27,8 +29,8 @@ public class VerPerfilAlumno {
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veurePerfilAlumne")
-    public String inicio(Model model) {
-        int id = 1;
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
+        int id = alumnoService.buscarAlumnoPorUsername(username.getUsername()).getId();
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html

@@ -17,6 +17,8 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
- * @author Cole
+ * @author Alex
  */
 @Controller
 public class EditarPerfilAlumno {
@@ -43,23 +45,26 @@ public class EditarPerfilAlumno {
 
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/editarPerfilAlumne")
-    public String inicio(Model model) {
-        int id = 1;
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
+
+        Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
+
+        if (alumno == null) {
+            return "/error";
+        }
+
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "editarPerfilAlumno";
 
-        Alumno alumno = new Alumno();
-        alumno.setId(id);
-
-        model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
+        model.addAttribute("alumno", alumno);
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Editar Perfil");
     }
 
     @PreAuthorize("hasAuthority('alumne')")
     @PostMapping("/alumne/editarPerfilAlumne")
-    public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
+    public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -72,7 +77,14 @@ public class EditarPerfilAlumno {
             result.addError(error);
         }
 
-        
+        if (!alumno.getUsername().equals(alumnoDB.getUsername())) {
+            Alumno alumnoTemp = alumnoService.buscarAlumnoPorUsername(alumno.getUsername());
+            if (alumnoTemp != null) {
+                error = new ObjectError("UsuarioYaExiste", messageSource.getMessage("error.usuarioyaexite", null, Locale.ENGLISH));
+                result.addError(error);
+            }
+        }
+
         //No funciona
         if (alumno.getPassword() != null && alumnoDB.getPassword() != null && !passwordEncoder.matches(alumno.getPassword(), alumnoDB.getPassword())) {
             error = new ObjectError("ContraseñaActualNoCoincide", messageSource.getMessage("error.editarusuariocontrasenyanocoincide", null, Locale.ENGLISH));
@@ -93,7 +105,7 @@ public class EditarPerfilAlumno {
 
             model.addAttribute("errores", erroresString);
             model.addAttribute("errores", erroresBindingString);
-            return inicio(model);
+            return inicio(model, username);
         }
 
         //Comprobamos que el valor del botón de acción del post no sea nulo
@@ -120,8 +132,10 @@ public class EditarPerfilAlumno {
 
                             //Valor del metodo en la entidad Alumno del Post
                             Object valueAlumnoPost = null;
-                            if (nombreMetodo.equals("getPassword")) {
+                            if (nombreMetodo.equals("getPassword") && !passwordNueva.isBlank()) {
                                 valueAlumnoPost = EncriptarContrasenya.encryptar(passwordNueva);
+                            } else if (nombreMetodo.equals("getPassword") && passwordNueva.isBlank()) {
+                                continue;
                             } else {
                                 valueAlumnoPost = metodo.invoke(alumno);
                             }
@@ -164,7 +178,7 @@ public class EditarPerfilAlumno {
             alumnoDB.setSexoDesc(sexoDesc);
             alumnoService.anadirAlumno(alumnoDB);
         }
-        redirectAttributes.addFlashAttribute("CanvisGuardats",messageSource.getMessage("info.alumneguardat",null, Locale.ENGLISH));
+        redirectAttributes.addFlashAttribute("CanvisGuardats", messageSource.getMessage("info.alumneguardat", null, Locale.ENGLISH));
         return "redirect:/alumne/veurePerfilAlumne";
     }
 }

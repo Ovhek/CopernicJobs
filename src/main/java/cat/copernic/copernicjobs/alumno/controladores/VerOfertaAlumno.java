@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
@@ -43,13 +45,13 @@ public class VerOfertaAlumno {
 
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureOfertaAlumne/{id}")
-    public String inicio(Oferta ofertaGet, Model model) {
+    public String inicio(Oferta ofertaGet, Model model, @AuthenticationPrincipal UserDetails username) {
 
         Oferta oferta = ofertaService.cercarOferta(ofertaGet);
 
-        int alumnoId = 1;
+        int alumnoId = alumnoService.buscarAlumnoPorUsername(username.getUsername()).getId();
 
-        int ofertaId = 1;
+        int ofertaId = ofertaGet.getId();
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
@@ -74,10 +76,9 @@ public class VerOfertaAlumno {
     }
 
     @PostMapping("/in")
-    public String inscribirAlumnoAOFerta(Oferta ofertaGet) {
+    public String inscribirAlumnoAOFerta(Oferta ofertaGet, @AuthenticationPrincipal UserDetails username) {
 
-        alumnoTemp.setId(1);
-        Alumno alumno = alumnoService.buscarAlumno(alumnoTemp);
+        Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
 
         Oferta oferta = ofertaService.cercarOferta(ofertaGet);
 
@@ -93,10 +94,9 @@ public class VerOfertaAlumno {
     }
 
     @PostMapping("/des")
-    public String desinscribirAlumnoAOFerta(Oferta ofertaGet) {
+    public String desinscribirAlumnoAOFerta(Oferta ofertaGet, @AuthenticationPrincipal UserDetails username) {
 
-        alumnoTemp.setId(1);
-        Alumno alumno = alumnoService.buscarAlumno(alumnoTemp);
+        Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
 
         Oferta oferta = ofertaService.cercarOferta(ofertaGet);
 
