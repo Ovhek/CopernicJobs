@@ -13,13 +13,13 @@
       <input type="text" id="cognoms" th:field="*{apellido}" name="cognoms" placeholder="Introdueix els cognoms">
 
       <label for="contrasenya">Contrasenya:</label>
-      <input type="password" id="contrasenya" th:field="*{contrasenya}" name="contrasenya" placeholder="Introdueix la contrasenya">
+      <input type="password" id="contrasenya" th:field="*{password}" name="contrasenya" placeholder="Introdueix la contrasenya">
 
       <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
       <input type="password" th:value="${contrasenyaRepetida}" id="repeteix-contrasenya" name="repeteix-contrasenya" placeholder="Repeteix la contrasenya">
 
       <label for="email">Email:</label>
-      <input type="email" id="email" th:field="*{correo}" name="email" placeholder="Introdueix l'email">
+      <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix l'email">
       
       <button type="submit">Registrar</button> 
     </form>

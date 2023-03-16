@@ -5,9 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.administrador.servicios.OfertaService;
-import cat.copernic.copernicjobs.dao.EmpresaDAO;
-import cat.copernic.copernicjobs.dao.OfertaDAO;
+import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;

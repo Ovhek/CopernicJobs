@@ -4,15 +4,11 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.List;
@@ -33,6 +29,7 @@ public class Modulo implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     
-    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "modulo")
     private List<RolModulo> roles;
+
 }

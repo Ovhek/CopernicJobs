@@ -4,7 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa;
 
-import cat.copernic.copernicjobs.dao.OfertaDAO;
+import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Oferta;
@@ -19,19 +19,18 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class veureOferta {
-    //@Autowired
-    //private OfertaDAO ofertaDao;
     
-    @GetMapping("/veureoferta")
-    public String inicio(Model model){
+    @Autowired
+    OfertaService ofertaService;
+    
+    @GetMapping("/veureoferta/{id}")
+    public String inicio(Oferta oferta,Model model){
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
-        String archivo = "veureOferta";
+        String archivo = "veureoferta";
         
-        //Oferta oferta = (Oferta)ofertaDao.findById(1).get();
-        
-        //model.addAttribute("oferta", oferta);
+        model.addAttribute("ofertas", ofertaService.cercarOferta(oferta));
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);

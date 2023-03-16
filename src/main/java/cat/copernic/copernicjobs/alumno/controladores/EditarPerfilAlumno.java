@@ -43,11 +43,11 @@ public class EditarPerfilAlumno {
         alumno.setId(id);
 
         model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Editar Perfil");
     }
 
     @PostMapping("/editarPerfilAlumne")
-    public String inicio(@RequestParam(name = "button", required = false) String btnValue, Alumno alumno, Model model) {
+    public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, Alumno alumno, Model model) {
         //Buscamos el alumno en la BD.
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
 
@@ -90,6 +90,10 @@ public class EditarPerfilAlumno {
                     }
                 }
             }
+            else if (btnValue.equals("baixa")){
+                alumnoDB.setBaja(true);
+            }
+            else return "redirect:/veurePerfilAlumne";
             alumnoService.anadirAlumno(alumnoDB);
         }
         return "redirect:/veurePerfilAlumne";

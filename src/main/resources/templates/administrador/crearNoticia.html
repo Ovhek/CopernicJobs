@@ -33,11 +33,14 @@ and open the template in the editor.
                 <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut titol de l'objecte
                     noticia assignat a th:objecte-->
                 <input type="text" name="titulo" th:field="*{titulo}"/>
+                <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"/>
             </p>
 
             <p>
                 <label for="descripcion">Descripció:</label> <!--Etiqueta per la descripció de la notícia-->     
                 <input type="text" name="descripcion" th:field="*{descripcion}"/> <!--Associem les dades introduïdes amb l'atribut descripcio-->
+                <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"/>
+
             </p>
 
             <!-- Botó per enviar les dades-->

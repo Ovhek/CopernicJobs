@@ -5,13 +5,12 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.administrador.servicios.EmpresaService;
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
-import cat.copernic.copernicjobs.dao.OfertaDAO;
 import cat.copernic.copernicjobs.administrador.servicios.NoticiaService;
-import cat.copernic.copernicjobs.administrador.servicios.OfertaService;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
+import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
+import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
@@ -26,6 +25,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author joang
  */
 @Controller
+@PreAuthorize("hasAuthority('administrador')")
 public class InicioAdmin {
 
     /*Modifiquem l'atribut noticiaDAO que teniem anteriorment per un atribut de tipus NoticiaService, ja que
@@ -66,7 +67,7 @@ public class InicioAdmin {
         model.addAttribute("noticias", noticiaService.llistarNoticies());
         model.addAttribute("validaciones", alumnoService.listarAlumnos());
         model.addAttribute("validaciones2", empresaService.llistarEmpreses());
-        model.addAttribute("validaciones3", ofertaService.llistarOfertes());
+        model.addAttribute("validaciones3", ofertaService.llistarOfertas());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);

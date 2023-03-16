@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
+import cat.copernic.copernicjobs.alumno.servicios.InscripcionService;
 import cat.copernic.copernicjobs.dao.InscripcionDAO;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MisInscripciones {
 
     @Autowired
-    InscripcionDAO inscripcionDAO;
+    InscripcionService inscripcionService;
     
     @GetMapping("/inscripcions")
     public String inicio(Model model) {
@@ -34,8 +35,8 @@ public class MisInscripciones {
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "misInscripciones";
-        model.addAttribute("inscripciones",inscripcionDAO.findAllByAlumnoId(id));
+        model.addAttribute("inscripciones",inscripcionService.buscarInscripcionPorAlumnoId(id));
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Les meves inscripcions");
     }
 }

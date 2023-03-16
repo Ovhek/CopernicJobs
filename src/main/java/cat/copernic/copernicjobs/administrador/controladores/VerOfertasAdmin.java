@@ -5,8 +5,7 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
-import cat.copernic.copernicjobs.administrador.servicios.OfertaService;
-import cat.copernic.copernicjobs.dao.OfertaDAO;
+import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
@@ -35,7 +34,7 @@ public class VerOfertasAdmin {
         //nombre del archivo html
         String archivo = "verOfertasAdmin";
         
-        model.addAttribute("ofertas", ofertaService.llistarOfertes());
+        model.addAttribute("ofertas", ofertaService.llistarOfertas());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
