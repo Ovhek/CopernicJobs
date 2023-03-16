@@ -13,6 +13,7 @@ import cat.copernic.copernicjobs.model.Oferta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,8 @@ public class MisInscripciones {
 
     @Autowired
     InscripcionService inscripcionService;
-    
+
+    @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/inscripcions")
     public String inicio(Model model) {
 
@@ -35,7 +37,7 @@ public class MisInscripciones {
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "misInscripciones";
-        model.addAttribute("inscripciones",inscripcionService.buscarInscripcionPorAlumnoId(id));
+        model.addAttribute("inscripciones", inscripcionService.buscarInscripcionPorAlumnoId(id));
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Les meves inscripcions");
     }

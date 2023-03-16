@@ -13,6 +13,7 @@ import cat.copernic.copernicjobs.model.Oferta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class VerOfertasAlumno {
+
     @Autowired
     private OfertaService ofertaService;
-        
+
+    @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureOfertesAlumne")
     public String inicio(Model model) {
 
@@ -33,7 +36,7 @@ public class VerOfertasAlumno {
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "verOfertas";
-        
+
         model.addAttribute("ofertas", ofertaService.llistarOfertas());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Veure ofertes");

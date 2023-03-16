@@ -6,6 +6,7 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class verPerfilEmpresaAlumno {
 
     @Autowired
     EmpresaService empresaService;
-
+    @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureEmpresaAlumne/{id}")
     public String inicio(Empresa empresaGet, Model model) {
         Empresa empresa = empresaService.cercarEmpresa(empresaGet);

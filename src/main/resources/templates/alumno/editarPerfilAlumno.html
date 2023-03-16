@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <main>
-            <form method="post" th:action="@{/editarPerfilAlumne}" th:object="${alumno}">
+            <form method="post" th:action="@{/alumne/editarPerfilAlumne}" th:object="${alumno}">
                 <!-- Datos Perfil -->
                 <div id="perfil">
                     <div>
@@ -26,8 +26,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <label for="cognoms">Cognoms:</label>
                         <input type="text" id="cognoms" th:field="*{apellidos}" th:placeholder="${alumno.apellidos}">
 
-                        <label for="correu">Correu:</label>
-                        <input type="text" id="cognoms" th:field="*{username}" th:placeholder="${alumno.apellidos}">
+                        <label for="correu">Username:</label>
+                        <input type="text" id="username" th:field="*{username}" th:placeholder="${alumno.username}">
+                        
+                        <label for="correoContacto">Correu de Contacte:</label>
+                        <input type="text" id="correoContacto" th:field="*{correoContacto}" th:placeholder="${alumno.correoContacto}">
                     </div>
 
                     <div>
@@ -98,7 +101,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                 </div>
 
-                <a>Cambiar Contrasenya</a>
+                <div>
+                    <h3> Cambiar Contrasenya </h3>
+                    <label for="passwordNueva">Nova Contrasenya:</label>
+                    <input type="password" th:value="${passwordNueva}" id="passwordNueva" name="passwordNueva" placeholder="Nova contrasenya">
+
+                    <label for="confirmaPasswordNueva">Repeteix la Contrasenya:</label>
+                    <input type="password" th:value="${confirmaPasswordNueva}" id="confirmaPasswordNueva" name="confirmaPasswordNueva" placeholder="Repeteix la nova contrasenya">
+
+                </div>
+
+                <div>
+                    <h3>Confirmar Canvis</h3>
+                    <h3>Introdueix la contrasenya actual per confirmar els canvis.</h3>
+                    <label for="password">Contrasenya Actual:</label>
+                    <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+                </div>
+                
+                <div th:if="${errores} OR ${erroresBinding}">
+                    <ul>
+                        <li th:each="err : ${errores}" th:text="${err}" />
+                        <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                    </ul>
+                </div>
                 <div>
                     <button name="button" value="guardar">Guardar Canvis</button>
                     <button name="button" value="cancelar">Cancelar Canvis</button>

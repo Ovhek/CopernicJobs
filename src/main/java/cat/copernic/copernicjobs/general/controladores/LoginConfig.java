@@ -5,17 +5,22 @@
 package cat.copernic.copernicjobs.general.controladores;
 
 import cat.copernic.copernicjobs.general.servicios.LoginService;
+import java.util.Locale;
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 /**
  *
@@ -49,14 +54,28 @@ public class LoginConfig {
         auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
+
+    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
+
     @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        return http.authorizeHttpRequests((requests) -> requests
+        return http.csrf().disable().authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/inici").authenticated()
-                .requestMatchers("/alumne/**","/alumne/inici").hasRole("alumne")
-                .requestMatchers("/empresa/**").hasRole("empresa")
-                .requestMatchers("/administrador/**").hasRole("administrador")
+                .requestMatchers("/crearIncidencia").authenticated()
+                .requestMatchers("/alumne/**").hasAuthority("alumne")
+                .requestMatchers("/empresa/**").hasAuthority("empresa")
+                .requestMatchers("/administrador/**").hasAuthority("administrador")
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
         )

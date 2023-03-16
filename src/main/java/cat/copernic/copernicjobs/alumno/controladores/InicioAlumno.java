@@ -9,10 +9,12 @@ import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
@@ -26,34 +28,9 @@ public class InicioAlumno {
     @Autowired
     private OfertaService ofertaService;
 
-    @GetMapping("/alumne/")
-    public String inicioAlumno_2(Model model) {
-
-        //Ruta donde está el archivo html 
-        String ruta = "alumno/";
-        //nombre del archivo html
-        String archivo = "inicioAlumno";
-        model.addAttribute("anuncios", noticiaService.llistarNoticies());
-        model.addAttribute("ofertas", ofertaService.llistarOfertasUltimaSemana());
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Inici");
-    }
-
-    @GetMapping("/iniciAlumne")
+    @PreAuthorize("hasAuthority('alumne')")
+    @GetMapping("/alumne/inici")
     public String inicioAlumno(Model model) {
-
-        //Ruta donde está el archivo html 
-        String ruta = "alumno/";
-        //nombre del archivo html
-        String archivo = "inicioAlumno";
-        model.addAttribute("anuncios", noticiaService.llistarNoticies());
-        model.addAttribute("ofertas", ofertaService.llistarOfertasUltimaSemana());
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Inici");
-    }
-
-    @RequestMapping("/alumne/inici")
-    public String inicioAlumno_(Model model) {
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html

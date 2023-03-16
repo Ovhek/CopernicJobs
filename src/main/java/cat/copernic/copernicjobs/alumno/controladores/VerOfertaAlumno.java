@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,7 @@ public class VerOfertaAlumno {
 
     private Alumno alumnoTemp = new Alumno();
 
+    @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureOfertaAlumne/{id}")
     public String inicio(Oferta ofertaGet, Model model) {
 
@@ -68,7 +70,7 @@ public class VerOfertaAlumno {
         });
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Oferta - "+oferta.getTituloOferta());
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Oferta - " + oferta.getTituloOferta());
     }
 
     @PostMapping("/in")
@@ -87,7 +89,7 @@ public class VerOfertaAlumno {
 
         inscripcionService.anadirInscripcion(inscripcion);
 
-        return "redirect:/veureOfertaAlumne/"+oferta.getId();
+        return "redirect:/alumne/veureOfertaAlumne/" + oferta.getId();
     }
 
     @PostMapping("/des")
@@ -100,8 +102,10 @@ public class VerOfertaAlumno {
 
         List<Inscripcion> inscripciones = inscripcionService.buscarInscripcionPorOfertaId(oferta.getId());
         Inscripcion inscripcionABorrar = inscripciones.stream().filter(inscripcion_ -> inscripcion_.getAlumno().equals(alumno)).findFirst().get();
-        if(inscripcionABorrar != null)inscripcionService.eliminarInscripcion(inscripcionABorrar);
+        if (inscripcionABorrar != null) {
+            inscripcionService.eliminarInscripcion(inscripcionABorrar);
+        }
 
-        return "redirect:/veureOfertaAlumne/"+oferta.getId();
+        return "redirect:/alumne/veureOfertaAlumne/" + oferta.getId();
     }
 }

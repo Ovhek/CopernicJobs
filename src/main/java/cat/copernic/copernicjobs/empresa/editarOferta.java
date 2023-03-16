@@ -13,6 +13,7 @@ import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -31,7 +32,7 @@ public class editarOferta{
     @Autowired
     EmpresaService empresaService;  
     
-    @GetMapping("/editaroferta/{id}")
+    @GetMapping("/empresa/editaroferta/{id}")
     public String editar(Oferta oferta, Model model) {
         //Ruta donde está el archivo html 
         String ruta = "empresa/";

@@ -12,6 +12,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <main>
             <!-- Datos Perfil -->
+            <div th:if="${CanvisGuardats != null}">
+                <p th:text="${CanvisGuardats}"></p>
+            </div>
             <div id="perfil">
                 <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
                 <p th:text="${alumno.nombre}"></p>
@@ -20,6 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p th:text="${alumno.direccion}"></p>
                 <p th:text="${alumno.movil}"></p>
                 <p th:text="${alumno.sexoDesc}"></p>
+                <p th:text="${alumno.correoContacto}"></p>
             </div>
             <!-- Curriculum -->
             <div id="curriculum">
@@ -47,7 +51,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
 
-            <a href="/editarPerfilAlumne">Editar Perfil</a>
+            <a href="/alumne/editarPerfilAlumne">Editar Perfil</a>
         </main>
     </body>
 </html>

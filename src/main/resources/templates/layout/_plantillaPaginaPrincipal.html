@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <header>
-            <img th:src="@{images/logoCopernicJobs.png}" alt="Logo de la aplicación">
+            <img th:src="@{../images/logoCopernicJobs.png}" alt="Logo de la aplicación">
 
             <div class="user-profile">
                 <img th:if="${usuario != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}">
@@ -35,7 +35,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p>[[#{plantilla.footer.copyright}]]</p>
             </div>
             <div class="derecha">
-                <img th:src="@{images/NicolauLogo.png}" alt="Logo de la aplicación">
+                <img th:src="@{../images/NicolauLogo.png}" alt="Logo de la aplicación">
             </div>
         </footer>
     </body>
