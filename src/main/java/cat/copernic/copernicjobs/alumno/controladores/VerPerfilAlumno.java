@@ -28,7 +28,7 @@ public class VerPerfilAlumno {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
     @PreAuthorize("hasAuthority('alumne')")
-    @GetMapping("/alumne/veurePerfilAlumne")
+    @GetMapping("/alumne/veurePerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
         int id = alumnoService.buscarAlumnoPorUsername(username.getUsername()).getId();
         //Ruta donde está el archivo html 

@@ -44,7 +44,7 @@ public class EditarPerfilAlumno {
     private MessageSource messageSource;
 
     @PreAuthorize("hasAuthority('alumne')")
-    @GetMapping("/alumne/editarPerfilAlumne")
+    @GetMapping("/alumne/editarPerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
@@ -63,7 +63,7 @@ public class EditarPerfilAlumno {
     }
 
     @PreAuthorize("hasAuthority('alumne')")
-    @PostMapping("/alumne/editarPerfilAlumne")
+    @PostMapping("/alumne/editarPerfil")
     public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
