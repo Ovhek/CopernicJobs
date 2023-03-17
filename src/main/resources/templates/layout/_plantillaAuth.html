@@ -27,10 +27,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     </head>
     <body>
-        <div th:fragment="authTemplate" class="authTemplate">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -7 12 7">
-            <path d="M 0 0 L 0 -7 L 12 -7 L 12 -5 C 11 -5 7 -3 7 -3 C 5 -2 1 0 0 0" fill="#ff8900"/>
-            </svg>
-        </div>
-    </body>
-</html>
+        <div th:fragment="authTemplate">
+            <!-- #NO QUITAR EL <div> QUE SE ABRE, este se cierra en las otras pagina de autentificación para tener el svg y el otro contenido en el mismo div -->
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -7 12 7">
+                <defs>
+                    <clipPath id="clip-path">
+                        <path d="M 0 0 L 0 -7 L 12 -7 L 12 -5 C 11 -5 7 -3 7 -3 C 5 -2 1 0 0 0" fill="#ff8900">
+                    </clipPath>
+                </defs>
+                <image  clip-path="url(#clip-path)" th:src="@{images/logoCopernicJobs.png}" alt="Avatar" class="avatar">
+                </svg>
+
+                </body>
+                </html>

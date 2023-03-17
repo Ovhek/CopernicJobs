@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,7 @@ public class VerOfertasAlumno {
 
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureOfertesAlumne")
-    public String inicio(Model model) {
+    public String inicio(Model model,@AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
@@ -39,6 +41,6 @@ public class VerOfertasAlumno {
 
         model.addAttribute("ofertas", ofertaService.llistarOfertas());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Veure ofertes");
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Veure ofertes",username);
     }
 }

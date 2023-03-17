@@ -20,6 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AlumnoService implements AlumnoServiceInterface {
 
+    public void setAlumnoDAO(AlumnoDAO alumnoDAO) {
+        this.alumnoDAO = alumnoDAO;
+    }
+
     @Autowired
     AlumnoDAO alumnoDAO;
 

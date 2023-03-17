@@ -59,7 +59,7 @@ public class EditarPerfilAlumno {
         String archivo = "editarPerfilAlumno";
 
         model.addAttribute("alumno", alumno);
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Editar Perfil");
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Editar Perfil", username);
     }
 
     @PreAuthorize("hasAuthority('alumne')")

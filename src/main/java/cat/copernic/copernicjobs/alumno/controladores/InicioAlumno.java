@@ -10,6 +10,8 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,7 @@ public class InicioAlumno {
 
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/inici")
-    public String inicioAlumno(Model model) {
+    public String inicioAlumno(Model model, @AuthenticationPrincipal UserDetails username) {
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
@@ -38,7 +40,7 @@ public class InicioAlumno {
         model.addAttribute("anuncios", noticiaService.llistarNoticies());
         model.addAttribute("ofertas", ofertaService.llistarOfertasUltimaSemana());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Inici");
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Inici", username);
     }
 
 

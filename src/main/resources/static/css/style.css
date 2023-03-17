@@ -366,6 +366,20 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Auth Template
+--------------------------------------------------------------*/
+.authTemplate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.authTemplate img{
+    width: 128px;
+    height: 128px;
+}
+/*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 .logo {
@@ -376,12 +390,6 @@ h6 {
     .logo {
         width: 100px;
     }
-}
-
-.authTemplate{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .logo img {

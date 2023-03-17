@@ -9,6 +9,9 @@ import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +26,9 @@ public class misOfertas {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
     private OfertaService ofertaService;
 
-    @GetMapping("/misofertas")
-    public String inicio(Model model) {
+    @PreAuthorize("hasAuthority('empresa')")
+    @GetMapping("/empresa/inici")
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails user) {
         
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
@@ -34,7 +38,7 @@ public class misOfertas {
         model.addAttribute("ofertas", ofertaService.llistarOfertas());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
 
     
