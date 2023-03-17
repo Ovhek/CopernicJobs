@@ -24,10 +24,11 @@ public class veureOferta {
     @Autowired
     OfertaService ofertaService;
     
-    @GetMapping("/veureoferta/{id}")
+    @GetMapping("/empresa/veureoferta/{id}")
     public String inicio(Oferta oferta,Model model){
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
+        oferta=ofertaService.cercarOferta(oferta);
         //nombre del archivo html
         String archivo = "veureoferta";
         

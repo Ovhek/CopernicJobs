@@ -11,11 +11,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import lombok.Data;
 import lombok.NonNull;
 import org.hibernate.validator.constraints.URL;
@@ -33,11 +35,11 @@ public class Oferta {
     private LocalDate fechaValidacion;
     
     @Column(name="enlace_pdf")
-    @URL
+    @URL(message="{URL.oferta.enlacePDF}")
     private String enlacePDF;
     
     @Column(name="titulo")
-    @Size(max=50)
+    @Size(max=50, message="{Size.oferta.tituloOferta}")
     private String tituloOferta;
     
     @Column(name="descripcion")
@@ -63,4 +65,10 @@ public class Oferta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
+    
+    @OneToMany(mappedBy="oferta")
+    private List<Inscripcion> inscripciones;
+    
+    
+    
 }

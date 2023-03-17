@@ -13,50 +13,51 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <h1>Registra't com Empresa</h1>
 
-        <form method="post" action="">
+        <form method="post" th:action="/crearempresa" th:object="${empresa}">
+            <input type="hidden" name="id" th:field="*{id}"/>
             <div>
                 <h2>Dades Empresa</h2>
                 <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" placeholder="Introdueix el nom de l'empresa"><br>
+                <input type="text" id="nom" name="nom" placeholder="Introdueix el nom de l'empresa" th:field="${empresa.nombreEmpresa}"><br>
 
                 <label for="descripcio">Descripció:</label>
-                <input type="text" id="descripcio" name="descripcio" placeholder="Introdueix una descripció de l'empresa"><br>
+                <input type="text" id="descripcio" name="descripcio" th:field="${empresa.descripcionEmpresa}" placeholder="Introdueix una descripció de l'empresa"><br>
 
                 <label for="contrasenya">Contrasenya:</label>
-                <input type="password" id="contrasenya" name="contrasenya" placeholder="Introdueix la contrasenya"><br>
+                <input type="password" id="contrasenya" th:field="*{password}" name="contrasenya" placeholder="Introdueix la contrasenya"><br>
 
                 <label for="repeteix_contrasenya">Repeteix la Contrasenya:</label>
-                <input type="password" id="repeteix_contrasenya" name="repeteix_contrasenya" placeholder="Repeteix la contrasenya"><br>
+                <input type="password" th:value="${contrasenyaRepetida}" id="repeteix_contrasenya" name="repeteix_contrasenya" placeholder="Repeteix la contrasenya"><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Introdueix el teu email"><br>
+                <input type="email" id="email" name="email"  th:field="${empresa.correoContacto}" placeholder="Introdueix el teu email"><br>
 
                 <label for="direccio">Direcció:</label>
-                <input type="text" id="direccio" name="direccio" placeholder="Introdueix la direcció"><br>
+                <input type="text" id="direccio" name="direccio"  th:field="${empresa.direccion}" placeholder="Introdueix la direcció"><br>
 
                 <label for="codi_postal">Codi Postal:</label>
-                <input type="text" id="codi_postal" name="codi_postal" placeholder="Introdueix el codi postal"><br>
+                <input type="text" id="codi_postal" name="codi_postal" th:field="${empresa.codPostal}" placeholder="Introdueix el codi postal"><br>
 
                 <label for="municipi">Municipi:</label>
-                <input type="text" id="municipi" name="municipi" placeholder="Introdueix el municipi"><br>
+                <input type="text" id="municipi" name="municipi" th:field="${empresa.municipio}" placeholder="Introdueix el municipi"><br>
 
                 <label for="mobil">Mòbil:</label>
-                <input type="tel" id="mobil" name="mobil" placeholder="Introdueix el número"><br>
+                <input type="tel" id="mobil" name="mobil" th:field="${empresa.movilEmpresa}" placeholder="Introdueix el número"><br>
 
                 <label for="web">Web Empresa:</label>
-                <input type="text" id="web" name="web" placeholder="Introdueix la direcció web"><br>
+                <input type="text" id="web" name="web" placeholder="Introdueix la direcció web" th:field="${empresa.webEmpresa}"><br>
             </div>
 
             <div>
                 <h2>Dades Responsable</h2>
                 <label for="nom_resp">Nom:</label>
-                <input type="text" id="nom_resp" name="nom_resp" placeholder="Introdueix el nom"><br>
+                <input type="text" id="nom_resp" name="nom_resp" placeholder="Introdueix el nom" th:field="${empresa.nombre}"><br>
 
                 <label for="cognoms_resp">Cognoms:</label>
-                <input type="text" id="cognoms_resp" name="cognoms_resp" placeholder="Introdueix els cognoms"><br>
+                <input type="text" id="cognoms_resp" name="cognoms_resp" placeholder="Introdueix els cognoms" th:field="${empresa.apellidos}"><br>
 
                 <label for="mobil_resp">Mòbil de Contacte:</label>
-                <input type="tel" id="mobil_resp" name="mobil_resp" placeholder="Introdueix el número"><br>
+                <input type="tel" id="mobil_resp" name="mobil_resp" placeholder="Introdueix el número" th:field="${empresa.movil}"><br>
             </div>
             <button>Registra't</button>
         </form>

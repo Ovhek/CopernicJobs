@@ -9,14 +9,18 @@
     <script src=""></script>
     <body>
         <div>
-            <input type="text" placeholder="Buscar...">
-        </div>
-        <div>
-            <label for="ordenar">Ordenar:</label>
-            <select id="ordenar" name="ordenar">
-                <option value="a-z">A-Z</option>
-                <option value="dataPublicacio">Data Publicació</option>
-            </select>
+            <form method="post" th:action="@{/empresa/buscaroferta}">
+                <label for="ordenar">Ordenar:</label>
+                <input type="text" placeholder="Buscar..." id="buscar" name="buscar" th:value="${buscar}">
+                <select id="ordenar" name="ordenar">
+                    <option value="alfabetico">A-Z</option>
+                    <option value="dataPublicacio">Data Publicació</option>
+                    <option value="numeroCandidatos">Numero Candidatos</option>
+                    <option value="ofertasActivas">Ofertas Activas</option>
+                    <option value="ofertasPublicadas">Ofertas publicadas</option>
+                </select>
+                <button type="submit"></button>
+            </form>
         </div>
         <div th:each="oferta : ${ofertas}">
             <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
@@ -25,7 +29,7 @@
                     <p th:text="${oferta.empresa.nombreEmpresa}"></p>
                     <p th:text="${oferta.empresa.municipio}"></p>
                 </div>
-            <a th:href="@{/veureoferta/}+${oferta.id}">Mes informació</a>
+            <a th:href="@{/empresa/veureoferta/}+${oferta.id}">Mes informació</a>
         </div>        
 </body>
 </html>

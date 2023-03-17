@@ -26,7 +26,7 @@ import org.hibernate.validator.constraints.URL;
 public class Empresa extends Persona {
     
     @Column(name="nombre_empresa")
-    @Size(max=50)
+    @Size(max=50, message = "{Size.empresa.nombreEmpresa}")
     private String nombreEmpresa;
     
     @Column(name="descripcion_empresa")
@@ -34,11 +34,11 @@ public class Empresa extends Persona {
     
     @Column(name="webEmpresa")
     @Size(max=50)
-    @URL
+    @URL(message ="{URL.empresa.webEmpresa}")
     private String webEmpresa;
     
     @Column(name="movil_empresa")
-    @Size(max=12)
+    @Size(max=12, message="{Size.empresa.movilEmpresa}")
     private String movilEmpresa;
     
     @OneToMany(mappedBy = "empresa",cascade = CascadeType.ALL, orphanRemoval = true)

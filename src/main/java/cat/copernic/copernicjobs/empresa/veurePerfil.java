@@ -26,7 +26,7 @@ public class veurePerfil {
     @Autowired
     EmpresaService empresaService;
     
-    @GetMapping("/verperfilempresa")
+    @GetMapping("/empresa/verperfilempresa")
     public String inicio(Model model){
         
         //Ruta donde está el archivo html 

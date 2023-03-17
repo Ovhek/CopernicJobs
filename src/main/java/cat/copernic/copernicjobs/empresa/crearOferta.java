@@ -9,10 +9,13 @@ import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
+import cat.copernic.copernicjobs.model.Inscripcion;
 import cat.copernic.copernicjobs.model.Oferta;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -33,6 +36,7 @@ public class crearOferta {
     @Autowired
     EmpresaService empresaService;
 
+    @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa") //Pàgina inicial dels gossos
     public String empresa(Model model) {
         Empresa empresa = new Empresa();
@@ -43,7 +47,8 @@ public class crearOferta {
         return "crearOferta"; //Retorna la pàgina iniciEnviarDades
     }
 
-    @GetMapping("/crearoferta")
+    @PreAuthorize("hasAuthority('Empresa')")
+    @GetMapping("/empresa/crearoferta")
     public String inicio(Model model) {
         Oferta oferta = new Oferta();
         //Ruta donde está el archivo html 
@@ -56,7 +61,8 @@ public class crearOferta {
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }
 
-    @PostMapping("/registraroferta")
+    @PreAuthorize("hasAuthority('Empresa')")
+    @PostMapping("/empresa/registraroferta")
     public String registrarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errors) {
 
         if (btnOferta.equals("registrar")) {
@@ -77,9 +83,9 @@ public class crearOferta {
             oferta.setFechaPeticion(LocalDate.now());
             oferta.setFechaValidacion(LocalDate.now());
             oferta.setEnlacePDF("enlacePDF");
+            oferta.setInscripciones(new ArrayList<Inscripcion>());
             ofertaService.afegirOferta(oferta); //Afegim el gos passat per paràmetre a la base de dades
             return "redirect:/misofertas";
         }
     }
-
 }

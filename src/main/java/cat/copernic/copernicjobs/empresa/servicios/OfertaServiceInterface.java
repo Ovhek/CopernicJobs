@@ -24,4 +24,14 @@ public interface OfertaServiceInterface {
     
     public List<Oferta> llistarOfertasUltimaSemana();
     
+    public List<Oferta> ordenarOfertasAlfabetico();
+    
+    public List<Oferta> ordenarOfertasFechaPeticion();
+    
+    public List<Oferta> ordenarOfertasNumeroCandidatos();
+    
+    public List<Oferta> ordenarOfertasOfertasActivas();
+        
+    public List<Oferta> ordenarOfertasOfertasPublicadas();
+    
 }

@@ -32,6 +32,7 @@ public class editarOferta{
     @Autowired
     EmpresaService empresaService;  
     
+    @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa/editaroferta/{id}")
     public String editar(Oferta oferta, Model model) {
         //Ruta donde está el archivo html 
@@ -44,7 +45,8 @@ public class editarOferta{
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }
     
-    @PostMapping("/manejaroferta")
+    @PreAuthorize("hasAuthority('Empresa')")
+    @PostMapping("/empresa/manejaroferta")
     public String manejarOferta(@RequestParam(name = "boton")String btnOferta,Oferta oferta) {
         
         if(btnOferta.equals("guardar")) guardarOferta(oferta);
@@ -65,6 +67,6 @@ public class editarOferta{
     public String borrarOferta(Oferta oferta) {
         Oferta ofertaDel = ofertaService.cercarOferta(oferta);
         ofertaService.eliminarOferta(ofertaDel); //Afegim el gos passat per paràmetre a la base de dades
-        return "redirect:/misofertas";
+        return "redirect:/empresa/smisofertas";
     }
 }
