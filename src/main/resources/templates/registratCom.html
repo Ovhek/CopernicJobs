@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Registra't com</title>
-  </head>
-  <body>
-    <img th:src="@{images/logoCopernicJobs.png}" alt="Logo"> <!-- Reemplaza "logo.jpg" con la ruta a tu imagen de logo -->
-    <h1>Registra't com</h1>
-    <a href="/registratComAlumne">Alumne</a> 
-    <a href="/registratComEmpresa">Empresa</a> 
-    <p><a href="/">Ja tens un compte? Inicia Sessió</a></p> 
-  </body>
+    <head th:insert="layout/_plantillaAuth.html :: authHead">
+
+    </head>
+    <body><!-- Reemplaza "logo.jpg" con la ruta a tu imagen de logo -->
+        <div class="authTemplate">
+            <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
+            <h3>Regitra't Com</h3>
+            <a href="/registratComAlumne" class="boton">Alumne</a> 
+            <a href="/registratComEmpresa" class="boton">Empresa</a> 
+            <p class="marginBottom">Ja tens un compte? <a href="/">Inicia Sessió</a></p> 
+        </div>
+    </div>
+</body>
 </html>

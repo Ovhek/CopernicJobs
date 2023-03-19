@@ -1,78 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head th:insert="layout/_plantillaAuth.html :: authHead">
 
     </head>
     <body>
-
         <!-- #NO QUITAR EL </div> QUE SOBRA, ESTE SE ABRE EN "_plantullaAuth.html" y se cierra aquí. -->
         <div class="authTemplate">
             <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
             <form method="post" th:action="@{/login}">
-                <table style="margin: 0 auto;">
-
-                    <tr>
-                        <th>
-                            <h1>Iniciar Sessió</h1>
-                        </th>
-                    </tr>
-
-
-                    <div class="container">
-                        <tr>
-                            <th>
-                                <label for="uname"><b>Correu</b></label>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="text" placeholder="Introdueix el teu correu" th:value="${username}" name="username" required>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="psw"><b>Contrasenya</b></label>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="password" placeholder="Introdueix la teva contrasenya" th:value="${password}" name="password" required>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div class="container">
-                                    <span class="psw"><a href="/recuperarContrasenya">Recuperar contrasenya</a></span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <button type="submit">Iniciar Sessió</button>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div th:if="${param.error}" th:text="#{error.credenciales}"></div>
-                                <div class="container">
-                                    <span class="psw"><a href="/registrat">Registra't</a></span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div class="container">
-                                    <span class="psw">Et vas donar de Baixa?<a href="/donatDalta">Donat d'Alta</a></span>
-                                </div>
-                            </th>
-                        </tr>
+                <div class="container login">
+                    <h1>Iniciar Sessió</h1>
+                    <label for="username"><b>Correu</b></label>
+                    
+                        <input type="text" placeholder="Introdueix el teu correu" th:value="${username}" name="username" required>
+                        <label for="psw"><b>Contrasenya</b></label>
+                        
+                    <div class="passwordContainer">
+                        <input type="password" placeholder="Introdueix la teva contrasenya" th:value="${password}" id="password" name="password" required>
+                        <span class="toggleBtn" id="toggle1"></span>
                     </div>
-                </table>
+
+                    <span class="psw"><a href="/recuperarContrasenya">Recuperar contrasenya</a></span>
+                    <button type="submit" class="boton">Iniciar Sessió</button>
+                    <div th:if="${param.error}" th:text="#{error.credenciales}"></div>
+                    <p class="psw"><a href="/registrat">Registra't</a></p>
+                    <p class="psw">Et vas donar de Baixa? <a href="/donatDalta">Donat d'Alta</a></p>
+                </div>
             </form>
-            </div>
         </div>
-
-
-
-    </body>
+    </div>
+</body>
 </html>
