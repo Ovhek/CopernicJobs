@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head th:fragment="authHead">
+        <title>CopernicJobs</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Enllaç als estils de Bootstrap-->
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <!--Enllaç als estils de Font Awesome-->
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+
+
+        <link th:href="@{../css/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{../css/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{../css/style.css}" rel="stylesheet">
+
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{../js/quill.min.js}"></script>
+        <script th:src="@{../js/main.js}"></script>
+    </head>
+    <body>
+        <div th:fragment="authTemplate">
+            <!-- #NO QUITAR EL <div> QUE SE ABRE, este se cierra en las otras pagina de autentificación para tener el svg y el otro contenido en el mismo div -->
+            <div class="card">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -7 12 7">
+                <path id="path" d="M 0 0 L 0 -7 L 12 -7 L 12 -5 C 22 -5 10 -3 10 -3 C 5 -2 1 0 0 0" fill="#ff8900"></path>
+                <clipPath id="clip-path">
+                    <use href="#path"></use>
+                </clipPath>
+                <image clip-path="url(#clip-path)" href="images/logoCopernicJobs.png"></image>
+                </svg>
+
+                </body>
+                </html>

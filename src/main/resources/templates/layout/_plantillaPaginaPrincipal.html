@@ -7,15 +7,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title th:if="${titulo != null}" th:text="${titulo}"></title>
+        <title th:if="${titulo != null}" th:text="${titulo}">CopernicJobs</title>
+
+        <!--Enllaç als estils de Bootstrap-->
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <!--Enllaç als estils de Font Awesome-->
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+
+
+        <link th:href="@{/css/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{/css/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+
     </head>
     <body>
         <header>
             <img th:src="@{images/logoCopernicJobs.png}" alt="Logo de la aplicación">
 
-            <div class="user-profile">
-                <img th:if="${usuario != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}">
-                <p th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></p>
+        <!-- ======================= CABECERA ======================= -->
+        <header  id="header" class="header fixed-top d-flex align-items-center">
+
+            <!-- ======================= LOGO ======================= -->
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="logo d-flex align-items-center">
+                    <img th:src="@{/images/logoCopernicJobs.png}" alt="Logo de la aplicación">
+                    <span class="d-none d-lg-block"></span>
+                </a>
+                <i class="fa-solid fa-bars toggle-sidebar-btn"><span class="hover-btn"></span></i>
             </div>
         </header>
         <nav>
@@ -35,9 +53,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p>[[#{plantilla.footer.copyright}]]</p>
             </div>
             <div class="derecha">
-                <img th:src="@{images/NicolauLogo.png}" alt="Logo de la aplicación">
+                <img th:src="@{/images/NicolauLogo.png}" alt="Logo de la aplicación">
             </div>
-        </footer>
+        </footer><!-- End Footer -->
+
+        <!--Llibreries jquery, popper i Java Script de Bootstrap pels elements dinàmics que podem utilitzar amb Bootstrap-->
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/quill.min.js}"></script>
+        <script th:src="@{/js/main.js}"></script>
     </body>
 </html>
 
