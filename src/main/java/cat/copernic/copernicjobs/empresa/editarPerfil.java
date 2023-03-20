@@ -10,6 +10,8 @@ import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,8 @@ public class editarPerfil {
     EmpresaService empresaService;
     
     @PreAuthorize("hasAuthority('Empresa')")
-    @GetMapping("/empresa/editarperfilempresa/{id}")
-    public String inicio(Model model,Empresa empresa){
+    @GetMapping("/empresa/editarPerfil")
+    public String inicio(@AuthenticationPrincipal UserDetails user,Model model,Empresa empresa){
 
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
@@ -37,7 +39,7 @@ public class editarPerfil {
         model.addAttribute("empresa",empresaService.cercarEmpresa(empresa));
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Editar Perfil Empresa", user);
     }
     
     @PreAuthorize("hasAuthority('Empresa')")    

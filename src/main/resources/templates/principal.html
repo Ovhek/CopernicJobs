@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="">
-    <style>
-    </style>
-    <script src=""></script>
+    <head th:insert="layout/_plantillaAuth.html :: authHead">
+
+    </head>
     <body>
 
-        <img src="img_la.jpg" alt="LA" style="width:100%">
+        <div class="authTemplate ">
+            <div class="container">
+                <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
+                <div class="row modulos">
+                    <div class="card col modulo" th:each="modulo : ${listaModulos}">
+                        <a th:href="@{/} + ${modulo.nombre} + '/inici'">
+                            Mòdul <span th:text="${#strings.capitalize(modulo.nombre)}"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <div th:each="modulo : ${listaModulos}">
-            <a th:href="@{/} + ${modulo.nombre} + '/inici'">
-                Mòdul <span th:text="${#strings.capitalize(modulo.nombre)}"></span>
-            </a>
         </div>
+    </div>
 
-    </body>
+</body>
 </html>

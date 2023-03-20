@@ -42,6 +42,20 @@ public class misOfertas {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
+    
+    @PostMapping("/empresa/buscaroferta")
+    public void buscarOferta(@RequestParam(name = "button") String btnValue, 
+            @RequestParam( name="ordenar") String ordenar, 
+            String buscar){
+        
+        
+        System.out.println("");
+        
+        
+        
+        
+    
+    }
 
     
 }

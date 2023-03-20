@@ -20,15 +20,15 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 1em;
+    width: 1em;
 }
- 
+
 body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
- 
+
 body::-webkit-scrollbar-thumb {
-  background-color: #ff8900;
+    background-color: #ff8900;
 
 }
 
@@ -58,7 +58,7 @@ h6 {
     margin-top: 100px;
     padding: 20px 30px;
     transition: all 0.3s;
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 @media (max-width: 1199px) {
@@ -232,10 +232,9 @@ h6 {
 
 /* Card */
 .card {
-    margin-bottom: 30px;
     border: none;
     border-radius: 5px;
-    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    box-shadow: 0px 5px 30px rgba(1, 41, 112, 0.1);
 }
 
 .card-header,
@@ -372,13 +371,45 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100dvh;
+}
+
+.authTemplate svg{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.authTemplate div.card{
+    user-select: none;
+    min-width: 400px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.authTemplate *{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.authTemplate form{
+    padding-bottom: 20px;
+}
+
+.authTemplate form *{
+    width: 80%;
+}
+.authTemplate image{
+    width: 4px;
+    height: 10px;
+    x: 4.2;
+    y: -9.2;
+    display: block;
 }
 
 .authTemplate img{
-    width: 128px;
-    height: 128px;
+    height: 100%;
 }
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -1283,4 +1314,229 @@ h6 {
 }
 .footer .credits p{
     margin-bottom: 0px;
+}
+
+/*--------------------------------------------------------------
+# OVERWRITES
+--------------------------------------------------------------*/
+input{
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+label{
+    margin: 0px;
+    text-align: start;
+}
+input:focus {
+    outline-color: #ff8900;
+}
+
+.boton {
+    text-decoration: none!important;
+    margin: 10px auto;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    display: block;
+    max-width: 150px;
+    min-width: 150px;
+    color: white;
+    background-color:  #ff8900;
+}
+
+.boton:hover{
+    background-color: #c26800;
+    color: white;
+}
+
+.marginBottom{
+    margin-bottom: 50px;
+}
+
+.login{
+    min-width: 400px;
+}
+.login label{
+    margin-left: 10px;
+}
+
+.passwordContainer{
+    display: inline;
+    position: relative;
+}
+
+.passwordContainer .toggleBtn{
+    display: flex;
+    top: 5px;
+    right: 45px;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0,0,0,0.05);
+}
+
+.passwordContainer .toggleBtn::before{
+    content:"\f06e";
+    font-family: fontAwesome;
+}
+
+.passwordContainer input{
+    padding-right: 50px;
+}
+.passwordContainer .toggleBtn.hide::before{
+    content:"\f070";
+}
+/*the container must be positioned relative:*/
+
+.custom-select {
+    width: 100%;
+    position: relative;
+    font-family: Arial;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+.custom-select *{
+    width: 100% !important;
+}
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+
+/*--------------------------------------------------------------
+# CUSTOM SELECT
+--------------------------------------------------------------*/
+.select-selected {
+    background-color: white;
+
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #ff8900 transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #ff8900 transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: black;
+    text-align: left;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: white;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.select-items *{
+    width: 100%;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.register .card{
+    width: 600px;
+}
+.register .toggleBtn{
+    right: 68px;
+}
+
+@media (max-width: 600px) {
+    .register .card{
+        width: fit-content;
+    }
+    .passwordContainer input{
+        padding-right: 80px;
+    }
+}
+
+/*--------------------------------------------------------------
+# MENSAJES
+--------------------------------------------------------------*/
+.errorMessage{
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.successMessage{
+    color: green;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+.register .card{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+div.errorDiv.card{
+    width: 80%;
+    margin: 50px auto;
+}
+
+div.errorDiv.card ul{
+    width: 100%;
+    padding: 10px;
+    text-align: start;
+}
+
+div.errorDiv.card .errorMessage{
+    width: 100%;
+}
+
+div.errorDiv.card .errorMessage *{
+    display: inline;
+}
+.row.modulos{
+    display: inherit !important;
+    gap: 20px;
+}
+.row.modulos *{
+    display: inherit !important;
+    gap: 20px;
+}
+
+.modulo{
+    max-width: 100px;
+    gap: 20px;
+    padding: 50px;
 }

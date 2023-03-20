@@ -1,48 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Registra't com Alumne</title>
+    <head th:insert="layout/_plantillaAuth.html :: authHead">
+
     </head>
     <body>
-        <img th:src="@{images/logoCopernicJobs.png}" alt="Logo"> 
-        <h1>Registra't com Alumne</h1>
-        <form method="post" th:action="@{/registratComAlumne}" th:object="${alumno}" commandName="reset">
+        <div class="authTemplate register">
+            <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
+            <h3>Registra't Com Alumne</h3>
+            <form method="post" th:action="@{/registratComAlumne}" th:object="${alumno}" commandName="reset">
 
-            <div th:if="${registrado}" th:text="#{info.registrofinalizado}">
-                
-            </div>
-            <div th:if="${#fields.hasAnyErrors()}">
-                <ul>
-                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
-                </ul>
-            </div>
+                <div class="successMessage" th:if="${registrado}" th:text="#{info.registrofinalizado}">
 
-            <label for="nom">Nom:</label>
-            <input type="text" id="nom" th:field="*{nombre}" name="nom" placeholder="Introdueix el teu nom">
+                </div>
+                <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
+                    <ul>
+                        <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
+                            <i class="fa-solid fa-xmark"></i>
+                            <p th:text="${err}"></p>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" th:field="*{nombre}" name="nom" placeholder="Introdueix el teu nom">
 
 
-            <label for="cognoms">Cognoms:</label>
-            <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els teus cognoms">
+                <label for="cognoms">Cognoms:</label>
+                <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els teus cognoms">
 
-            <label for="password">Contrasenya:</label>
-            <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+                <label for="password">Contrasenya:</label>
+                <div class="passwordContainer">
+                    <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+                    <span class="toggleBtn"></span>
+                </div>
+                <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
+                <div class="passwordContainer">
 
-            <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
-            <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
+                    <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
 
-            <label for="email">Email:</label>
-            <input type="email" id="username" th:field="*{username}" name="username" placeholder="Introdueix el teu email">
+                    <span class="toggleBtn"></span>
+                </div>
 
-            <label for="genere">Gènere:</label>
-            <select th:field="*{sexo}" id="genere" name="genere">
-                <option value="1">Home</option>
-                <option value="2">Dona</option>
-                <option value="3">Altre</option>
-                <option value="4">Prefereixo no dir-ho</option>
-            </select>
+                <label for="email">Email:</label>
+                <input type="email" id="username" th:field="*{username}" name="username" placeholder="Introdueix el teu email">
 
-            <button type="submit">Registra't</button> 
-        </form>
-        <p><a href="/login">Ja tens un compte? Inicia Sessió</a></p>
-    </body>
+                <label for="genere">Gènere:</label>
+
+                <div class="custom-select marginBottom">
+                    <select th:field="*{sexo}" id="genere" name="genere">
+                        <option value="0">Selecciona:</option>
+                        <option value="1">Home</option>
+                        <option value="2">Dona</option>
+                        <option value="3">Altre</option>
+                        <option value="4">Prefereixo no dir-ho</option>
+                    </select>
+                </div>
+                <button type="submit" class="boton">Registra't</button> 
+            </form>
+            <p>Ja tens un compte?  <a href="/login">Inicia Sessió</a></p>
+        </div>
+    </div>
+</body>
 </html>

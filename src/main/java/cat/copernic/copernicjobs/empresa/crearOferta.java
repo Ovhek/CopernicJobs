@@ -16,6 +16,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -49,7 +51,7 @@ public class crearOferta {
 
     @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa/crearoferta")
-    public String inicio(Model model) {
+    public String inicio(@AuthenticationPrincipal UserDetails user,Model model) {
         Oferta oferta = new Oferta();
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
@@ -58,7 +60,7 @@ public class crearOferta {
 
         model.addAttribute("oferta", oferta);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Crear Oferta", user);
     }
 
     @PreAuthorize("hasAuthority('Empresa')")

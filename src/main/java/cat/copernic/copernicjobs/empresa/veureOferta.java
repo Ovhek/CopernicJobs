@@ -10,6 +10,8 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,7 @@ public class veureOferta {
     OfertaService ofertaService;
     
     @GetMapping("/empresa/veureoferta/{id}")
-    public String inicio(Oferta oferta,Model model){
+    public String inicio(@AuthenticationPrincipal UserDetails user,Oferta oferta,Model model){
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         oferta=ofertaService.cercarOferta(oferta);
@@ -35,6 +37,6 @@ public class veureOferta {
         model.addAttribute("ofertas", ofertaService.cercarOferta(oferta));
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Veure Oferta", user);
     } 
 }
