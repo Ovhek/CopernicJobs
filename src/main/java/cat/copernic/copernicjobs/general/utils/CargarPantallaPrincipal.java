@@ -96,6 +96,8 @@ public class CargarPantallaPrincipal {
                 throw new AssertionError();
         }
 
+        if(tipo == NavBarType.ALUMNO) model.addAttribute("esAlumno",true);
+        
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", titulo);
         //Añadimos los atributos rutaNav y archivoNav dependiendo del tipo de navegación
