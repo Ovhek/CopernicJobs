@@ -5,20 +5,11 @@
     </head>
     <body>
 
-        <div>
+        <!-- #NO QUITAR EL </div> QUE SOBRA, ESTE SE ABRE EN "_plantullaAuth.html" y se cierra aquí. -->
+        <div class="authTemplate">
             <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
             <form method="post" th:action="@{/login}">
                 <table style="margin: 0 auto;">
-
-                    <tr>
-                        <th>
-                            <div class="imgcontainer">
-                                <img th:src="@{images/logoCopernicJobs.png}" alt="Avatar" class="avatar"/>
-                            </div>
-
-                        </th>
-                    </tr>
-
 
                     <tr>
                         <th>
@@ -78,6 +69,7 @@
                     </div>
                 </table>
             </form>
+            </div>
         </div>
 
 

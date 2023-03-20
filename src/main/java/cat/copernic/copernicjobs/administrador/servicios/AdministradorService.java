@@ -20,6 +20,10 @@ public class AdministradorService implements AdministradorServiceInterface{
     @Autowired
     AdministradorDAO administradorDAO;
 
+    public void setAdministradorDAO(AdministradorDAO administradorDAO) {
+        this.administradorDAO = administradorDAO;
+    }
+
     @Override
     public List<Administrador> listarAdministradors() {
         return (List<Administrador>) administradorDAO.findAll();

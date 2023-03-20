@@ -42,8 +42,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                         <!-- ======================= FOTO DE PERFIL ======================= -->
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <img th:if="${usuario != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}" alt="Profile" class="rounded-circle">
-                            <span class="d-none d-md-block dropdown-toggle ps-2" th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></span>
+                            <img th:if="${usuario != null && usuario instanceof T(cat.copernic.copernicjobs.model.Alumno) && usuario.avatarLink != null}" th:src="${usuario.avatarLink}" alt="Profile" class="rounded-circle">
+                            <span class="d-md-block dropdown-toggle ps-2" th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></span>
                         </a>
 
                         <!-- ======================= MENU DE OPCIONES ======================= -->

@@ -18,6 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class EmpresaService implements EmpresaServiceInterface {
 
+    public void setEmpresa(EmpresaDAO empresa) {
+        this.empresa = empresa;
+    }
+
     @Autowired
     private EmpresaDAO empresa;
 
@@ -52,6 +56,8 @@ public class EmpresaService implements EmpresaServiceInterface {
     
     @Override
     public Empresa buscarPorUsername(String username) {
+        var a = empresa.findByUsername(username);
+        var b = 2;
         return empresa.findByUsername(username);
     }
 

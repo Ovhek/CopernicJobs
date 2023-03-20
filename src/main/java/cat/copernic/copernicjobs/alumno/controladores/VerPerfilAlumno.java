@@ -41,7 +41,7 @@ public class VerPerfilAlumno {
        
         
         model.addAttribute("alumno",alumnoService.buscarAlumno(alumno));
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Perfil");
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Perfil",username);
     }
 
 }
