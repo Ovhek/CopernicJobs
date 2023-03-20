@@ -42,27 +42,6 @@ public class misOfertas {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
-    
-    @PreAuthorize("hasAuthority('Empresa')")
-    @PostMapping("/empresa/buscaroferta")
-    public String buscarOferta(Model model,@RequestParam("ordenar")String valor, String buscar) {
-        
-        //Busqueda por texto.
-        
-        //Ordenado alfabetico.
-        
-        //Ordenado por fecha de Publicacion.
-        
-        
-        //Ruta donde está el archivo html 
-        String ruta = "empresa/";
-        //nombre del archivo html
-        String archivo = "misofertas";
-       
-        model.addAttribute("ofertas", ofertaService.llistarOfertas());
 
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
-    }    
     
 }
