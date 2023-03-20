@@ -9,12 +9,16 @@
             <h3>Registra't Com Alumne</h3>
             <form method="post" th:action="@{/registratComAlumne}" th:object="${alumno}" commandName="reset">
 
-                <div th:if="${registrado}" th:text="#{info.registrofinalizado}">
+                <div class="successMessage" th:if="${registrado}" th:text="#{info.registrofinalizado}">
 
                 </div>
-                <div th:if="${#fields.hasAnyErrors()}">
+                <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
                     <ul>
-                        <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+                        <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
+                            <i class="fa-solid fa-xmark"></i>
+                            <p th:text="${err}"></p>
+                        </li>
+
                     </ul>
                 </div>
 
@@ -42,7 +46,7 @@
                 <input type="email" id="username" th:field="*{username}" name="username" placeholder="Introdueix el teu email">
 
                 <label for="genere">Gènere:</label>
-                
+
                 <div class="custom-select marginBottom">
                     <select th:field="*{sexo}" id="genere" name="genere">
                         <option value="0">Selecciona:</option>
