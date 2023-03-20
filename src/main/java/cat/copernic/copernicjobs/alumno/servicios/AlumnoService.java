@@ -24,28 +24,24 @@ public class AlumnoService implements AlumnoServiceInterface {
     @Autowired
     AlumnoDAO alumnoDAO;
 
-    @Transactional(readOnly=true) 
     @Override
     @Transactional(readOnly = true)
     public List<Alumno> listarAlumnos() {
         return (List<Alumno>) alumnoDAO.findAllByBaja(false);
     }
 
-    @Transactional 
     @Override
     @Transactional
     public void anadirAlumno(Alumno alumno) {
         alumnoDAO.save(alumno);
     }
 
-    @Transactional
     @Override
     @Transactional
     public void eliminarAlumno(Alumno alumno) {
         alumnoDAO.save(alumno);
     }
 
-    @Transactional(readOnly=true) 
     @Override
     @Transactional(readOnly = true)
     public Alumno buscarAlumno(Alumno alumno) {

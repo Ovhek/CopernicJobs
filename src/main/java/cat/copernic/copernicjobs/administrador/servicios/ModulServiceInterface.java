@@ -18,7 +18,7 @@ public interface ModulServiceInterface {
     
     public void afegirModul(Modulo modulo);
     
-    public void elimminarModul(Modulo modulo);
+    public void eliminarModul(Modulo modulo);
     
     public Modulo cercarModul(Modulo modulo);
 }
