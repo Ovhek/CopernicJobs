@@ -8,10 +8,12 @@ package cat.copernic.copernicjobs.administrador.controladores;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -40,7 +42,9 @@ public class RegistrarAlumne {
     }
 
     @PostMapping("/registreAlumne")
-    public String registrarAlumne(Alumno alumno, String contrasenyaRepetida) {
+    public String registrarAlumne(Alumno alumno, String contrasenyaRepetida, Model model) {
+        
+        
         String sexoDesc = "";
         switch (alumno.getSexo()) {
             case 1:
