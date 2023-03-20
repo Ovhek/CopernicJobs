@@ -34,14 +34,14 @@ import lombok.Data;
 public abstract class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Size(max = 128)
+    
     @NotEmpty
+    @Size(max = 128)
     @Column(name = "username")
     private String username;
 
-    @Size(max = 128)
     @NotEmpty
+    @Size(min = 8, max = 128)
     @Column(name = "password")
     private String password;
 
