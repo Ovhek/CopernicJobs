@@ -1319,7 +1319,7 @@ h6 {
 /*--------------------------------------------------------------
 # OVERWRITES
 --------------------------------------------------------------*/
-input{
+input, textarea{
     padding: 10px;
     border: none;
     border-radius: 8px;
@@ -1331,7 +1331,7 @@ label{
     margin: 0px;
     text-align: start;
 }
-input:focus {
+input:focus, textarea:focus {
     outline-color: #ff8900;
 }
 
@@ -1599,7 +1599,7 @@ div.errorDiv.card .errorMessage *{
 }
 
 .separacionBetween{
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
 }
 
@@ -1620,4 +1620,37 @@ div.errorDiv.card .errorMessage *{
 #anuncis::-webkit-scrollbar-thumb, #nuevasOfertas::-webkit-scrollbar-thumb {
     background-color: #ff8900;
 
+}
+
+/*--------------------------------------------------------------
+# Incidencias
+--------------------------------------------------------------*/
+.incidenciaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.incidenciaCard{
+    padding: 50px;
+    max-width: 400px;
+    min-width: fit-content;
+    align-self: center;
+    
+}
+.incidenciaCard *{
+    display: block;
+}
+
+.boton.cancelar{
+    background-color: #8B0000;
+}
+.boton.cancelar:hover{
+    background-color: #DC143C;
+}
+.incidenciaCard input{
+    width: 100%;
+}
+
+.incidenciaCard textarea{
+    width: 100%;
 }

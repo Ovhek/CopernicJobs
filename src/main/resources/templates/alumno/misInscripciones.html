@@ -24,16 +24,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </select>
         </div>
 
-        <div th:each="inscripcion : ${inscripciones}">
-            <h2 th:text="${inscripcion.oferta.tituloOferta}">Sección 1</h2>
-            <p th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
-            <div>
-                <p th:text="${inscripcion.oferta.empresa.nombreEmpresa}"></p>
-                <p th:text="${inscripcion.oferta.empresa.municipio}"></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 card p-5 mx-3 my-3" th:each="inscripcion : ${inscripciones}">
+                    <h2 th:text="${inscripcion.oferta.tituloOferta}">Sección 1</h2>
+                    <p th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
+                    <div class="separacionBetween">
+                        <p th:text="${inscripcion.oferta.empresa.nombreEmpresa}"></p>
+                        <p th:text="${inscripcion.oferta.empresa.municipio}"></p>
+                    </div>
+                    <a class="boton" th:href="@{/alumne/veureOfertaAlumne/}+${inscripcion.oferta.id}">Mes informació</a>
+
+                </div>
             </div>
-            <a th:href="@{/alumne/veureOfertaAlumne/}+${inscripcion.oferta.id}">Mes informació</a>
-            
         </div>
+
 
     </body>
 </html>
