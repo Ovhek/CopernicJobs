@@ -59,7 +59,7 @@ public class RegistratComAlumne {
         }
 
         if (result.hasErrors()) {
-            return "redirect:/registratComAlumne";
+            return "/registratComAlumne";
         }
         String sexoDesc = "";
         switch (alumno.getSexo()) {

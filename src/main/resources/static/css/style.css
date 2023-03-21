@@ -1336,6 +1336,7 @@ input:focus {
 }
 
 .boton {
+    text-align: center;
     text-decoration: none!important;
     margin: 10px auto;
     border: none;
@@ -1518,6 +1519,9 @@ div.errorDiv.card ul{
     padding: 10px;
     text-align: start;
 }
+.container.mod{
+    max-width: 800px;
+}
 
 div.errorDiv.card .errorMessage{
     width: 100%;
@@ -1526,17 +1530,81 @@ div.errorDiv.card .errorMessage{
 div.errorDiv.card .errorMessage *{
     display: inline;
 }
-.row.modulos{
-    display: inherit !important;
-    gap: 20px;
+
+.modulos .card-margins{
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
-.row.modulos *{
+.modulos *{
     display: inherit !important;
+}
+.row.row-modulos{
+    width: 90%;
     gap: 20px;
 }
 
-.modulo{
-    max-width: 100px;
-    gap: 20px;
+.row-modulos *{
+    display: inherit !important;
+    min-width: fit-content !important;
+    max-width: 200px !important;
+}
+
+.row-modulos .card.col a{
+    display: flex !important;
+    flex-direction: column;
+    font-weight: bold;
     padding: 50px;
+    width: 100%;
+    height: 100%;
+
+    transition: 0.5s;
+}
+
+.row-modulos .card.col{
+    transition: 1s;
+}
+.row-modulos .card.col:hover{
+    transition: 1s;
+    background-color: #ff8900;
+}
+
+.row-modulos .card.col:hover a{
+    transition: 0.5s;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+/*--------------------------------------------------------------
+# ALUMNO
+--------------------------------------------------------------*/
+.noticia, .oferta{
+    width: 90%;
+    margin:auto;
+}
+
+#anuncis, #nuevasOfertas {
+    max-height: 1000px;
+    overflow-y: auto;
+}
+
+.RowVerticalScroll{
+    flex-direction: initial !important;
+}
+
+.RowVerticalScroll h1{
+    text-align: center;
+    font-weight: bold;
+}
+
+.separacionBetween{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 770px) {
+    #anuncis, #nuevasOfertas {
+        max-height: fit-content;
+    }
 }
