@@ -11,7 +11,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <main>
-            <form method="post" th:action="@{/alumne/editarPerfilAlumne}" th:object="${alumno}">
+            <form method="post" th:action="@{/alumne/editarPerfil}" th:object="${alumno}">
+                <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
+                    <ul>
+                        <li class="errorMessage"  th:each="err : ${errores}">
+                            <i class="fa-solid fa-xmark"></i>
+                            <p th:text="${err}"></p>
+                        </li>
+                        <li  class="errorMessage" th:each="err2 : ${erroresBinding}">
+                            <i class="fa-solid fa-xmark"></i>
+                            <p th:text="${err2}"></p>
+                        </li>
+                    </ul>
+                </div>
+
                 <!-- Datos Perfil -->
                 <div id="perfil">
                     <div>
@@ -28,7 +41,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                         <label for="correu">Username:</label>
                         <input type="text" id="username" th:field="*{username}" th:placeholder="${alumno.username}">
-                        
+
                         <label for="correoContacto">Correu de Contacte:</label>
                         <input type="text" id="correoContacto" th:field="*{correoContacto}" th:placeholder="${alumno.correoContacto}">
                     </div>
@@ -47,6 +60,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
 
                     <div>
+                        <label for="municipi">Direccio:</label>
+                        <input type="text" id="municipi" th:field="*{direccion}" th:placeholder="${alumno.direccion}">
+
                         <label for="municipi">Municipi:</label>
                         <input type="text" id="municipi" th:field="*{municipio}" th:placeholder="${alumno.municipio}">
 
@@ -117,13 +133,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <label for="password">Contrasenya Actual:</label>
                     <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
                 </div>
-                
-                <div th:if="${errores} OR ${erroresBinding}">
-                    <ul>
-                        <li th:each="err : ${errores}" th:text="${err}" />
-                        <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
-                    </ul>
-                </div>
+
                 <div>
                     <button name="button" value="guardar">Guardar Canvis</button>
                     <button name="button" value="cancelar">Cancelar Canvis</button>
