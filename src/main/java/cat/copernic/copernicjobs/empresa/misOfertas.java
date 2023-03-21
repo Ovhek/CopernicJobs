@@ -44,16 +44,14 @@ public class misOfertas {
     }
     
     @PostMapping("/empresa/buscaroferta")
-    public void buscarOferta(@RequestParam(name = "button") String btnValue, 
-            @RequestParam( name="ordenar") String ordenar, 
-            String buscar){
+    public String buscarOferta(@RequestParam(name = "buscar") String btnValue,@RequestParam(name = "search-input") String buscar, String ordenar, @AuthenticationPrincipal UserDetails user){
         
         
         System.out.println("");
         
         
         
-        
+        return "redirect:inici";
     
     }
 
