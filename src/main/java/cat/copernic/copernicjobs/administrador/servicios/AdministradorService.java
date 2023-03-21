@@ -10,20 +10,19 @@ import cat.copernic.copernicjobs.model.Administrador;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author joang
  */
 @Service
-public class AdministradorService implements AdministradorServiceInterface{
+public class AdministradorService implements AdministradorServiceInterface {
+
     @Autowired
     AdministradorDAO administradorDAO;
 
-    public void setAdministradorDAO(AdministradorDAO administradorDAO) {
-        this.administradorDAO = administradorDAO;
-    }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Administrador> listarAdministradors() {
         return (List<Administrador>) administradorDAO.findAll();
@@ -39,8 +38,15 @@ public class AdministradorService implements AdministradorServiceInterface{
         administradorDAO.save(administrador);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public Administrador buscarAdministrador(Administrador alumno) {
-        return administradorDAO.findById(alumno.getId()).orElse(null);
+    public Administrador buscarAdministrador(Administrador administrador) {
+        return administradorDAO.findById(administrador.getId()).orElse(null);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Administrador buscarAdministradorPorUsername(String username) {
+        return administradorDAO.findByUsername(username);
     }
 }

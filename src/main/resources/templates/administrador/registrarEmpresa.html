@@ -11,23 +11,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1>Registrar Empresa</h1>
 
         <form method="post" th:action="@{/registreEmpresa}" th:object="${empresa}">
-            
+
+            <div class="successMessage" th:if="${registrado}" th:text="#{info.registrado}">
+
+            </div>
+            <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
+                <ul>
+                    <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p th:text="${err}"></p>
+                    </li>
+
+                </ul>
+            </div>
+
             <div>
                 <h2>Dades Empresa</h2>
-                <label for="nom">Nom:</label>
-                <input type="text" id="nom" th:field="*{nombreEmpresa}" name="nom" placeholder="Introdueix el nom de l'empresa"><br>
+                <label for="nombreEmpresa">Nom:</label>
+                <input type="text" id="nombreEmpresa" th:field="*{nombreEmpresa}" name="nombreEmpresa" placeholder="Introdueix el nom de l'empresa"><br>
 
                 <label for="descripcio">Descripció:</label>
                 <input type="text" id="descripcio" th:field="*{descripcionEmpresa}" name="descripcio" placeholder="Introdueix una descripció de l'empresa"><br>
 
-                <label for="contrasenya">Contrasenya:</label>
-                <input type="password" id="contrasenya" th:field="*{contrasenya}" name="contrasenya" placeholder="Introdueix la contrasenya"><br>
+                <label for="password">Contrasenya:</label>
+                <div class="passwordContainer">
+                    <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+                </div>
 
-                <label for="repeteix_contrasenya">Repeteix la Contrasenya:</label>
-                <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya"><br>
+                <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
+                <div class="passwordContainer">
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" th:field="*{correo}" name="email" placeholder="Introdueix el teu email"><br>
+                    <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
+                </div>
+
+                <p>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix el teu email"><br>
+                </p>
 
                 <label for="direccio">Direcció:</label>
                 <input type="text" id="direccio" th:field="*{direccion}" name="direccio" placeholder="Introdueix la direcció"><br>
@@ -52,9 +72,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 <label for="cognoms_resp">Cognoms:</label>
                 <input type="text" id="cognoms_resp" th:field="*{apellidos}" name="cognoms_resp" placeholder="Introdueix els cognoms"><br>
-                
+
                 <label for="correo_resp">Correu:</label>
                 <input type="text" id="correo_resp" th:field="*{correoContacto}" name="correo_resp" placeholder="Introdueix el correu del responsable"><br>
+            </div>
+
+            <label for="genere">Gènere:</label>
+            <div>
+                <select th:field="*{sexo}" id="genere" name="genere">
+                    <option value="1">Home</option>
+                    <option value="2">Dona</option>
+                    <option value="3">Altre</option>
+                    <option value="4">Prefereixo no dir-ho</option>
+                </select>
             </div>
             <button type="submit">Registrar</button>
         </form>

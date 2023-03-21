@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Registrar Administrador</title>
-  </head>
-  <body>
-    <h1>Registrar Administrador</h1>
-    <form method="post" th:action="@{/registreAdministrador}" th:object="${administrador}">
-      <label for="nom">Nom:</label>
-      <input type="text" id="nom" th:field="*{nombre}" name="nom" placeholder="Introdueix el nom">
+    <head>
+        <title>Registrar Administrador</title>
+    </head>
+    <body>
+        <h1>Registrar Administrador</h1>
+        <form method="post" th:action="@{/registreAdministrador}" th:object="${administrador}">
 
-      <label for="cognoms">Cognoms:</label>
-      <input type="text" id="cognoms" th:field="*{apellido}" name="cognoms" placeholder="Introdueix els cognoms">
+            <div class="successMessage" th:if="${registrado}" th:text="#{info.registrado}">
 
-      <label for="contrasenya">Contrasenya:</label>
-      <input type="password" id="contrasenya" th:field="*{contrasenya}" name="contrasenya" placeholder="Introdueix la contrasenya">
+            </div>
+            <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
+                <ul>
+                    <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p th:text="${err}"></p>
+                    </li>
 
-      <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
-      <input type="password" th:value="${contrasenyaRepetida}" id="repeteix-contrasenya" name="repeteix-contrasenya" placeholder="Repeteix la contrasenya">
+                </ul>
+            </div>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" th:field="*{correo}" name="email" placeholder="Introdueix l'email">
-      
-      <button type="submit">Registrar</button> 
-    </form>
-  </body>
+            <p>
+                <label for="nombre">Nom:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" name="nombre" placeholder="Introdueix el nom"/>
+            </p>
+
+            <p>
+                <label for="apellido">Cognoms:</label>
+                <input type="text" id="apellido" th:field="*{apellido}" name="apellido" placeholder="Introdueix els cognoms"/>
+            </p>
+
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix l'email"/>
+            </p>
+            
+            <label for="password">Contrasenya:</label>
+            <div class="passwordContainer">
+                <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+            </div>
+
+            <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
+            <div class="passwordContainer">
+
+                <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
+            </div>
+
+            <button type="submit">Registrar</button> 
+        </form>
+    </body>
 </html>

@@ -5,6 +5,8 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.dao.AlumnoDAO;
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.administrador.servicios.NoticiaService;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
@@ -12,12 +14,24 @@ import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
+import cat.copernic.copernicjobs.model.Incidencia;
 import cat.copernic.copernicjobs.model.Noticia;
 import cat.copernic.copernicjobs.model.Oferta;
+import cat.copernic.copernicjobs.model.Persona;
+import cat.copernic.copernicjobs.model.Rol;
+import cat.copernic.copernicjobs.model.Usuario;
+import jakarta.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -44,8 +58,9 @@ public class InicioAdmin {
     @Autowired
     private OfertaService ofertaService;
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/inicioAdmin") //Pàgina inicial d'admin
-    public String inicio(Model model) {
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
@@ -85,7 +100,16 @@ public class InicioAdmin {
      *identifica el mètode al qual ha d'enviar les dades introduïdes mitjançant el formulari.
      */
     @PostMapping("/guardarNoticia") //action=guardarNoticia
-    public String guardarNoticia(Noticia noticia) {
+    public String guardarNoticia(@Valid Noticia noticia, Errors errors, Model model) {
+
+        if (errors.hasErrors()) { //Si s'han produït errors...
+            String ruta = "administrador/";
+
+            String archivo = "crearNoticia";
+
+            return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        }
+
         noticia.setFechaHora(LocalDate.now());
 
         noticiaService.afegirNoticia(noticia); //Afegim la noticia passada per paràmetre a la base de dades
@@ -132,40 +156,40 @@ public class InicioAdmin {
 
         return "redirect:/inicioAdmin"; //Retornem a la pàgina inicial mitjançant redirect
     }
-    
+
     @GetMapping("/validarRegistreAlumne/{id}")
-    public String validarAlumne(Alumno alumno, Model model){
-        
-        String ruta="administrador/";
-        
-        String archivo ="validarRegistreAlumne";
-        
+    public String validarAlumne(Alumno alumno, Model model) {
+
+        String ruta = "administrador/";
+
+        String archivo = "validarRegistreAlumne";
+
         model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
-        
+
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-    
+
     @GetMapping("/validarRegistreEmpresa/{id}")
-    public String validarEmpresa(Empresa empresa, Model model){
-        
-        String ruta ="administrador/";
-        
+    public String validarEmpresa(Empresa empresa, Model model) {
+
+        String ruta = "administrador/";
+
         String archivo = "validarRegistreEmpresa";
-        
+
         model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
-        
+
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-    
+
     @GetMapping("/validarOferta/{id}")
-    public String validarOferta(Oferta oferta, Model model){
-        
-        String ruta="administrador/";
-        
+    public String validarOferta(Oferta oferta, Model model) {
+
+        String ruta = "administrador/";
+
         String archivo = "validarOferta";
-        
+
         model.addAttribute("oferta", ofertaService.cercarOferta(oferta));
-        
+
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 }
