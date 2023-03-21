@@ -37,7 +37,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="row">
                 <div class="col-lg-3 card p-5 mx-3 my-3 ofertaCard" th:each="oferta : ${ofertas}">
                     <h2 th:text="${oferta.tituloOferta}"></h2>
-                    <p th:text="${oferta.descripcionOferta}"></p>
+                    <p class="descripcionOferta" th:text="${oferta.descripcionOferta}"></p>
                     <div class="separacionBetween">
                         <p th:text="${oferta.empresa.nombreEmpresa}"></p>
                         <p th:text="${oferta.empresa.municipio}"></p>

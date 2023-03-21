@@ -10,25 +10,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title></title>
     </head>
     <body>
-        <h1>Les meves inscripcions</h1>
-
         <div>
-            <label for="search-input">Buscar:</label>
-            <input type="text" id="search-input" name="search-input">
+            <div class="container">
+                <div class="row gx-0">
+                    <div class="col-md-9 my-3 mx-md-3 searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search-input" placeholder="Buscar...">
+                        <button class="boton">Buscar</button>
+                    </div>
+                <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                    <select id="sort-select" name="sort-select">
+                        <option value="0">Ordenar Per:</option>
+                        <option value="titulo">Título</option>
+                        <option value="municipio">Municipio</option>
+                        <option value="empresa">Empresa</option>
+                    </select>
+                </div>
+                </div>
 
-            <label for="sort-select">Ordenar por:</label>
-            <select id="sort-select" name="sort-select">
-                <option value="titulo">Título</option>
-                <option value="municipio">Municipio</option>
-                <option value="empresa">Empresa</option>
-            </select>
-        </div>
+            </div>
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 card p-5 mx-3 my-3" th:each="inscripcion : ${inscripciones}">
+                <div class="col-lg-3 card p-5 mx-3 my-3 ofertaCard" th:each="inscripcion : ${inscripciones}">
                     <h2 th:text="${inscripcion.oferta.tituloOferta}">Sección 1</h2>
-                    <p th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
+                    <p class="descripcionOferta" th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
                     <div class="separacionBetween">
                         <p th:text="${inscripcion.oferta.empresa.nombreEmpresa}"></p>
                         <p th:text="${inscripcion.oferta.empresa.municipio}"></p>
