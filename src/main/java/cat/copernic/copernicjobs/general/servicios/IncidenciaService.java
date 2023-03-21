@@ -4,7 +4,7 @@
  */
 package cat.copernic.copernicjobs.general.servicios;
 
-import cat.copernic.copernicjobs.DAO.IncidenciaDAO;
+import cat.copernic.copernicjobs.dao.IncidenciaDAO;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Incidencia;
 import java.util.List;

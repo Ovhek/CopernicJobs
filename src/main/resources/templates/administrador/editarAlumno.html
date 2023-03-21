@@ -11,40 +11,46 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <main>
-            <form method="post" action="">
+            <form th:action="@{/guardarAlumno}" method="post" th:object="${alumno}">
                 <!-- Datos Perfil -->
                 <div id="alumno">
                     <div>
-                        <img src="" alt="Foto Alumno"/>
-                        <button>+</button>
+                        <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
+                        <a>+</a>
                     </div>
                     <div>
+                        <input type="hidden" th:field="*{id}"/>
+                        <input type="hidden" th:field="*{fechaRegistro}"/>
+                        <input type="hidden" th:field="*{contrasenya}"/>
                         <label for="nom">Nom:</label>
-                        <input type="text" id="nom" name="nom" placeholder="John">
+                        <input type="text" id="nom" th:field="*{nombre}" th:placeholder="${alumno.nombre}">
 
                         <label for="cognoms">Cognoms:</label>
-                        <input type="text" id="cognoms" name="cognoms" placeholder="Doe">
+                        <input type="text" id="cognoms" th:field="*{apellidos}" th:placeholder="${alumno.apellidos}">
+
+                        <label for="correu">Correu:</label>
+                        <input type="text" id="correu" th:field="*{correo}" th:placeholder="${alumno.correo}">
                     </div>
 
                     <div>
                         <label for="genere">Gènere:</label>
-                        <select id="genere" name="genere">
-                            <option value="home">Home</option>
-                            <option value="dona">Dona</option>
-                            <option value="altre">Altre</option>
-                            <option value="no-dir-ho">Prefereixo no dir-ho</option>
+                        <select th:field="*{sexo}" id="genere" name="genere">
+                            <option th:selected="${alumno.sexoDesc == 'Home'}" value="1">Home</option>
+                            <option th:selected="${alumno.sexoDesc == 'Dona'}" value="2">Dona</option>
+                            <option th:selected="${alumno.sexoDesc == 'Altre'}" value="3">Altre</option>
+                            <option th:selected="${alumno.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
                         </select>
 
                         <label for="mobil">Mòbil</label>
-                        <input type="tel" id="mobil" name="mobil" placeholder="+34 112112112">
+                        <input type="tel" id="mobil" th:field="*{movil}" th:placeholder="${alumno.movil}">
                     </div>
 
                     <div>
                         <label for="municipi">Municipi:</label>
-                        <input type="text" id="municipi" name="municipi" placeholder="Terrassa">
+                        <input type="text" id="municipi" th:field="*{municipio}" th:placeholder="${alumno.municipio}">
 
                         <label for="codPostal">Codi Postal:</label>
-                        <input type="text" id="codPostal" name="codPostal" placeholder="08226">
+                        <input type="text" id="codPostal" th:field="*{codPostal}" th:placeholder="${alumno.codPostal}">
                     </div>
                 </div>
                 <!-- Curriculum -->
@@ -52,25 +58,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <h2>Curriculum</h2>
                     <div>
                         <label for="linkedin">Linkedin</label>
-                        <input type="text" id="linkedin" name="linkedin" placeholder="url">
+                        <input type="text" id="linkedin" th:field="*{linkedin}" th:placeholder="${alumno.linkedin}">
                     </div>
                     <div>
                         <label for="portPersonal">Portafoli Personal</label>
-                        <input type="text" id="portPersonal" name="portPersonal" placeholder="url">
+                        <input type="text" id="portPersonal" th:field="*{portafoliPersonal}" th:placeholder="${alumno.portafoliPersonal}">
                     </div>
                     <div>
                         <label for="cvOnline">CV Online</label>
-                        <input type="text" id="cvOnline" name="cvOnline" placeholder="url">
+                        <input type="text" id="cvOnline" th:field="*{curriculumOnline}" th:placeholder="${alumno.curriculumOnline}">
                     </div>
 
                     <div>
                         <div>
                             <p>Curriculum Actual</p>
-                            <button>PDF</button>
+                            <a>PDF</a>
                         </div>
                         <div>
                             <p>Nou Curriculum</p>
-                            <button>Subir</button>
+                            <a>Subir</a>
                         </div>
                     </div>
 
@@ -81,24 +87,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div>
                         <div>
                             <label for="dni">DNI/NIE: </label>
-                            <input type="text" id="dni" name="dni" placeholder="A">
+                            <input type="text" id="dni"  th:field="*{dni}" th:placeholder="${alumno.dni}">
                         </div>
                         <div>
                             <label for="targSanitaria">Targeta Sanitària: </label>
-                            <input type="text" id="targSanitaria" name="targSanitaria" placeholder="A">
+                            <input type="text" id="targSanitaria" th:field="*{tarjetaSanitaria}" th:placeholder="${alumno.tarjetaSanitaria}">
                         </div>
                         <div>
                             <label for="numSegSocial">Número Seguretat Social: </label>
-                            <input type="text" id="numSegSocial" name="numSegSocial" placeholder="A">
+                            <input type="text" id="numSegSocial" th:field="*{segSocial}" th:placeholder="${alumno.segSocial}">
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button>Guardar Canvis</button>
-                    <button>Cancelar Canvis</button>
+                    <button name="button" value="guardar">Guardar Canvis</button>
+                    <button name="button" value="bajar">Donar de baixa</button>
+                    <button name="button" value="cancelar">Cancelar Canvis</button>
                 </div>
-
             </form>
         </main>
     </body>

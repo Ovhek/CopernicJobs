@@ -4,14 +4,18 @@
  */
 package cat.copernic.copernicjobs.general.utils;
 
+import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
+import cat.copernic.copernicjobs.dao.AdministradorDAO;
+import cat.copernic.copernicjobs.dao.AlumnoDAO;
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.model.Administrador;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Usuario;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
@@ -33,22 +37,21 @@ public class CargarPantallaPrincipal {
 
     private static AlumnoService staticAlumnoService;
     private static EmpresaService staticEmpresaService;
-    //private static AdministradorService staticAdministradorService;
+    private static AdministradorService staticAdministradorService;
 
     
     /**
-     * Función que se ejecuta después de realizar la inyección de dependencias de Autowired. Esta función asigna los valores de la inyección de dependencias a los campos estaticos.
-     */
-    //@PostConstruct
-    //private void init() {
-    //    staticAlumnoService = alumnoService;
-    //    staticEmpresaService = empresaService;
-    //}
-    
+     * Función que se ejecuta después de realizar la inyección de dependencias de Autowired.Esta función asigna los valores de la inyección de dependencias a los campos estaticos.
+     * @param alumnoService
+     */    
     @Autowired
-    public CargarPantallaPrincipal(AlumnoService alumnoService, EmpresaService empresaService){
+    public CargarPantallaPrincipal(AlumnoService alumnoService, EmpresaService empresaService, AdministradorService administradorService, EmpresaDAO empresaDAO, AlumnoDAO alumnoDAO, AdministradorDAO administradorDAO){
         staticAlumnoService = alumnoService;
+        staticAlumnoService.setAlumnoDAO(alumnoDAO);
         staticEmpresaService = empresaService;
+        staticEmpresaService.setEmpresa(empresaDAO);
+        staticAdministradorService = administradorService;
+        staticAdministradorService.setAdministradorDAO(administradorDAO);
     }
 
     /**
@@ -62,12 +65,10 @@ public class CargarPantallaPrincipal {
      * @param titulo Título que tendrá la página.
      * @return devuelve la plantilla
      */
-    public static String cargar(Model model, NavBarType tipo, String ruta, String archivo, String titulo) {
+    public static String cargar(Model model, NavBarType tipo, String ruta, String archivo, String titulo, UserDetails user) {
 
         //TODO: Usuario que ha iniciado sesión
-        int id = 1;
         Usuario usuario = null;
-
         //Ruta del archvio de navegación
         String rutaNav = "";
         //Nombre del archvio de navegación sin .html
@@ -76,32 +77,27 @@ public class CargarPantallaPrincipal {
             case ALUMNO:
                 rutaNav = "alumno/";
                 archivoNav = "_navAlumno";
-
-                Alumno alumno = new Alumno();
-                alumno.setId(id);
-                usuario = staticAlumnoService.buscarAlumno(alumno);
+                usuario = staticAlumnoService.buscarAlumnoPorUsername(user.getUsername());
                 break;
             case EMPRESA:
                 rutaNav = "empresa/";
                 archivoNav = "_navEmpresa";
-
-                Empresa empresa = new Empresa();
-                empresa.setId(id);
-                usuario = staticEmpresaService.cercarEmpresa(empresa);
+                usuario = staticEmpresaService.buscarPorUsername(user.getUsername());
                 break;
             case ADMINISTRADOR:
                 rutaNav = "administrador/";
                 archivoNav = "_navAdministrador";
 
                 //TODO: Usar el AdministradorService para obtener el admin.
-                Administrador administrador = new Administrador();
-                administrador.setId(id);
+                //Administrador administrador = staticAdministradorService.buscarAdministrador(user.getUsername());
                 //usuario = administradorService.cercarAdministrador(administrador);
                 break;
             default:
                 throw new AssertionError();
         }
 
+        if(tipo == NavBarType.ALUMNO) model.addAttribute("esAlumno",true);
+        
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", titulo);
         //Añadimos los atributos rutaNav y archivoNav dependiendo del tipo de navegación

@@ -11,20 +11,28 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <main>
-            <div id="perfil">
-                <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" placeholder="John">
+        <form th:action="@{/guardarAdministrador}" method="post" th:object="${administrador}">
 
-                <label for="cognoms">Cognoms:</label>
-                <input type="text" id="cognoms" name="cognoms" placeholder="Doe">
+            <input type="hidden" name="id" th:field="*{id}"/>
+            <input type="hidden" name="contrasenya" th:field="*{contrasenya}"/>
+            <input type="hidden" name="fechaRegistro" th:field="*{fechaRegistro}"/>
+            <p>
+                <label for="nombre">Nom:</label>
+                <input type="text" name="nombre" th:field="*{nombre}">
+            </p>
 
-                <label for="correu">Correu:</label>
-                <input type="text" id="correu" name="correu" placeholder="JohnDoe@gmail.com">
-            </div>
+            <p>
+                <label for="apellido">Cognoms:</label>
+                <input type="text" name="apellido" th:field="*{apellido}">
+            </p>
 
-            <button>Guardar Canvis</button> 
+            <p>
+                <label for="correo">Correu:</label>
+                <input type="text" name="correo" th:field="*{correo}">
+            </p>
+
+            <button type="submit" name="enviar" value="Enviar Dades">Guardar Canvis</button> 
             <button>Cancelar</button>
-        </main>
+        </form>
     </body>
 </html>

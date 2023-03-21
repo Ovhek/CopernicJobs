@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cat.copernic.copernicjobs.DAO;
+package cat.copernic.copernicjobs.dao;
 
 import cat.copernic.copernicjobs.model.Modulo;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -4,15 +4,20 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
-import cat.copernic.copernicjobs.DAO.InscripcionDAO;
+import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
+import cat.copernic.copernicjobs.dao.InscripcionDAO;
 import cat.copernic.copernicjobs.alumno.servicios.InscripcionService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +32,23 @@ public class MisInscripciones {
     @Autowired
     InscripcionService inscripcionService;
     
-    @GetMapping("/inscripcions")
-    public String inicio(Model model) {
+    @Autowired
+    AlumnoService alumnoService;
 
-        int id = 1;
+    @PreAuthorize("hasAuthority('alumne')")
+    @GetMapping("/alumne/inscripcions")
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
+
+        Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
+        
+        if(alumno == null) return "/error";
+        
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "misInscripciones";
-        model.addAttribute("inscripciones",inscripcionService.buscarInscripcionPorAlumnoId(id));
+        model.addAttribute("inscripciones", inscripcionService.buscarInscripcionPorAlumnoId(alumno.getId()));
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Les meves inscripcions");
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Les meves inscripcions", username);
     }
 }

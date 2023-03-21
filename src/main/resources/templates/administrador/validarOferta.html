@@ -12,23 +12,22 @@ and open the template in the editor.
     </head>
     <body>
         <header>
-            <h1 th:text="${ofTit}"></h1>
+            <h1 th:text="${oferta.tituloOferta}"></h1>
         </header>
 
         <main>
             <section>
-                <h1 th:text="${nomEmpresa}"></h1>
                 <div>
                     <h2>Descripció</h2>
-                    <p th:text="${ofDesc}"></p>
+                    <p th:text="${oferta.descripcionOferta}"></p>
                 </div>
                 <div>
                     <h2>Requisits</h2>
-                    <p th:text="${ofReq}"></p>
+                    <p th:text="${oferta.requisitosAlumno}"></p>
                 </div>
                 <div>
                     <h2>S'ofereix</h2>
-                    <p th:text="${ofOfer}"></p>
+                    <p th:text="${oferta.seOfrece}"></p>
                 </div>
                 <div>
                     <h2>Més informació</h2>
@@ -36,8 +35,8 @@ and open the template in the editor.
                 </div>
             </section>
             <div id="validacio">
-                <button>Validar Oferta</button>
-                <button>Invalidar Oferta</button>
+                <a th:href="@{/inicioAdmin}" th:text="Validar"/>
+                <a th:href="@{/inicioAdmin}" th:text="Invalidar"/>
             </div>
         </main>
     </body>

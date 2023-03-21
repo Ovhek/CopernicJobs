@@ -5,28 +5,28 @@
   </head>
   <body>
     <h1>Registrar Alumne</h1>
-    <form method="post" action="">
+    <form method="post" th:action="@{/registreAlumne}" th:object="${alumno}">
       <label for="nom">Nom:</label>
-      <input type="text" id="nom" name="nom" placeholder="Introdueix el nom">
+      <input type="text" id="nom" th:field="*{nombre}" name="nom" placeholder="Introdueix el nom">
 
       <label for="cognoms">Cognoms:</label>
-      <input type="text" id="cognoms" name="cognoms" placeholder="Introdueix els cognoms">
+      <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els cognoms">
 
       <label for="contrasenya">Contrasenya:</label>
-      <input type="password" id="contrasenya" name="contrasenya" placeholder="Introdueix la contrasenya">
+      <input type="password" id="contrasenya" th:field="*{contrasenya}" name="contrasenya" placeholder="Introdueix la contrasenya">
 
       <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
-      <input type="password" id="repeteix-contrasenya" name="repeteix-contrasenya" placeholder="Repeteix la contrasenya">
+      <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Introdueix l'email">
+      <input type="email" id="email" th:field="*{correo}" name="email" placeholder="Introdueix l'email">
 
       <label for="genere">Gènere:</label>
-      <select id="genere" name="genere">
-        <option value="home">Home</option>
-        <option value="dona">Dona</option>
-        <option value="altre">Altre</option>
-        <option value="no-dir-ho">Prefereixo no dir-ho</option>
+      <select th:field="*{sexo}" id="genere" name="genere">
+        <option value="1">Home</option>
+        <option value="2">Dona</option>
+        <option value="3">Altre</option>
+        <option value="4">Prefereixo no dir-ho</option>
       </select>
       
       <button type="submit">Registrar</button> 

@@ -13,10 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
 import lombok.NonNull;
+import org.hibernate.validator.constraints.URL;
 
 /**
  *
@@ -29,18 +31,27 @@ public class Oferta {
     
     @Column(name="fecha_validacion")
     private LocalDate fechaValidacion;
+    
     @Column(name="enlace_pdf")
+    @URL
     private String enlacePDF;
+    
     @Column(name="titulo")
+    @Size(max=50)
     private String tituloOferta;
+    
     @Column(name="descripcion")
     private String descripcionOferta;
+    
     @Column(name="requisitos")
     private String requisitosAlumno;
+    
     @Column(name="se_ofrece")
     private String seOfrece;
+    
     @Column(name="fecha_peticion")
     private LocalDate fechaPeticion;
+    
     @Column(name="baja")
     private boolean baja;
     

@@ -26,21 +26,38 @@ public class editarPerfil {
     
     @GetMapping("/editarperfilempresa/{id}")
     public String inicio(Model model,Empresa empresa){
-        model.addAttribute("empresa",empresaService.cercarEmpresa(empresa));
+
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "editarperfilempresa";
         
+        model.addAttribute("empresa",empresaService.cercarEmpresa(empresa));
+        
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
     }
     
-    @PostMapping("/guardarperfil")
-    public String guardar(Model model,Empresa empresa){
-        empresaService.afegirEmpresa(empresa);
-        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return "redirect:misofertas";
+    @PostMapping("/guardarcambios")
+    public String guardar(Empresa empresa){
+        //Cargamos la empresa a editar.
+        Empresa empresaEdit= empresaService.cercarEmpresa(empresa);
+        //Modificamos sus valores con los que entran a traves del metodo POST.
+        empresaEdit.setCodPostal(empresa.getCodPostal());
+        empresaEdit.setNombreEmpresa(empresa.getNombreEmpresa());
+        empresaEdit.setDescripcionEmpresa(empresa.getDescripcionEmpresa());
+        empresaEdit.setMunicipio(empresa.getMunicipio());
+        empresaEdit.setMovilEmpresa(empresa.getMovilEmpresa());
+        empresaEdit.setWebEmpresa(empresa.getWebEmpresa());
+        //Aqui modificamos los datos del Responsable, que han sido actualizados por el metodo POST.
+        empresaEdit.setNombre(empresa.getNombre());
+        empresaEdit.setApellidos(empresa.getApellidos());
+        empresaEdit.setMovil(empresa.getMovil());
+        empresaEdit.setDireccion(empresa.getDireccion());
+        //Una vez actualizamos los datos, al añadir la empresa sobreescribira la actual.
+        empresaService.afegirEmpresa(empresaEdit);
+        //Una vez hecho esto, redireccionamos a mis ofertas.
+        return "redirect:verperfilempresa";
                 
     }
     
