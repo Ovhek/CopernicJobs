@@ -7,6 +7,7 @@ package cat.copernic.copernicjobs.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,10 +30,10 @@ public class Rol {
     @Column(name = "nombre")
     private String nom;
     
-    @OneToOne(mappedBy="rol", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy="rol", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private Usuario usuario;
     
-    @OneToMany(mappedBy = "rol")
+    @OneToMany(mappedBy = "rol",fetch = FetchType.EAGER)
     private List<RolModulo> modulos;
 
 }

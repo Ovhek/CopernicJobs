@@ -38,4 +38,6 @@ public interface AdministradorServiceInterface {
      * @return el objeto alumno si exist o null si no existe.
      */
     public Administrador buscarAdministrador(Administrador administrador); 
+    
+    public Administrador buscarUsernamme(String username); 
 }

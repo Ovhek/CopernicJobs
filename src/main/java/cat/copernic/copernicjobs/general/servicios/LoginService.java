@@ -4,13 +4,17 @@
  */
 package cat.copernic.copernicjobs.general.servicios;
 
+import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
+import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.dao.AdministradorDAO;
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
-import cat.copernic.copernicjobs.model.Rol;
+import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
+import cat.copernic.copernicjobs.model.Administrador;
+import cat.copernic.copernicjobs.model.Alumno;
+import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Usuario;
 import java.util.ArrayList;
-import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,11 +35,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class LoginService implements UserDetailsService{
 
     @Autowired
-    private AlumnoDAO alumnoDao;
+    private AlumnoService alumnoService;
     @Autowired
-    private EmpresaDAO empresaDao;
+    private EmpresaService empresaService;
     @Autowired
-    private AdministradorDAO administradorDao;
+    private AdministradorService administradorService;
     
     private MessageSource messageSource;
     
@@ -43,11 +47,11 @@ public class LoginService implements UserDetailsService{
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     
-        Usuario usuario = alumnoDao.findByUsername(username);
+        Usuario usuario = (Alumno) alumnoService.buscarAlumnoPorUsername(username);
         
-        if(usuario == null) usuario = empresaDao.findByUsername(username);
+        if(usuario == null) usuario = (Empresa) empresaService.buscarPorUsername(username);
         
-        if(usuario == null) usuario = administradorDao.findByUsername(username);
+        if(usuario == null) usuario = (Administrador)administradorService.buscarUsernamme(username);
         
         if(usuario == null) throw new UsernameNotFoundException(username);
         

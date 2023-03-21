@@ -43,4 +43,11 @@ public class AdministradorService implements AdministradorServiceInterface{
     public Administrador buscarAdministrador(Administrador alumno) {
         return administradorDAO.findById(alumno.getId()).orElse(null);
     }
+
+    @Override
+    public Administrador buscarUsernamme(String username) {
+        return administradorDAO.findByUsername(username);
+    }
+    
+    
 }

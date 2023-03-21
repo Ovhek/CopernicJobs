@@ -48,12 +48,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                     <div>
                         <label for="genere">Gènere:</label>
-                        <select th:field="*{sexo}" id="genere" name="genere">
-                            <option th:selected="${alumno.sexoDesc == 'Home'}" value="1">Home</option>
-                            <option th:selected="${alumno.sexoDesc == 'Dona'}" value="2">Dona</option>
-                            <option th:selected="${alumno.sexoDesc == 'Altre'}" value="3">Altre</option>
-                            <option th:selected="${alumno.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
-                        </select>
+                        <div class="custom-select">
+                            <select th:field="*{sexo}" id="genere" name="genere">
+                                <option th:selected="${alumno.sexoDesc == 'Home'}" value="1">Home</option>
+                                <option th:selected="${alumno.sexoDesc == 'Dona'}" value="2">Dona</option>
+                                <option th:selected="${alumno.sexoDesc == 'Altre'}" value="3">Altre</option>
+                                <option th:selected="${alumno.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
+                            </select>
+                        </div>
+
 
                         <label for="mobil">Mòbil</label>
                         <input type="tel" id="mobil" th:field="*{movil}" th:placeholder="${alumno.movil}">

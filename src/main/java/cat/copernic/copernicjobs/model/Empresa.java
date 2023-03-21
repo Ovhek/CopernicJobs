@@ -21,7 +21,6 @@ import org.hibernate.validator.constraints.URL;
  */
 @Data
 @Entity
-@Table(name="empresa")
 @DiscriminatorValue("3")
 public class Empresa extends Persona {
     
