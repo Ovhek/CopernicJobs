@@ -17,6 +17,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
@@ -34,14 +35,17 @@ import lombok.Data;
 public abstract class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    @NotEmpty
-    @Size(max = 128)
+
+    @Email(message = "{Email.alumno.correoContacto}")
+    @Email(message = "{Email.empresa.correoContacto}")
+    @Email(message = "{Email.administrador.username}")
+    @Size(max = 128, message = "{Size.alumno.username}")
+    @NotEmpty(message = "{NotEmpty.alumno.username}")
     @Column(name = "username")
     private String username;
 
-    @NotEmpty
-    @Size(min = 8, max = 128)
+    @Size(min = 8, max = 128, message = "{Size.alumno.password}")
+    @NotEmpty(message = "{NotEmpty.alumno.password}")
     @Column(name = "password")
     private String password;
 

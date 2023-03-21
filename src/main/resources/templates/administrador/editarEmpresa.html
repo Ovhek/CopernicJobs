@@ -61,6 +61,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <option th:selected="${empresa.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
                 </select>
             </div>
+            <div th:if="${errores} OR ${erroresBinding}">
+                <ul>
+                    <li th:each="err : ${errores}" th:text="${err}" />
+                    <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                </ul>
+            </div>
             <div>
                 <button name="button" value="guardar">Guardar Canvis</button>
                 <button name="button" value="bajar">Donar de baixa</button>

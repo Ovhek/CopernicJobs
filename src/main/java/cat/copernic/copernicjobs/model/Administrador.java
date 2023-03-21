@@ -25,13 +25,13 @@ public class Administrador extends Usuario implements Serializable {
     //Identificació de la classe per poder deserialitzar de manera correcta
     private static final long serialVersionUID = 1L;
 
-    @NotEmpty
-    @Size(max = 50)
+    @NotEmpty(message = "{NotEmpty.administrador.nombre}")
+    @Size(max = 50, message = "{Size.administrador.nombre}")
     @Column(name = "nombre")
     private String nombre;
 
-    @NotEmpty
-    @Size(max = 200)
+    @NotEmpty(message = "{NotEmpty.administrador.apellido}")
+    @Size(max = 200, message = "{Size.administrador.apellido}")
     @Column(name = "apellidos")
     private String apellido;
 }

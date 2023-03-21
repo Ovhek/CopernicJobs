@@ -16,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="hidden" th:field="*{fechaPeticion}"/>
                 <div>
                     <h2>Títol</h2>
-                    <input type="text" id="nom" th:field="*{tituloOferta}" placeholder="${oferta.tituloOferta"><br>
+                    <input type="text" id="nom" th:field="*{tituloOferta}" placeholder="${oferta.tituloOferta}"><br>
                 </div>
                 <div>
                     <h2>Descripció</h2>
@@ -38,7 +38,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <text>Navega i escull els fitxers que vols pujar des del teu ordinador</text>
                     <button>+</button>
                 </div>
-                
+
+                <div th:if="${errores} OR ${erroresBinding}">
+                    <ul>
+                        <li th:each="err : ${errores}" th:text="${err}" />
+                        <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                    </ul>
+                </div>
+
                 <button type="submit" name="boton" value="borrar">Esborrar Oferta</button>
                 <button type="submit" name="boton" value="guardar">Guardar Canvis</button>
             </form>

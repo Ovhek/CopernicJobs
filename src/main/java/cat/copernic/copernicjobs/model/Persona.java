@@ -23,45 +23,41 @@ public class Persona extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "{Size.alumno.nombre}")
     @Column(name = "nombre")
-    @NotEmpty
+    @NotEmpty(message = "{NotEmpty.alumno.nombre}")
     private String nombre;
 
-    @Size(min = 5, max = 5)
+    @Pattern(regexp = "^(?:0[1-9]|[1-4]\\d|5[0-2])\\d{3}$", message = "{Pattern.alumno.codPostal}")
+    @Size(min = 5, max = 5, message = "{Size.alumno.codPostal}")
     @Column(name = "cod_postal")
-    @NotEmpty
     private String codPostal;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "{Size.alumno.municipio}")
     @Column(name = "municipio")
-    @NotEmpty
     private String municipio;
 
-    @Size(max = 200)
+    @Size(max = 200, message = "{Size.alumno.direccion}")
     @Column(name = "direccion")
-    @NotEmpty
     private String direccion;
 
-    @Pattern(regexp = "(^$|[0-9]{9})")
+    @Pattern(regexp = "\\d{9}", message = "{Pattern.alumno.movil}")
     @Column(name = "movil")
-    @NotEmpty
     private String movil;
 
     @Column(name = "sexo")
     private int sexo;
 
     @Column(name = "sexo_desc")
-    @NotEmpty
     private String sexoDesc;
 
-    @Size(max = 200)
+    @Size(max = 200, message = "{Size.alumno.apellidos}")
     @Column(name = "apellidos")
-    @NotEmpty
+    @NotEmpty(message = "{NotEmpty.alumno.apellidos}")
     private String apellidos;
 
-    @Email
-    @Size(max = 50)
+    @Email(message = "{Email.alumno.correoContacto}")
+    @Size(max = 128, message = "{Size.alumno.correoContacto}")
     @Column(name = "correo_contacto")
     private String correoContacto;
 

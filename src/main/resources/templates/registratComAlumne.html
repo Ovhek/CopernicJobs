@@ -25,8 +25,8 @@
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" th:field="*{nombre}" name="nom" placeholder="Introdueix el teu nom">
 
-      <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
-      <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
+                <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
+                <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
 
                 <label for="cognoms">Cognoms:</label>
                 <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els teus cognoms">
@@ -62,6 +62,5 @@
             </form>
             <p>Ja tens un compte?  <a href="/login">Inicia Sessió</a></p>
         </div>
-    </div>
-</body>
+    </body>
 </html>

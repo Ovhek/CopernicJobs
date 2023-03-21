@@ -42,6 +42,12 @@ public class EmpresaService implements EmpresaServiceInterface {
     public Empresa cercarEmpresa(Empresa empresa) {
         return this.empresa.findById(empresa.getId()).orElse(null);
     }
+
+    @Transactional (readOnly = true)
+    @Override
+    public Empresa buscarEmpresaPorUsername(String username) {
+        return empresa.findByUsername(username);
+    }
     
     
 

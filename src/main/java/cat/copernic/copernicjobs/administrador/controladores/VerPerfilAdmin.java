@@ -11,6 +11,9 @@ import cat.copernic.copernicjobs.model.Administrador;
 import java.time.LocalDate;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +28,11 @@ public class VerPerfilAdmin {
 
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AdministradorService administradorService; //Atribut per poder utilitzar les funcions CRUD de la interfície AdministradorDAO
-
+    
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/verPerfilAdmin")
-    public String inicio(Model model) {
-        int id = 5;
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
+        int id = administradorService.buscarAdministradorPorUsername(username.getUsername()).getId();
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
         //nombre del archivo html
@@ -42,6 +46,7 @@ public class VerPerfilAdmin {
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 
+    /**
     @PostMapping("/guardarAdministrador") //action=guardarAdministrador
     public String guardarAdministrador(Administrador administrador) {
 
@@ -55,7 +60,7 @@ public class VerPerfilAdmin {
 
         /*Cerquem l'administrador passat per paràmetre, al qual li correspón l'id de @GetMapping mitjançant 
          *el mètode buscarAdministrador de la capa de servei.*/
-        
+        /**
         String ruta="administrador/";
         
         String archivo="editarPerfilAdmin";
@@ -64,5 +69,5 @@ public class VerPerfilAdmin {
 
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-
+    */
 }

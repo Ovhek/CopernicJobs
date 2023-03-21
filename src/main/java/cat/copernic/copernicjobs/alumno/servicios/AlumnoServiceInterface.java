@@ -36,4 +36,11 @@ public interface AlumnoServiceInterface {
      * @return el objeto alumno si exist o null si no existe.
      */
     public Alumno buscarAlumno(Alumno alumno); 
+    
+    /**
+     * Función que busca un objeto alumno en la base de datos.
+     * @param username username a buscar
+     * @return el objeto alumno si exist o null si no existe.
+     */
+    public Alumno buscarAlumnoPorUsername(String username);
 }

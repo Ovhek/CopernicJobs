@@ -6,20 +6,40 @@
     <body>
         <h1>Registrar Alumne</h1>
         <form method="post" th:action="@{/registreAlumne}" th:object="${alumno}">
+
+            <div class="successMessage" th:if="${registrado}" th:text="#{info.registrado}">
+
+            </div>
+            <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
+                <ul>
+                    <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p th:text="${err}"></p>
+                    </li>
+
+                </ul>
+            </div>
             <label for="nombre">Nom:</label>
             <input type="text" id="nombre" th:field="*{nombre}" name="nombre" placeholder="Introdueix el nom">
 
             <label for="cognoms">Cognoms:</label>
             <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els cognoms">
 
-            <label for="contrasenya">Contrasenya:</label>
-            <input type="password" id="contrasenya" th:field="*{password}" name="contrasenya" placeholder="Introdueix la contrasenya">
-
+            <label for="password">Contrasenya:</label>
+            <div class="passwordContainer">
+                <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+                <span class="toggleBtn"></span>
+            </div>
             <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
-            <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
+            <div class="passwordContainer">
+
+                <input type="password" th:value="${contrasenyaRepetida}" id="contrasenyaRepetida" name="contrasenyaRepetida" placeholder="Repeteix la contrasenya">
+
+                <span class="toggleBtn"></span>
+            </div>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix l'email">
+            <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix l'email"/>
 
             <label for="codiPostal">Codi Postal:</label>
             <input type="text" id="codPostal" th:field="*{codPostal}" name="codPostal" placeholder="Introdueix el codi postal"/>
@@ -34,13 +54,15 @@
             <input type="text" id="direccion" th:field="*{direccion}" name="direccion" placeholder="Introdueix la direcció"/>      
 
             <label for="genere">Gènere:</label>
-            <select th:field="*{sexo}" id="genere" name="genere">
-                <option value="1">Home</option>
-                <option value="2">Dona</option>
-                <option value="3">Altre</option>
-                <option value="4">Prefereixo no dir-ho</option>
-            </select>
+            <div class="custom-select marginBottom">
 
+                <select th:field="*{sexo}" id="genere" name="genere">
+                    <option value="1">Home</option>
+                    <option value="2">Dona</option>
+                    <option value="3">Altre</option>
+                    <option value="4">Prefereixo no dir-ho</option>
+                </select>
+            </div>
             <button type="submit">Registrar</button> 
         </form>
     </body>
