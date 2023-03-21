@@ -10,8 +10,10 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Data;
+import org.hibernate.validator.constraints.URL;
 
 /**
  *
@@ -22,14 +24,23 @@ import lombok.Data;
 @Table(name="empresa")
 @DiscriminatorValue("3")
 public class Empresa extends Persona {
+    
     @Column(name="nombre_empresa")
+    @Size(max=50)
     private String nombreEmpresa;
+    
     @Column(name="descripcion_empresa")
     private String descripcionEmpresa;
+    
     @Column(name="webEmpresa")
+    @Size(max=50)
+    @URL
     private String webEmpresa;
+    
     @Column(name="movil_empresa")
+    @Size(max=12)
     private String movilEmpresa;
+    
     @OneToMany(mappedBy = "empresa",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Oferta> ofertas;
 }

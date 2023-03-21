@@ -6,17 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form th:action="@{/guardar-modulos}" method="post">
+        <form th:action="@{/guardar-modulos}" method="post" th:object="${modulo}">
             <h2>Configuración de módulos</h2>
-            <ul>
-                <li><input type="checkbox" name="Alumno" th:checked="${moduloAlumnoActivo}"> Módulo Alumno</li>
-                <li><input type="checkbox" name="Empresa" th:checked="${moduloEmpresaActivo}"> Módulo Empresa</li>
-                <li><input type="checkbox" name="Administrador" th:checked="${moduloAdministradorActivo}"> Módulo Administrador</li>
+            <ul th:each="modulo : ${modulos}">
+                <li><input type="checkbox" th:text="${modulo.nombre}" th:checked="${moduloActivo}"></li>
             </ul>
             <button type="submit">Guardar</button>
         </form>

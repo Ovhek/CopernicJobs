@@ -10,30 +10,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-            <main>
-                <div id="contenedor">
-                    <!-- Anuncios -->
-                    <div id="anuncios">
-                        <h1>Anuncis</h1>
-                        <div th:each="anuncio : ${anuncios}" th:if="${anuncio.rol.nom == 'alumne'}">
-                            <h3 th:text="${anuncio.titulo}"></h3>
-                            <p th:text="${anuncio.descripcion}"></p>
+        <main>
+            <div id="container inicio">
+                <!-- Anuncios -->
+                <div class="row my-5">
+                    <div class="col-md-6">
+                        <div class="card py-5 mx-1 mt-5 row RowVerticalScroll" id="anuncis">
+                            <h1>Anuncis</h1>
+                            <div class="card mt-5 col-lg-12 p-5 noticia" th:each="anuncio : ${anuncios}" th:if="${anuncio.rol.nom == 'alumne'}">
+                                <h3 th:text="${anuncio.titulo}"></h3>
+                                <p th:text="${anuncio.descripcion}"></p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Nuevas Ofertas -->
-                    <div id="nuevasOfertas">
-                        <h1>Noves Ofertes</h1>
-                        <div th:each="oferta : ${ofertas}">
-                            <h3 th:text="${oferta.tituloOferta}"></h3>
-                            <p th:text="${oferta.descripcionOferta}"></p>
-                            <div>
-                                <span th:text="${oferta.empresa.municipio}"></span>
-                                <span th:text="${oferta.empresa.nombreEmpresa}"></span>
+                    <div class="col-md-6 maxHeightScroll">
+                        <!-- Nuevas Ofertas -->
+                        <div class="py-5 card mx-1 mt-5 row RowVerticalScroll" id="nuevasOfertas">
+                            <h1>Noves Ofertes</h1>
+                            <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="oferta : ${ofertas}">
+                                <h3 th:text="${oferta.tituloOferta}"></h3>
+                                <p th:text="${oferta.descripcionOferta}"></p>
+                                <div class="separacionBetween marginBottom">
+                                    <span th:text="${oferta.empresa.municipio}"></span>
+                                    <span th:text="${oferta.empresa.nombreEmpresa}"></span>
+                                </div>
+                                <a class="boton" th:href="@{/alumne/veureOfertaAlumne/}+${oferta.id}">Més informació</a>
                             </div>
-                            <a th:href="@{/veureOfertaAlumne/}+${oferta.id}">Más información</a>
                         </div>
                     </div>
                 </div>
-            </main>
+
+            </div>
+        </main>
     </body>
 </html>

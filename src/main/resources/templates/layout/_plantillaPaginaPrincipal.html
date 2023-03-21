@@ -7,37 +7,120 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title th:if="${titulo != null}" th:text="${titulo}"></title>
+        <link rel="icon" th:href="@{/images/logoCopernicJobs.png}">
+        <title th:if="${titulo != null}" th:text="${titulo}">CopernicJobs</title>
+
+        <!--Enllaç als estils de Bootstrap-->
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <!--Enllaç als estils de Font Awesome-->
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+
+
+        <link th:href="@{/css/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{/css/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+
     </head>
     <body>
-        <header>
-            <img th:src="@{images/logoCopernicJobs.png}" alt="Logo de la aplicación">
 
-            <div class="user-profile">
-                <img th:if="${usuario != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}">
-                <p th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></p>
+        <!-- ======================= CABECERA ======================= -->
+        <header  id="header" class="header fixed-top d-flex align-items-center">
+
+            <!-- ======================= LOGO ======================= -->
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="logo d-flex align-items-center">
+                    <img th:src="@{/images/logoCopernicJobs.png}" alt="Logo de la aplicación">
+                    <span class="d-none d-lg-block"></span>
+                </a>
+                <i class="fa-solid fa-bars toggle-sidebar-btn"><span class="hover-btn"></span></i>
             </div>
+
+            <!-- ======================= MENU USUARIO ======================= -->
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+
+                    <li class="nav-item dropdown pe-3">
+
+                        <!-- ======================= FOTO DE PERFIL ======================= -->
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img th:if="${esAlumno != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}" alt="Profile" class="rounded-circle">
+                            <span class="d-md-block dropdown-toggle ps-2" th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></span>
+                        </a>
+
+                        <!-- ======================= MENU DE OPCIONES ======================= -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6 th:text="${usuario.nombre} + ' ' + ${usuario.apellidos}"></h6>
+                                <span th:text="${#strings.capitalize(usuario.rol.nom)}"></span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="veurePerfil">
+                                    <i class="fa-regular fa-user"></i>
+                                    <span>Veure Perfil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="editarPerfil">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Editar Perfil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <span>Tancar Sessió</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
         </header>
-        <nav>
-            <div th:insert="@{${rutaNav}+${archivoNav}} :: nav">
-                <!-- Nav Dinamico -->
-            </div>
-        </nav>
-        <main>
+
+        <!-- ======================= BARRA LATERAL ======================= -->
+        <aside  id="sidebar" class="sidebar" th:insert="@{${rutaNav}+${archivoNav}} :: nav">
+
+        </aside>
+
+        <!-- ======================= CONTENIDO PRINCIPAL ======================= -->
+        <main id="main" class="main">
             <div th:insert="@{${rutaContenido}+${archivoContenido}}">
                 <!-- Contenedor vacío para añadir más contenido dinámicamente -->
             </div>
         </main>
-        <footer>
-            <div class="izquierda">
+
+        <!-- ======================= FOOTER ======================= -->
+        <footer id="footer" class="footer">
+            <div class="credits">
                 <p>[[#{plantilla.footer.direccion}]]</p>
                 <p>[[#{plantilla.footer.creadorpor}]]</p>
                 <p>[[#{plantilla.footer.copyright}]]</p>
             </div>
             <div class="derecha">
-                <img th:src="@{images/NicolauLogo.png}" alt="Logo de la aplicación">
+                <img th:src="@{/images/NicolauLogo.png}" alt="Logo de la aplicación">
             </div>
-        </footer>
+        </footer><!-- End Footer -->
+
+        <!--Llibreries jquery, popper i Java Script de Bootstrap pels elements dinàmics que podem utilitzar amb Bootstrap-->
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/quill.min.js}"></script>
+        <script th:src="@{/js/main.js}"></script>
     </body>
 </html>
 

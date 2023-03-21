@@ -8,9 +8,11 @@
     </style>
     <script src=""></script>
     <body>
-        <form method="post" action="">
             <table style="margin: 0 auto;">
                 <div class="container" th:each="oferta : ${ofertas}">
+                    <input type="hidden" name="id" th:field="${oferta.id}"/>
+                    <input type="hidden" name="empresa" th:field="${oferta.empresa}"/>
+                    <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
                     <tr>
                         <th>
                             <h1 th:text="${oferta.tituloOferta}">
@@ -69,7 +71,6 @@
                 </div>
 
             </table>
-        </form>
 
     </body>
 </html>

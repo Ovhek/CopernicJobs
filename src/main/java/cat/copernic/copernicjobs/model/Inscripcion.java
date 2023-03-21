@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  *
@@ -25,16 +24,21 @@ import lombok.NonNull;
 @Entity
 @Table(name="inscripcion")
 public class Inscripcion {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
+    
     @OneToOne()
     private Oferta oferta;
+    
     @OneToOne()
     private Alumno alumno;
+    
     @Column(name = "fechaInscripcion")
     private LocalDate fechaInscripcion;
+    
     @Column(name="estado")
     private int estado;
     

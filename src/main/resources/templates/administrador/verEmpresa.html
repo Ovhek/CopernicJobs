@@ -11,34 +11,35 @@ and open the template in the editor.
     </head>
     <body>
         <header>
-            <h1 th:text="${emNombre}">Empresa Copernic</h1>
+            <h1 th:text="${empresa.nombreEmpresa}">Empresa Copernic</h1>
         </header>
         <main>
             <section>
-                <a th:text="${emDesc}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</a>
+                <a th:text="${empresa.descripcionEmpresa}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</a>
                 <div>
                     <h2>Contacte</h2>
-                    <p th:text="${emDir}"></p>
-                    <p th:text="${emPost}"></p>
-                    <p th:text="${emMun}"></p>
-                    <p th:text="${emWeb}"></p>
-                    <p th:text="${emTel}"></p>
+                    <p th:text="${empresa.correo}"></p>
+                    <p th:text="${empresa.direccion}"></p>
+                    <p th:text="${empresa.codPostal}"></p>
+                    <p th:text="${empresa.municipio}"></p>
+                    <p th:text="${empresa.webEmpresa}"></p>
+                    <p th:text="${empresa.movil}"></p>
                 </div>
             </section>
             <section>
                 <div id="responsable">
-                    <<h2>Responsable</h2>
+                    <h2>Responsable</h2>
                     <label for="nombre">Nom:</label>
-                    <p th:text="${resNombre}"></p>
+                    <p th:text="${empresa.nombre}"></p>
 
                     <label for="apellidos">Cognoms:</label>
-                    <p th:text="${resApellidos}"></p>
-
-                    <label for="mobil">Número de Contacte:</label>
-                    <p th:text="${resMob}"></p>
+                    <p th:text="${empresa.apellidos}"></p>
+                    
+                    <label for="correoContacto">Correo:</label>
+                    <p th:text="${empresa.correoContacto}"></p>
                 </div>
             </section>
-            <a href="/editarEmpresa">Editar Dades</a>
+            <a th:href="@{/editarEmpresa/}+${empresa.id}" th:text="Editar">Editar Dades</a>
             <a href="/verOfertasAdmin">Veure Ofertes</a>
         </main>
     </body>

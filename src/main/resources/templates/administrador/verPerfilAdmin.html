@@ -14,11 +14,12 @@ and open the template in the editor.
         <main>
             <!-- Datos Perfil -->
             <div id="perfil">
-                <p th:text="${nombrePerfil}"></p>
-                <p th:text="${apellidosPerfil}"></p>
-                <p th:text="${correoPerfil}"></p>
+                <p th:text="${administrador.nombre}"></p>
+                <p th:text="${administrador.apellido}"></p>
+                <p th:text="${administrador.correo}"></p>
+                
+                <a th:href="@{/editarAdmin/}+${administrador.id}" th:text="Editar">Editar Perfil</a>
             </div>
-            <button>Editar perfil</button>
         </main>
     </body>
 </html>

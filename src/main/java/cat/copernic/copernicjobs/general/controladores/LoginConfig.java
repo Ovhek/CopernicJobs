@@ -5,16 +5,22 @@
 package cat.copernic.copernicjobs.general.controladores;
 
 import cat.copernic.copernicjobs.general.servicios.LoginService;
+import java.util.Locale;
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 /**
  *
@@ -28,7 +34,7 @@ public class LoginConfig {
     private LoginService loginService; //Objecte per recuperar l'usuari
 
     /* AUTENTICACIÓ */
-    /* ALEX */
+ /* ALEX */
     /**
      * Injectem mitjançant @Autowired, els mètodes de la classe
      * AuthenticationManagerBuilder. Mitjançant aquesta classe cridarem al
@@ -47,26 +53,40 @@ public class LoginConfig {
     public void autenticacio(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
     }
-    /*@GetMapping("/login")
-    public String inicio(){
-        return "login";
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
-    
-    @PostMapping("/login")
-    public String login(String correo, String contrasenya, Model model){
-        boolean loginValido = false;
-        
-        loginValido = correo.equals("alex") && contrasenya.equals("1234");
-        
-        String redirect = "redirect:";
-        
-        if(loginValido) redirect += "/inici";
-        else {
-            model.addAttribute("loginIncorrecto",true);
-            redirect += "/login";
-        }
-        
-        return redirect;
-        
-    }*/
+
+    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
+
+    @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf().disable().authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/inici").authenticated()
+                .requestMatchers("/crearIncidencia").authenticated()
+                .requestMatchers("/alumne/**").hasAuthority("alumne")
+                .requestMatchers("/empresa/**").hasAuthority("empresa")
+                .requestMatchers("/administrador/**").hasAuthority("administrador")
+                .requestMatchers("/**").permitAll()
+                .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
+        )
+                .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
+                .loginPage("/login") //Pàgina on es troba el formulari per fer login personalitzat
+                .permitAll()
+                .defaultSuccessUrl("/inici")//Permet acceddir a tothom
+                )
+                .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
+                .accessDeniedPage("/errors/error403"))
+                .build();
+
+    }
 }
