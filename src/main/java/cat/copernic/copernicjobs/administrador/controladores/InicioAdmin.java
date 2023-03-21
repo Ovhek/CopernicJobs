@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -38,7 +40,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author joang
  */
 @Controller
-@PreAuthorize("hasAuthority('administrador')")
 public class InicioAdmin {
 
     /*Modifiquem l'atribut noticiaDAO que teniem anteriorment per un atribut de tipus NoticiaService, ja que
@@ -57,8 +58,9 @@ public class InicioAdmin {
     @Autowired
     private OfertaService ofertaService;
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/inicioAdmin") //Pàgina inicial d'admin
-    public String inicio(Model model) {
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 
         String ruta = "administrador/";

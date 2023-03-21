@@ -13,6 +13,9 @@ import cat.copernic.copernicjobs.model.Empresa;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +30,9 @@ public class VerAlumnos {
     @Autowired
     private AlumnoService alumnoService;
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/verAlumnos")
-    public String inicio(Model model) {
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
@@ -40,15 +44,16 @@ public class VerAlumnos {
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/verAlumno/{id}")
-    public String ver(Alumno alumno, Model model){
-        
-        String ruta="administrador/";
-        
-        String archivo ="verAlumno";
-        
+    public String ver(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
+
+        String ruta = "administrador/";
+
+        String archivo = "verAlumno";
+
         model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
-        
+
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
 
     }

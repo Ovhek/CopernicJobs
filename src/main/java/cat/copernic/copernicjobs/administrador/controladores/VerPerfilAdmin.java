@@ -45,29 +45,4 @@ public class VerPerfilAdmin {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-
-    /**
-    @PostMapping("/guardarAdministrador") //action=guardarAdministrador
-    public String guardarAdministrador(Administrador administrador) {
-
-        administradorService.anadirAdministrador(administrador); //Afegim la noticia passada per paràmetre a la base de dades
-
-        return "redirect:/verPerfilAdmin"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
-    }
-
-    @GetMapping("/editarAdmin/{id}")
-    public String editar(Administrador administrador, Model model) {
-
-        /*Cerquem l'administrador passat per paràmetre, al qual li correspón l'id de @GetMapping mitjançant 
-         *el mètode buscarAdministrador de la capa de servei.*/
-        /**
-        String ruta="administrador/";
-        
-        String archivo="editarPerfilAdmin";
-        
-        model.addAttribute("administrador", administradorService.buscarAdministrador(administrador));
-
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
-    }
-    */
 }

@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,31 +31,33 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class RegistrarEmpresa {
-    
+
     @Autowired
     EmpresaService empresaService;
-    
+
     @Autowired
     private MessageSource messageSource;
-    
+
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/registrarEmpresa")
-    public String inicio(Model model){
-        
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
+
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
         //nombre del archivo html
         String archivo = "registrarEmpresa";
-        
+
         Empresa empresa = new Empresa();
         model.addAttribute("empresa", new Empresa());
-        
+
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
-        
+
+    @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/registreEmpresa")
-    public String registrarEmpresa(@Valid Empresa empresa, Errors errores, BindingResult result, String contrasenyaRepetida, Model model) {
-        
+    public String registrarEmpresa(@Valid Empresa empresa, Errors errores, BindingResult result, String contrasenyaRepetida, Model model, @AuthenticationPrincipal UserDetails username) {
+
         if (!empresa.getPassword().equals(contrasenyaRepetida)) {
             ObjectError error = new ObjectError("Contrasenya", messageSource.getMessage("error.contrasenyanocoincide", null, Locale.ENGLISH));
             result.addError(error);
@@ -75,7 +80,7 @@ public class RegistrarEmpresa {
         if (result.hasErrors()) {
             return "redirect:/registrarEmpresa";
         }
-        
+
         String sexoDesc = "";
         switch (empresa.getSexo()) {
             case 1:
@@ -98,10 +103,9 @@ public class RegistrarEmpresa {
         empresa.setFechaRegistro(LocalDate.now());
         empresa.setPassword(EncriptarContrasenya.encryptar(empresa.getPassword()));
         empresaService.afegirEmpresa(empresa);
-        
-        model.addAttribute("registrado",true);
-        
+
+        model.addAttribute("registrado", true);
+
         return "redirect:/registrarUsuaris";
     }
 }
-

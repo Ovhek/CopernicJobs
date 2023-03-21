@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,8 +38,9 @@ public class VerAlumno {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
+    @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarAlumno") //action=guardarAlumno
-    public String guardarAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String guardarAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
         //Buscamos el alumno en la BD.
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
 
@@ -57,7 +61,7 @@ public class VerAlumno {
 
             return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
         }
-        
+
         //Comprobamos que el valor del botón de acción del post no sea nulo
         if (btnValue != null) {
 
@@ -98,7 +102,7 @@ public class VerAlumno {
                 }
             }
             alumnoService.anadirAlumno(alumnoDB);
-            if(btnValue.equals("bajar")){
+            if (btnValue.equals("bajar")) {
                 alumno.setBaja(true);
                 alumnoService.anadirAlumno(alumno);
             }
@@ -106,9 +110,10 @@ public class VerAlumno {
 
         return "redirect:/verAlumnos"; //Retornem a la pàgina alumne mitjançant redirect
     }
-
+    
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarAlumno/{id}")
-    public String editar(Alumno alumno, Model model) {
+    public String editar(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
 
         String ruta = "administrador/";
 

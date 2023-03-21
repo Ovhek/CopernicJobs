@@ -18,6 +18,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +44,7 @@ public class VerEmpresa {
 
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarEmpresa") //action=guardarEmpresa
-    public String guardarEmpresa(@RequestParam(name = "button", required = false) String btnValue, @Valid Empresa empresa, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String guardarEmpresa(@RequestParam(name = "button", required = false) String btnValue, @Valid Empresa empresa, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
         //Buscamos la empresa en la BD.
         Empresa empresaDB = empresaService.cercarEmpresa(empresa);
 
@@ -112,8 +114,9 @@ public class VerEmpresa {
         return "redirect:/verEmpresas"; //Retornem a la pàgina alumne mitjançant redirect
     }
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarEmpresa/{id}")
-    public String editar(Empresa empresa, Model model) {
+    public String editar(Empresa empresa, Model model, @AuthenticationPrincipal UserDetails username) {
 
         String ruta = "administrador/";
 

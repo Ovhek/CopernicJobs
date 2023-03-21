@@ -5,13 +5,13 @@
     </head>
     <body>
 
-        <div class="authTemplate ">
-            <div class="container">
+        <div class="authTemplate modulos">
+            <div class="container mod card-margins">
                 <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
-                <div class="row modulos">
-                    <div class="card col modulo" th:each="modulo : ${listaModulos}">
+                <div class="row row-modulos gap-20 marginBottom">
+                    <div class="card col" th:each="modulo : ${listaModulos}">
                         <a th:href="@{/} + ${modulo.nombre} + '/inici'">
-                            Mòdul <span th:text="${#strings.capitalize(modulo.nombre)}"></span>
+                            Mòdul<span th:text="${#strings.capitalize(modulo.nombre)}"></span>
                         </a>
                     </div>
                 </div>

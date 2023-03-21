@@ -35,6 +35,61 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </a>
                 <i class="fa-solid fa-bars toggle-sidebar-btn"><span class="hover-btn"></span></i>
             </div>
+
+            <!-- ======================= MENU USUARIO ======================= -->
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+
+                    <li class="nav-item dropdown pe-3">
+
+                        <!-- ======================= FOTO DE PERFIL ======================= -->
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img th:if="${esAlumno != null && usuario.avatarLink != null}" th:src="${usuario.avatarLink}" alt="Profile" class="rounded-circle">
+                            <span class="d-md-block dropdown-toggle ps-2" th:if="${usuario != null && usuario.username != null}" th:text="${usuario.username}"></span>
+                        </a>
+
+                        <!-- ======================= MENU DE OPCIONES ======================= -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6 th:text="${usuario.nombre} + ' ' + ${usuario.apellidos}"></h6>
+                                <span th:text="${#strings.capitalize(usuario.rol.nom)}"></span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="veurePerfil">
+                                    <i class="fa-regular fa-user"></i>
+                                    <span>Veure Perfil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="editarPerfil">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <span>Editar Perfil</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <span>Tancar Sessió</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
         </header>
         <nav>
             <div th:insert="@{${rutaNav}+${archivoNav}} :: nav">

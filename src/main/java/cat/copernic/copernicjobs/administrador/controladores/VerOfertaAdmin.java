@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +37,9 @@ public class VerOfertaAdmin {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private OfertaService ofertaService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
+    @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarOferta")
-    public String guardarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String guardarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
         if (btnOferta.equals("guardar")) {
             if (errores.hasErrors() || result.hasErrors()) { //Si s'han produït errors...
                 List<String> erroresString = new ArrayList<>();
@@ -71,8 +75,9 @@ public class VerOfertaAdmin {
         return "redirect:/verOfertasAdmin";
     }
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarOferta/{id}")
-    public String editar(Oferta oferta, Model model) {
+    public String editar(Oferta oferta, Model model, @AuthenticationPrincipal UserDetails username) {
 
         String ruta = "administrador/";
 

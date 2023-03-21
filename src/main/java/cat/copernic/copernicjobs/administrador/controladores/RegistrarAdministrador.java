@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,8 +38,9 @@ public class RegistrarAdministrador {
     @Autowired
     private MessageSource messageSource;
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/registrarAdministrador")
-    public String inicio(Model model) {
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
@@ -50,8 +54,9 @@ public class RegistrarAdministrador {
         return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
     }
 
+    @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/registreAdministrador")
-    public String registrarAdministrador(@Valid Administrador administrador, Errors errores, BindingResult result, String contrasenyaRepetida, Model model) {
+    public String registrarAdministrador(@Valid Administrador administrador, Errors errores, BindingResult result, String contrasenyaRepetida, Model model, @AuthenticationPrincipal UserDetails username) {
 
         if (!administrador.getPassword().equals(contrasenyaRepetida)) {
             ObjectError error = new ObjectError("Contrasenya", messageSource.getMessage("error.contrasenyanocoincide", null, Locale.ENGLISH));
@@ -62,7 +67,7 @@ public class RegistrarAdministrador {
             ObjectError error = new ObjectError("Username", messageSource.getMessage("error.usuarioyaexite", null, Locale.ENGLISH));
             result.addError(error);
         }
-        
+
         if (errores.hasErrors() || result.hasErrors()) { //Si s'han produït errors...
 
             //Ruta donde está el archivo html 
@@ -82,9 +87,9 @@ public class RegistrarAdministrador {
         administrador.setFechaRegistro(LocalDate.now());
         administrador.setPassword(EncriptarContrasenya.encryptar(administrador.getPassword()));
         administradorService.anadirAdministrador(administrador);
-        
-        model.addAttribute("registrador",true);
-        
+
+        model.addAttribute("registrador", true);
+
         return "redirect:/registrarUsuaris";
     }
 }
