@@ -16,9 +16,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <i class="fa-solid fa-house"></i>
                         <span>Inici</span>
                     </a>
-                </li>
-                <li><a href="/empresa/verperfilempresa">Ver Perfil</a></li>
-                <li><a href="/empresa/crearoferta">Crear Oferta</a></li>
+                </li>    
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${#ctx.springRequestContext.requestUri == '/empresa/crearoferta'} ? '' : collapsed" href="/empresa/crearoferta">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Crear Oferta</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" th:classappend="${#ctx.springRequestContext.requestUri == '/crearIncidencia'} ? '' : collapsed" href="/crearIncidencia">
                     <i class="fa-solid fa-bug"></i>
@@ -32,10 +36,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </a>
             </li>
         </ul>
-            
-
-            
-        </nav>
     </body>
 </html>
 

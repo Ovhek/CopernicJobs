@@ -69,9 +69,20 @@ public class crearOferta {
 
         if (btnOferta.equals("registrar")) {
             guardarOferta(oferta,errors);
+            return "redirect:/misofertas"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        }else{
+            subirPDF();
         }
+        
+        return "redirect:/crearoferta";
         //else borrarOferta(oferta);
-        return "redirect:/misofertas"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+
+    }
+    
+    public void subirPDF(){
+        
+    
+    
     }
 
     public String guardarOferta(@Valid Oferta oferta, Errors errors) {

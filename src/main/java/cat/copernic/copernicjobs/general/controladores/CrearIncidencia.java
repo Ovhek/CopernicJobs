@@ -52,7 +52,7 @@ public class CrearIncidencia {
         String archivo = "crearIncidencia";
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, navbarType, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Crear Incidencia", username);
     }
 
     @PostMapping("/crearIncidencia")
