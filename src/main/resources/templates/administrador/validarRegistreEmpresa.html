@@ -13,44 +13,66 @@ and open the template in the editor.
     <body>
         <main>
             <div id="empresa">
-                <label for="nom">Nom:</label>
+                <label for="nom">
+                    <b>Nom:</b>
+                </label>
                 <p th:text="${empresa.nombreEmpresa}"></p>
 
-                <label for="descripcio">Descripcio:</label>
+                <label for="descripcio">
+                    <b>Descripcio:</b>
+                </label>
                 <p th:text="${empresa.descripcionEmpresa}"></p>
 
-                <label for="correu">Correu:</label>
+                <label for="correu">
+                    <b>Correu:</b>
+                </label>
                 <p th:text="${empresa.username}"></p>
                 
-                <label for="direccio">Direccio:</label>
+                <label for="direccio">
+                    <b>Direccio:</b>
+                </label>
                 <p th:text="${empresa.direccion}"></p>
 
-                <label for="codi">Codi postal:</label>
+                <label for="codi">
+                    <b>Codi postal:</b>
+                </label>
                 <p th:text="${empresa.codPostal}"></p>
 
-                <label for="municipi">Municipi:</label>
+                <label for="municipi">
+                    <b>Municipi:</b>
+                </label>
                 <p th:text="${empresa.municipio}"></p>
 
-                <label for="web">Web empresa:</label>
+                <label for="web">
+                    <b>Web empresa:</b>
+                </label>
                 <p th:text="${empresa.webEmpresa}"></p>
 
-                <label for="telefon">Telèfon:</label>
+                <label for="telefon">
+                    <b>Telèfon:</b>
+                </label>
                 <p th:text="${empresa.movil}"></p>
 
 
             </div>
             <div id="responsable">
-                <label for="nom">Nom:</label>
+                <label for="nom">
+                    <b>Nom:</b>
+                </label>
                 <p th:text="${empresa.nombre}"></p>
 
-                <label for="cognoms">Cognoms:</label>
+                <label for="cognoms">
+                    <b>Cognoms:</b>
+                </label>
                 <p th:text="${empresa.apellidos}"></p>
 
-                <label for="mobil">Mòbil:</label>
-                <p th:text="${empresa.correoContacto}"></p>
+                <label for="mobil">
+                    <b>Mòbil:</b>
+                </label>
+                <p th:text="${empresa.movilEmpresa}"></p>
             </div>
-            <a th:href="@{/inicioAdmin}" th:text="Validar"/>
-            <a th:href="@{/inicioAdmin}" th:text="Invalidar"/>
+            <a class="boton" th:href="@{/administrador/inici}" th:text="Validar"/>
+            <a class="boton" th:href="@{/administrador/inici}" th:text="Invalidar"/>
         </main>
     </body>
 </html>

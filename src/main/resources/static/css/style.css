@@ -1766,3 +1766,48 @@ textarea::-webkit-scrollbar-thumb {
 #otrosDatos h3{
     text-align: center;
 }
+
+
+/*--------------------------------------------------------------
+# ADMINISTRADOR
+--------------------------------------------------------------*/
+.noticiaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.noticiaCard{
+    padding: 50px;
+    max-width: 400px;
+    min-width: fit-content;
+    align-self: center;
+    
+}
+.noticiaCard *{
+    display: block;
+}
+
+.boton.cancelar{
+    background-color: #8B0000;
+}
+.boton.cancelar:hover{
+    background-color: #DC143C;
+}
+.noticiaCard input{
+    width: 100%;
+}
+
+.noticiaCard textarea{
+    width: 100%;
+}
+
+.empresaCard{
+    min-width: 400px;
+}
+
+.verempresa .row{
+    justify-content: center;
+}
+.descripcionEmpresa{
+    height: 100%;
+}

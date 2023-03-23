@@ -11,23 +11,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <h1>Ofertes</h1>
-
         <div>
-            <label for="search-input">Buscar:</label>
-            <input type="text" id="search-input" name="search-input">
-
-            <label for="sort-select">Ordenar por:</label>
-            <select id="sort-select" name="sort-select">
-                <option value="titulo">Título</option>
-                <option value="municipio">Municipio</option>
-                <option value="empresa">Empresa</option>
-            </select>
+            <div class="container">
+                <div class="row gx-0">
+                    <div class="col-md-9 my-3 mx-md-3 searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search-input" placeholder="Buscar...">
+                        <button class="boton">Buscar</button>
+                    </div>
+                    <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                        <select id="sort-select" name="sort-select">
+                            <option value="0">Ordenar Per:</option>
+                            <option value="titulo">Título</option>
+                            <option value="municipio">Municipio</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div th:each="oferta : ${ofertas}">
-            <h2 th:text="${oferta.tituloOferta}">Sección 1</h2>
-            <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
-            <a th:href="@{/verOfertaAdmin/}+${oferta.id}">Més informació</a>
+        <div class="container veroferta">
+            <div class="row">
+                <div class="col-lg-3 card p-5 mx-3 my-3 ofertaCard" th:each="oferta : ${ofertas}">
+                    <h2 th:text="${oferta.tituloOferta}"></h2>
+                    <p class="descripcionOferta" th:text="${oferta.descripcionOferta}"></p>
+                    <a class="boton" th:href="@{/verOfertaAdmin/}+${oferta.id}">Més informació</a>
+                </div>
+            </div>
         </div>
         <button>Generar Informe</button>
     </body>

@@ -13,25 +13,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1>Empreses</h1>
 
         <div>
-            <label for="search-input">Buscar:</label>
-            <input type="text" id="search-input" name="search-input">
-
-            <label for="sort-select">Ordenar por:</label>
-            <select id="sort-select" name="sort-select">
-                <option value="titulo">Título</option>
-                <option value="municipio">Municipio</option>
-                <option value="empresa">Empresa</option>
-            </select>
+            <div class="container">
+                <div class="row gx-0">
+                    <div class="col-md-9 my-3 mx-md-3 searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search-input">
+                        <button class="boton">Buscar</button>
+                    </div>
+                    <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                        <select id="sort-select" name="sort-select">
+                            <option value="0">Ordenar Per:</option>
+                            <option value="titulo">Título</option>
+                            <option value="municipio">Municipio</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div th:each="empresa : ${empresas}">
-            <h2 th:text="${empresa.nombreEmpresa}">Sección 1</h2>
-            <p th:text="${empresa.descripcionEmpresa}">Descripción de la sección 1.</p>
-            <div>
-                <p th:text="${empresa.movil}"></p>
-                <p th:text="${empresa.municipio}"></p>
+        <div class="container verempresa">
+            <div class="row">
+                <div class="col-lg-3 card p-5 mx-3 my-3 empresaCard" th:each="empresa : ${empresas}">
+                    <h2 th:text="${empresa.nombreEmpresa}"></h2>
+                    <p th:text="${empresa.descripcionEmpresa}"></p>
+                    <div class="separacionBetween marginBottom">
+                        <span th:text="${empresa.movil}"></span>
+                        <span th:text="${empresa.municipio}"></span>
+                    </div>
+                    <a class="boton" th:href="@{/verEmpresa/}+${empresa.id}">Més informació</a>
+                </div>
             </div>
-            <a th:href="@{/verEmpresa/}+${empresa.id}">Més informació</a>
         </div>
         <button>Generar Informe</button>
     </body>

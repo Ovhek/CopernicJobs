@@ -63,7 +63,7 @@ public class RegistrarEmpresa {
             result.addError(error);
         }
 
-        if (empresaService.buscarEmpresaPorUsername(empresa.getUsername()) != null) {
+        if (empresaService.buscarPorUsername(empresa.getUsername()) != null) {
             ObjectError error = new ObjectError("Username", messageSource.getMessage("error.usuarioyaexite", null, Locale.ENGLISH));
             result.addError(error);
         }
