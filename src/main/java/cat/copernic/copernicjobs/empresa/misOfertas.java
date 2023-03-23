@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -39,6 +41,21 @@ public class misOfertas {
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
+    }
+    
+    @PostMapping("/empresa/buscaroferta")
+    public String buscarOferta(@RequestParam(name = "buscar") String btnValue,@RequestParam(name = "search-input") String buscar,@RequestParam(name="sort-select") String ordenar, @AuthenticationPrincipal UserDetails user,Model model){
+        
+        //if((buscar!=null)&&(ordenar!="0")){
+        model.addAttribute("ofertas",ofertaService.filtrarOfertasOrdenacion(buscar, ordenar));
+        
+        //}
+        
+        
+        
+        
+        return "redirect:inici";
+    
     }
 
     

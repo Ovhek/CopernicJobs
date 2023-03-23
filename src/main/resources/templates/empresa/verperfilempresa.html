@@ -7,85 +7,67 @@
     <style>
     </style>
     <script src=""></script>
+    <head>
+        <!--Enllaç als estils de Bootstrap-->
+        <!--link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <!--Enllaç als estils de Font Awesome-->
+        <!--link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+
+
+        <!--link th:href="@{/css/quill.snow.css}" rel="stylesheet">
+        <!--link th:href="@{/css/quill.bubble.css}" rel="stylesheet"-->
+                <link th:href="@{/css/empresa.css}" rel="stylesheet">  
+    </head>
     <body>
-	<div>
-            <table style="margin: 0 auto;">
-                <input type="hidden" name="id" th:field="${empresa.id}"/>
-                <tr>
-                    <th>
-                        <strong><h1 th:text="${empresa.nombreEmpresa}">Institut Nicolau Copernic</h1></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+        <input type="hidden" name="id" th:field="${empresa.id}"/>
+            <div>
+                    <div>
+                        <div>
+                            <div>
+                                <strong><h1 th:text="${empresa.nombreEmpresa}">Institut Nicolau Copernic</h1></strong>  
+                            </div>
+                        </div>
+                    </div>
+                    <div>
                         <strong><h3 th:text="${empresa.descripcionEmpresa}">Centre Educatiu</h3></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><h3>Contacte</h3></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><p th:text="${empresa.direccion}">Avenida Cervantes, 31</p></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><p th:text="${empresa.codPostal}">08225</p></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><p th:text="${empresa.municipio}">Barcelona</p></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><p th:text="${empresa.correoContacto}">JohnDoe@gmail.com</p></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><p th:text="${empresa.webEmpresa}">www.insnicolaucopernic.cat/</p></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><p th:text="${empresa.movilEmpresa}">+34 655719719</p></strong>
-                    </th>
-                </tr>
-                    <tr>
-                        <th>       
-                            <a th:href="@{/editarperfilempresa/} + ${empresa.id}">Editar Perfil</a>
-                        </th>
-                    </tr>
-            </table>
+                    </div>
+                    <div>       
+                            <a th:href="@{/empresa/editarperfilempresa/} + ${empresa.id}">Editar Perfil</a>
+                    </div>
 
-	<table style="margin: 0 auto;">
-                <tr>
-                    <th>
+                    <div>
                         <strong><h1>Responsable</h1></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><span>Nom: </span><span th:text="${empresa.nombre}">John</span></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><span>Cognoms: </span><span th:text="${empresa.apellidos}">Doe</span></strong>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
+                    </div>
+                    <div>
                         <strong><span>Telèfon de Contacte: </span><span th:text="${empresa.movil}">655719719</span></strong>
-                    </th>
-                </tr>
-
-	</table>
+                    </div>
 	</div>
 
     </body>

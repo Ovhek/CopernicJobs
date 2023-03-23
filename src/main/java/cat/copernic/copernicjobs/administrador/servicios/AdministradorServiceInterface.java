@@ -38,6 +38,11 @@ public interface AdministradorServiceInterface {
      * @return el objeto alumno si exist o null si no existe.
      */
     public Administrador buscarAdministrador(Administrador administrador); 
-    
-    public Administrador buscarUsernamme(String username); 
+
+    /**
+     * Función que busca un objeto administrador en la base de datos.
+     * @param username username a buscar
+     * @return el objeto administrador si existe o null si no existe.
+     */
+    public Administrador buscarAdministradorPorUsername(String username);
 }

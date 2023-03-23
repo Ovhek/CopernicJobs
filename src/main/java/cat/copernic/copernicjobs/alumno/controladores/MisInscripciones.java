@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
+import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.dao.InscripcionDAO;
 import cat.copernic.copernicjobs.alumno.servicios.InscripcionService;
@@ -12,6 +13,7 @@ import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
+import cat.copernic.copernicjobs.model.Usuario;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +37,16 @@ public class MisInscripciones {
     @Autowired
     AlumnoService alumnoService;
 
+    @Autowired
+    AdministradorService administradorService;
+    
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/inscripcions")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
-        Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
+        Usuario alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
         
-        if(alumno == null) return "/error";
+        if(alumno == null) alumno = administradorService.buscarAdministradorPorUsername(username.getUsername());
         
         //Ruta donde está el archivo html 
         String ruta = "alumno/";

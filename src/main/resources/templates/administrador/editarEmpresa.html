@@ -13,45 +13,44 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <form th:action="@{/guardarEmpresa}" method="post" th:object="${empresa}">
             <div id="empresa">
-                <h2>Dades Empresa</h2>
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{fechaRegistro}"/>
-                <input type="hidden" th:field="*{contrasenya}"/>
+                <input type="hidden" th:field="*{password}"/>
                 <label for="nombre">Nom:</label>
-                <input type="text" id="nombre" th:field="*{nombreEmpresa}" th:placeholder="empresa.nombreEmpresa"><br>
+                <input type="text" id="nombre" th:field="*{nombreEmpresa}"><br>
 
                 <label for="descripcion">Descripció:</label>
-                <input type="text" id="descripcion" th:field="*{descripcionEmpresa}" placeholder="empresa.descripcionEmpresa"><br>
+                <input type="text" id="descripcion" th:field="*{descripcionEmpresa}"><br>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" th:field="*{correo}" placeholder="empresa.correo"><br>
+                <input type="email" id="email" th:field="*{username}"><br>
 
                 <label for="direccio">Direcció:</label>
-                <input type="text" id="direccio" th:field="*{direccion}" placeholder="empresa.direccion"><br>
+                <input type="text" id="direccio" th:field="*{direccion}"><br>
 
                 <label for="codi_postal">Codi Postal:</label>
-                <input type="text" id="codi_postal" th:field="*{codPostal}" placeholder="empresa.codPostal"><br>
+                <input type="text" id="codi_postal" th:field="*{codPostal}"><br>
 
                 <label for="municipi">Municipi:</label>
-                <input type="text" id="municipi" th:field="*{municipio}" placeholder="empresa.municipio"><br>
+                <input type="text" id="municipi" th:field="*{municipio}"><br>
 
                 <label for="mobil">Mòbil:</label>
-                <input type="tel" id="mobil" th:field="*{movil}" placeholder="empresa.movil"><br>
+                <input type="tel" id="mobil" th:field="*{movil}"><br>
 
                 <label for="web">Web Empresa:</label>
-                <input type="text" id="web" th:field="*{webEmpresa}" placeholder="empresa.webEmpresa"><br>
+                <input type="text" id="web" th:field="*{webEmpresa}"><br>
             </div>
 
             <div>
                 <h2>Dades Responsable</h2>
                 <label for="nom_resp">Nom:</label>
-                <input type="text" id="nom_resp" th:field="*{nombre}" placeholder="empresa.nombre"><br>
+                <input type="text" id="nom_resp" th:field="*{nombre}"><br>
 
                 <label for="cognoms_resp">Cognoms:</label>
-                <input type="text" id="cognoms_resp" th:field="*{apellidos}" placeholder="empresa.apellidos"><br>
+                <input type="text" id="cognoms_resp" th:field="*{apellidos}"><br>
 
                 <label for="correo_resp">Correo de contacte:</label>
-                <input type="text" id="correo_resp" th:field="*{correoContacto}" placeholder="empresa.correoContacto"><br>
+                <input type="text" id="correo_resp" th:field="*{correoContacto}"><br>
 
                 <label for="genere">Gènere:</label>
                 <select th:field="*{sexo}" id="genere" name="genere">
@@ -60,6 +59,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <option th:selected="${empresa.sexoDesc == 'Altre'}" value="3">Altre</option>
                     <option th:selected="${empresa.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
                 </select>
+            </div>
+            <div th:if="${errores} OR ${erroresBinding}">
+                <ul>
+                    <li th:each="err : ${errores}" th:text="${err}" />
+                    <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                </ul>
             </div>
             <div>
                 <button name="button" value="guardar">Guardar Canvis</button>

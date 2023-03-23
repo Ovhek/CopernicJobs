@@ -56,4 +56,5 @@ public class Alumno extends Persona implements Serializable {
     @URL(message = "{URL.alumno.avatarLink}")
     @Column(name = "avatar_link")
     private String avatarLink;
+
 }

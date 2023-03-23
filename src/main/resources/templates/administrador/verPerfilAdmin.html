@@ -13,13 +13,18 @@ and open the template in the editor.
     <body>
         <main>
             <!-- Datos Perfil -->
+            <div th:if="${CanvisGuardats != null}">
+                <p th:text="${CanvisGuardats}"></p>
+            </div>
+
             <div id="perfil">
                 <p th:text="${administrador.nombre}"></p>
-                <p th:text="${administrador.apellido}"></p>
-                <p th:text="${administrador.correo}"></p>
-                
-                <a th:href="@{/editarAdmin/}+${administrador.id}" th:text="Editar">Editar Perfil</a>
+                <p th:text="${administrador.apellidos}"></p>
+                <p th:text="${administrador.username}"></p>
             </div>
+
+            <a href="/editarAdmin">Editar Perfil</a>
+
         </main>
     </body>
 </html>

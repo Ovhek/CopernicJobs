@@ -4,35 +4,60 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ca" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Dades Personals</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form th:action="@{/guardarAdministrador}" method="post" th:object="${administrador}">
+        <form th:action="@{/editarPerfilAdministrador}" method="post" th:object="${administrador}">
 
             <input type="hidden" name="id" th:field="*{id}"/>
-            <input type="hidden" name="contrasenya" th:field="*{contrasenya}"/>
             <input type="hidden" name="fechaRegistro" th:field="*{fechaRegistro}"/>
             <p>
                 <label for="nombre">Nom:</label>
-                <input type="text" name="nombre" th:field="*{nombre}">
+                <input type="text" id="nombre" th:field="*{nombre}">
             </p>
 
             <p>
                 <label for="apellido">Cognoms:</label>
-                <input type="text" name="apellido" th:field="*{apellido}">
+                <input type="text" id="apellido" th:field="*{apellidos}">
             </p>
 
             <p>
                 <label for="correo">Correu:</label>
-                <input type="text" name="correo" th:field="*{correo}">
+                <input type="text" id="username" th:field="*{username}">
             </p>
 
-            <button type="submit" name="enviar" value="Enviar Dades">Guardar Canvis</button> 
-            <button>Cancelar</button>
+            <div>
+                <h3> Cambiar Contrasenya </h3>
+                <label for="passwordNueva">Nova Contrasenya:</label>
+                <input type="password" th:value="${passwordNueva}" id="passwordNueva" name="passwordNueva" placeholder="Nova contrasenya">
+
+                <label for="confirmaPasswordNueva">Repeteix la Contrasenya:</label>
+                <input type="password" th:value="${confirmaPasswordNueva}" id="confirmaPasswordNueva" name="confirmaPasswordNueva" placeholder="Repeteix la nova contrasenya">
+
+            </div>
+
+            <div>
+                <h3>Confirmar Canvis</h3>
+                <h3>Introdueix la contrasenya actual per confirmar els canvis.</h3>
+                <label for="password">Contrasenya Actual:</label>
+                <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+            </div>
+
+            <div th:if="${errores} OR ${erroresBinding}">
+                <ul>
+                    <li th:each="err : ${errores}" th:text="${err}" />
+                    <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                </ul>
+            </div>
+            <div>
+                <button name="button" value="guardar">Guardar Canvis</button>
+                <button name="button" value="cancelar">Cancelar Canvis</button>
+            </div>
+
         </form>
     </body>
 </html>

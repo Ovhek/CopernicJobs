@@ -8,17 +8,16 @@ import cat.copernic.copernicjobs.general.servicios.IncidenciaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Incidencia;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -30,9 +29,19 @@ public class CrearIncidencia {
     @Autowired
     IncidenciaService incidenciaService;
 
-    @GetMapping("/crearIncidencia")
-    public String inicio(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username) {
+    @GetMapping("/alumne/crearIncidencia")
+    public String alumneIncidencia(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username, HttpServletRequest request) {
+        return inicio(incidencia, model, username, request);
+    }
 
+    @GetMapping("/empresa/crearIncidencia")
+    public String empresaIncidencia(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username, HttpServletRequest request) {
+        return inicio(incidencia, model, username,request);
+    }
+
+    public String inicio(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username, HttpServletRequest test) {
+
+        String url = test.getRequestURL().toString();
         String rol = username.getAuthorities().iterator().next().getAuthority();
         NavBarType navbarType = null;
 
@@ -46,6 +55,8 @@ public class CrearIncidencia {
             default:
                 navbarType = NavBarType.ADMINISTRADOR;
         }
+        if(navbarType == NavBarType.ADMINISTRADOR && url.contains("alumne")) navbarType = NavBarType.ALUMNO;
+        if(navbarType == NavBarType.ADMINISTRADOR && url.contains("empresa")) navbarType = NavBarType.EMPRESA;
         //Ruta donde está el archivo html 
         String ruta = "";
         //nombre del archivo html
@@ -56,13 +67,20 @@ public class CrearIncidencia {
     }
 
     @PostMapping("/crearIncidencia")
-    public String crearIncidencia(Incidencia incidencia, Model model) {
+    public String crearIncidencia(Incidencia incidencia, Model model, HttpServletRequest request, RedirectAttributes redirect) {
+        
+        String crearIncidenciaRedirect = "";
+        var originUrl = request.getHeader("referer");
+        if(originUrl.contains("alumne")) crearIncidenciaRedirect = "/alumne";
+        if(originUrl.contains("empresa")) crearIncidenciaRedirect = "/empresa";
+        
         incidencia.setFechaIncidencia(LocalDate.now());
 
         incidenciaService.anadirIncidencia(incidencia);
 
+        redirect.addFlashAttribute("creado","S'ha enviat l'incidencia");
         model.addAttribute("creado", true);
-        return "redirect:/crearIncidencia";
+        return "redirect:"+crearIncidenciaRedirect+"/crearIncidencia";
 
     }
 }

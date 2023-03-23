@@ -17,32 +17,37 @@ and open the template in the editor.
                  Per associar les dades a l'objecte noticia, fem servir l'element th:objecte de 
                  Thymeleaf, al qual li assignem com a valor el paràmetre noticia del mètode 
                  crearNoticia.-->
-        <form th:action="@{/guardarNoticia}" method="post" th:object="${noticia}">
+        <div class="noticiaContainer">
+            <div class="card noticiaCard">
+                <h1>Contingut de la noticia</h1>
+                <form th:action="@{/guardarNoticia}" method="post" th:object="${noticia}">
 
-            <!--Thymeleaf indica que una varaible fa refèrencia a un atribut d'una classe de l'aplicació, utilitzant
-                l'element precedint el nom th:field. El valor que li assignarem a aquest element serà el nom de
-                l'atribut de la classe al que fa referència, per exemple, *{id}, fa refèrencia a l'atribut idnoticia de 
-                la classe noticia. Fixeu-vos que a diferència de les variables, quan es tracta d'un atribut, les claus de
-                l'atribut van precedides de *, en lloc de $.-->
+                    <!--Thymeleaf indica que una varaible fa refèrencia a un atribut d'una classe de l'aplicació, utilitzant
+                        l'element precedint el nom th:field. El valor que li assignarem a aquest element serà el nom de
+                        l'atribut de la classe al que fa referència, per exemple, *{id}, fa refèrencia a l'atribut idnoticia de 
+                        la classe noticia. Fixeu-vos que a diferència de les variables, quan es tracta d'un atribut, les claus de
+                        l'atribut van precedides de *, en lloc de $.-->
 
-            <!-- Camp ocult on guardem el valor de l'atribut id de la classe noticia per enviar-lo juntament amb les altres dades.-->                 
-            <input type="hidden" name="id" th:field="*{id}"/>
+                    <!-- Camp ocult on guardem el valor de l'atribut id de la classe noticia per enviar-lo juntament amb les altres dades.-->                 
+                    <input type="hidden" name="id" th:field="*{id}"/>
 
-            <p>
-                <label for="titulo">Títol:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el títol de la noticia-->
-                <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut titol de l'objecte
-                    noticia assignat a th:objecte-->
-                <input type="text" name="titulo" th:field="*{titulo}"/>
-            </p>
+                    <div class="form-group">
+                        <label for="titulo">Títol:</label> <!--Etiqueta on indiquem a l'usuari que ha d'introduir el títol de la noticia-->
+                        <!--Thymeleaf associarà les dades afegides mitjançant aquest input, a l'atribut titol de l'objecte
+                            noticia assignat a th:objecte-->
+                        <input type="text" name="titulo" th:field="*{titulo}" id="titulo" placeholder="Introdueix el títol"/>
+                        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"/>
+                    </div>
+                    <div class="form-group"
+                         <label for="descripcion">Descripció:</label> <!--Etiqueta per la descripció de la notícia-->     
+                        <textarea th:field="*{descripcion}" id="descripcion" rows="5" placeholder="Introdueix la descripció"></textarea>
+                        <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"/>
+                    </div>
 
-            <p>
-                <label for="descripcion">Descripció:</label> <!--Etiqueta per la descripció de la notícia-->     
-                <input type="text" name="descripcion" th:field="*{descripcion}"/> <!--Associem les dades introduïdes amb l'atribut descripcio-->
-            </p>
-
-            <!-- Botó per enviar les dades-->
-            <button type="submit" name="enviar" value="Enviar Dades">Guardar Anunci</button> 
-            <button>Cancelar</button>
-        </form>
+                    <!-- Botó per enviar les dades-->
+                    <button type="submit" name="enviar" value="Enviar Dades">Guardar Anunci</button> 
+                </form>
+            </div>
+        </div>
     </body>
 </html>

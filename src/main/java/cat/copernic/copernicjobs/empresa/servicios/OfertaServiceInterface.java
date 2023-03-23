@@ -24,4 +24,9 @@ public interface OfertaServiceInterface {
     
     public List<Oferta> llistarOfertasUltimaSemana();
     
+    public List<Oferta> ordenarOfertasAlfabetico();
+    
+    public List<Oferta> filtrarOfertasOrdenacion(String busqueda, String ordenacion);
+
+    
 }

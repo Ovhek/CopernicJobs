@@ -5,16 +5,30 @@
  */
 package cat.copernic.copernicjobs.administrador.controladores;
 
+import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
+import jakarta.validation.Valid;
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -26,10 +40,32 @@ public class VerEmpresa {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private EmpresaService empresaService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
+    @Autowired
+    private MessageSource messageSource;
+
+    @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarEmpresa") //action=guardarEmpresa
-    public String guardarEmpresa(@RequestParam(name = "button", required = false) String btnValue, Empresa empresa, Model model) {
+    public String guardarEmpresa(@RequestParam(name = "button", required = false) String btnValue, @Valid Empresa empresa, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
         //Buscamos la empresa en la BD.
         Empresa empresaDB = empresaService.cercarEmpresa(empresa);
+
+        if (errores.hasErrors() || result.hasErrors()) { //Si s'han produït errors...
+            List<String> erroresString = new ArrayList<>();
+            errores.getAllErrors().forEach(err -> erroresString.add(err.getDefaultMessage()));
+
+            List<String> erroresBindingString = new ArrayList<>();
+            result.getAllErrors().forEach(err -> erroresBindingString.add(err.getDefaultMessage()));
+
+            model.addAttribute("errores", erroresString);
+            model.addAttribute("errores", erroresBindingString);
+
+            //Ruta donde está el archivo html 
+            String ruta = "administrador/";
+            //nombre del archivo html
+            String archivo = "editarEmpresa";
+
+            return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
+        }
 
         //Comprobamos que el valor del botón de acción del post no sea nulo
         if (btnValue != null) {
@@ -71,7 +107,7 @@ public class VerEmpresa {
                 }
             }
             empresaService.afegirEmpresa(empresaDB);
-            if(btnValue.equals("bajar")){
+            if (btnValue.equals("bajar")) {
                 empresa.setBaja(true);
                 empresaService.afegirEmpresa(empresa);
             }
@@ -79,8 +115,9 @@ public class VerEmpresa {
         return "redirect:/verEmpresas"; //Retornem a la pàgina alumne mitjançant redirect
     }
 
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarEmpresa/{id}")
-    public String editar(Empresa empresa, Model model) {
+    public String editar(Empresa empresa, Model model, @AuthenticationPrincipal UserDetails username) {
 
         String ruta = "administrador/";
 
@@ -88,6 +125,6 @@ public class VerEmpresa {
 
         model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
 
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 }

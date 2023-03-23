@@ -1643,7 +1643,7 @@ div.errorDiv.card .errorMessage *{
     max-width: 400px;
     min-width: fit-content;
     align-self: center;
-    
+
 }
 .incidenciaCard *{
     display: block;
@@ -1688,7 +1688,7 @@ textarea::-webkit-scrollbar-thumb {
     background: white;
     border-radius: 8px;
     box-shadow: 0px 5px 30px rgba(1, 41, 112, 0.1);
-    
+
 }
 .searchbar i, .searchbar button{
     position: absolute;
@@ -1767,6 +1767,76 @@ textarea::-webkit-scrollbar-thumb {
     text-align: center;
 }
 
+
+/*--------------------------------------------------------------
+# ADMINISTRADOR
+--------------------------------------------------------------*/
+.noticiaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.noticiaCard{
+    padding: 50px;
+    max-width: 400px;
+    min-width: fit-content;
+    align-self: center;
+
+}
+.noticiaCard *{
+    display: block;
+}
+
+.boton.cancelar{
+    background-color: #8B0000;
+}
+.boton.cancelar:hover{
+    background-color: #DC143C;
+}
+.noticiaCard input{
+    width: 100%;
+}
+
+.noticiaCard textarea{
+    width: 100%;
+}
+
+.empresaCard{
+    min-width: 400px;
+}
+
+.verempresa .row{
+    justify-content: center;
+}
+.descripcionEmpresa{
+    height: 100%;
+}
+#curriculum h3{
+    text-align: center;
+}
+
+#curriculum ul{
+    list-style-type: none;
+}
+
+#curriculum li{
+    font-size: 1.5em;
+}
+
+#curriculum i{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#otrosDatos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#otrosDatos h3{
+    text-align: center;
+}
+
 .ps-4-5{
     padding-left: 2.5rem !important;
 }
@@ -1789,7 +1859,7 @@ textarea::-webkit-scrollbar-thumb {
     .containerCurAndData{
         margin: 0;
     }
-    
+
 }
 
 .botonesEditarPerfil{
@@ -1798,4 +1868,85 @@ textarea::-webkit-scrollbar-thumb {
 
 .botonesEditarPerfil button{
     min-width: 150px;
+}
+
+.profileData{
+    width: 100%;
+}
+.profileData *:not([class="custom-select"],[name="sexo"],[class="select-selected"],[class="select-items select-hide"]){
+    display: block;
+    width: 100%;
+}
+
+.profileData .select-selected{
+    margin-bottom: 20px;
+}
+
+
+.profileData .custom-select *{
+}
+
+.uploadContainer{
+    border-radius: 15px !important;
+    height: 300px !important;
+    width: 300px !important;
+
+    margin-bottom: 20px;
+}
+
+#dropZone{
+
+    position: relative;
+    display:flex;
+    height: 100%;
+    width: 100%;
+    border: #ff8900 5px dotted;
+    border-radius: 15px;
+}
+
+#dropZone #message{
+    position: absolute;
+}
+#preview{
+    position: absolute;
+    height: 290px;
+
+    background-color: black;
+    border-radius: 15px;
+}
+#preview img{
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+}
+
+.uploadButtonContainer{
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+
+    display: flex !important;
+    align-items: center !important;
+}
+
+.uploadButtonContainer button{
+    min-width: 50px;
+    height: 50px;
+    width: 50px !important;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+#dropZone #message{
+    z-index: 9;
+    bottom: 0;
+
+    background-color: rgba(0,0,0,0.5);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#dropZone #message *{
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
 }

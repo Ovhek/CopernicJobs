@@ -46,7 +46,7 @@ public class EditarPerfilAlumno {
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/editarPerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
-
+        //AuthenticationPrincipal hace que cargue los datos del usuario que ha cargado la sesion.
         Alumno alumno = alumnoService.buscarAlumnoPorUsername(username.getUsername());
 
         if (alumno == null) {

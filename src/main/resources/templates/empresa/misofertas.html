@@ -9,23 +9,44 @@
     <script src=""></script>
     <body>
         <div>
-            <input type="text" placeholder="Buscar...">
-        </div>
-        <div>
-            <label for="ordenar">Ordenar:</label>
-            <select id="ordenar" name="ordenar">
-                <option value="a-z">A-Z</option>
-                <option value="dataPublicacio">Data Publicació</option>
-            </select>
-        </div>
-        <div th:each="oferta : ${ofertas}">
-            <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
-            <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
-                <div>
-                    <p th:text="${oferta.empresa.nombreEmpresa}"></p>
-                    <p th:text="${oferta.empresa.municipio}"></p>
+            <form method="post" th:action="@{/empresa/buscaroferta}">
+                <div class="container">
+                    <div class="row gx-0">
+                        <div class="col-md-9 my-3 mx-md-3 searchbar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="search-input" name="search-input" placeholder="Buscar...">
+                            <button type="submit" name="buscar" class="boton" th:value="button">Buscar</button>
+                        </div>
+                        <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                            <select id="sort-select" name="sort-select" th:value="${ordenar}">
+                                <option value="0">Ordenar Per:</option>
+                                <option value="alfabetico">A-Z</option>
+                                <option value="dataPublicacio">Data Publicació</option>
+                                <option value="numeroCandidatos">Numero Candidatos</option>
+                                <option value="ofertasActivas">Ofertas Activas</option>
+                                <option value="ofertasPublicadas">Ofertas publicadas</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            <a th:href="@{/veureoferta/}+${oferta.id}">Mes informació</a>
-        </div>        
-</body>
+            </form>
+
+            <div th:each="oferta : ${ofertas}">
+                <div class="card">
+                    <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
+                    <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
+                    <div class="separacionBetween">
+                        <p th:text="${oferta.empresa.nombreEmpresa}"></p>
+                        <p th:text="${oferta.empresa.municipio}"></p>
+                    </div>
+                    <a th:href="@{/empresa/veureoferta/}+${oferta.id}">Mes informació</a>
+                    <div class="col-4 col-6-medium p-5">
+                    </div>
+                </div>
+
+            </div>       
+
+
+
+    </body>
 </html>

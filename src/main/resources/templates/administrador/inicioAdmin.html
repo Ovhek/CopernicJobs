@@ -12,43 +12,51 @@ and open the template in the editor.
     </head>
     <body>
         <main>
-            <div>
+            <div id="container inicio">
                 <!-- Anuncios -->
-                <div id="noticias">
-                    <h1>Anuncis</h1>
-                    <div th:each="noticia : ${noticias}">
-                        <h6 th:text="${noticia.titulo}"></h6>
-                        <p th:text="${noticia.descripcion}"></p>
-                        <p th:text="${noticia.fechaHora}"></p>
+                <div class="row my-5">
+                    <div class="col-md-6">
+                        <div class="card py-5 mx-1 mt-5 row RowVerticalScroll" id="noticias">
+                            <h1>Anuncis</h1>
+                            <div class="card mt-5 col-lg-12 p-5 noticia" th:each="noticia : ${noticias}">
+                                <h3 th:text="${noticia.titulo}"></h3>
+                                <p th:text="${noticia.descripcion}"></p>
+                                <p th:text="${noticia.fechaHora}"></p>
 
-                        <!--Enllaç mitjançant el qual accedirem a la pàgina per editar la noticia actual
-                        al qual li correspon l'id que concatenem a l'URL editar-->
+                                <!--Enllaç mitjançant el qual accedirem a la pàgina per editar la noticia actual
+                                al qual li correspon l'id que concatenem a l'URL editar-->
 
-                        <a th:href="@{/editar/}+${noticia.id}" th:text="Editar"/>
+                                <a class="boton" th:href="@{/editar/}+${noticia.id}" th:text="Editar"/>
 
-                        <!--Enllaç mitjançant el qual accedirem a la pàgina per eliminar la noticia actual
-                        al qual li correspon l'id que concatenem a l'URL d'eliminar-->
+                                <!--Enllaç mitjançant el qual accedirem a la pàgina per eliminar la noticia actual
+                                al qual li correspon l'id que concatenem a l'URL d'eliminar-->
 
-                        <a th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
-                    </div>
-                    <a th:href="@{/crearNoticia}" th:text="Crear">Crear Anunci</a>
-                </div>
-                <div id="validaciones">
-                    <h1>Validacions</h1>
-                    <div th:each="validacion : ${validaciones}">
-                        <h6 th:text="${validacion.nombre}"></h6>
-                        <a th:href="@{/validarRegistreAlumne/}+${validacion.id}">Validar Alumne</a>
-                    </div>
-                    <div id="validaciones2">
-                        <div th:each="validacion2 : ${validaciones2}">
-                            <h6 th:text="${validacion2.nombreEmpresa}"></h6>
-                            <a th:href="@{/validarRegistreEmpresa/}+${validacion2.id}">Validar Empresa</a>
+                                <a class="boton" th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
+                            </div>
+                            <a class="boton" th:href="@{/crearNoticia}" th:text="Crear">Crear Anunci</a>
                         </div>
                     </div>
-                    <div id="validaciones3">
-                        <div th:each="validacion3 : ${validaciones3}">
-                            <h6 th:text="${validacion3.tituloOferta}"></h6>
-                            <a th:href="@{/validarOferta/}+${validacion3.id}">Validar Oferta</a>
+                    <div class="col-md-6 maxHeightScroll">
+                        <!-- Validacions -->
+                        <div class="py-5 card mx-1 mt-5 row RowVerticalScroll" id="validaciones">
+                            <h1>Validacions</h1>
+                            <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="validacion : ${validaciones}">
+                                <h3 th:text="${validacion.nombre}"></h3>
+                                <p th:text="${validacion.apellidos}"></p>
+                                <a class="boton" th:href="@{/validarRegistreAlumne/}+${validacion.id}">Validar Alumne</a>
+                            </div>
+                            <div id="validaciones2">
+                                <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="validacion2 : ${validaciones2}">
+                                    <h3 th:text="${validacion2.nombreEmpresa}"></h3>
+                                    <a class="boton" th:href="@{/validarRegistreEmpresa/}+${validacion2.id}">Validar Empresa</a>
+                                </div>
+                            </div>
+                            <div id="validaciones3">
+                                <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="validacion3 : ${validaciones3}">
+                                    <h3 th:text="${validacion3.tituloOferta}"></h3>
+                                    <a class="boton" th:href="@{/validarOferta/}+${validacion3.id}">Validar Oferta</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

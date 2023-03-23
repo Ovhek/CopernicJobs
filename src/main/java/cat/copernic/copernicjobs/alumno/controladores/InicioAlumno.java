@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.alumno.controladores;
 
 import cat.copernic.copernicjobs.administrador.servicios.NoticiaService;
+import cat.copernic.copernicjobs.dao.NoticiaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="layout/_plantillaAuth.html :: authHead">
+
+    </head>
     <meta charset="UTF-8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,11 +11,23 @@
     </style>
     <script src=""></script>
     <body>
-        <form th:action="@{/registraroferta}" method="post" th:object="${oferta}">
+        <form th:action="@{/empresa/registraroferta}" method="post" th:object="${oferta}">
+            
             <input type="hidden" name="id" th:field="*{id}"/>
             <input type="hidden" name="empresa" th:field="${oferta.empresa}"/>
             <input type="hidden" name="id" th:field="*{id}"/>
             <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
+
+            <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
+                <ul>
+                    <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p th:text="${err}"></p>
+                    </li>
+
+                </ul>
+            </div>
+
             <table style="margin: 0 auto;">
                 <div class="container">
                     <tr>
@@ -62,12 +77,12 @@
                     </tr>
                     <tr>
                         <th>
-                            <button type="submit" name="boton" value="subirpdf">Pujar PDF</button>
+                            <button type="submit" class="boton" name="boton" value="subirpdf">Pujar PDF</button>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <button type="submit" name="boton" value="registrar">Registrar Oferta</button>
+                            <button type="submit" name="boton" class="boton" value="registrar">Registrar Oferta</button>
                         </th>
                     </tr>
                 </div>

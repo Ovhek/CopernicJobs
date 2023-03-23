@@ -14,6 +14,8 @@ import cat.copernic.copernicjobs.model.Oferta;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -32,8 +34,9 @@ public class editarOferta{
     @Autowired
     EmpresaService empresaService;  
     
+    @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa/editaroferta/{id}")
-    public String editar(Oferta oferta, Model model) {
+    public String editar(@AuthenticationPrincipal UserDetails user,Oferta oferta, Model model) {
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
@@ -41,10 +44,11 @@ public class editarOferta{
         model.addAttribute("oferta", ofertaService.cercarOferta(oferta));
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Editar Oferta", user);
     }
     
-    @PostMapping("/manejaroferta")
+    @PreAuthorize("hasAuthority('Empresa')")
+    @PostMapping("/empresa/manejaroferta")
     public String manejarOferta(@RequestParam(name = "boton")String btnOferta,Oferta oferta) {
         
         if(btnOferta.equals("guardar")) guardarOferta(oferta);
@@ -65,6 +69,6 @@ public class editarOferta{
     public String borrarOferta(Oferta oferta) {
         Oferta ofertaDel = ofertaService.cercarOferta(oferta);
         ofertaService.eliminarOferta(ofertaDel); //Afegim el gos passat per paràmetre a la base de dades
-        return "redirect:/misofertas";
+        return "redirect:/empresa/smisofertas";
     }
 }

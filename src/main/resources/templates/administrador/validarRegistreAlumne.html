@@ -13,35 +13,53 @@ and open the template in the editor.
     <body>
         <main>
             <div id="alumno">
-                <label for="nom">Nom:</label>
+                <label for="nom">
+                    <b>Nom:</b>
+                </label>
                 <p th:text="${alumno.nombre}"></p>
 
-                <label for="cognoms">Cognoms:</label>
+                <label for="cognoms">
+                    <b>Cognoms:</b>
+                </label>
                 <p th:text="${alumno.apellidos}"></p>
 
-                <label for="adreca">Adreça:</label>
-                <p th:text="${alumno.correo}"></p>
+                <label for="adreca">
+                    <b>Adreça:</b>
+                </label>
+                <p th:text="${alumno.username}"></p>
 
-                <label for="direccio">Direcció:</label>
+                <label for="direccio">
+                    <b>Direcció:</b>
+                </label>
                 <p th:text="${alumno.direccion}"></p>
 
-                <label for="movil">Mòvil:</label>
+                <label for="movil">
+                    <b>Mòvil:</b>
+                </label>
                 <p th:text="${alumno.movil}"></p>
 
-                <label for="genere">Gènere:</label>
+                <label for="genere">
+                    <b>Gènere:</b>
+                </label>
                 <p th:text="${alumno.sexoDesc}"></p>
                 
-                <label for="dni">DNI/NIE:</label>
+                <label for="dni">
+                    <b>DNI/NIE:</b>
+                </label>
                 <p th:text="${alumno.dni}"></p>
 
-                <label for="tarjetaSanitaria">Tarjeta Sanitària:</label>
+                <label for="tarjetaSanitaria">
+                    <b>Tarjeta Sanitària:</b>
+                </label>
                 <p th:text="${alumno.tarjetaSanitaria}"></p>
 
-                <label for="seguretatSocial">Número de la Seguretat Social:</label>
+                <label for="seguretatSocial">
+                    <b>Número de la Seguretat Social:</b>
+                </label>
                 <p th:text="${alumno.SegSocial}"></p>
             </div>
-            <a th:href="@{/inicioAdmin}" th:text="Validar"/>
-            <a th:href="@{/inicioAdmin}" th:text="Invalidar"/>
+            <a class="boton" th:href="@{/administrador/inici}" th:text="Validar"/>
+            <a class="boton" th:href="@{/administrador/inici}" th:text="Invalidar"/>
         </main>
     </body>
 </html>

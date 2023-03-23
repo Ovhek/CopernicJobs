@@ -7,17 +7,27 @@ package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
+import jakarta.validation.Valid;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -29,10 +39,29 @@ public class VerAlumno {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
+    @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarAlumno") //action=guardarAlumno
-    public String guardarAlumno(@RequestParam(name = "button", required = false) String btnValue, Alumno alumno, Model model) {
+    public String guardarAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
         //Buscamos el alumno en la BD.
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
+
+        if (errores.hasErrors() || result.hasErrors()) { //Si s'han produït errors...
+            List<String> erroresString = new ArrayList<>();
+            errores.getAllErrors().forEach(err -> erroresString.add(err.getDefaultMessage()));
+
+            List<String> erroresBindingString = new ArrayList<>();
+            result.getAllErrors().forEach(err -> erroresBindingString.add(err.getDefaultMessage()));
+
+            model.addAttribute("errores", erroresString);
+            model.addAttribute("errores", erroresBindingString);
+
+            //Ruta donde está el archivo html 
+            String ruta = "administrador/";
+            //nombre del archivo html
+            String archivo = "editarAlumno";
+
+            return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
+        }
 
         //Comprobamos que el valor del botón de acción del post no sea nulo
         if (btnValue != null) {
@@ -74,7 +103,7 @@ public class VerAlumno {
                 }
             }
             alumnoService.anadirAlumno(alumnoDB);
-            if(btnValue.equals("bajar")){
+            if (btnValue.equals("bajar")) {
                 alumno.setBaja(true);
                 alumnoService.anadirAlumno(alumno);
             }
@@ -82,9 +111,10 @@ public class VerAlumno {
 
         return "redirect:/verAlumnos"; //Retornem a la pàgina alumne mitjançant redirect
     }
-
+    
+    @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarAlumno/{id}")
-    public String editar(Alumno alumno, Model model) {
+    public String editar(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
 
         String ruta = "administrador/";
 
@@ -92,7 +122,7 @@ public class VerAlumno {
 
         model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
 
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
 }

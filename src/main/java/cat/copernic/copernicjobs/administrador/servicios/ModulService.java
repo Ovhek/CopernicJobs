@@ -36,7 +36,7 @@ public class ModulService implements ModulServiceInterface{
 
     @Override
     @Transactional
-    public void elimminarModul(Modulo modulo) {
+    public void eliminarModul(Modulo modulo) {
         this.modulo.delete(modulo);
     }
 

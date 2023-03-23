@@ -31,10 +31,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="row justify-content-sm-center justify-content-lg-between">
                         <!-- Datos Perfil -->
                         <div id="perfil" class="col-lg-6 p-lg-5">
-                            <div class="card p-5">
-                                <div>
-                                    <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
-                                    <a>+</a>
+                            <div class="card p-5 d-flex profileData">
+                                <div class="align-self-center uploadContainer">
+                                    <div id="dropZone">
+                                        <div id="message"></div>
+                                        <div class="uploadButtonContainer">
+                                            <button class="boton" type="button" id="uploadButton">+</button>
+                                        </div>
+                                        <div id="preview">
+                                            <img id="previewImg" th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="fileInput" name="file" style="display:none"/>
                                 </div>
                                 <div>
                                     <input type="hidden" th:field="*{id}" >
@@ -83,7 +91,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="row col-lg-6 py-5 justify-content-sm-center containerCurAndData">
                             <!-- Curriculum -->
                             <div class="pb-5 curriculumContaniner">
-                                <div id="curriculum" class="card p-5">
+                                <div id="curriculum" class="card p-5 profileData">
                                     <h2>Curriculum</h2>
                                     <div>
                                         <label for="linkedin">Linkedin</label>
@@ -112,9 +120,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 </div>
                             </div>
 
-                            <div class="align-self-end otrosDatosContaniner">
+                            <div class="align-self-start otrosDatosContaniner">
                                 <!-- Otros Datos -->
-                                <div id="otrosDatos" class="card p-5">
+                                <div id="otrosDatos" class="card p-5 profileData">
                                     <h2>Altres dades</h2>
                                     <div>
                                         <div>
@@ -151,7 +159,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <div class="col-lg-6 ps-4-5 pb-5">
                                     <div class="card p-5 ">
                                         <h3>Confirmar Canvis</h3>
-                                        <h3>Introdueix la contrasenya actual per confirmar els canvis.</h3>
+                                        <h5>Introdueix la contrasenya actual per confirmar els canvis.</h5>
                                         <label for="password">Contrasenya Actual:</label>
                                         <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
 
@@ -180,10 +188,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
                 </div>
-
-
-
             </form>
         </main>
+
+        <script th:src="@{/js/DragDropImg.js}"></script>
     </body>
 </html>

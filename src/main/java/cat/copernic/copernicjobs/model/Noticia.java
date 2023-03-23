@@ -13,6 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import lombok.Data;
@@ -31,15 +33,21 @@ public class Noticia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
+
+    @Size(max = 200)
     @Column(name = "titulo")
+    @NotEmpty
     private String titulo;
+
     @Column(name = "descripcion")
+    @NotEmpty
     private String descripcion;
+
     @Column(name = "fecha_envio")
     private LocalDate fechaHora;
 
     @OneToOne()
-    @JoinColumn(name="rol_id")
+    @JoinColumn(name = "rol_id")
     private Rol rol;
 
 }

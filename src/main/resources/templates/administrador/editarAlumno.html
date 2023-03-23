@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div>
                         <input type="hidden" th:field="*{id}"/>
                         <input type="hidden" th:field="*{fechaRegistro}"/>
-                        <input type="hidden" th:field="*{contrasenya}"/>
+                        <input type="hidden" th:field="*{password}"/>
                         <label for="nom">Nom:</label>
                         <input type="text" id="nom" th:field="*{nombre}" th:placeholder="${alumno.nombre}">
 
@@ -29,7 +29,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <input type="text" id="cognoms" th:field="*{apellidos}" th:placeholder="${alumno.apellidos}">
 
                         <label for="correu">Correu:</label>
-                        <input type="text" id="correu" th:field="*{correo}" th:placeholder="${alumno.correo}">
+                        <input type="text" id="correu" th:field="*{username}" th:placeholder="${alumno.username}">
                     </div>
 
                     <div>
@@ -100,6 +100,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                 </div>
 
+                <div th:if="${errores} OR ${erroresBinding}">
+                    <ul>
+                        <li th:each="err : ${errores}" th:text="${err}" />
+                        <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                    </ul>
+                </div>
+                
                 <div>
                     <button name="button" value="guardar">Guardar Canvis</button>
                     <button name="button" value="bajar">Donar de baixa</button>
