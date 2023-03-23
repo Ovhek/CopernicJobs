@@ -30,7 +30,7 @@ public class VerPerfilAdmin {
     private AdministradorService administradorService; //Atribut per poder utilitzar les funcions CRUD de la interfície AdministradorDAO
     
     @PreAuthorize("hasAuthority('administrador')")
-    @GetMapping("/verPerfilAdmin")
+    @GetMapping("/administrador/veurePerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
         int id = administradorService.buscarAdministradorPorUsername(username.getUsername()).getId();
         //Ruta donde está el archivo html 

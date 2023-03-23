@@ -87,10 +87,7 @@ public class CargarPantallaPrincipal {
             case ADMINISTRADOR:
                 rutaNav = "administrador/";
                 archivoNav = "_navAdministrador";
-
-                //TODO: Usar el AdministradorService para obtener el admin.
-                //Administrador administrador = staticAdministradorService.buscarAdministrador(user.getUsername());
-                //usuario = administradorService.cercarAdministrador(administrador);
+                usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
                 break;
             default:
                 throw new AssertionError();
@@ -148,7 +145,7 @@ public class CargarPantallaPrincipal {
                 //TODO: Usar el AdministradorService para obtener el admin.
                 Administrador administrador = new Administrador();
                 administrador.setId(id);
-                //usuario = administradorService.cercarAdministrador(administrador);
+                usuario = staticAdministradorService.buscarAdministrador(administrador);
                 break;
             default:
                 throw new AssertionError();

@@ -84,6 +84,12 @@ public class LoginConfig {
                 .permitAll()
                 .defaultSuccessUrl("/inici")//Permet acceddir a tothom
                 )
+                .logout((form) -> form
+                        .logoutUrl("login")
+                        .permitAll()
+                        .logoutSuccessUrl("/login")
+                        .deleteCookies()
+                )
                 .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
                 .accessDeniedPage("/errors/error403"))
                 .build();

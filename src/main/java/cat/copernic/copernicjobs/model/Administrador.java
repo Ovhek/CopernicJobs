@@ -33,5 +33,5 @@ public class Administrador extends Usuario implements Serializable {
     @NotEmpty(message = "{NotEmpty.administrador.apellido}")
     @Size(max = 200, message = "{Size.administrador.apellido}")
     @Column(name = "apellidos")
-    private String apellido;
+    private String apellidos;
 }
