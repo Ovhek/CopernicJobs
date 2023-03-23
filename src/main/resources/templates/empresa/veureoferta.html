@@ -9,20 +9,30 @@
     <script src=""></script>
     <body>
         <div class="card p-5">
-           
-                <div class="container" th:each="oferta : ${ofertas}">
-                    <input type="hidden" name="id" th:field="${oferta.id}"/>
-                    <input type="hidden" name="empresa" th:field="${oferta.empresa}"/>
-                    <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
-                    <div>
-                        <h1 th:text="${oferta.tituloOferta}">                        
-                    </div>	
+
+            <div class="container container-" th:each="oferta : ${ofertas}">
+                <input type="hidden" name="id" th:field="${oferta.id}"/>
+                <input type="hidden" name="empresa" th:field="${oferta.empresa}"/>
+                <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
+                <div class="card-header">
+                    <div class="row">
+                            <h1 th:text="${oferta.tituloOferta}">   
+                            
+                    </div>
+                    <div class="row">
+                        <a th:href="@{/empresa/veurePerfil}" name="nombreEmpresa "th:text="${oferta.empresa.nombreEmpresa}"/> 
+                    </div>
+                </div>
+                <div class="col-4 col-6-medium">
+                </div>
+                
+                <div class="card-body">
                     <div>
                         <label for="uname"><b>Descripció de l'oferta</b></label>
                     </div>
                     <div>
                         <p th:text="${oferta.descripcionOferta}"></p>
-                    </div>    
+                    </div>  
                     <div>
                         <label for="uname"><b>Requisits de l'Alumne</b></label>
                     </div>        
@@ -38,6 +48,9 @@
                     <div>
                         <p><span>Alumnes Inscrits: </span><span>10</span></p>
                     </div>
+                </div>
+
+                <div class="card-footer">
                     <div>
                         <button class="boton" type="submit">Veure Alumnes</button>
                     </div>
@@ -45,6 +58,8 @@
                         <a class="boton" th:href="@{/empresa/editaroferta/} + ${oferta.id}">Editar Oferta</a>
                     </div>
                 </div>
+
+            </div>
         </div>
     </body>
 </html>

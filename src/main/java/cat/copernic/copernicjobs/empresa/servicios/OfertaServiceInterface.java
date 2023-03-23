@@ -26,12 +26,7 @@ public interface OfertaServiceInterface {
     
     public List<Oferta> ordenarOfertasAlfabetico();
     
-    public List<Oferta> ordenarOfertasFechaPeticion();
-    
-    public List<Oferta> ordenarOfertasNumeroCandidatos();
-    
-    public List<Oferta> ordenarOfertasOfertasActivas();
-        
-    public List<Oferta> ordenarOfertasOfertasPublicadas();
+    public List<Oferta> filtrarOfertasOrdenacion(String busqueda, String ordenacion);
+
     
 }

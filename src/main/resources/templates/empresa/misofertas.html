@@ -31,14 +31,19 @@
                 </div>
             </form>
 
-            <div th:each="oferta : ${ofertas}" class="card">
-                <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
-                <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
-                <div class="separacionBetween">
-                    <p th:text="${oferta.empresa.nombreEmpresa}"></p>
-                    <p th:text="${oferta.empresa.municipio}"></p>
+            <div th:each="oferta : ${ofertas}">
+                <div class="card">
+                    <h2 th:text="${oferta.tituloOferta}">Seccion 1</h2>
+                    <p th:text="${oferta.descripcionOferta}">Descripción de la sección 1.</p>
+                    <div class="separacionBetween">
+                        <p th:text="${oferta.empresa.nombreEmpresa}"></p>
+                        <p th:text="${oferta.empresa.municipio}"></p>
+                    </div>
+                    <a th:href="@{/empresa/veureoferta/}+${oferta.id}">Mes informació</a>
+                    <div class="col-4 col-6-medium p-5">
+                    </div>
                 </div>
-                <a th:href="@{/empresa/veureoferta/}+${oferta.id}">Mes informació</a>
+
             </div>       
 
 

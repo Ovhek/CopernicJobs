@@ -44,10 +44,13 @@ public class misOfertas {
     }
     
     @PostMapping("/empresa/buscaroferta")
-    public String buscarOferta(@RequestParam(name = "buscar") String btnValue,@RequestParam(name = "search-input") String buscar, String ordenar, @AuthenticationPrincipal UserDetails user){
+    public String buscarOferta(@RequestParam(name = "buscar") String btnValue,@RequestParam(name = "search-input") String buscar,@RequestParam(name="sort-select") String ordenar, @AuthenticationPrincipal UserDetails user,Model model){
         
+        //if((buscar!=null)&&(ordenar!="0")){
+        model.addAttribute("ofertas",ofertaService.filtrarOfertasOrdenacion(buscar, ordenar));
         
-        System.out.println("");
+        //}
+        
         
         
         

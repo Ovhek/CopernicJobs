@@ -233,7 +233,7 @@ h6 {
 /* Card */
 .card {
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0px 5px 30px rgba(1, 41, 112, 0.1);
 }
 
@@ -415,12 +415,6 @@ h6 {
 --------------------------------------------------------------*/
 .logo {
     line-height: 1;
-}
-
-@media (min-width: 1200px) {
-    .logo {
-        width: 100px;
-    }
 }
 
 .logo img {
@@ -1629,6 +1623,9 @@ div.errorDiv.card .errorMessage *{
 .veroferta .row{
     justify-content: center;
 }
+.descripcionOferta{
+    height: 100%;
+}
 /*--------------------------------------------------------------
 # Incidencias
 --------------------------------------------------------------*/
@@ -1719,4 +1716,24 @@ textarea::-webkit-scrollbar-thumb {
 
 .searchbarselect{
     height: fit-content;
+}
+
+
+/*--------------------------------------------------------------
+# Perfil
+--------------------------------------------------------------*/
+
+#perfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+    font-weight: bold;
+}
+#perfil img{
+    width: 300px;
+    height: 300px;
+    align-self: center;
+    border-radius: 15px;
+    margin-bottom: 20px;
 }

@@ -61,23 +61,9 @@ public class OfertaService implements OfertaServiceInterface {
     }
 
     @Override
-    public List<Oferta> ordenarOfertasFechaPeticion() {
-        return null;// (List<Oferta>) this.ofertaDao.findAll().sort(Oferta::getFechaPeticion);
-    }
-
-    @Override
-    public List<Oferta> ordenarOfertasNumeroCandidatos() {
-        return null;// (List<Oferta>) this.ofertaDao.findAll().sort(Oferta::getFechaPeticion); 
-    }
-
-    @Override
-    public List<Oferta> ordenarOfertasOfertasActivas() {
-        return null; //(List<Oferta>) this.ofertaDao.findAll().sort(Oferta::getFechaPeticion);
-    }
-
-    @Override
-    public List<Oferta> ordenarOfertasOfertasPublicadas() {
-        return null; //(List<Oferta>) this.ofertaDao.findAll().sort(Oferta::getFechaValidacion);
+    public List<Oferta> filtrarOfertasOrdenacion(String busqueda, String ordenacion) {
+        //return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByCriterio(busqueda, ordenacion);
+        return null;
     }
     
 }
