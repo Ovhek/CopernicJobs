@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.EncriptarContrasenya;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
@@ -50,7 +51,7 @@ public class RegistrarAlumne {
         model.addAttribute("alumno", new Alumno());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
     
     @PreAuthorize("hasAuthority('administrador')")
@@ -73,7 +74,7 @@ public class RegistrarAlumne {
             //nombre del archivo html
             String archivo = "registrarAlumne";
 
-            return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+            return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
         }
 
         if (result.hasErrors()) {

@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
@@ -40,7 +41,7 @@ public class VerOfertasAdmin {
 
         model.addAttribute("ofertas", ofertaService.llistarOfertas());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
     @PreAuthorize("hasAuthority('administrador')")
@@ -53,7 +54,7 @@ public class VerOfertasAdmin {
 
         model.addAttribute("oferta", ofertaService.cercarOferta(oferta));
 
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
 }

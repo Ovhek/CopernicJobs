@@ -7,6 +7,7 @@ package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Oferta;
@@ -42,7 +43,7 @@ public class VerEmpresas {
         model.addAttribute("empresas", empresaService.llistarEmpreses());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
     @PreAuthorize("hasAuthority('administrador')")
@@ -55,7 +56,7 @@ public class VerEmpresas {
 
         model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
 
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
 
     }
 }

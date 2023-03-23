@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.general.servicios.IncidenciaService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Incidencia;
 import java.time.LocalDate;
@@ -41,7 +42,7 @@ public class VerIncidencias {
         model.addAttribute("incidencias", incidenciaService.listarIncidencias());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
     @PreAuthorize("hasAuthority('administrador')")
@@ -54,7 +55,7 @@ public class VerIncidencias {
 
         model.addAttribute("incidencia", incidenciaService.buscarIncidencia(incidencia));
 
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
 
     }
 

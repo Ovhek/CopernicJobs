@@ -51,7 +51,7 @@ public class LoginService implements UserDetailsService{
         
         if(usuario == null) usuario = (Empresa) empresaService.buscarPorUsername(username);
         
-        if(usuario == null) usuario = (Administrador)administradorService.buscarUsernamme(username);
+        if(usuario == null) usuario = (Administrador)administradorService.buscarAdministradorPorUsername(username);
         
         if(usuario == null) throw new UsernameNotFoundException(username);
         

@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Administrador;
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ public class VerPerfilAdmin {
     private AdministradorService administradorService; //Atribut per poder utilitzar les funcions CRUD de la interfície AdministradorDAO
     
     @PreAuthorize("hasAuthority('administrador')")
-    @GetMapping("/verPerfilAdmin")
+    @GetMapping("/administrador/veurePerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
         int id = administradorService.buscarAdministradorPorUsername(username.getUsername()).getId();
         //Ruta donde está el archivo html 
@@ -43,6 +44,6 @@ public class VerPerfilAdmin {
 
         model.addAttribute("administrador", administradorService.buscarAdministrador(administrador));
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 }

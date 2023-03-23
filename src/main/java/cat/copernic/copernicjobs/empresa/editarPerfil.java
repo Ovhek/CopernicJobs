@@ -36,7 +36,7 @@ public class editarPerfil {
         //nombre del archivo html
         String archivo = "editarperfilempresa";
         
-        model.addAttribute("empresa",empresaService.cercarEmpresa(empresa));
+        model.addAttribute("empresa",empresaService.buscarPorUsername(user.getUsername()));
         
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Editar Perfil Empresa", user);
