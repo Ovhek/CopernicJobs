@@ -13,6 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="incidenciaContainer">
             <div class="card incidenciaCard">
                 <h1>Crear Incidència</h1>
+                <p class="successMessage" th:if="${creado != null}" th:text="${creado}"></p>
                 <form method="post" th:action="@{/crearIncidencia}" th:object="${incidencia}">
                     <div class="form-group">
                         <label for="titulo">Títol</label>
