@@ -6,6 +6,7 @@
 package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.EncriptarContrasenya;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Administrador;
@@ -44,7 +45,7 @@ public class EditarPerfilAdmin {
     private MessageSource messageSource;
 
     @PreAuthorize("hasAuthority('administrador')")
-    @GetMapping("/editarPerfilAdmin")
+    @GetMapping("/administrador/editarPerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         Administrador administrador = administradorService.buscarAdministradorPorUsername(username.getUsername());
@@ -59,7 +60,7 @@ public class EditarPerfilAdmin {
 
         model.addAttribute("administrador", administrador);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
     @PreAuthorize("hasAuthority('administrador')")

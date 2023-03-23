@@ -29,23 +29,23 @@ public class CargarPantallaPrincipal {
 
     //@Autowired
     //private AlumnoService alumnoService;
-
     //@Autowired
     //AdministradorService alumnoService;
     //@Autowired
     //private EmpresaService empresaService;
-
     private static AlumnoService staticAlumnoService;
     private static EmpresaService staticEmpresaService;
     private static AdministradorService staticAdministradorService;
 
-    
     /**
-     * Función que se ejecuta después de realizar la inyección de dependencias de Autowired.Esta función asigna los valores de la inyección de dependencias a los campos estaticos.
+     * Función que se ejecuta después de realizar la inyección de dependencias
+     * de Autowired.Esta función asigna los valores de la inyección de
+     * dependencias a los campos estaticos.
+     *
      * @param alumnoService
-     */    
+     */
     @Autowired
-    public CargarPantallaPrincipal(AlumnoService alumnoService, EmpresaService empresaService, AdministradorService administradorService, EmpresaDAO empresaDAO, AlumnoDAO alumnoDAO, AdministradorDAO administradorDAO){
+    public CargarPantallaPrincipal(AlumnoService alumnoService, EmpresaService empresaService, AdministradorService administradorService, EmpresaDAO empresaDAO, AlumnoDAO alumnoDAO, AdministradorDAO administradorDAO) {
         staticAlumnoService = alumnoService;
         staticAlumnoService.setAlumnoDAO(alumnoDAO);
         staticEmpresaService = empresaService;
@@ -78,23 +78,34 @@ public class CargarPantallaPrincipal {
                 rutaNav = "alumno/";
                 archivoNav = "_navAlumno";
                 usuario = staticAlumnoService.buscarAlumnoPorUsername(user.getUsername());
+                if (usuario == null) {
+                    usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
+                }
                 break;
             case EMPRESA:
                 rutaNav = "empresa/";
                 archivoNav = "_navEmpresa";
                 usuario = staticEmpresaService.buscarPorUsername(user.getUsername());
+                if (usuario == null) {
+                    usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
+                }
+
                 break;
             case ADMINISTRADOR:
                 rutaNav = "administrador/";
                 archivoNav = "_navAdministrador";
+
+                //TODO: Usar el AdministradorService para obtener el admin.
                 usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
                 break;
             default:
                 throw new AssertionError();
         }
 
-        if(tipo == NavBarType.ALUMNO) model.addAttribute("esAlumno",true);
-        
+        if (usuario.getRol().getId() == 1) {
+            model.addAttribute("esAlumno", true);
+        }
+
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", titulo);
         //Añadimos los atributos rutaNav y archivoNav dependiendo del tipo de navegación
@@ -108,8 +119,7 @@ public class CargarPantallaPrincipal {
         //Devuelve la plantilla de la página Principal con la navegación añadida y el contenido dinamico añadido.
         return "layout/_plantillaPaginaPrincipal";
     }
-    
-    
+
     //TODO: ELIMINAR DESPUÉS.
     public static String cargar(Model model, NavBarType tipo, String ruta, String archivo) {
 

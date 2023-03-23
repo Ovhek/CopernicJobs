@@ -42,7 +42,7 @@ public class VerAlumnos {
 
         model.addAttribute("alumnos", alumnoService.listarAlumnos());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Alumnos", username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
     @PreAuthorize("hasAuthority('administrador')")
@@ -55,7 +55,7 @@ public class VerAlumnos {
 
         model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
 
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Alumno", username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
 
     }
 }

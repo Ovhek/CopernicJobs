@@ -7,6 +7,7 @@ package cat.copernic.copernicjobs.administrador.controladores;
 
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
+import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import jakarta.validation.Valid;
@@ -63,7 +64,7 @@ public class VerEmpresa {
             //nombre del archivo html
             String archivo = "editarEmpresa";
 
-            return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+            return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
         }
 
         //Comprobamos que el valor del botón de acción del post no sea nulo
@@ -124,6 +125,6 @@ public class VerEmpresa {
 
         model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
 
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 }

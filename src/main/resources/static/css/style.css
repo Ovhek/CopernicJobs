@@ -1781,7 +1781,7 @@ textarea::-webkit-scrollbar-thumb {
     max-width: 400px;
     min-width: fit-content;
     align-self: center;
-    
+
 }
 .noticiaCard *{
     display: block;
@@ -1810,4 +1810,62 @@ textarea::-webkit-scrollbar-thumb {
 }
 .descripcionEmpresa{
     height: 100%;
+}
+#curriculum h3{
+    text-align: center;
+}
+
+#curriculum ul{
+    list-style-type: none;
+}
+
+#curriculum li{
+    font-size: 1.5em;
+}
+
+#curriculum i{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#otrosDatos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#otrosDatos h3{
+    text-align: center;
+}
+
+.ps-4-5{
+    padding-left: 2.5rem !important;
+}
+
+.row-contrasenya .col{
+    height: 300px;
+}
+
+.row-contrasenya .card{
+    height: 300px;
+}
+
+@media (max-width: 992px) {
+    .ps-4-5{
+        padding-left: 12px !important;
+    }
+    .curriculumContaniner, .otrosDatosContaniner{
+        padding: 0;
+    }
+    .containerCurAndData{
+        margin: 0;
+    }
+
+}
+
+.botonesEditarPerfil{
+    display: flex;
+}
+
+.botonesEditarPerfil button{
+    min-width: 150px;
 }

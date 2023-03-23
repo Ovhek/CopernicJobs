@@ -9,16 +9,14 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Incidencia;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  *
@@ -30,8 +28,17 @@ public class CrearIncidencia {
     @Autowired
     IncidenciaService incidenciaService;
 
-    @GetMapping("/crearIncidencia")
-    public String inicio(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username) {
+    @GetMapping("/alumne/crearIncidencia")
+    public String alumneIncidencia(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username, UriComponentsBuilder test) {
+        return inicio(incidencia, model, username, test);
+    }
+
+    @GetMapping("/empresa/crearIncidencia")
+    public String empresaIncidencia(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username, UriComponentsBuilder test) {
+        return inicio(incidencia, model, username,test);
+    }
+
+    public String inicio(Incidencia incidencia, Model model, @AuthenticationPrincipal UserDetails username, UriComponentsBuilder test) {
 
         String rol = username.getAuthorities().iterator().next().getAuthority();
         NavBarType navbarType = null;

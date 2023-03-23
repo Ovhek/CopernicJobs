@@ -21,4 +21,7 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
     List<Oferta> findAllByEmpresaId(int id);
     
     List<Oferta> findByFechaValidacionBetween(LocalDate start, LocalDate end);
+    
+    //List<Oferta> findByTituloOfertaOrderByCriterio(String busqueda, String criterio);
+    
 }
