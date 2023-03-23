@@ -96,7 +96,7 @@ public class CargarPantallaPrincipal {
                 throw new AssertionError();
         }
 
-        if(tipo == NavBarType.ALUMNO) model.addAttribute("esAlumno",true);
+        if(usuario.getRol().getId() == 1) model.addAttribute("esAlumno",true);
         
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", titulo);

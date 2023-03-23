@@ -73,8 +73,8 @@ public class LoginConfig {
         return http.csrf().disable().authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/inici").authenticated()
                 .requestMatchers("/crearIncidencia").authenticated()
-                .requestMatchers("/alumne/**").hasAuthority("alumne")
-                .requestMatchers("/empresa/**").hasAuthority("empresa")
+                .requestMatchers("/alumne/**").hasAnyAuthority("alumne","administrador")
+                .requestMatchers("/empresa/**").hasAnyAuthority("empresa","administrador")
                 .requestMatchers("/administrador/**").hasAuthority("administrador")
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
