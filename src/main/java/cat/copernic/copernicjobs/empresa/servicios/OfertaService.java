@@ -54,5 +54,16 @@ public class OfertaService implements OfertaServiceInterface {
         
         return ofertaDao.findByFechaValidacionBetween(inicioSemana, finSemana);
     }
+
+    @Override
+    public List<Oferta> ordenarOfertasAlfabetico() {
+       return null; //(List<Oferta>) this.ofertaDao.findAll().sort(Oferta::getTituloOferta);
+    }
+
+    @Override
+    public List<Oferta> filtrarOfertasOrdenacion(String busqueda, String ordenacion) {
+        //return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByCriterio(busqueda, ordenacion);
+        return null;
+    }
     
 }

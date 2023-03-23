@@ -8,77 +8,53 @@
     </style>
     <script src=""></script>
     <body>
-        <form method="post" th:action="@{/manejaroferta}" th:object="${oferta}">
+        
+        <form method="post" th:action="@{/empresa/manejaroferta}" th:object="${oferta}">
             <input type="hidden" name="id" th:field="${oferta.id}"/>
             <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
-            <table style="margin: 0 auto;">
                 <div class="container">
-                    <tr>
-                        <th>
+                        <div>
                             <label for="uname"><b>Titol de l'oferta</b></label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <textarea th:field="${oferta.tituloOferta}" name="uname" required>
-			    </textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
+                        </div>
+                            <div class="u-form-group u-form-message u-label-left">
+                                <textarea th:field="${oferta.tituloOferta}" id="message" name="uname" class="u-grey-10 u-input u-input-rectangle u-radius-7 u-input-3" required>
+                                </textarea>
+                            </div>
+                        <div>
                             <label for="uname"><b>Descripció de l'oferta</b></label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-			<textarea name="textarea" rows="10" cols="50" th:field="${oferta.descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
-			</textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <label for="uname"><b>Requisits de l'Alumne</b></label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-			<textarea name="requisitos" rows="10" cols="50" th:field="${oferta.requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
-			</textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
+                        </div>
+                        <div>
+                            <textarea name="textarea" rows="10" cols="50" th:field="${oferta.descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
+                            </textarea>
+                        </div>
+                        <div>
+                            <label for="uname"><b>Requisits de l'Alumne</b></label>
+                        </div>
+                        <div>
+                            <textarea name="requisitos" rows="10" cols="50" th:field="${oferta.requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
+                            </textarea>
+                        </div>
+                        <div>
                             <label for="uname"><b>S'Ofereix</b></label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-			<textarea rows="10" cols="50" name="seOfrece" th:field="${oferta.seOfrece}"  placeholder="Introdueix lo que ofereix l'empresa">	
-			</textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <label for="uname"><b>Tens un PDF amb la informació de la oferta?</b></label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <button type="submit" name="boton">Pujar PDF</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <button type="submit" name="boton" value="guardar">Guardar Canvis</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <button type="submit" name="boton" value="borrar">Esborrar Oferta</button>
-                        </th>
-                    </tr>
+                        </div>
+                        <div>
+                            <textarea rows="10" cols="50" name="seOfrece" th:field="${oferta.seOfrece}"  placeholder="Introdueix lo que ofereix l'empresa">	
+                            </textarea>
+                        </div>
+                        <div>
+                            <label for="uname"><b>Tens un PDF amb la informació de la oferta?</b></label>
+                        </div>
+                        <div>
+                            <button type="submit" class="boton" name="boton">Pujar PDF</button>
+                        </div>
+ 
+                            <div class="separacionBetween">
+                                <button type="submit" class="boton" name="boton" value="guardar">Guardar Canvis</button>
+
+                                <button type="submit" name="boton" class="boton cancelar" value="borrar">Esborrar Oferta</button>
+
+                            </div>
                 </div>
-            </table>
         </form>
     </body>
 </html>

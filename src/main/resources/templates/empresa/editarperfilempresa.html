@@ -9,7 +9,7 @@
     <script src=""></script>
     <body>
     <h3>Dades Empresa</h3>
-        <form method="post" th:action="@{/guardarcambios}" th:object="${empresa}">
+        <form method="post" th:action="@{/empresa/guardarcambios}" th:object="${empresa}">
           <input type="hidden" name="id" th:field="${empresa.id}"/>
           <input type="hidden" name="correo" th:field="${empresa.correoContacto}"/>
           <div>
