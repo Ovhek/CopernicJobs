@@ -12,6 +12,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <main>
             <form method="post" th:action="@{/alumne/editarPerfil}" th:object="${alumno}">
+
+
                 <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
                     <ul>
                         <li class="errorMessage"  th:each="err : ${errores}">
@@ -25,123 +27,161 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </ul>
                 </div>
 
-                <!-- Datos Perfil -->
-                <div id="perfil">
-                    <div>
-                        <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
-                        <a>+</a>
-                    </div>
-                    <div>
-                        <input type="hidden" th:field="*{id}" >
-                        <label for="nom">Nom:</label>
-                        <input type="text" id="nom" th:field="*{nombre}" th:placeholder="${alumno.nombre}">
+                <div class="container-fluid">
+                    <div class="row justify-content-sm-center justify-content-lg-between">
+                        <!-- Datos Perfil -->
+                        <div id="perfil" class="col-lg-6 p-lg-5">
+                            <div class="card p-5">
+                                <div>
+                                    <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
+                                    <a>+</a>
+                                </div>
+                                <div>
+                                    <input type="hidden" th:field="*{id}" >
+                                    <label for="nom">Nom:</label>
+                                    <input type="text" id="nom" th:field="*{nombre}" th:placeholder="${alumno.nombre}">
 
-                        <label for="cognoms">Cognoms:</label>
-                        <input type="text" id="cognoms" th:field="*{apellidos}" th:placeholder="${alumno.apellidos}">
+                                    <label for="cognoms">Cognoms:</label>
+                                    <input type="text" id="cognoms" th:field="*{apellidos}" th:placeholder="${alumno.apellidos}">
 
-                        <label for="correu">Username:</label>
-                        <input type="text" id="username" th:field="*{username}" th:placeholder="${alumno.username}">
+                                    <label for="correu">Username:</label>
+                                    <input type="text" id="username" th:field="*{username}" th:placeholder="${alumno.username}">
 
-                        <label for="correoContacto">Correu de Contacte:</label>
-                        <input type="text" id="correoContacto" th:field="*{correoContacto}" th:placeholder="${alumno.correoContacto}">
-                    </div>
+                                    <label for="correoContacto">Correu de Contacte:</label>
+                                    <input type="text" id="correoContacto" th:field="*{correoContacto}" th:placeholder="${alumno.correoContacto}">
+                                </div>
 
-                    <div>
-                        <label for="genere">Gènere:</label>
-                        <div class="custom-select">
-                            <select th:field="*{sexo}" id="genere" name="genere">
-                                <option th:selected="${alumno.sexoDesc == 'Home'}" value="1">Home</option>
-                                <option th:selected="${alumno.sexoDesc == 'Dona'}" value="2">Dona</option>
-                                <option th:selected="${alumno.sexoDesc == 'Altre'}" value="3">Altre</option>
-                                <option th:selected="${alumno.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
-                            </select>
+                                <div>
+                                    <label for="genere">Gènere:</label>
+                                    <div class="custom-select">
+                                        <select th:field="*{sexo}" id="genere" name="genere">
+                                            <option th:selected="${alumno.sexoDesc == 'Home'}" value="1">Home</option>
+                                            <option th:selected="${alumno.sexoDesc == 'Dona'}" value="2">Dona</option>
+                                            <option th:selected="${alumno.sexoDesc == 'Altre'}" value="3">Altre</option>
+                                            <option th:selected="${alumno.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
+                                        </select>
+                                    </div>
+
+
+                                    <label for="mobil">Mòbil</label>
+                                    <input type="tel" id="mobil" th:field="*{movil}" th:placeholder="${alumno.movil}">
+                                </div>
+
+                                <div>
+                                    <label for="municipi">Direccio:</label>
+                                    <input type="text" id="municipi" th:field="*{direccion}" th:placeholder="${alumno.direccion}">
+
+                                    <label for="municipi">Municipi:</label>
+                                    <input type="text" id="municipi" th:field="*{municipio}" th:placeholder="${alumno.municipio}">
+
+                                    <label for="codPostal">Codi Postal:</label>
+                                    <input type="text" id="codPostal" th:field="*{codPostal}" th:placeholder="${alumno.codPostal}">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row col-lg-6 py-5 justify-content-sm-center containerCurAndData">
+                            <!-- Curriculum -->
+                            <div class="pb-5 curriculumContaniner">
+                                <div id="curriculum" class="card p-5">
+                                    <h2>Curriculum</h2>
+                                    <div>
+                                        <label for="linkedin">Linkedin</label>
+                                        <input type="text" id="linkedin" th:field="*{linkedin}" th:placeholder="${alumno.linkedin}">
+                                    </div>
+                                    <div>
+                                        <label for="portPersonal">Portafoli Personal</label>
+                                        <input type="text" id="portPersonal" th:field="*{portafoliPersonal}" th:placeholder="${alumno.portafoliPersonal}">
+                                    </div>
+                                    <div>
+                                        <label for="cvOnline">CV Online</label>
+                                        <input type="text" id="cvOnline" th:field="*{curriculumOnline}" th:placeholder="${alumno.curriculumOnline}">
+                                    </div>
+
+                                    <div>
+                                        <div>
+                                            <p>Curriculum Actual</p>
+                                            <a>PDF</a>
+                                        </div>
+                                        <div>
+                                            <p>Nou Curriculum</p>
+                                            <a>Subir</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="align-self-end otrosDatosContaniner">
+                                <!-- Otros Datos -->
+                                <div id="otrosDatos" class="card p-5">
+                                    <h2>Altres dades</h2>
+                                    <div>
+                                        <div>
+                                            <label for="dni">DNI/NIE: </label>
+                                            <input type="text" id="dni"  th:field="*{dni}" th:placeholder="${alumno.dni}">
+                                        </div>
+                                        <div>
+                                            <label for="targSanitaria">Targeta Sanitària: </label>
+                                            <input type="text" id="targSanitaria" th:field="*{tarjetaSanitaria}" th:placeholder="${alumno.tarjetaSanitaria}">
+                                        </div>
+                                        <div>
+                                            <label for="numSegSocial">Número Seguretat Social: </label>
+                                            <input type="text" id="numSegSocial" th:field="*{segSocial}" th:placeholder="${alumno.segSocial}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div class="row justify-content-sm-center justify-content-lg-between row-contrasenya">
+                                <div class="col-lg-6 px-lg-5 pb-5">
+                                    <div class="card p-5 ">
+                                        <h3> Cambiar Contrasenya </h3>
+                                        <label for="passwordNueva">Nova Contrasenya:</label>
+                                        <input type="password" th:value="${passwordNueva}" id="passwordNueva" name="passwordNueva" placeholder="Nova contrasenya">
+
+                                        <label for="confirmaPasswordNueva">Repeteix la Contrasenya:</label>
+                                        <input type="password" th:value="${confirmaPasswordNueva}" id="confirmaPasswordNueva" name="confirmaPasswordNueva" placeholder="Repeteix la nova contrasenya">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 ps-4-5 pb-5">
+                                    <div class="card p-5 ">
+                                        <h3>Confirmar Canvis</h3>
+                                        <h3>Introdueix la contrasenya actual per confirmar els canvis.</h3>
+                                        <label for="password">Contrasenya Actual:</label>
+                                        <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
-                        <label for="mobil">Mòbil</label>
-                        <input type="tel" id="mobil" th:field="*{movil}" th:placeholder="${alumno.movil}">
-                    </div>
+                        <div class="container botonesEditarPerfil">
+                            <div class="row justify-content-center w-100">
+                                <div class="col-lg-4">
+                                    <button class='boton' name="button" value="guardar">Guardar Canvis</button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button class='boton cancelar' name="button" value="cancelar">Cancelar Canvis</button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button class="boton" name="button" value="baixa">Donar'se de Baixa</button>
+                                </div>
 
-                    <div>
-                        <label for="municipi">Direccio:</label>
-                        <input type="text" id="municipi" th:field="*{direccion}" th:placeholder="${alumno.direccion}">
 
-                        <label for="municipi">Municipi:</label>
-                        <input type="text" id="municipi" th:field="*{municipio}" th:placeholder="${alumno.municipio}">
 
-                        <label for="codPostal">Codi Postal:</label>
-                        <input type="text" id="codPostal" th:field="*{codPostal}" th:placeholder="${alumno.codPostal}">
-                    </div>
-                </div>
-                <!-- Curriculum -->
-                <div id="curriculum">
-                    <h2>Curriculum</h2>
-                    <div>
-                        <label for="linkedin">Linkedin</label>
-                        <input type="text" id="linkedin" th:field="*{linkedin}" th:placeholder="${alumno.linkedin}">
-                    </div>
-                    <div>
-                        <label for="portPersonal">Portafoli Personal</label>
-                        <input type="text" id="portPersonal" th:field="*{portafoliPersonal}" th:placeholder="${alumno.portafoliPersonal}">
-                    </div>
-                    <div>
-                        <label for="cvOnline">CV Online</label>
-                        <input type="text" id="cvOnline" th:field="*{curriculumOnline}" th:placeholder="${alumno.curriculumOnline}">
-                    </div>
+                            </div>
 
-                    <div>
-                        <div>
-                            <p>Curriculum Actual</p>
-                            <a>PDF</a>
-                        </div>
-                        <div>
-                            <p>Nou Curriculum</p>
-                            <a>Subir</a>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Otros Datos -->
-                <div id="otrosDatos">
-                    <h2>Altres dades</h2>
-                    <div>
-                        <div>
-                            <label for="dni">DNI/NIE: </label>
-                            <input type="text" id="dni"  th:field="*{dni}" th:placeholder="${alumno.dni}">
-                        </div>
-                        <div>
-                            <label for="targSanitaria">Targeta Sanitària: </label>
-                            <input type="text" id="targSanitaria" th:field="*{tarjetaSanitaria}" th:placeholder="${alumno.tarjetaSanitaria}">
-                        </div>
-                        <div>
-                            <label for="numSegSocial">Número Seguretat Social: </label>
-                            <input type="text" id="numSegSocial" th:field="*{segSocial}" th:placeholder="${alumno.segSocial}">
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <h3> Cambiar Contrasenya </h3>
-                    <label for="passwordNueva">Nova Contrasenya:</label>
-                    <input type="password" th:value="${passwordNueva}" id="passwordNueva" name="passwordNueva" placeholder="Nova contrasenya">
 
-                    <label for="confirmaPasswordNueva">Repeteix la Contrasenya:</label>
-                    <input type="password" th:value="${confirmaPasswordNueva}" id="confirmaPasswordNueva" name="confirmaPasswordNueva" placeholder="Repeteix la nova contrasenya">
-
-                </div>
-
-                <div>
-                    <h3>Confirmar Canvis</h3>
-                    <h3>Introdueix la contrasenya actual per confirmar els canvis.</h3>
-                    <label for="password">Contrasenya Actual:</label>
-                    <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
-                </div>
-
-                <div>
-                    <button name="button" value="guardar">Guardar Canvis</button>
-                    <button name="button" value="cancelar">Cancelar Canvis</button>
-                    <button name="button" value="baixa">Donar'se de Baixa</button>
-                </div>
 
             </form>
         </main>
