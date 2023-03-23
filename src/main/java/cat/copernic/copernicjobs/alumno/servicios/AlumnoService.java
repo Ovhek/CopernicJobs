@@ -6,7 +6,6 @@ package cat.copernic.copernicjobs.alumno.servicios;
 
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.general.servicios.*;
-import cat.copernic.copernicjobs.dao.IncidenciaDAO;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Incidencia;
 import java.util.List;
@@ -21,29 +20,33 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AlumnoService implements AlumnoServiceInterface {
 
+    public void setAlumnoDAO(AlumnoDAO alumnoDAO) {
+        this.alumnoDAO = alumnoDAO;
+    }
+
     @Autowired
     AlumnoDAO alumnoDAO;
 
+    @Transactional(readOnly=true) 
     @Override
-    @Transactional(readOnly = true)
     public List<Alumno> listarAlumnos() {
         return (List<Alumno>) alumnoDAO.findAllByBaja(false);
     }
 
+    @Transactional 
     @Override
-    @Transactional
     public void anadirAlumno(Alumno alumno) {
         alumnoDAO.save(alumno);
     }
 
-    @Override
     @Transactional
+    @Override
     public void eliminarAlumno(Alumno alumno) {
         alumnoDAO.save(alumno);
     }
 
+    @Transactional(readOnly=true) 
     @Override
-    @Transactional(readOnly = true)
     public Alumno buscarAlumno(Alumno alumno) {
         return alumnoDAO.findById(alumno.getId()).orElse(null);
     }
@@ -53,5 +56,4 @@ public class AlumnoService implements AlumnoServiceInterface {
     public Alumno buscarAlumnoPorUsername(String username) {
         return alumnoDAO.findByUsername(username);
     }
-
 }

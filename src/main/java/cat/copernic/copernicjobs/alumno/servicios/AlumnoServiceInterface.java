@@ -42,5 +42,5 @@ public interface AlumnoServiceInterface {
      * @param username username a buscar
      * @return el objeto alumno si exist o null si no existe.
      */
-    public Alumno buscarAlumnoPorUsername(String username);
+    public Alumno buscarAlumnoPorUsername(String username); 
 }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PopUpDesiscribirse {
     
-    @GetMapping("/Desinscribirse")
+    @GetMapping("/alumne/Desinscribirse")
     public String inicio(Model model){
         
         

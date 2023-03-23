@@ -20,6 +20,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface EmpresaDAO extends UsuarioDAO<Empresa, Serializable>{ 
     
+    Empresa findByNombreEmpresa(String nombre);
     /**
      * Obtener los usuarios basandonos en su rol
      * 1 --> alumne

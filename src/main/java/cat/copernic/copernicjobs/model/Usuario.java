@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,8 +38,6 @@ public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Email(message = "{Email.alumno.correoContacto}")
-    @Email(message = "{Email.empresa.correoContacto}")
-    @Email(message = "{Email.administrador.username}")
     @Size(max = 128, message = "{Size.alumno.username}")
     @NotEmpty(message = "{NotEmpty.alumno.username}")
     @Column(name = "username")
@@ -63,7 +62,7 @@ public abstract class Usuario implements Serializable {
     @Column(name = "ID")
     private int id;
 
-    @OneToOne()
-    @PrimaryKeyJoinColumn(name = "rol_id")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "rol_id", insertable = false, updatable = false)
     private Rol rol;
 }

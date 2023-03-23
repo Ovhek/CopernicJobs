@@ -26,17 +26,17 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class RegistratComAlumne {
-    
+
     @Autowired
     AlumnoService alumnoService;
-    
+
     @Autowired
     private MessageSource messageSource;
-    
+
     @GetMapping("/registratComAlumne")
-    public String inicio(Model model){
+    public String inicio(Model model) {
         Alumno alumno = new Alumno();
-        
+
         model.addAttribute("alumno", new Alumno());
         return "registratComAlumne";
     }
@@ -74,15 +74,17 @@ public class RegistratComAlumne {
                 break;
             case 4:
                 sexoDesc = "Prefereixo no dir'ho";
-                break;   
+                break;
             default:
                 sexoDesc = "Invalid";
         }
-        
+
         alumno.setSexoDesc(sexoDesc);
         alumno.setFechaRegistro(LocalDate.now());
         alumno.setPassword(EncriptarContrasenya.encryptar(alumno.getPassword()));
         alumnoService.anadirAlumno(alumno);
+        
+        model.addAttribute("registrado",true);
         return "/registratComAlumne";
     }
 }

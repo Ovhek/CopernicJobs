@@ -6,6 +6,9 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Empresa;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +26,15 @@ public class verPerfilEmpresaAlumno {
 
     @Autowired
     EmpresaService empresaService;
-
-    @GetMapping("/veureEmpresaAlumne/{id}")
-    public String inicio(Empresa empresaGet, Model model) {
+    @PreAuthorize("hasAuthority('alumne')")
+    @GetMapping("/alumne/veureEmpresaAlumne/{id}")
+    public String inicio(Empresa empresaGet, Model model,@AuthenticationPrincipal UserDetails username) {
         Empresa empresa = empresaService.cercarEmpresa(empresaGet);
         model.addAttribute("empresa", empresa);
 
         String ruta = "alumno/";
         String archivo = "verEmpresaAlumno";
 
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Empresa - " + empresa.getNombreEmpresa());
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Empresa - " + empresa.getNombreEmpresa(),username);
     }
 }

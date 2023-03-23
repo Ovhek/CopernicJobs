@@ -4,7 +4,6 @@
  */
 package cat.copernic.copernicjobs.general.servicios;
 
-
 import cat.copernic.copernicjobs.dao.AdministradorDAO;
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;

@@ -18,15 +18,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="container">
                 <div class="row gx-0">
                     <!-- Datos usuario -->
-                    <div class="col-md-5 card p-5 mx-md-5 my-5">
+                    <div class="col-lg-5 card p-5 mx-lg-5 my-5">
                         <div id="perfil">
-                            
+
                             <img th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
                             <h3 class="align-self-center" th:text="${alumno.nombre} + ' ' +${alumno.apellidos}">
                             </h3>
 
                             <p th:text="${alumno.username}"></p>
-                            <p th:text="${alumno.direccion}"></p>
+                            <p th:text="${alumno.direccion} + ' ' + ${alumno.municipio}"></p>
+                            <p th:text="${alumno.codPostal}"></p>
                             <p th:text="${alumno.movil}"></p>
                             <p th:text="${alumno.sexoDesc}"></p>
                             <p th:text="${alumno.correoContacto}"></p>
@@ -34,22 +35,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
 
                     <!-- Curriculum + otros datos.-->
-                    <div class="col-md-5">
+                    <div class="col-lg-5">
                         <div class="row">
                             <!-- Curriculum -->
                             <div class="col-md-12 card p-5 my-5">
                                 <div id="curriculum">
                                     <div>
                                         <h3 class="align-self-center">Curriculum</h3>
-                                        <ul>
+                                        <ul class="perfilCurriculum">
                                             <li>
-                                                <a th:href="${alumno.linkedin}"><i class="fa-brands fa-linkedin"></i>Linkedin</a>
+                                                <a target="_blank" th:href="${alumno.linkedin}"><i class="fa-brands fa-linkedin"></i>Linkedin</a>
                                             </li>
                                             <li>
-                                                <a th:href="${alumno.portafoliPersonal}"><i class="fa-solid fa-briefcase"></i>Portafoli Personal</a>
+                                                <a target="_blank" th:href="${alumno.portafoliPersonal}"><i class="fa-solid fa-briefcase"></i>Portafoli Personal</a>
                                             </li>
                                             <li>
-                                                <a th:href="${alumno.curriculumOnline}">Curriculum Online</a>
+                                                <a target="_blank" th:href="${alumno.curriculumOnline}"><i class="fa-solid fa-person-circle-exclamation"></i>Curriculum Online</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -59,10 +60,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <!-- Otros datos -->
                             <div class="col-md-12 p-5 card mb-5">
                                 <div id="otrosDatos">
-                                    <div>
-                                        <span>DNI/NIE: </span><span th:text="${alumno.dni}"></span>
-                                        <span>Targeta Sanitària: </span><span th:text="${alumno.tarjetaSanitaria}"></span>
-                                        <span>Número Seguretat Social </span><span th:text="${alumno.SegSocial}"></span> 
+                                    <div class="row gy-3">
+                                        <h3>Altres Dades</h3>
+                                        <div class="col-lg-12">
+                                            <span>DNI/NIE: </span><span th:text="${alumno.dni}"></span>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <span>Targeta Sanitària: </span><span th:text="${alumno.tarjetaSanitaria}"></span>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <span>Número Seguretat Social </span><span th:text="${alumno.SegSocial}"></span> 
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +80,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
 
-            <a class="boton" href="/alumne/editarPerfilAlumne">Editar Perfil</a>
+            <a class="boton" href="/alumne/editarPerfil">Editar Perfil</a>
         </main>
     </body>
 </html>

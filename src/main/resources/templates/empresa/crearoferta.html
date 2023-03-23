@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,7 +8,11 @@
     </style>
     <script src=""></script>
     <body>
-        <form method="post" th:action="@{/crearoferta}" th:object="${oferta}">
+        <form th:action="@{/registraroferta}" method="post" th:object="${oferta}">
+            <input type="hidden" name="id" th:field="*{id}"/>
+            <input type="hidden" name="empresa" th:field="${oferta.empresa}"/>
+            <input type="hidden" name="id" th:field="*{id}"/>
+            <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
             <table style="margin: 0 auto;">
                 <div class="container">
                     <tr>
@@ -18,7 +22,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" placeholder="Introdueix el titol de l'Oferta" style="width:75%" name="uname" required>
+                            <input type="text" name="titulo" th:field="*{tituloOferta}" placeholder="Introdueix el titol de l'Oferta" style="width:75%" required>
                         </th>
                     </tr>
                     <tr>
@@ -28,7 +32,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" placeholder="Introdueix la descripció de l'Oferta"></textarea>
+                            <textarea rows="10" cols="50" name="descripcionOferta" th:field="*{descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -38,7 +42,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" placeholder="Introdueix els Requisits de l'Alumne"></textarea>
+                            <textarea rows="10" cols="50" name="requisitos" th:field="*{requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -48,7 +52,7 @@
                     </tr>
                     <tr>
                         <th>
-				<textarea name="textarea" rows="10" cols="50" placeholder="Introdueix lo que ofereix l'empresa"></textarea>
+                            <textarea rows="10" cols="50" name="ofrece" th:field="*{seOfrece}" placeholder="Introdueix lo que ofereix l'empresa"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -58,12 +62,12 @@
                     </tr>
                     <tr>
                         <th>
-                            <button type="submit">Pujar PDF</button>
+                            <button type="submit" name="boton" value="subirpdf">Pujar PDF</button>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <button type="submit">Registrar Oferta</button>
+                            <button type="submit" name="boton" value="registrar">Registrar Oferta</button>
                         </th>
                     </tr>
                 </div>

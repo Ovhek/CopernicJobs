@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body xmlns:th="http://www.thymeleaf.org">
         <header>
             <h1 th:text="${oferta.tituloOferta}"></h1>
         </header>
@@ -41,7 +41,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
 
                 <p th:text="${oferta.fechaPeticion}"></p>
-                <a th:href="@{/editarOferta/}+${oferta.id}" th:text="Editar"/>
+                <a class="boton" th:href="@{/editarOferta/}+${oferta.id}" th:text="Editar"/>
             </section>
         </main>
     </body>

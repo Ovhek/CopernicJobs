@@ -10,6 +10,7 @@
     <body>
 	<div>
             <table style="margin: 0 auto;">
+                <input type="hidden" name="id" th:field="${empresa.id}"/>
                 <tr>
                     <th>
                         <strong><h1 th:text="${empresa.nombreEmpresa}">Institut Nicolau Copernic</h1></strong>
@@ -52,12 +53,12 @@
                 </tr>
                 <tr>
                     <th>
-                        <strong><p th:text="${empresa.movil}">+34 655719719</p></strong>
+                        <strong><p th:text="${empresa.movilEmpresa}">+34 655719719</p></strong>
                     </th>
                 </tr>
                     <tr>
-                        <th>                            
-                            <a href="@/editarperfilempresa/} + ${empresa.id}">Editar Perfil</a>
+                        <th>       
+                            <a th:href="@{/editarperfilempresa/} + ${empresa.id}">Editar Perfil</a>
                         </th>
                     </tr>
             </table>
@@ -80,7 +81,7 @@
                 </tr>
                 <tr>
                     <th>
-                        <strong><span>Telèfon de Contacte: </span><span th:text="${empresa.movilEmpresa}">655719719</span></strong>
+                        <strong><span>Telèfon de Contacte: </span><span th:text="${empresa.movil}">655719719</span></strong>
                     </th>
                 </tr>
 

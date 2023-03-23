@@ -13,7 +13,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <form th:action="@{/guardarEmpresa}" method="post" th:object="${empresa}">
             <div id="empresa">
-                <h2>Dades Empresa</h2>
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{fechaRegistro}"/>
                 <input type="hidden" th:field="*{password}"/>

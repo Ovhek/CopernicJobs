@@ -22,8 +22,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     </head>
     <body>
-        <header>
-            <img th:src="@{images/logoCopernicJobs.png}" alt="Logo de la aplicación">
 
         <!-- ======================= CABECERA ======================= -->
         <header  id="header" class="header fixed-top d-flex align-items-center">
@@ -92,18 +90,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
             </nav>
         </header>
-        <nav>
-            <div th:insert="@{${rutaNav}+${archivoNav}} :: nav">
-                <!-- Nav Dinamico -->
-            </div>
-        </nav>
-        <main>
+
+        <!-- ======================= BARRA LATERAL ======================= -->
+        <aside  id="sidebar" class="sidebar" th:insert="@{${rutaNav}+${archivoNav}} :: nav">
+
+        </aside>
+
+        <!-- ======================= CONTENIDO PRINCIPAL ======================= -->
+        <main id="main" class="main">
             <div th:insert="@{${rutaContenido}+${archivoContenido}}">
                 <!-- Contenedor vacío para añadir más contenido dinámicamente -->
             </div>
         </main>
-        <footer>
-            <div class="izquierda">
+
+        <!-- ======================= FOOTER ======================= -->
+        <footer id="footer" class="footer">
+            <div class="credits">
                 <p>[[#{plantilla.footer.direccion}]]</p>
                 <p>[[#{plantilla.footer.creadorpor}]]</p>
                 <p>[[#{plantilla.footer.copyright}]]</p>

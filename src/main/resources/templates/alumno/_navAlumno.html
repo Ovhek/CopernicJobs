@@ -11,16 +11,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <nav th:fragment="nav">
-            <ul>
-                <li><a href="/veurePerfilAlumne">Veure Perfil</a></li>
-                <li><a href="/editarPerfilAlumne">Editar Perfil</a></li>             
-                <li><a href="/iniciAlumne">Inici</a></li>
-                <li><a href="/veureOfertesAlumne">Veure Ofertes</a></li>
-                <li><a href="/inscripcions">Les meves Inscripcions</a></li>
-                <li><a href="/crearIncidencia">Crear incidència</a></li>
-                <li><a href="/login">Tancar Sessió</a></li>
-            </ul>
-        </nav>
+        <ul th:fragment="nav" class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${#ctx.springRequestContext.requestUri == '/alumne/inici'} ? '' : collapsed" href="/alumne/inici">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inici</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${#ctx.springRequestContext.requestUri == '/alumne/veureOfertesAlumne'} ? '' : collapsed" href="/alumne/veureOfertesAlumne">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Veure Ofertes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${#ctx.springRequestContext.requestUri == '/alumne/inscripcions'} ? '' : collapsed" href="/alumne/inscripcions">
+                    <i class="fa-solid fa-rectangle-list"></i>
+                    <span>Les meves Inscripcions</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:classappend="${#ctx.springRequestContext.requestUri == '/crearIncidencia'} ? '' : collapsed" href="/crearIncidencia">
+                    <i class="fa-solid fa-bug"></i>
+                    <span>Crear incidència</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/login">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Tancar Sessió</span>
+                </a>
+            </li>
+        </ul>
     </body>
 </html>

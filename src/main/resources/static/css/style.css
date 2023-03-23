@@ -1508,6 +1508,10 @@ div.errorDiv.card{
     margin: 50px auto;
 }
 
+div.errorDiv ul{
+    list-style-type: none;
+}
+
 div.errorDiv.card ul{
     width: 100%;
     padding: 10px;
@@ -1736,4 +1740,74 @@ textarea::-webkit-scrollbar-thumb {
     align-self: center;
     border-radius: 15px;
     margin-bottom: 20px;
+}
+#curriculum h3{
+    text-align: center;
+}
+
+#curriculum ul{
+    list-style-type: none;
+}
+
+#curriculum li{
+    font-size: 1.5em;
+}
+
+#curriculum i{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#otrosDatos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#otrosDatos h3{
+    text-align: center;
+}
+
+
+/*--------------------------------------------------------------
+# ADMINISTRADOR
+--------------------------------------------------------------*/
+.noticiaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.noticiaCard{
+    padding: 50px;
+    max-width: 400px;
+    min-width: fit-content;
+    align-self: center;
+    
+}
+.noticiaCard *{
+    display: block;
+}
+
+.boton.cancelar{
+    background-color: #8B0000;
+}
+.boton.cancelar:hover{
+    background-color: #DC143C;
+}
+.noticiaCard input{
+    width: 100%;
+}
+
+.noticiaCard textarea{
+    width: 100%;
+}
+
+.empresaCard{
+    min-width: 400px;
+}
+
+.verempresa .row{
+    justify-content: center;
+}
+.descripcionEmpresa{
+    height: 100%;
 }

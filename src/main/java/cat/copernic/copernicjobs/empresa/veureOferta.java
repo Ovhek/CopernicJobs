@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa;
 
+import cat.copernic.copernicjobs.dao.OfertaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;

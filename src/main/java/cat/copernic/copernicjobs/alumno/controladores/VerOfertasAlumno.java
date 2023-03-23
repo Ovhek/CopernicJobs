@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.alumno.controladores;
 
+import cat.copernic.copernicjobs.dao.OfertaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
@@ -12,6 +13,9 @@ import cat.copernic.copernicjobs.model.Oferta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,19 +26,21 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class VerOfertasAlumno {
+
     @Autowired
     private OfertaService ofertaService;
-        
-    @GetMapping("/veureOfertesAlumne")
-    public String inicio(Model model) {
+
+    @PreAuthorize("hasAuthority('alumne')")
+    @GetMapping("/alumne/veureOfertesAlumne")
+    public String inicio(Model model,@AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 
         String ruta = "alumno/";
         //nombre del archivo html
         String archivo = "verOfertas";
-        
+
         model.addAttribute("ofertas", ofertaService.llistarOfertas());
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Veure ofertes");
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Veure ofertes",username);
     }
 }

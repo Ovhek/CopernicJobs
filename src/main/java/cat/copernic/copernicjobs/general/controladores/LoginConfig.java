@@ -5,19 +5,22 @@
 package cat.copernic.copernicjobs.general.controladores;
 
 import cat.copernic.copernicjobs.general.servicios.LoginService;
+import java.util.Locale;
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 /**
  *
@@ -26,7 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Configuration //Indica al sistema que és una classe de configuració
 @EnableWebSecurity //Habilita la seguretat web
 public class LoginConfig {
-    
+
     @Autowired
     private LoginService loginService; //Objecte per recuperar l'usuari
 
@@ -50,11 +53,26 @@ public class LoginConfig {
     public void autenticacio(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginService).passwordEncoder(new BCryptPasswordEncoder());
     }
-    
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
+
+    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
+
     @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable().authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/inici").authenticated()
+                .requestMatchers("/crearIncidencia").authenticated()
                 .requestMatchers("/alumne/**").hasAuthority("alumne")
                 .requestMatchers("/empresa/**").hasAuthority("empresa")
                 .requestMatchers("/administrador/**").hasAuthority("administrador")
@@ -71,27 +89,4 @@ public class LoginConfig {
                 .build();
 
     }
-
-    /*@GetMapping("/login")
-    public String inicio(){
-        return "login";
-    }
-    
-    @PostMapping("/login")
-    public String login(String correo, String contrasenya, Model model){
-        boolean loginValido = false;
-        
-        loginValido = correo.equals("alex") && contrasenya.equals("1234");
-        
-        String redirect = "redirect:";
-        
-        if(loginValido) redirect += "/inici";
-        else {
-            model.addAttribute("loginIncorrecto",true);
-            redirect += "/login";
-        }
-        
-        return redirect;
-        
-    }*/
 }
