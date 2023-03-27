@@ -4,7 +4,6 @@
  */
 package cat.copernic.copernicjobs.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,10 +15,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import lombok.Data;
-import lombok.NonNull;
 import org.hibernate.validator.constraints.URL;
 
 /**
@@ -68,7 +65,5 @@ public class Oferta {
     
     @OneToMany(mappedBy="oferta")
     private List<Inscripcion> inscripciones;
-    
-    
-    
+        
 }

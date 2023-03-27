@@ -230,6 +230,10 @@ h6 {
     border-color: #d3d3d4;
 }
 
+.reducir-tamaño{
+    height: 50%;
+}
+
 /* Card */
 .card {
     border: none;
@@ -1634,13 +1638,30 @@ div.errorDiv.card .errorMessage *{
     justify-content: center;
     align-items: center;
 }
+
 .incidenciaCard{
     padding: 50px;
     max-width: 400px;
     min-width: fit-content;
-    align-self: center;
-    
+    align-self: center; 
 }
+.separador{
+    padding: 20px;
+}
+
+.empresaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.empresaCard{
+    padding: 50px;
+    min-width: 400px;
+    align-self: center; 
+}
+
 .incidenciaCard *{
     display: block;
 }
