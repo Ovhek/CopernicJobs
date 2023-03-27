@@ -28,4 +28,10 @@ public class Login {
         if(user != null) return "redirect:/inici";
         return "login";
     }
+    
+    @GetMapping("/logout")
+    public String logout(@AuthenticationPrincipal UserDetails user){
+        user = null;
+        return "login";
+    }
 }
