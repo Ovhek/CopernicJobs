@@ -54,7 +54,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             </li>
                                         </ul>
                                     </div>
-                                    <button class="boton">Descarregar Curriculum PDF</button>
+                                    <a th:if="${!#strings.isEmpty(alumno.pdfLink)}" target="_blank" class="boton" th:href="${alumno.pdfLink}">Veure Curriculum PDF</a>
                                 </div>
                             </div>
                             <!-- Otros datos -->

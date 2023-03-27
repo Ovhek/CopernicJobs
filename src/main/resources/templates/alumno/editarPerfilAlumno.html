@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <main>
-            <form method="post" th:action="@{/alumne/editarPerfil}" th:object="${alumno}">
+            <form method="post" th:action="@{/alumne/editarPerfil}" th:object="${alumno}" enctype="multipart/form-data">
 
 
                 <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
@@ -42,7 +42,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             <img id="previewImg" th:src="${alumno.avatarLink}" alt="Foto Perfil"/>
                                         </div>
                                     </div>
-                                    <input type="file" id="fileInput" name="file" style="display:none"/>
+                                    <input type="file" id="fileInput" name="profileImg" style="display:none"/>
                                 </div>
                                 <div>
                                     <input type="hidden" th:field="*{id}" >
@@ -106,17 +106,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <input type="text" id="cvOnline" th:field="*{curriculumOnline}" th:placeholder="${alumno.curriculumOnline}">
                                     </div>
 
-                                    <div>
-                                        <div>
+                                    <div class="curriculumUploadView">
+                                        <div class="curriculumActual">
                                             <p>Curriculum Actual</p>
-                                            <a>PDF</a>
+                                            <a th:href="${alumno.pdfLink}" target="_blank" class="boton"><i class="fa-solid fa-file-pdf"></i></a>
                                         </div>
-                                        <div>
+
+                                        <div class="align-self-center uploadContainer uploadContainerCurriculum">
                                             <p>Nou Curriculum</p>
-                                            <a>Subir</a>
+                                            <div id="dropZoneCurriculum">
+                                                <div id="messageCurriculum"></div>
+                                                <div class="uploadButtonContainer">
+                                                    <button class="boton" type="button" id="uploadButtonCurriculum">+</button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="fileInputCurriculum" name="profileCurriculum" style="display:none"/>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -180,9 +186,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <div class="col-lg-4">
                                     <button class="boton" name="button" value="baixa">Donar'se de Baixa</button>
                                 </div>
-
-
-
                             </div>
 
                         </div>
@@ -192,5 +195,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </main>
 
         <script th:src="@{/js/DragDropImg.js}"></script>
+        <script th:src="@{/js/DragDropPdf.js}"></script>
     </body>
 </html>

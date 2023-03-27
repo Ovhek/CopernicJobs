@@ -1874,7 +1874,6 @@ textarea::-webkit-scrollbar-thumb {
     width: 100%;
 }
 .profileData *:not([class="custom-select"],[name="sexo"],[class="select-selected"],[class="select-items select-hide"]){
-    display: block;
     width: 100%;
 }
 
@@ -1894,7 +1893,7 @@ textarea::-webkit-scrollbar-thumb {
     margin-bottom: 20px;
 }
 
-#dropZone{
+#dropZone, #dropZoneCurriculum{
 
     position: relative;
     display:flex;
@@ -1904,7 +1903,7 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 15px;
 }
 
-#dropZone #message{
+#dropZone #message, #dropZoneCurriculum #messageCurriculum{
     position: absolute;
 }
 #preview{
@@ -1949,4 +1948,40 @@ textarea::-webkit-scrollbar-thumb {
     width: 80%;
     text-align: center;
     margin: 0 auto;
+}
+
+.noticia p{
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.curriculumUploadView{
+    display: flex;
+}
+
+.uploadContainerCurriculum{
+    text-align: center;
+    width: 300px !important;
+    height: 150px !important;
+}
+
+.curriculumActual{
+    text-align: center;
+}
+
+.curriculumActual a{
+    min-width: 75px !important;
+    min-height: 75px !important;
+    width: 75px !important;
+    height: 75px !important;
+}
+.curriculumActual i{
+    font-size: 50px;
+}
+
+#messageCurriculum{
+    background-color: rgba(0,0,0,0.8);
+    align-self: start;
+    position: absolute;
+    bottom: -90px;
 }

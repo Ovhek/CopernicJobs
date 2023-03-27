@@ -9,11 +9,19 @@ import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.EncriptarContrasenya;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
 import cat.copernic.copernicjobs.model.Alumno;
+import cat.copernic.copernicjobs.model.Usuario;
+import io.micrometer.common.lang.Nullable;
 import jakarta.validation.Valid;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,12 +30,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -64,12 +74,18 @@ public class EditarPerfilAlumno {
 
     @PreAuthorize("hasAuthority('alumne')")
     @PostMapping("/alumne/editarPerfil")
-    public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
+    public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Nullable @RequestParam(name = "profileImg") MultipartFile img, @Nullable @RequestParam(name = "profileCurriculum") MultipartFile curriculum, @Valid Alumno alumno, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
 
+        if (img != null && !img.getOriginalFilename().isEmpty()) {
+            alumno.setAvatarLink(subirFichero(img, alumno, "img"));
+        }
+        if (curriculum != null && !curriculum.getOriginalFilename().isEmpty()) {
+            alumno.setPdfLink(subirFichero(curriculum, alumno, "curriculum"));
+        }
         ObjectError error = null;
 
         if (alumnoDB == null) {
@@ -156,7 +172,7 @@ public class EditarPerfilAlumno {
             } else if (btnValue.equals("baixa")) {
                 alumnoDB.setBaja(true);
             } else {
-                return "redirect:/alumne/veurePerfilAlumne";
+                return "redirect:/alumne/veurePerfil";
             }
             String sexoDesc = "";
             switch (alumno.getSexo()) {
@@ -179,6 +195,41 @@ public class EditarPerfilAlumno {
             alumnoService.anadirAlumno(alumnoDB);
         }
         redirectAttributes.addFlashAttribute("CanvisGuardats", messageSource.getMessage("info.alumneguardat", null, Locale.ENGLISH));
-        return "redirect:/alumne/veurePerfilAlumne";
+        return "redirect:/alumne/veurePerfil";
+    }
+
+    /**
+     * Permite subir un fichero al servidor y obtener el enlace de su ubicación
+     *
+     * @param file Archvio a subir
+     * @param alumno Usuario de tipo alumno
+     * @param tipo tipo de archivo.
+     * @return enlace del archivo en el servidor.
+     */
+    private String subirFichero(MultipartFile file, Usuario usuario, String tipo) {
+        String link = "";
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        try {
+            Path path = null;
+            switch (tipo.toLowerCase()) {
+                case "img":
+                    path = Paths.get(messageSource.getMessage("ruta.images", null, Locale.ENGLISH) + usuario.getId());
+                    link = "/files/img/" + usuario.getId() + "/profile." + FilenameUtils.getExtension(file.getOriginalFilename());
+                    break;
+                case "curriculum":
+                    path = Paths.get(messageSource.getMessage("ruta.curriculum", null, Locale.ENGLISH) + usuario.getId());
+                    link = "/files/curriculum/" + usuario.getId() + "/profile." + FilenameUtils.getExtension(file.getOriginalFilename());
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            Files.createDirectories(path);
+            path = Paths.get(path.toString(), "/" + "profile." + FilenameUtils.getExtension(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // manejo de errores
+        }
+        return link;
     }
 }
