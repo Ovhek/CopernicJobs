@@ -4,10 +4,11 @@
  */
 package cat.copernic.copernicjobs.empresa;
 
-import cat.copernic.copernicjobs.dao.OfertaDAO;
+import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
+import cat.copernic.copernicjobs.model.Empresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,17 +28,24 @@ public class misOfertas {
     
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
     private OfertaService ofertaService;
+    
+    @Autowired
+    EmpresaService empresaService;
 
     @PreAuthorize("hasAuthority('empresa')")
     @GetMapping("/empresa/inici")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails user) {
         
+        int id = empresaService.buscarPorUsername(user.getUsername()).getId();
+        Empresa empresa = new Empresa();
+        empresa.setId(id);
+        Empresa emp = empresaService.cercarEmpresa(empresa);
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "misofertas";
        
-        model.addAttribute("ofertas", ofertaService.llistarOfertas());
+        model.addAttribute("ofertas", ofertaService.listarPorNombre(emp.getNombreEmpresa()));
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
@@ -49,13 +57,13 @@ public class misOfertas {
         //if((buscar!=null)&&(ordenar!="0")){
         model.addAttribute("ofertas",ofertaService.filtrarOfertasOrdenacion(buscar, ordenar));
         
-        //}
+        //Ruta donde está el archivo html 
+        String ruta = "empresa/";
+        //nombre del archivo html
+        String archivo = "misofertas";
         
-        
-        
-        
-        return "redirect:inici";
-    
+        //Cargamos el archivo y lo añadimos a la plantilla de la página principal
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
 
     

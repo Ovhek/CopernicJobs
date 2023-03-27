@@ -9,66 +9,80 @@
     <script src=""></script>
     <head>
         <!--Enllaç als estils de Bootstrap-->
-        <!--link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
         <!--Enllaç als estils de Font Awesome-->
-        <!--link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
 
 
-        <!--link th:href="@{/css/quill.snow.css}" rel="stylesheet">
-        <!--link th:href="@{/css/quill.bubble.css}" rel="stylesheet"-->
-                <link th:href="@{/css/empresa.css}" rel="stylesheet">  
+        <link th:href="@{/css/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{/css/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{/css/empresa.css}" rel="stylesheet">  
     </head>
     <body>
-        <input type="hidden" name="id" th:field="${empresa.id}"/>
-            <div>
-                    <div>
+        <div style="display: flex;" class="">
+            <div class="col-md-5 card p-5 mx-md-5 my-5">
+                <div>
+                    <div class="card-title">
                         <div>
                             <div>
-                                <strong><h1 th:text="${empresa.nombreEmpresa}">Institut Nicolau Copernic</h1></strong>  
+                                <div>
+                                    <strong><h1 th:text="${empresa.nombreEmpresa}">Institut Nicolau Copernic</h1></strong>  
+                                </div>
                             </div>
                         </div>
+                        <div>
+                            <strong><h5 th:text="${empresa.descripcionEmpresa}">Centre Educatiu</h5></strong>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div>
+                        <strong><h3>Dades de Contacte</h3></strong>
                     </div>
                     <div>
-                        <strong><h3 th:text="${empresa.descripcionEmpresa}">Centre Educatiu</h3></strong>
+                        <p>Direccio: <span th:text="${empresa.direccion}"></span></p>
                     </div>
                     <div>
-                        <strong><h3>Contacte</h3></strong>
+                        <p>Codi Postal: <span th:text="${empresa.codPostal}"></span></p>
                     </div>
                     <div>
-                        <strong><p th:text="${empresa.direccion}">Avenida Cervantes, 31</p></strong>
+                        <p>Municipi: <span th:text="${empresa.municipio}"></span></p>
                     </div>
                     <div>
-                        <strong><p th:text="${empresa.codPostal}">08225</p></strong>
+                        <p>Correu de Contacte: <span th:text="${empresa.correoContacto}"></span></p>
                     </div>
                     <div>
-                        <strong><p th:text="${empresa.municipio}">Barcelona</p></strong>
+                        <p>Pagina web: <span th:text="${empresa.webEmpresa}"></span></p>
                     </div>
                     <div>
-                        <strong><p th:text="${empresa.correoContacto}">JohnDoe@gmail.com</p></strong>
-                    </div>
-                    <div>
-                        <strong><p th:text="${empresa.webEmpresa}">www.insnicolaucopernic.cat/</p></strong>
-                    </div>
-                    <div>
-                        <strong><p th:text="${empresa.movilEmpresa}">+34 655719719</p></strong>
+                        <p>Telefon de l'empresa: <span th:text="${empresa.movilEmpresa}"></span></p>
                     </div>
                     <div>       
-                            <a th:href="@{/empresa/editarperfilempresa/} + ${empresa.id}">Editar Perfil</a>
-                    </div>
+                        <input type="hidden" name="id" th:field="${empresa.id}"/>
 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 mx-md-5 my-5">
+                <div class="card p-5">
                     <div>
                         <strong><h1>Responsable</h1></strong>
                     </div>
                     <div>
-                        <strong><span>Nom: </span><span th:text="${empresa.nombre}">John</span></strong>
+                        <span>Nom: </span><span th:text="${empresa.nombre}">John</span>
                     </div>
                     <div>
-                        <strong><span>Cognoms: </span><span th:text="${empresa.apellidos}">Doe</span></strong>
+                        <span>Cognoms: </span><span th:text="${empresa.apellidos}">Doe</span>
                     </div>
                     <div>
-                        <strong><span>Telèfon de Contacte: </span><span th:text="${empresa.movil}">655719719</span></strong>
-                    </div>
-	</div>
+                        <span>Telèfon de Contacte: </span><span th:text="${empresa.movil}">655719719</span>
+                    </div> 
+                </div>
 
+            </div>
+
+        </div>
+        <div>
+            <a th:href="@{/empresa/editarPerfil}" class="boton">Editar Perfil</a>            
+        </div>
     </body>
 </html>

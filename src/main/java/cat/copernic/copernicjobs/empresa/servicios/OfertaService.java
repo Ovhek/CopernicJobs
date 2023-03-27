@@ -62,8 +62,29 @@ public class OfertaService implements OfertaServiceInterface {
 
     @Override
     public List<Oferta> filtrarOfertasOrdenacion(String busqueda, String ordenacion) {
-        //return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByCriterio(busqueda, ordenacion);
+
+        if(ordenacion.equals("alfabetico")){
+            return (List<Oferta>) ofertaDao.findAll();
+            //return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByTituloOferta(busqueda, ordenacion);
+        }
+        else if(ordenacion.equals("dataPublicacio")){
+            return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByFechaValidacionAsc(busqueda);
+        }
+        else if(ordenacion.equals("numeroCandidatos")){
+            return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByNumeroInscripcionesAsc(busqueda);
+        }
+        else if(ordenacion.equals("ofertasActivas")){
+            return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByFechaPeticionAsc(busqueda);
+        }
+        else if(ordenacion.equals("ofertasPublicadas")){
+            return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByFechaValidacionAsc(busqueda);
+        }
         return null;
+    }
+
+    @Override
+    public List<Oferta> listarPorNombre(String nombre) {
+        return (List<Oferta>) ofertaDao.findByNombreEmpresa(nombre);
     }
     
 }
