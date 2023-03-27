@@ -12,8 +12,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <main>
             <form method="post" th:action="@{/alumne/editarPerfil}" th:object="${alumno}" enctype="multipart/form-data">
-
-
                 <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
                     <ul>
                         <li class="errorMessage"  th:each="err : ${errores}">
@@ -184,7 +182,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <button class='boton cancelar' name="button" value="cancelar">Cancelar Canvis</button>
                                 </div>
                                 <div class="col-lg-4">
-                                    <button class="boton" name="button" value="baixa">Donar'se de Baixa</button>
+                                    <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#des">Donar'se de Baixa</button>
                                 </div>
                             </div>
 
@@ -194,6 +192,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </form>
         </main>
 
+        <div class="modal fade" id="des" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmació</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            estàs segur que vols donarte de baixa?<p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tancar</button>
+                        <form th:action="@{/alumne/editarPerfil}" th:object="${alumno}" method="post">
+                            <input type="hidden" th:field="*{id}" >
+                            <button type="submit" name="button" value="baixa" class="boton">Confirmar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script th:src="@{/js/DragDropImg.js}"></script>
         <script th:src="@{/js/DragDropPdf.js}"></script>
     </body>

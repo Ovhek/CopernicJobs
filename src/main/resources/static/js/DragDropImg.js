@@ -18,7 +18,7 @@ dropZone.addEventListener('drop', function (e) {
     // Verificar que el archivo es una imagen
     if (!file.type.startsWith('image/')) {
         var message = document.getElementById('message');
-        message.innerHTML = "<p id='UploadErrorMessage' class='errorMessage'>Error: El arxiu seleccionat no es una imatge.</p>";
+        message.innerHTML = "<p id='UploadErrorMessage' class='errorMessage'>Error: l'arxiu seleccionat no es una imatge.</p>";
         return;
     }
 
@@ -47,9 +47,9 @@ document.getElementById('fileInput').addEventListener('change', function (e) {
     var file = this.files[0];
 
     // Verificar que el archivo es una imagen
-    if (!file.type.startsWith('application/pdf')) {
+    if (!file.type.startsWith('image')) {
         var message = document.getElementById('message');
-        message.innerHTML = "<p id='UploadErrorMessage' class='errorMessage'>Error: El archivo seleccionado no es una imagen.</p>";
+        message.innerHTML = "<p id='UploadErrorMessage' class='errorMessage'>Error: l'arxiu seleccionat no es una imatge.</p>";
         return;
     }
 
