@@ -74,6 +74,7 @@ public class LoginConfig {
         return http.csrf().disable().authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/inici").authenticated()
                 .requestMatchers("/files/**").authenticated()
+                .requestMatchers("/verModulos").hasAnyAuthority("administrador")
                 .requestMatchers("/crearIncidencia").authenticated()
                 .requestMatchers("/alumne/**").hasAnyAuthority("alumne", "administrador")
                 .requestMatchers("/empresa/**").hasAnyAuthority("empresa", "administrador")

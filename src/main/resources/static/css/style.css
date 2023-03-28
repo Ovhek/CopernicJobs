@@ -2024,3 +2024,7 @@ textarea::-webkit-scrollbar-thumb {
     position: sticky;
     top: 100px;
 }
+
+.nav-link:not(.collapsed) .rotating-arrow{
+    transform: rotate(180deg);
+}

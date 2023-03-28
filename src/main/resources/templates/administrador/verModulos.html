@@ -11,12 +11,48 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form th:action="@{/guardar-modulos}" method="post" th:object="${modulo}">
-            <h2>Configuración de módulos</h2>
-            <ul th:each="modulo : ${modulos}">
-                <li><input type="checkbox" th:text="${modulo.nombre}" th:checked="${moduloActivo}"></li>
-            </ul>
-            <button type="submit">Guardar</button>
-        </form>
+        <div class="container">
+            <form th:action="@{/administrador/guardar-modulos}" method="post" th:object="${modulo}">
+                <h2>Configuració de mòduls</h2>
+                <ul class="sidebar-nav">
+                    <li class="nav-item" th:each="rol : ${roles}">
+                        <a class="nav-link collapsed" th:data-bs-target="${'#'+rol.nom}" data-bs-toggle="collapse" href="#">
+                            </i><span th:text="${#strings.capitalize(rol.nom)}"></span><i class="fa-solid fa-square-caret-down rotating-arrow ms-auto"></i>
+                        </a>
+
+                        <ul th:id="${rol.nom}" class="nav-content collapse ms-5" data-bs-parent="#sidebar-nav">
+                            <li>
+                                <div class="mt-2 row">
+                                    <div class="col">
+                                        <p>Mòdul</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>Habilitat</p>    
+                                    </div>
+                                    <div class="col">
+                                        <p>Visible</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li th:each="modulo : ${modulos}">
+                                <div class="mt-2 row">
+                                    <div class="col">
+                                        <p th:text="${'Mòdul ' + #strings.capitalize(modulo.nombre)}"></p>
+                                    </div>
+                                    <div class="col">
+                                        <input type="checkbox" th:name="modulos" th:checked="${ThymeleafFunctions.hasModulo(rol, modulo)}" th:value="${rol.nom + ':'+modulo.nombre}" />
+                                    </div>
+                                    <div class="col">
+                                        <input type="checkbox" th:name="visible" th:checked="${ThymeleafFunctions.isVisible(rol, modulo)}" th:value="${rol.nom + ':'+modulo.nombre}" />
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="boton" type="submit">Guardar</button>
+            </form>
+        </div>
+
     </body>
 </html>

@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
@@ -32,11 +33,11 @@ public class RolModulo implements Serializable {
     private int id;
     
     @ManyToOne
-    @MapsId("rol_id")
+    @JoinColumn(name = "rol_id")
     private Rol rol;
     
     @ManyToOne
-    @MapsId("modulo_id")
+    @JoinColumn(name = "modulo_id")
     private Modulo modulo;
     
     @Column(name = "visibilidad")
