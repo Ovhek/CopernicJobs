@@ -31,7 +31,7 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
     List<Oferta> findByNombreEmpresaOrderByTituloOfertaAsc(String busqueda);
     
     //Select Numero Candidatos
-    @Query("SELECT o FROM Oferta o JOIN o.inscripciones i JOIN o.empresa e ON e.id = o.empresa.id WHERE e.nombreEmpresa = :username GROUP BY o.id ORDER BY COUNT(i) DESC")
+    @Query("SELECT o FROM Oferta o JOIN o.inscripciones i JOIN o.empresa e ON e.id = o.empresa.id WHERE e.nombreEmpresa = :username AND o.tituloOferta LIKE %:busqueda% GROUP BY o.id ORDER BY COUNT(i) DESC")
     List<Oferta> findByTituloOfertaOrderByNumeroInscripcionesAsc(String busqueda, String username);
 
     //Select Numero Candidatos
