@@ -69,7 +69,7 @@ public class crearOferta {
 
         if (btnOferta.equals("registrar")) {
             guardarOferta(oferta,errors);
-            return "redirect:/misofertas"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+            return "redirect:inici"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
         }else{
             subirPDF();
         }
@@ -95,10 +95,9 @@ public class crearOferta {
             oferta.setEmpresa(empresa);
             oferta.setFechaPeticion(LocalDate.now());
             oferta.setFechaValidacion(LocalDate.now());
-            oferta.setEnlacePDF("enlacePDF");
             oferta.setInscripciones(new ArrayList<Inscripcion>());
             ofertaService.afegirOferta(oferta); //Afegim el gos passat per paràmetre a la base de dades
-            return "redirect:/misofertas";
+            return "redirect:/inici";
         }
     }
 }
