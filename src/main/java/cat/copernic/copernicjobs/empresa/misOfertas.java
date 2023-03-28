@@ -53,7 +53,7 @@ public class misOfertas {
     
     @PostMapping("/empresa/buscaroferta")
     public String buscarOferta(@RequestParam(name = "buscar") String btnValue,@RequestParam(name = "search-input") String buscar,@RequestParam(name="sort-select") String ordenar, @AuthenticationPrincipal UserDetails user,Model model){
-                int id = empresaService.buscarPorUsername(user.getUsername()).getId();
+        int id = empresaService.buscarPorUsername(user.getUsername()).getId();
         Empresa empresa = new Empresa();
         empresa.setId(id);
         Empresa emp = empresaService.cercarEmpresa(empresa);

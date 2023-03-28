@@ -7,6 +7,7 @@ package cat.copernic.copernicjobs.dao;
 import cat.copernic.copernicjobs.model.Oferta;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -38,7 +39,6 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
     @Query("SELECT o FROM Oferta o JOIN o.inscripciones i JOIN o.empresa e WHERE e.nombreEmpresa = :username GROUP BY o.id ORDER BY COUNT(i) DESC")
     List<Oferta> findByNombreEmpresaOrderByNumeroInscripcionesAsc(String username);
 
-    
     //Select Ofertas por Fecha Peticion
     @Query("SELECT o FROM Oferta o LEFT JOIN o.empresa e WHERE o.tituloOferta LIKE %:busqueda% AND e.nombreEmpresa = :username ORDER BY o.fechaPeticion ASC")
     List<Oferta> findByTituloOfertaOrderByFechaPeticionAsc(String busqueda, String username);
@@ -61,6 +61,8 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
     @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE o.tituloOferta LIKE %:busqueda% AND e.nombreEmpresa = :username ORDER BY e.nombreEmpresa ASC")
     List<Oferta> findByTituloOfertaOrderByTituloOfertaAsc(String busqueda, String username);
     
-    
+    //Select Numero Candidatos
+    @Query("SELECT o FROM Oferta o WHERE o.tituloOferta LIKE %:busqueda% OR o.descripcionOferta LIKE %:busqueda%")
+    List<Oferta> findByTituloDescripcionOfertaOrderByAnythingAscOrDesc(String busqueda, Sort sort);
     
 }
