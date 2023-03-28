@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
 import lombok.Data;
@@ -32,4 +33,6 @@ public class Modulo implements Serializable {
     @OneToMany(mappedBy = "modulo")
     private List<RolModulo> roles;
 
+    @Transient
+    private boolean visibilidad;
 }
