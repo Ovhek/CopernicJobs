@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -80,6 +81,13 @@ public class EditarPerfilAlumno {
 
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
 
+        if (btnValue.equals("baixa")) {
+            alumnoDB.setBaja(true);
+            alumnoDB.setFechaBaja(LocalDate.now());
+            alumnoService.anadirAlumno(alumnoDB);
+            return "redirect:/logout";
+        }
+        
         if (img != null && !img.getOriginalFilename().isEmpty()) {
             alumno.setAvatarLink(subirFichero(img, alumno, "img"));
         }
@@ -93,7 +101,7 @@ public class EditarPerfilAlumno {
             result.addError(error);
         }
 
-        if (!alumno.getUsername().equals(alumnoDB.getUsername())) {
+        if (alumno.getUsername() != null && !alumno.getUsername().equals(alumnoDB.getUsername())) {
             Alumno alumnoTemp = alumnoService.buscarAlumnoPorUsername(alumno.getUsername());
             if (alumnoTemp != null) {
                 error = new ObjectError("UsuarioYaExiste", messageSource.getMessage("error.usuarioyaexite", null, Locale.ENGLISH));
@@ -107,7 +115,7 @@ public class EditarPerfilAlumno {
             result.addError(error);
         }
 
-        if (!passwordNueva.equals(confirmaPasswordNueva)) {
+        if (passwordNueva != null && !passwordNueva.equals(confirmaPasswordNueva)) {
             error = new ObjectError("ContraseñaNoCoincide", messageSource.getMessage("error.contrasenyanocoincide", null, Locale.ENGLISH));
             result.addError(error);
         }
@@ -169,8 +177,6 @@ public class EditarPerfilAlumno {
                         }
                     }
                 }
-            } else if (btnValue.equals("baixa")) {
-                alumnoDB.setBaja(true);
             } else {
                 return "redirect:/alumne/veurePerfil";
             }

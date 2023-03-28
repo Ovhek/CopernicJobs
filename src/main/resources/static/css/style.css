@@ -633,6 +633,7 @@ h6 {
 }
 
 .header-nav .profile {
+    z-index: 99;
     min-width: 240px;
     padding-bottom: 0;
     top: 8px !important;
@@ -1633,7 +1634,10 @@ div.errorDiv.card .errorMessage *{
 }
 .descripcionOferta{
     height: 100%;
+    max-height: 200px;
+    overflow-y: auto;
 }
+
 /*--------------------------------------------------------------
 # Incidencias
 --------------------------------------------------------------*/
@@ -1708,7 +1712,7 @@ textarea::-webkit-scrollbar-thumb {
     background: white;
     border-radius: 8px;
     box-shadow: 0px 5px 30px rgba(1, 41, 112, 0.1);
-    
+
 }
 .searchbar i, .searchbar button{
     position: absolute;
@@ -1890,6 +1894,14 @@ textarea::-webkit-scrollbar-thumb {
     min-width: 150px;
 }
 
+.botonesEditarPerfil{
+    display: flex;
+}
+
+.botonesEditarPerfil button{
+    min-width: 150px;
+}
+
 .profileData{
     width: 100%;
 }
@@ -1899,4 +1911,120 @@ textarea::-webkit-scrollbar-thumb {
 
 .profileData .select-selected{
     margin-bottom: 20px;
+}
+
+
+.profileData .custom-select *{
+}
+
+.uploadContainer{
+    border-radius: 15px !important;
+    height: 300px !important;
+    width: 300px !important;
+
+    margin-bottom: 20px;
+}
+
+#dropZone, #dropZoneCurriculum{
+
+    position: relative;
+    display:flex;
+    height: 100%;
+    width: 100%;
+    border: #ff8900 5px dotted;
+    border-radius: 15px;
+}
+
+#dropZone #message, #dropZoneCurriculum #messageCurriculum{
+    position: absolute;
+}
+#preview{
+    position: absolute;
+    height: 290px;
+
+    background-color: black;
+    border-radius: 15px;
+}
+#preview img{
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+}
+
+.uploadButtonContainer{
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+
+    display: flex !important;
+    align-items: center !important;
+}
+
+.uploadButtonContainer button{
+    min-width: 50px;
+    height: 50px;
+    width: 50px !important;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+#dropZone #message{
+    z-index: 9;
+    bottom: 0;
+
+    background-color: rgba(0,0,0,0.5);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#dropZone #message *{
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.noticia p{
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.curriculumUploadView{
+    display: flex;
+}
+
+.uploadContainerCurriculum{
+    text-align: center;
+    width: 300px !important;
+    height: 150px !important;
+}
+
+.curriculumActual{
+    text-align: center;
+}
+
+.curriculumActual a{
+    min-width: 75px !important;
+    min-height: 75px !important;
+    width: 75px !important;
+    height: 75px !important;
+}
+.curriculumActual i{
+    font-size: 50px;
+}
+
+#messageCurriculum{
+    background-color: rgba(0,0,0,0.8);
+    align-self: start;
+    position: absolute;
+    bottom: -90px;
+}
+
+.buscadorContainer{
+    background-color: white;
+    z-index: 10;
+    position: sticky;
+    top: 100px;
+}
+
+.nav-link:not(.collapsed) .rotating-arrow{
+    transform: rotate(180deg);
 }

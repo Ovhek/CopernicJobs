@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <!--Enllaç als estils de Bootstrap-->
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-        
+
         <!--Enllaç als estils de Font Awesome-->
         <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
 
@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <!-- ======================= LOGO ======================= -->
             <div class="d-flex align-items-center justify-content-between">
-                <a href="#" class="logo d-flex align-items-center">
+                <a href="" class="logo d-flex align-items-center">
                     <img th:src="@{/images/logoCopernicJobs.png}" alt="Logo de la aplicación">
                     <span class="d-none d-lg-block"></span>
                 </a>
@@ -58,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </li>
 
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" th:href="${#authorization.expression('hasAuthority(''administrador'')') ? '/administrador/veurePerfil' : 'veurePerfil'}">
+                                <a class="dropdown-item d-flex align-items-center" th:href="${#authorization.expression('hasAuthority(''administrador'')') ? '/administrador/veurePerfil' : #authorization.expression('hasAuthority(''alumne'')') ? '/alumne/veurePerfil' : '/empresa/veurePerfil'}">
                                     <i class="fa-regular fa-user"></i>
                                     <span>Veure Perfil</span>
                                 </a>
@@ -68,7 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </li>
 
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" th:href="${#authorization.expression('hasAuthority(''administrador'')') ? '/administrador/editarPerfil' : 'editarPerfil'}">
+                                <a class="dropdown-item d-flex align-items-center" th:href="${#authorization.expression('hasAuthority(''administrador'')') ? '/administrador/editarPerfil' : #authorization.expression('hasAuthority(''alumne'')') ? '/alumne/editarPerfil' : '/empresa/editarPerfil'}">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                     <span>Editar Perfil</span>
                                 </a>
@@ -78,7 +78,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </li>
 
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="/logout">
+                                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                        <input hidden type="submit" value="Sign Out">
+                                    </form>
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                     <span>Tancar Sessió</span>
                                 </a>

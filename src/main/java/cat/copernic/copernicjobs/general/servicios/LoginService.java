@@ -10,6 +10,7 @@ import cat.copernic.copernicjobs.dao.AdministradorDAO;
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
+import cat.copernic.copernicjobs.errores.UsuarioBajaException;
 import cat.copernic.copernicjobs.model.Administrador;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Empresa;
@@ -17,6 +18,7 @@ import cat.copernic.copernicjobs.model.Usuario;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -55,11 +57,16 @@ public class LoginService implements UserDetailsService{
         
         if(usuario == null) throw new UsernameNotFoundException(username);
         
+        if(usuario.getFechaBaja() != null){
+            throw new UsuarioBajaException("L'usuari està de baixa");
+        }
         var roles = new ArrayList<GrantedAuthority>();
         
         roles.add(new SimpleGrantedAuthority(usuario.getRol().getNom()));
         
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }
+
+
     
 }
