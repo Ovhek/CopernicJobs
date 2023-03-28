@@ -54,7 +54,7 @@ public class editarOferta{
         if(btnOferta.equals("guardar")) guardarOferta(oferta);
         else borrarOferta(oferta);
 
-        return "redirect:/misofertas"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        return "redirect:inici"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
     }
     
     public void guardarOferta(Oferta oferta) {
@@ -69,6 +69,6 @@ public class editarOferta{
     public String borrarOferta(Oferta oferta) {
         Oferta ofertaDel = ofertaService.cercarOferta(oferta);
         ofertaService.eliminarOferta(ofertaDel); //Afegim el gos passat per paràmetre a la base de dades
-        return "redirect:/empresa/smisofertas";
+        return "redirect:inici";
     }
 }

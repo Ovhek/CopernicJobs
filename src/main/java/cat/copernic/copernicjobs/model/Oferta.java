@@ -32,7 +32,6 @@ public class Oferta {
     private LocalDate fechaValidacion;
     
     @Column(name="enlace_pdf")
-    @URL(message="{URL.oferta.enlacePDF}")
     private String enlacePDF;
     
     @Column(name="titulo")

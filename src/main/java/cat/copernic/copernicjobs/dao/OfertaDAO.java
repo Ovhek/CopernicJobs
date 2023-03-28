@@ -18,22 +18,49 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
 
     List<Oferta> findAllByEmpresaId(int id);
     
-    @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa LIKE %:nombreEmpresa%")
+    @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :nombre")
     List<Oferta> findByNombreEmpresa(String nombre);
     
     List<Oferta> findByFechaValidacionBetween(LocalDate start, LocalDate end);
     
-    //List<Oferta> findAllByNombreEmpresa();
+    //@Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :nombre")
+    //List<Oferta> findByNombreEmpresa(String nombre);
     
-    //List<Oferta> findByTituloOfertaOrderByTituloOferta(String busqueda, String criterio);
+    //aaaa
+    @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :busqueda ORDER BY e.nombreEmpresa ASC")
+    List<Oferta> findByNombreEmpresaOrderByTituloOfertaAsc(String busqueda);
     
-    @Query("SELECT o FROM Oferta o LEFT JOIN o.inscripciones i GROUP BY o.id ORDER BY COUNT(i) DESC")
-    List<Oferta> findByTituloOfertaOrderByNumeroInscripcionesAsc(String busqueda);
+    //Select Numero Candidatos
+    @Query("SELECT o FROM Oferta o JOIN o.inscripciones i JOIN o.empresa e ON e.id = o.empresa.id WHERE e.nombreEmpresa = :username GROUP BY o.id ORDER BY COUNT(i) DESC")
+    List<Oferta> findByTituloOfertaOrderByNumeroInscripcionesAsc(String busqueda, String username);
+
+    //Select Numero Candidatos
+    @Query("SELECT o FROM Oferta o JOIN o.inscripciones i JOIN o.empresa e WHERE e.nombreEmpresa = :username GROUP BY o.id ORDER BY COUNT(i) DESC")
+    List<Oferta> findByNombreEmpresaOrderByNumeroInscripcionesAsc(String username);
+
     
-    @Query("SELECT o FROM Oferta o WHERE o.tituloOferta LIKE %:busqueda% ORDER BY o.fechaPeticion ASC")
-    List<Oferta> findByTituloOfertaOrderByFechaPeticionAsc(String busqueda);
+    //Select Ofertas por Fecha Peticion
+    @Query("SELECT o FROM Oferta o LEFT JOIN o.empresa e WHERE o.tituloOferta LIKE %:busqueda% AND e.nombreEmpresa = :username ORDER BY o.fechaPeticion ASC")
+    List<Oferta> findByTituloOfertaOrderByFechaPeticionAsc(String busqueda, String username);
     
-    @Query("SELECT o FROM Oferta o WHERE o.tituloOferta LIKE %:busqueda% ORDER BY o.fechaValidacion ASC")
-    List<Oferta> findByTituloOfertaOrderByFechaValidacionAsc(String busqueda);
+    //Select Ofertas por Fecha Peticion
+    @Query("SELECT o FROM Oferta o LEFT JOIN o.empresa e WHERE  e.nombreEmpresa = :username ORDER BY o.fechaPeticion ASC")
+    List<Oferta> findByNombreEmpresaOrderByFechaPeticionAsc(String username);    
+    
+    
+    //Select Ofertas Publicadas y Data Publicacio
+    @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE o.tituloOferta LIKE %:busqueda% AND e.nombreEmpresa = :username ORDER BY o.fechaValidacion ASC")
+    List<Oferta> findByTituloOfertaOrderByFechaValidacionAsc(String busqueda, String username);
+
+
+    @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :username ORDER BY o.fechaValidacion ASC")
+    List<Oferta> findByNombreEmpresaOrderByFechaValidacionAsc(String username);
+
+    
+    
+    @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE o.tituloOferta LIKE %:busqueda% AND e.nombreEmpresa = :username ORDER BY e.nombreEmpresa ASC")
+    List<Oferta> findByTituloOfertaOrderByTituloOfertaAsc(String busqueda, String username);
+    
+    
     
 }

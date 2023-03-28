@@ -16,6 +16,8 @@ import cat.copernic.copernicjobs.model.Noticia;
 import cat.copernic.copernicjobs.model.Oferta;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,8 @@ public class InicioAdmin {
     @Autowired
     private OfertaService ofertaService;
 
-    @GetMapping("/inicioAdmin") //Pàgina inicial d'admin
-    public String inicio(Model model) {
+    @GetMapping("/inicio") //Pàgina inicial d'admin
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails user) {
 
         //Ruta donde está el archivo html 
         String ruta = "administrador/";
@@ -59,7 +61,7 @@ public class InicioAdmin {
         model.addAttribute("validaciones3", ofertaService.llistarOfertas());
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+        return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo,"Inicio Admin", user);
     }
 
     /*Definim el mètode per mostrar la pàgina amb el forumlari de les dades de la noticia passada com a paràmetre.
