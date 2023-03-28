@@ -13,23 +13,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1>Alumnes</h1>
 
         <div>
-            <label for="search-input">Buscar:</label>
-            <input type="text" id="search-input" name="search-input">
-
-            <label for="sort-select">Ordenar por:</label>
-            <select id="sort-select" name="sort-select">
-                <option value="nombre">Nombre</option>
-                <option value="fechaRegistro">Fecha Registro</option>
-            </select>
+            <div class="container">
+                <div class="row gx-0">
+                    <div class="col-md-9 my-3 mx-md-3 searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search-input">
+                        <button class="boton">Buscar</button>
+                    </div>
+                    <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                        <select id="sort-select" name="sort-select">
+                            <option value="0">Ordenar Per:</option>
+                            <option value="nombre">Nombre</option>
+                            <option value="fechaRegistro">Fecha Registro</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div th:each="alumno : ${alumnos}">
-            <h2 th:text="${alumno.nombre}">John</h2>
-            <h2 th:text="${alumno.apellidos}">Doe</h2>
-            <p th:text="${alumno.username}">JohnDoe@gmail.com</p>
-            <a th:href="@{/verAlumno/}+${alumno.id}">Accedeix</a>
+        <div class="container verempresa">
+            <div class="row justify-content-center w-100">
+                <div class="col-lg-12 card p-4 mx-lg-5 my-3 alumnoCard" th:each="alumno : ${alumnos}">
+                    <h5 class="align-self-center" th:text="${alumno.nombre} + ' ' + ${alumno.apellidos}"></h5>
+                    <h5 class="align-self-center" th:text="${alumno.username}"></h5>
+                    <span>
+                        <a class="boton" th:href="@{/verAlumno/}+${alumno.id}">Accedeix</a>
+                    </span>
+                </div>
+            </div>
         </div>
 
-        <button>Generar Informe</button>
+        <button class="boton">Generar Informe</button>
     </body>
 </html>

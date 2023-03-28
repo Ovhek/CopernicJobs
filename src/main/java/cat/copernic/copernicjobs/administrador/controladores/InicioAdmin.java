@@ -22,10 +22,13 @@ import cat.copernic.copernicjobs.model.Persona;
 import cat.copernic.copernicjobs.model.Rol;
 import cat.copernic.copernicjobs.model.Usuario;
 import jakarta.validation.Valid;
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -200,5 +203,65 @@ public class InicioAdmin {
         model.addAttribute("oferta", ofertaService.cercarOferta(oferta));
 
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "ValidacioOferta", username);
+    }
+
+    @PreAuthorize("hasAuthority('administrador')")
+    @PostMapping("/validarOferta")
+    public String validacionOferta(Oferta oferta, Model model, @AuthenticationPrincipal UserDetails username) {
+        oferta.setFechaValidacion(LocalDate.now());
+        ofertaService.afegirOferta(oferta);
+        return "redirect:/administrador/inici";
+    }
+
+    @PreAuthorize("hasAuthority('administrador')")
+    @PostMapping("/validarAlumno")
+    public String validacionAlumno(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
+        alumno.setFechaValidacion(LocalDate.now());
+        alumnoService.anadirAlumno(alumno);
+        return "redirect:/administrador/inici";
+    }
+
+    @PreAuthorize("hasAuthority('administrador')")
+    @PostMapping("/validarEmpresa")
+    public String validacionEmpresa(Empresa empresa, Model model, @AuthenticationPrincipal UserDetails username) {
+
+        //Buscamos la empresa en la BD.
+        Empresa empresaDB = empresaService.cercarEmpresa(empresa);
+
+        //Obtenemos los metodos de la entidad empresa.
+        Method[] metodos = empresaDB.getClass().getMethods();
+
+        //Iteramos sobre los metodos
+        for (Method metodo : metodos) {
+
+            //Comprobamos que el metodo comienza con "get" --> es un getter.
+            if (metodo.getName().startsWith("get") && metodo.getParameterCount() == 0) {
+                try {
+
+                    //Nombre del metodo
+                    String nombreMetodo = metodo.getName();
+
+                    //Valor del metodo en la entidad Alumno de la BD
+                    Object valueEmpresaDB = metodo.invoke(empresaDB);
+
+                    //Valor del metodo en la entidad Alumno del Post
+                    Object valueEmpresaPost = metodo.invoke(empresa);
+
+                    //Si el valor del alumno del Post es diferente de nulo lo sobreeescribimso en AlumnoDB.
+                    if (valueEmpresaPost != null && !nombreMetodo.contains("Class")) {
+                        String nombreMetodoSetter = nombreMetodo.replace("get", "set");
+                        Method metodoSetter = Empresa.class.getMethod(nombreMetodoSetter, metodo.getReturnType());
+
+                        metodoSetter.invoke(empresaDB, valueEmpresaPost);
+                    }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        empresaDB.setFechaValidacion(LocalDate.now());
+        empresaService.afegirEmpresa(empresaDB);
+        return "redirect:/administrador/inici";
     }
 }

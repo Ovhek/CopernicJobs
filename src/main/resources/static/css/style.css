@@ -1348,6 +1348,14 @@ input:focus, textarea:focus {
     color: white;
 }
 
+.marginRight{
+    margin-right: 200px;
+}
+
+.marginLeft{
+    margin-left: 200px;
+}
+
 .marginBottom{
     margin-bottom: 50px;
 }
@@ -1577,7 +1585,7 @@ div.errorDiv.card .errorMessage *{
 /*--------------------------------------------------------------
 # ALUMNO
 --------------------------------------------------------------*/
-.noticia, .oferta{
+.noticia, .oferta, .incidencia{
     width: 90%;
     margin:auto;
 }
@@ -1787,6 +1795,22 @@ textarea::-webkit-scrollbar-thumb {
     display: block;
 }
 
+.incidenciaContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.incidenciaCard{
+    padding: 50px;
+    max-width: 400px;
+    min-width: fit-content;
+    align-self: center;
+
+}
+.incidenciaCard *{
+    display: block;
+}
+
 .boton.cancelar{
     background-color: #8B0000;
 }
@@ -1801,16 +1825,69 @@ textarea::-webkit-scrollbar-thumb {
     width: 100%;
 }
 
+.perfilAdminContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.perfilAdminCard{
+    padding: 50px;
+    max-width: 400px;
+    min-width: fit-content;
+    align-self: center;
+    
+}
+.perfilAdminCard *{
+    display: block;
+}
+
+.botonesNoticia{
+    display: flex;
+}
+
+.botonesNoticia button{
+    min-width: 150px;
+}
+
+.alumnoCard{
+    min-width: 400px;
+}
+
 .empresaCard{
     min-width: 400px;
 }
 
-.verempresa .row{
-    justify-content: center;
+.verempresa{
+    display: flex;
 }
 .descripcionEmpresa{
     height: 100%;
 }
+
+.botonesEmpresa{
+    display: flex;
+}
+
+.botonesEmpresa button{
+    min-width: 150px;
+}
+
+.botonesRegistro{
+    display: flex;
+}
+
+.botonesRegistro button{
+    min-width: 150px;
+}
+
+.marginTopBotonesRegistro{
+    margin-top: 150px;
+}
+
+.marginTopRegistro{
+    margin-top: 100px;
+}
+
 #curriculum h3{
     text-align: center;
 }

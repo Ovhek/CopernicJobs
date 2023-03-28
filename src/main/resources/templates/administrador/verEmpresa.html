@@ -14,33 +14,55 @@ and open the template in the editor.
             <h1 th:text="${empresa.nombreEmpresa}">Empresa Copernic</h1>
         </header>
         <main>
-            <section>
-                <p th:text="${empresa.descripcionEmpresa}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
-                <div>
-                    <h2>Contacte</h2>
-                    <p th:text="${empresa.username}"></p>
-                    <p th:text="${empresa.direccion}"></p>
-                    <p th:text="${empresa.codPostal}"></p>
-                    <p th:text="${empresa.municipio}"></p>
-                    <p th:text="${empresa.webEmpresa}"></p>
-                    <p th:text="${empresa.movil}"></p>
-                </div>
-            </section>
-            <section>
-                <div id="responsable">
-                    <h2>Responsable</h2>
-                    <label for="nombre">Nom:</label>
-                    <p th:text="${empresa.nombre}"></p>
+            <p th:text="${empresa.descripcionEmpresa}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
+            <div class="col-15">
+                <div class="row justify-content-sm-center">
+                    <div class="col-lg-6 px-lg-7 pb-7">
+                        <div class="card p-5">
+                            <h2>Contacte</h2>
+                            <p th:text="${empresa.username}"></p>
+                            <p th:text="${empresa.direccion}"></p>
+                            <p th:text="${empresa.codPostal}"></p>
+                            <p th:text="${empresa.municipio}"></p>
+                            <p th:text="${empresa.webEmpresa}"></p>
+                            <p th:text="${empresa.movil}"></p>
+                        </div>
+                    </div>
 
-                    <label for="apellidos">Cognoms:</label>
-                    <p th:text="${empresa.apellidos}"></p>
-                    
-                    <label for="correoContacto">Correo:</label>
-                    <p th:text="${empresa.correoContacto}"></p>
+                    <div class="col-lg-6 ps-4-5 pb-5">
+                        <div class="card p-5">
+                            <div id="responsable">
+                                <h2>Responsable</h2>
+                                <label for="nombre">
+                                    <b>Nom:</b>
+                                </label>
+                                <p th:text="${empresa.nombre}"></p>
+
+                                <label for="apellidos">
+                                    <b>Cognoms:</b>
+                                </label>
+                                <p th:text="${empresa.apellidos}"></p>
+
+                                <label for="correoContacto">
+                                    <b>Correo:</b>
+                                </label>
+                                <p th:text="${empresa.correoContacto}"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-            <a th:href="@{/editarEmpresa/}+${empresa.id}" th:text="Editar">Editar Dades</a>
-            <a href="/verOfertasAdmin">Veure Ofertes</a>
+
+                <div class="container botonesEmpresa">
+                    <div class="row justify-content-center w-100">
+                        <div class="col-lg-4">
+                            <a class="boton" th:href="@{/editarEmpresa/}+${empresa.id}" th:text="Editar">Editar Dades</a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a class="boton" href="/verOfertasAdmin">Veure Ofertes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>
