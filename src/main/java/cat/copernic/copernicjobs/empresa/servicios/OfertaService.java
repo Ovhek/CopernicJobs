@@ -10,7 +10,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
+import java.util.SortedSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -64,7 +66,7 @@ public class OfertaService implements OfertaServiceInterface {
                 if (busqueda == null) {
                     return (List<Oferta>) ofertaDao.findByNombreEmpresaOrderByTituloOfertaAsc(username);
                 } else {
-                    return (List<Oferta>) ofertaDao.findByTituloOfertaOrderByTituloOfertaAsc(busqueda,username);
+                    return (List<Oferta>) ofertaDao.findByTituloOfertaOrderByTituloOfertaAsc(busqueda, username);
                 }
             case "dataPublicacio":
                 if (busqueda == null) {
@@ -77,9 +79,9 @@ public class OfertaService implements OfertaServiceInterface {
                 if (busqueda == null) {
                     return (List<Oferta>) this.ofertaDao.findByNombreEmpresaOrderByNumeroInscripcionesAsc(username);
                 } else {
-                    return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByNumeroInscripcionesAsc(busqueda,username);
+                    return (List<Oferta>) this.ofertaDao.findByTituloOfertaOrderByNumeroInscripcionesAsc(busqueda, username);
                 }
-                
+
             case "ofertasActivas":
                 if (busqueda == null) {
                     return (List<Oferta>) this.ofertaDao.findByNombreEmpresaOrderByFechaPeticionAsc(username);
@@ -96,11 +98,27 @@ public class OfertaService implements OfertaServiceInterface {
                 if (busqueda == null) {
                     return (List<Oferta>) ofertaDao.findByNombreEmpresaOrderByTituloOfertaAsc(username);
                 } else {
-                    return (List<Oferta>) ofertaDao.findByTituloOfertaOrderByTituloOfertaAsc(busqueda,username);
+                    return (List<Oferta>) ofertaDao.findByTituloOfertaOrderByTituloOfertaAsc(busqueda, username);
                 }
 
         }
         return null;
+    }
+
+    public List<Oferta> filtrarOfertasOrdenacionAlumno(String busqueda, String anything) {
+        Sort sort = Sort.by("tituloOferta");
+        switch (anything.toLowerCase()) {
+            case "alfabetico":
+                sort = Sort.by("tituloOferta");
+                break;
+            case "datapublicacio":
+                sort = Sort.by(Sort.Direction.DESC,"fechaValidacion");
+                break;
+            default:
+                sort = Sort.by("tituloOferta");
+                break;
+        }
+        return ofertaDao.findByTituloDescripcionOfertaOrderByAnythingAscOrDesc(busqueda, sort);
     }
 
     @Override

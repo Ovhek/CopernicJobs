@@ -12,6 +12,9 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
+            <div th:if="${CanvisGuardats != null}">
+                <p class="successMessage" th:text="${CanvisGuardats}"></p>
+            </div>
             <form th:action="@{/administrador/guardar-modulos}" method="post" th:object="${modulo}">
                 <h2>Configuració de mòduls</h2>
                 <ul class="sidebar-nav">
