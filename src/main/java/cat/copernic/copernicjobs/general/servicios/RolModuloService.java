@@ -4,12 +4,10 @@
  */
 package cat.copernic.copernicjobs.general.servicios;
 
-import cat.copernic.copernicjobs.dao.IncidenciaDAO;
 import cat.copernic.copernicjobs.dao.RolModuloDAO;
-import cat.copernic.copernicjobs.model.Alumno;
-import cat.copernic.copernicjobs.model.Incidencia;
 import cat.copernic.copernicjobs.model.Modulo;
 import cat.copernic.copernicjobs.model.Rol;
+import cat.copernic.copernicjobs.model.RolModulo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +35,26 @@ public class RolModuloService implements RolModuloServiceInterface{
         return rolModuloDao.findRolesByNombreModulo(nom);
     }
     
+    @Transactional(readOnly = true)
+    public List<RolModulo> findAll(){
+        return rolModuloDao.findAll();
+    }
     
+    @Transactional
+    public void guardar(RolModulo rolModulo){
+        rolModuloDao.save(rolModulo);
+    }
+    
+    @Transactional
+    public void eliminar(RolModulo rolModulo){
+        rolModuloDao.delete(rolModulo);
+    }
+    
+    public void guardarTodos(List<RolModulo> rolesModulos){
+        rolesModulos.forEach(rolModulo -> guardar(rolModulo));
+    }
+
+    public void eliminarTodos(List<RolModulo> rolModulosAEliminar) {
+        rolModulosAEliminar.forEach(rolModulo -> eliminar(rolModulo));
+    }
 }
