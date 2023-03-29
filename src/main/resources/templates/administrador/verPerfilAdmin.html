@@ -14,16 +14,24 @@ and open the template in the editor.
         <main>
             <!-- Datos Perfil -->
             <div th:if="${CanvisGuardats != null}">
-                <p th:text="${CanvisGuardats}"></p>
+                <p class="successMessage" th:text="${CanvisGuardats}"></p>
             </div>
 
-            <div id="perfil">
-                <p th:text="${administrador.nombre}"></p>
-                <p th:text="${administrador.apellidos}"></p>
-                <p th:text="${administrador.username}"></p>
+
+            <div class="marginTopBotonesRegistro">
+                <div class="perfilAdminContainer">
+                    <div class="card perfilAdminCard">
+                        <div id="perfil">
+                            <h5 class="align-self-center" th:text="${administrador.nombre} + ' ' +${administrador.apellidos}"></h5>
+                            <p class="align-self-center" th:text="${administrador.username}"></p>
+                        </div>
+                        <a class="boton" href="/administrador/editarPerfil">Editar Perfil</a>
+                    </div>
+
+                </div>
+
             </div>
 
-            <a href="/editarAdmin">Editar Perfil</a>
 
         </main>
     </body>

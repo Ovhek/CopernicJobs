@@ -10,24 +10,51 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title></title>
     </head>
     <body>
-        <h1>Incidencies</h1>
+        <h1>Incidències</h1>
 
         <div>
-            <label for="search-input">Buscar:</label>
-            <input type="text" id="search-input" name="search-input">
-
-            <label for="sort-select">Ordenar por:</label>
-            <select id="sort-select" name="sort-select">
-                <option value="fechaIncidencia">Fecha</option>
-            </select>
+            <div class="container">
+                <div class="row gx-0">
+                    <div class="col-md-9 my-3 mx-md-3 searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" name="search-input">
+                        <button class="boton">Buscar</button>
+                    </div>
+                    <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                        <select id="sort-select" name="sort-select">
+                            <option value="0">Ordenar Per:</option>
+                            <option value="fechaIncidencia">Fecha</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div th:each="incidencia : ${incidencias}">
-            <h2 th:text="${incidencia.titulo}"></h2>
-            <p th:text="${incidencia.descripcion}"></p>
-            <p th:text="${incidencia.fechaIncidencia}"></p>
-            <a th:href="@{/verIncidencia/}+${incidencia.id}">Accedeix</a>
-            <a th:href="@{/eliminarIncidencia/}+${incidencia.id}" th:text="Descartar"/>
+        <div id="container incidencia">
+            <!-- Anuncios -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card py-5 mx-1 mt-5 row RowVerticalScroll" id="incidencias">
+                        <div class="card mt-5 col-lg-12 p-5 incidencia" th:each="incidencia : ${incidencias}">
+                            <h2 th:text="${incidencia.titulo}"></h2>
+                            <p th:text="${incidencia.descripcion}"></p>
+                            <p th:text="${incidencia.fechaIncidencia}"></p>
+
+                            <div class="container botonesNoticia">
+                                <div class="row justify-content-center w-100">
+                                    <div class="col-lg-4">
+                                        <a class="boton" th:href="@{/verIncidencia/}+${incidencia.id}">Accedeix</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <a class="boton" th:href="@{/eliminarIncidencia/}+${incidencia.id}" th:text="Solucionar"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </body>
 </html>

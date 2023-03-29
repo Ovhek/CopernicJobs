@@ -16,28 +16,39 @@ and open the template in the editor.
         </header>
 
         <main>
-            <section>
-                <div>
-                    <h2>Descripció</h2>
-                    <p th:text="${oferta.descripcionOferta}"></p>
-                </div>
-                <div>
-                    <h2>Requisits</h2>
-                    <p th:text="${oferta.requisitosAlumno}"></p>
-                </div>
-                <div>
-                    <h2>S'ofereix</h2>
-                    <p th:text="${oferta.seOfrece}"></p>
-                </div>
-                <div>
-                    <h2>Més informació</h2>
-                    <button>Descarregar PDF</button>
-                </div>
-            </section>
-            <div id="validacio">
-                <a class="boton" th:href="@{/administrador/inici}" th:text="Validar"/>
-                <a class="boton" th:href="@{/administrador/inici}" th:text="Invalidar"/>
+            <div>
+                <h2>Descripció</h2>
+                <p th:text="${oferta.descripcionOferta}"></p>
             </div>
+            <div>
+                <h2>Requisits</h2>
+                <p th:text="${oferta.requisitosAlumno}"></p>
+            </div>
+            <div>
+                <h2>S'ofereix</h2>
+                <p th:text="${oferta.seOfrece}"></p>
+                <p th:text="${oferta.fechaPeticion}"></p>
+            </div>
+            <div>
+                <h2>Més informació</h2>
+                <button>Descarregar PDF</button>
+            </div>
+            <form method="post" th:action="@{/validarOferta}" th:object="${oferta}">
+                <div>
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{empresa.id}"/>
+                    <input type="hidden" th:field="*{enlacePDF}"/>
+                    <input type="hidden" th:field="*{tituloOferta}"/>
+                    <input type="hidden" th:field="*{descripcionOferta}"/>
+                    <input type="hidden" th:field="*{requisitosAlumno}"/>
+                    <input type="hidden" th:field="*{seOfrece}"/>
+                    <input type="hidden" th:field="*{fechaPeticion}"/>
+                    <input type="hidden" th:field="*{baja}"/>
+                    <button class="boton" type="submit">Validar</button>
+            </form>
+
+            <a class="boton cancelar" th:href="@{/administrador/inici}" th:text="Invalidar"/>
+
         </main>
     </body>
 </html>

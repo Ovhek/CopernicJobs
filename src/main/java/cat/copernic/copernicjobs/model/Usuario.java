@@ -54,6 +54,9 @@ public abstract class Usuario implements Serializable {
 
     @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
+    
+    @Column(name = "fecha_validacion")
+    private LocalDate fechaValidacion;
 
     @Column(name = "fecha_baja")
     private LocalDate fechaBaja;

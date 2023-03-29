@@ -19,17 +19,22 @@
 
                 </ul>
             </div>
-            <label for="nombre">Nom:</label>
-            <input type="text" id="nombre" th:field="*{nombre}" name="nombre" placeholder="Introdueix el nom">
+            <p>
+                <label for="nombre">Nom:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" name="nombre" placeholder="Introdueix el nom"/>
+            </p>
 
-            <label for="cognoms">Cognoms:</label>
-            <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els cognoms">
+            <p>
+                <label for="cognoms">Cognoms:</label>
+                <input type="text" id="cognoms" th:field="*{apellidos}" name="cognoms" placeholder="Introdueix els cognoms"/>
+            </p>
 
             <label for="password">Contrasenya:</label>
             <div class="passwordContainer">
-                <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya">
+                <input type="password" id="password" th:field="*{password}" name="password" placeholder="Introdueix la contrasenya"/>
                 <span class="toggleBtn"></span>
             </div>
+
             <label for="repeteix-contrasenya">Repeteix la Contrasenya:</label>
             <div class="passwordContainer">
 
@@ -38,32 +43,43 @@
                 <span class="toggleBtn"></span>
             </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix l'email"/>
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{username}" name="email" placeholder="Introdueix l'email"/>
+            </p>
 
+            <p>
             <label for="codiPostal">Codi Postal:</label>
             <input type="text" id="codPostal" th:field="*{codPostal}" name="codPostal" placeholder="Introdueix el codi postal"/>
-
+            </p>
+            
+            <p>
             <label for="municipi">Municipi:</label>
             <input type="text" id="municipi" th:field="*{municipio}" name="municipi" placeholder="Introdueix el municipi"/>
-
-            <label for="movil">Número de contacte;</label>
+            </p>
+            
+            <p>
+            <label for="movil">Número de contacte:</label>
             <input type="text" id="movil" th:field="*{movil}" name="movil" placeholder="Introdueix el número de telèfon"/>
-
+            </p>
+            
+            <p>
             <label for="direccio">Direcció:</label>
             <input type="text" id="direccion" th:field="*{direccion}" name="direccion" placeholder="Introdueix la direcció"/>      
-
+            </p>
+            
             <label for="genere">Gènere:</label>
             <div class="custom-select marginBottom">
 
                 <select th:field="*{sexo}" id="genere" name="genere">
+                    <option value="0">Selecciona:</option>
                     <option value="1">Home</option>
                     <option value="2">Dona</option>
                     <option value="3">Altre</option>
                     <option value="4">Prefereixo no dir-ho</option>
                 </select>
             </div>
-            <button type="submit">Registrar</button> 
+            <button class="boton" type="submit">Registrar</button> 
         </form>
     </body>
 </html>
