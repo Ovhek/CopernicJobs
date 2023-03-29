@@ -31,7 +31,7 @@ public class VerOfertasAdmin {
     private OfertaService ofertaService;
 
     @PreAuthorize("hasAuthority('administrador')")
-    @GetMapping("/verOfertasAdmin")
+    @GetMapping("/verOfertasAdmin/{id}")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         //Ruta donde está el archivo html 

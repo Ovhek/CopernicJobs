@@ -58,7 +58,7 @@ and open the template in the editor.
                             <a class="boton" th:href="@{/editarEmpresa/}+${empresa.id}" th:text="Editar">Editar Dades</a>
                         </div>
                         <div class="col-lg-4">
-                            <a class="boton" href="/verOfertasAdmin">Veure Ofertes</a>
+                            <a class="boton" th:href="@{/verOfertasAdmin/}+${empresa.id}">Veure Ofertes</a>
                         </div>
                     </div>
                 </div>
