@@ -27,10 +27,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 
                 <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{fechaValidacion}"/>
+                <input type="hidden" th:field="*{empresa.id}"/>
                 <input type="hidden" th:field="*{fechaPeticion}"/>
                 <div>
                     <h2>Títol</h2>
-                    <input type="text" id="nom" th:field="*{tituloOferta}" placeholder="${oferta.tituloOferta}"><br>
+                    <input type="text" id="nom" th:field="*{tituloOferta}"><br>
                 </div>
                 <div>
                     <h2>Descripció</h2>

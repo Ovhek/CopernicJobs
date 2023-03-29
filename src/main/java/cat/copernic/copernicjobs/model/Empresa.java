@@ -10,6 +10,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Data;
@@ -24,10 +25,12 @@ import org.hibernate.validator.constraints.URL;
 @DiscriminatorValue("3")
 public class Empresa extends Persona {
     
+    @NotEmpty(message = "{NotEmpty.empresa.nombreEmpresa}")
     @Column(name="nombre_empresa")
     @Size(max=50, message = "{Size.empresa.nombreEmpresa}")
     private String nombreEmpresa;
     
+    @NotEmpty(message = "{NotEmpty.empresa.descripcionEmpresa}")
     @Column(name="descripcion_empresa")
     private String descripcionEmpresa;
     

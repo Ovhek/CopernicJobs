@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,13 +35,16 @@ public class Oferta {
     @Column(name="enlace_pdf")
     private String enlacePDF;
     
+    @NotEmpty(message = "{NotEmpty.oferta.tituloOferta}")
     @Column(name="titulo")
     @Size(max=50, message="{Size.oferta.tituloOferta}")
     private String tituloOferta;
     
+    @NotEmpty(message = "{NotEmpty.oferta.descripcionOferta}")
     @Column(name="descripcion")
     private String descripcionOferta;
     
+    @NotEmpty(message = "{NotEmpty.oferta.requisitosAlumno}")
     @Column(name="requisitos")
     private String requisitosAlumno;
     

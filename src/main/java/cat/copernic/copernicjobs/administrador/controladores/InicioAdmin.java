@@ -114,7 +114,7 @@ public class InicioAdmin {
 
             String archivo = "crearNoticia";
 
-            return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+            return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Noticia", username);
         }
 
         noticia.setFechaHora(LocalDate.now());

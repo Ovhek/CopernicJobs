@@ -64,7 +64,7 @@ public class VerOfertaAdmin {
             borrar(oferta);
         }
 
-        return "redirect:/verOfertasAdmin";
+        return "redirect:/verEmpresas";
     }
 
     public void guardar(Oferta oferta) {
@@ -73,7 +73,7 @@ public class VerOfertaAdmin {
 
     public String borrar(Oferta oferta) {
         ofertaService.eliminarOferta(oferta);
-        return "redirect:/verOfertasAdmin";
+        return "redirect:/verEmpresas";
     }
 
     @PreAuthorize("hasAuthority('administrador')")
