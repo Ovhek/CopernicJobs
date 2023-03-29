@@ -10,28 +10,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title></title>
     </head>
     <body>
-        <div>
-            <div class="container">
-                <div class="row gx-0">
-                    <div class="col-md-9 my-3 mx-md-3 searchbar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="search-input" name="search-input" placeholder="Buscar...">
-                        <button class="boton">Buscar</button>
+        <div class="buscadorContainer">
+            <form method="post" th:action="@{/alumne/buscaroferta}">
+                <div class="container">
+                    <div class="row gx-0">
+                        <div class="col-md-9 my-3 mx-md-3 searchbar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="search-input" name="search-input" placeholder="Buscar...">
+                            <button type="submit" name="buscar" class="boton" th:value="button">Buscar</button>
+                        </div>
+                        <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
+                            <select id="sort-select" name="sort-select" th:value="${ordenar}">
+                                <option value="0">Ordenar Per:</option>
+                                <option value="alfabetico">A-Z</option>
+                                <option value="dataPublicacio">Data Publicació</option>
+                            </select>
+                        </div>
                     </div>
-                <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
-                    <select id="sort-select" name="sort-select">
-                        <option value="0">Ordenar Per:</option>
-                        <option value="titulo">Título</option>
-                        <option value="municipio">Municipio</option>
-                        <option value="empresa">Empresa</option>
-                    </select>
                 </div>
-                </div>
-
-            </div>
+            </form>
+        </div>
 
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-3 card p-5 mx-3 my-3 ofertaCard" th:each="inscripcion : ${inscripciones}">
                     <h2 th:text="${inscripcion.oferta.tituloOferta}">Sección 1</h2>
                     <p class="descripcionOferta" th:text="${inscripcion.oferta.descripcionOferta}">Descripción de la sección 1.</p>
@@ -40,11 +41,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <p th:text="${inscripcion.oferta.empresa.municipio}"></p>
                     </div>
                     <a class="boton" th:href="@{/alumne/veureOfertaAlumne/}+${inscripcion.oferta.id}">Mes informació</a>
-
+                    <p th:text="${inscripcion.oferta.fechaValidacion}"></p>
                 </div>
             </div>
         </div>
-
 
     </body>
 </html>

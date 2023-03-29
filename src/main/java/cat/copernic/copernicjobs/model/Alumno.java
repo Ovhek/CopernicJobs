@@ -49,11 +49,9 @@ public class Alumno extends Persona implements Serializable {
     @Column(name = "curriculum_online")
     private String curriculumOnline;
 
-    @URL(message = "{URL.alumno.pdfLink}")
     @Column(name = "pdf_link")
     private String pdfLink;
 
-    @URL(message = "{URL.alumno.avatarLink}")
     @Column(name = "avatar_link")
     private String avatarLink;
 

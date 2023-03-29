@@ -8,23 +8,26 @@
     </style>
     <script src=""></script>
     <body>
-	<div>
-  		<label for="html">Modulo Administrador</label>
-  		<input type="submit" value="Activar Modulo">
-		<input type="submit" value="Desactivar Modulo">
-	</div>
 
-	<div>
-  		<label for="html">Modulo Alumno</label>
-  		<input type="submit" value="Activar Modulo">
-		<input type="submit" value="Desactivar Modulo">
-	</div>
-
-	<div>
-  		<label for="html">Modulo Empresa</label>
-  		<input type="submit" value="Activar Modulo">
-		<input type="submit" value="Desactivar Modulo">
-	</div>
+        <ul>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#" aria-expanded="true">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav" style="">
+                    <li>
+                        <a href="tables-general.html">
+                            <i class="bi bi-circle"></i><span>General Tables</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tables-data.html">
+                            <i class="bi bi-circle"></i><span>Data Tables</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
     </body>
 </html>
