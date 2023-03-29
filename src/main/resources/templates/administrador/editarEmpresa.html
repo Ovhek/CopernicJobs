@@ -9,67 +9,102 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>Dades de l'Empresa</title>
     </head>
     <body>
-        <h1>Dades de l'Empresa</h1>
 
         <form th:action="@{/guardarEmpresa}" method="post" th:object="${empresa}">
-            <div id="empresa">
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{fechaRegistro}"/>
-                <input type="hidden" th:field="*{password}"/>
-                <label for="nombre">Nom:</label>
-                <input type="text" id="nombre" th:field="*{nombreEmpresa}"><br>
 
-                <label for="descripcion">Descripció:</label>
-                <input type="text" id="descripcion" th:field="*{descripcionEmpresa}"><br>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" th:field="*{username}"><br>
-
-                <label for="direccio">Direcció:</label>
-                <input type="text" id="direccio" th:field="*{direccion}"><br>
-
-                <label for="codi_postal">Codi Postal:</label>
-                <input type="text" id="codi_postal" th:field="*{codPostal}"><br>
-
-                <label for="municipi">Municipi:</label>
-                <input type="text" id="municipi" th:field="*{municipio}"><br>
-
-                <label for="mobil">Mòbil:</label>
-                <input type="tel" id="mobil" th:field="*{movil}"><br>
-
-                <label for="web">Web Empresa:</label>
-                <input type="text" id="web" th:field="*{webEmpresa}"><br>
-            </div>
-
-            <div>
-                <h2>Dades Responsable</h2>
-                <label for="nom_resp">Nom:</label>
-                <input type="text" id="nom_resp" th:field="*{nombre}"><br>
-
-                <label for="cognoms_resp">Cognoms:</label>
-                <input type="text" id="cognoms_resp" th:field="*{apellidos}"><br>
-
-                <label for="correo_resp">Correo de contacte:</label>
-                <input type="text" id="correo_resp" th:field="*{correoContacto}"><br>
-
-                <label for="genere">Gènere:</label>
-                <select th:field="*{sexo}" id="genere" name="genere">
-                    <option th:selected="${empresa.sexoDesc == 'Home'}" value="1">Home</option>
-                    <option th:selected="${empresa.sexoDesc == 'Dona'}" value="2">Dona</option>
-                    <option th:selected="${empresa.sexoDesc == 'Altre'}" value="3">Altre</option>
-                    <option th:selected="${empresa.sexoDesc == 'Prefereixo no dir-ho'}" value="4">Prefereixo no dir-ho</option>
-                </select>
-            </div>
-            <div th:if="${errores} OR ${erroresBinding}">
+            <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
                 <ul>
-                    <li th:each="err : ${errores}" th:text="${err}" />
-                    <li th:each="err2 : ${erroresBinding}" th:text="${err2}" />
+                    <li class="errorMessage"  th:each="err : ${errores}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p th:text="${err}"></p>
+                    </li>
+                    <li  class="errorMessage" th:each="err2 : ${erroresBinding}">
+                        <i class="fa-solid fa-xmark"></i>
+                        <p th:text="${err2}"></p>
+                    </li>
                 </ul>
             </div>
-            <div>
-                <button name="button" value="guardar">Guardar Canvis</button>
-                <button name="button" value="bajar">Donar de baixa</button>
-                <button name="button" value="cancelar">Cancelar Canvis</button>
+
+            <div class="container-fluid">
+                <div class="row justify-content-center justify-content-sm-center">
+                    <div id="empresa" class="col-lg-12 p-lg-5">
+                        <div class="card p-5">
+                            <div>
+                                <h1>Dades de l'Empresa</h1>
+                                <input type="hidden" th:field="*{id}"/>
+                                <input type="hidden" th:field="*{fechaRegistro}"/>
+                                <input type="hidden" th:field="*{password}"/>
+                                <div class="align-items-center">
+                                    <label for="nombre">Nom:</label>
+                                    <input type="text" id="nombre" th:field="*{nombreEmpresa}"><br>
+                                </div>
+
+                                <label for="descripcion">Descripció:</label>
+                                <input type="text" id="descripcion" th:field="*{descripcionEmpresa}"><br>
+
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" th:field="*{username}"><br>
+
+                                <label for="direccio">Direcció:</label>
+                                <input type="text" id="direccio" th:field="*{direccion}"><br>
+
+                                <label for="codi_postal">Codi Postal:</label>
+                                <input type="text" id="codi_postal" th:field="*{codPostal}"><br>
+
+                                <label for="municipi">Municipi:</label>
+                                <input type="text" id="municipi" th:field="*{municipio}"><br>
+
+                                <label for="mobil">Mòbil:</label>
+                                <input type="tel" id="mobil" th:field="*{movil}"><br>
+
+                                <label for="web">Web Empresa:</label>
+                                <input type="text" id="web" th:field="*{webEmpresa}"><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row justify-content-sm-center justify-content-lg-between">
+                        <div class="col-lg-6 px-lg-5 pb-5">
+                            <div class="card p-5">
+
+                                <h2>Dades Responsable</h2>
+                                <label for="nom_resp">Nom:</label>
+                                <input type="text" id="nom_resp" th:field="*{nombre}"><br>
+
+                                <label for="cognoms_resp">Cognoms:</label>
+                                <input type="text" id="cognoms_resp" th:field="*{apellidos}"><br>
+
+                                <label for="correo_resp">Correo de contacte:</label>
+                                <input type="text" id="correo_resp" th:field="*{correoContacto}"><br>
+
+                                <label for="genere">Gènere:</label>
+                                <div class="custom-select marginBottom">
+
+                                    <select th:field="*{sexo}" id="genere" name="genere">
+                                        <option value="1">Home</option>
+                                        <option value="2">Dona</option>
+                                        <option value="3">Altre</option>
+                                        <option value="4">Prefereixo no dir-ho</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container botonesEmpresa">
+                    <div class="row justify-content-center w-100">
+                        <div class="col-lg-4">
+                            <button class="boton" name="button" value="guardar">Guardar Canvis</button>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="boton cancelar" name="button" value="bajar">Donar de baixa</button>
+                        </div>
+
+                    </div>
+                </div> 
             </div>
         </form>
     </body>

@@ -31,28 +31,31 @@ and open the template in the editor.
                                 <!--Enllaç mitjançant el qual accedirem a la pàgina per eliminar la noticia actual
                                 al qual li correspon l'id que concatenem a l'URL d'eliminar-->
 
-                                <a class="boton" th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
+                                <a class="boton cancelar" th:href="@{/eliminar/}+${noticia.id}" th:text="Eliminar"/>
                             </div>
                             <a class="boton" th:href="@{/crearNoticia}" th:text="Crear">Crear Anunci</a>
                         </div>
                     </div>
                     <div class="col-md-6 maxHeightScroll">
                         <!-- Validacions -->
+
                         <div class="py-5 card mx-1 mt-5 row RowVerticalScroll" id="validaciones">
                             <h1>Validacions</h1>
-                            <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="validacion : ${validaciones}">
+                            <div>
+                            <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:if="${validacion.fechaValidacion == null}" th:each="validacion : ${validaciones}">
                                 <h3 th:text="${validacion.nombre}"></h3>
                                 <p th:text="${validacion.apellidos}"></p>
                                 <a class="boton" th:href="@{/validarRegistreAlumne/}+${validacion.id}">Validar Alumne</a>
                             </div>
+                            </div>
                             <div id="validaciones2">
-                                <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="validacion2 : ${validaciones2}">
+                                <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:if="${validacion2.fechaValidacion == null}" th:each="validacion2 : ${validaciones2}">
                                     <h3 th:text="${validacion2.nombreEmpresa}"></h3>
                                     <a class="boton" th:href="@{/validarRegistreEmpresa/}+${validacion2.id}">Validar Empresa</a>
                                 </div>
                             </div>
                             <div id="validaciones3">
-                                <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:each="validacion3 : ${validaciones3}">
+                                <div class="card mt-5 p-5 p-5 col-lg-12 oferta" th:if="${validacion3.fechaValidacion == null}" th:each="validacion3 : ${validaciones3}">
                                     <h3 th:text="${validacion3.tituloOferta}"></h3>
                                     <a class="boton" th:href="@{/validarOferta/}+${validacion3.id}">Validar Oferta</a>
                                 </div>
