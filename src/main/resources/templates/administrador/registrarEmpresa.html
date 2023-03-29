@@ -80,13 +80,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <label for="genere">Gènere:</label>
             <div>
                 <select th:field="*{sexo}" id="genere" name="genere">
+                    <option value="0">Selecciona:</option>
                     <option value="1">Home</option>
                     <option value="2">Dona</option>
                     <option value="3">Altre</option>
                     <option value="4">Prefereixo no dir-ho</option>
                 </select>
             </div>
-            <button type="submit">Registrar</button>
+            <button class="boton" type="submit">Registrar</button>
         </form>
     </body>
 </html>

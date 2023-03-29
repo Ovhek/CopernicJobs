@@ -60,7 +60,7 @@ public class EditarPerfilAdmin {
 
         model.addAttribute("administrador", administrador);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Editar Perfil", username);
     }
 
     @PreAuthorize("hasAuthority('administrador')")
@@ -155,14 +155,14 @@ public class EditarPerfilAdmin {
                     }
                 }
             } else {
-                return "redirect:/verPerfilAdmin";
+                return "redirect:/administrador/veurePerfil";
             }
             String sexoDesc = "";
             
             administradorService.anadirAdministrador(administradorDB);
         }
         redirectAttributes.addFlashAttribute("CanvisGuardats", messageSource.getMessage("info.alumneguardat", null, Locale.ENGLISH));
-        return "redirect:/verPerfilAdmin";
+        return "redirect:/administrador/veurePerfil";
     }
 
 }

@@ -9,12 +9,15 @@
             <div class="container mod card-margins">
                 <th:block th:include="layout/_plantillaAuth.html :: authTemplate"></th:block>
                 <div class="row row-modulos gap-20 marginBottom">
-                    <div class="card col" th:each="modulo : ${listaModulos}">
+                    <div class="card col" th:each="modulo : ${listaModulos}" th:if="${modulo.visibilidad}">
                         <a th:href="@{/} + ${modulo.nombre} + '/inici'">
                             Mòdul<span th:text="${#strings.capitalize(modulo.nombre)}"></span>
                         </a>
                     </div>
+                    <p th:if="${noHayModulos}">No hi ha mòduls disponibles.</p>
+
                 </div>
+                <a class="boton justify-content-center" href="/logout">Tancar Sessió</a>
             </div>
 
         </div>

@@ -10,47 +10,73 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body xmlns:th="http://www.thymeleaf.org">
-        <header>
-            <h1 th:text="${oferta.tituloOferta}"></h1>
-        </header>
-        <main>
-            <section>
-                <a th:href="@{/alumne/veureEmpresaAlumne/}+${oferta.empresa.id}" th:text="${oferta.empresa.nombreEmpresa}">Nom Empresa</a>
-                <div>
-                    <h2>Descripció</h2>
-                    <p th:text="${oferta.descripcionOferta}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
-                </div>
-                <div>
-                    <h2>Requisits</h2>
-                    <p th:text="${oferta.requisitosAlumno}"></p>
-                </div>
-                <div>
-                    <h2>S'ofereix</h2>
-                    <p th:text="${oferta.seOfrece}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
-                </div>
-                <div>
-                    <button th:if="${oferta.enlacePDF != null}">Descarregar PDF</button>
-                </div>
-            </section>
+        <div class="card p-5">
 
-            <section>
-                <div>
-                    <p th:text="'Alumnes inscrits: ' + ${alumnesInscrits}"></p>
+            <div class="container container-">
+                <div class="card-header">
+                    <div class="row">
+                        <h1 th:text="${oferta.tituloOferta}">   
+
+                    </div>
+                    <div class="row">
+                        <a th:href="@{/alumne/veureEmpresaAlumne/{id}(id=${oferta.empresa.id})}" name="nombreEmpresa "th:text="${oferta.empresa.nombreEmpresa}"/> 
+                    </div>
+                </div>
+                <div class="col-4 col-6-medium">
                 </div>
 
-                <p th:text="${oferta.fechaPeticion}"></p>
-                
-                <form action="" th:action="@{/in}" th:object="${alumno}" method="post" th:if="${!alumnoInscrito}">
-                    <input type="hidden" th:field="${oferta.id}"/>
-                    <button>Inscriure'm</button>
-                </form>
-                
-                <form action="" th:action="@{/des}" th:object="${alumno}" method="post" th:if="${alumnoInscrito}">
-                    <input type="hidden" th:field="${oferta.id}"/>
-                    <button >Desisncriure'm</button>
-                </form>
+                <div class="card-body">
+                    <div>
+                        <label for="uname"><b>Descripció de l'oferta</b></label>
+                    </div>
+                    <div>
+                        <p th:text="${oferta.descripcionOferta}"></p>
+                    </div>  
+                    <div>
+                        <label for="uname"><b>Requisits de l'Alumne</b></label>
+                    </div>        
+                    <div>
+                        <p th:text="${oferta.requisitosAlumno}"></p>
+                    </div>
+                    <div>
+                        <label for="uname"><b>S'Ofereix</b></label>
+                    </div>
+                    <div>
+                        <p th:text="${oferta.seOfrece}"></p>
+                    </div>
+                    <div>
+                        <p><span>Alumnes Inscrits: </span><span th:text="${alumnesInscrits}"></span></p>
+                    </div>
+                    <p th:text="${oferta.fechaValidacion}"></p>
 
-            </section>
-        </main>
+                    <form action="" th:action="@{/in}" th:object="${alumno}" method="post" th:if="${!alumnoInscrito}">
+                        <input type="hidden" th:field="${oferta.id}"/>
+                        <button class="boton">Inscriure'm</button>
+                    </form>
+
+                    <button type="button" class="boton" data-bs-toggle="modal" data-bs-target="#des" th:if="${alumnoInscrito}">Desisncriure'm</button>
+                </div>
+            </div>
+            <div class="modal fade" id="des" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmació</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                estàs segur que vols descriure't?<p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tancar</button>
+                            <form action="" th:action="@{/des}" th:object="${alumno}" method="post" th:if="${alumnoInscrito}">
+                                <input type="hidden" th:field="${oferta.id}"/>
+                                <button type="submit" class="boton">Confirmar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </body>
 </html>

@@ -43,9 +43,10 @@ and open the template in the editor.
                         <textarea th:field="*{descripcion}" id="descripcion" rows="5" placeholder="Introdueix la descripció"></textarea>
                         <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"/>
                     </div>
-
+                    
                     <!-- Botó per enviar les dades-->
-                    <button type="submit" name="enviar" value="Enviar Dades">Guardar Anunci</button> 
+                    <button class="boton" type="submit" name="enviar" value="Enviar Dades">Guardar Anunci</button> 
+
                 </form>
             </div>
         </div>

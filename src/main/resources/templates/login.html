@@ -19,7 +19,7 @@
                         <input type="password" placeholder="Introdueix la teva contrasenya" th:value="${password}" id="password" name="password" required>
                         <span class="toggleBtn" id="toggle1"></span>
                     </div>
-                    <div class="errorMessage" th:if="${param.error}" th:text="#{error.credenciales}"></div>
+                    <div class="errorMessage" th:if="${param.error}" th:text="#{${param.error}}"></div>
                     <span class="psw"><a href="/recuperarContrasenya">Recuperar contrasenya</a></span>
                     <button type="submit" class="boton">Iniciar Sessió</button>
                     <p class="psw"><a href="/registrat">Registra't</a></p>

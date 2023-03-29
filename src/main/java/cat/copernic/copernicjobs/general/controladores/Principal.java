@@ -4,10 +4,9 @@
  */
 package cat.copernic.copernicjobs.general.controladores;
 
-import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.general.servicios.RolModuloService;
-import cat.copernic.copernicjobs.model.Empresa;
 import cat.copernic.copernicjobs.model.Modulo;
+import cat.copernic.copernicjobs.model.RolModulo;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +23,32 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class Principal {
-    
+
     @Autowired
     RolModuloService rolModuloService;
-    
+
     @GetMapping("/inici")
-    public String inicio(Model model, @AuthenticationPrincipal UserDetails username){
-        
+    public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
+
         List<GrantedAuthority> roles = new ArrayList<>(username.getAuthorities());
-        
+
         List<Modulo> modulos = rolModuloService.findModulosByRolNom(roles.get(0).getAuthority());
-        
-        
-        model.addAttribute("listaModulos",modulos);
-        
+        List<RolModulo> rolesModulos = rolModuloService.findAll();
+        for (Modulo modulo : modulos) {
+            boolean visibilidad = false;
+            for (RolModulo rolModulo : rolesModulos) {
+                if (rolModulo.getRol().getNom().equals(roles.get(0).getAuthority()) && rolModulo.getModulo().getID() == modulo.getID()) {
+                    visibilidad = rolModulo.isVisibilidad();
+                    break;
+                }
+            }
+            modulo.setVisibilidad(visibilidad);
+        }
+        boolean todosInvisibles = modulos.stream().allMatch(modulo -> !modulo.isVisibilidad());
+        if(todosInvisibles || modulos.isEmpty()) model.addAttribute("noHayModulos",true);
+        model.addAttribute("listaModulos", modulos);
+
         return "principal";
     }
-        
+
 }

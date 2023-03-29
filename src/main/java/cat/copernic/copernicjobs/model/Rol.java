@@ -30,10 +30,10 @@ public class Rol {
     @Column(name = "nombre")
     private String nom;
     
-    @OneToOne(mappedBy="rol", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-    private Usuario usuario;
+    @OneToMany(mappedBy="rol", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    private List<Usuario> usuarios;
     
-    @OneToMany(mappedBy = "rol",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "rol",fetch = FetchType.LAZY)
     private List<RolModulo> modulos;
 
 }

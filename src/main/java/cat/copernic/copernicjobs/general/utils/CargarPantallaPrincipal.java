@@ -155,7 +155,7 @@ public class CargarPantallaPrincipal {
                 //TODO: Usar el AdministradorService para obtener el admin.
                 Administrador administrador = new Administrador();
                 administrador.setId(id);
-                //usuario = administradorService.cercarAdministrador(administrador);
+                usuario = staticAdministradorService.buscarAdministrador(administrador);
                 break;
             default:
                 throw new AssertionError();

@@ -29,14 +29,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <p th:text="${oferta.seOfrece}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus, lorem eu mattis euismod, velit augue tristique turpis, non hendrerit ipsum dolor at quam.</p>
                 </div>
                 <div>
-                    <h2>Més informació</h2>
-                    <button>Descarregar PDF</button>
+                    <button th:if="${oferta.enlacePDF != null}">Descarregar PDF</button>
                 </div>
             </section>
 
             <section>
                 <div>
-                    <p th:text="'Alumnes inscrits: ' + ${alumnesInscrits}"></p>
+                    <p th:if="${alumnesInscrits != null}" th:text="'Alumnes inscrits: ' + ${alumnesInscrits}"></p>
+                    <b th:if="${alumnesInscrits == null}">No hi ha cap alumne inscrit</b>
                     <button th:if="${empresaAdmin}">Veure Alumnes</button>
                 </div>
 
