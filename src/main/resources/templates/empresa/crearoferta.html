@@ -18,15 +18,18 @@
             <input type="hidden" name="id" th:field="*{id}"/>
             <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
 
-            <div class="card errorDiv" th:if="${#fields.hasAnyErrors()}">
-                <ul>
-                    <li class="errorMessage"  th:each="err : ${#fields.allErrors()}">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p th:text="${err}"></p>
-                    </li>
-
-                </ul>
-            </div>
+                <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
+                    <ul>
+                        <li class="errorMessage"  th:each="err : ${errores}">
+                            <i class="fa-solid fa-xmark"></i>
+                            <p th:text="${err}"></p>
+                        </li>
+                        <li  class="errorMessage" th:each="err2 : ${erroresBinding}">
+                            <i class="fa-solid fa-xmark"></i>
+                            <p th:text="${err2}"></p>
+                        </li>
+                    </ul>
+                </div>
 
             <table style="margin: 0 auto;">
                 <div class="container">
@@ -37,7 +40,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="text" name="titulo" th:field="*{tituloOferta}" placeholder="Introdueix el titol de l'Oferta" style="width:75%" required>
+                            <input type="text" name="titulo" th:field="*{tituloOferta}" placeholder="Introdueix el titol de l'Oferta" style="width:75%">
                         </th>
                     </tr>
                     <tr>
