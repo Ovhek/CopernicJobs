@@ -21,6 +21,10 @@ public class ModulService implements ModulServiceInterface{
 
     @Autowired
     private ModuloDAO modulo;
+
+    public void setModulo(ModuloDAO modulo) {
+        this.modulo = modulo;
+    }
     
     @Override
     @Transactional(readOnly=true)

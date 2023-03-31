@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.general.servicios;
 
+import cat.copernic.copernicjobs.errores.UsuarioNoValidado;
 import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.dao.AdministradorDAO;
@@ -60,6 +61,8 @@ public class LoginService implements UserDetailsService{
         if(usuario.getFechaBaja() != null){
             throw new UsuarioBajaException("L'usuari està de baixa");
         }
+        if(usuario.getFechaValidacion() == null) throw new UsuarioNoValidado("L'usuari no està validat");
+        
         var roles = new ArrayList<GrantedAuthority>();
         
         roles.add(new SimpleGrantedAuthority(usuario.getRol().getNom()));

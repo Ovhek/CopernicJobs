@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.general.controladores;
 
 import cat.copernic.copernicjobs.errores.UsuarioBajaException;
+import cat.copernic.copernicjobs.errores.UsuarioNoValidado;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,6 +39,10 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
         if (exception.getCause() instanceof UsuarioBajaException) {
             errorMessage = "error.baixa";
+        }
+        
+        if (exception.getCause() instanceof UsuarioNoValidado) {
+            errorMessage = "error.usuarionovalidado";
         }
 
         response.sendRedirect(request.getContextPath() + "/login?error=" + errorMessage);

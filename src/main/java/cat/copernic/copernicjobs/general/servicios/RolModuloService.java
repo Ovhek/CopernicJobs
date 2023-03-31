@@ -23,6 +23,10 @@ public class RolModuloService implements RolModuloServiceInterface{
     @Autowired
     RolModuloDAO rolModuloDao;
 
+    public void setRolModuloDao(RolModuloDAO rolModuloDao) {
+        this.rolModuloDao = rolModuloDao;
+    }
+
     @Override
     @Transactional(readOnly = true)
     public List<Modulo> findModulosByRolNom(String nom) {

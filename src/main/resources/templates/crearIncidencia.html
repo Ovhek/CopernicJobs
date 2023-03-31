@@ -10,6 +10,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div class="card errorDiv" th:if="${errores} OR ${erroresBinding}">
+            <ul>
+                <li class="errorMessage"  th:each="err : ${errores}">
+                    <i class="fa-solid fa-xmark"></i>
+                    <p th:text="${err}"></p>
+                </li>
+                <li  class="errorMessage" th:each="err2 : ${erroresBinding}">
+                    <i class="fa-solid fa-xmark"></i>
+                    <p th:text="${err2}"></p>
+                </li>
+            </ul>
+        </div>
         <div class="incidenciaContainer">
             <div class="card incidenciaCard">
                 <h1>Crear Incidència</h1>

@@ -5,15 +5,20 @@
 package cat.copernic.copernicjobs.general.utils;
 
 import cat.copernic.copernicjobs.administrador.servicios.AdministradorService;
+import cat.copernic.copernicjobs.administrador.servicios.ModulService;
 import cat.copernic.copernicjobs.alumno.servicios.AlumnoService;
 import cat.copernic.copernicjobs.dao.AdministradorDAO;
 import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.dao.EmpresaDAO;
+import cat.copernic.copernicjobs.dao.ModuloDAO;
+import cat.copernic.copernicjobs.dao.RolModuloDAO;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
-import cat.copernic.copernicjobs.model.Administrador;
-import cat.copernic.copernicjobs.model.Alumno;
-import cat.copernic.copernicjobs.model.Empresa;
+import cat.copernic.copernicjobs.general.servicios.RolModuloService;
+import cat.copernic.copernicjobs.model.Modulo;
+import cat.copernic.copernicjobs.model.RolModulo;
 import cat.copernic.copernicjobs.model.Usuario;
+import java.util.List;
+import javax.lang.model.util.ElementFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -36,6 +41,8 @@ public class CargarPantallaPrincipal {
     private static AlumnoService staticAlumnoService;
     private static EmpresaService staticEmpresaService;
     private static AdministradorService staticAdministradorService;
+    private static RolModuloService staticRolModuloService;
+    private static ModulService staticModuloService;
 
     /**
      * Función que se ejecuta después de realizar la inyección de dependencias
@@ -45,14 +52,20 @@ public class CargarPantallaPrincipal {
      * @param alumnoService
      */
     @Autowired
-    public CargarPantallaPrincipal(AlumnoService alumnoService, EmpresaService empresaService, AdministradorService administradorService, EmpresaDAO empresaDAO, AlumnoDAO alumnoDAO, AdministradorDAO administradorDAO) {
+    public CargarPantallaPrincipal(AlumnoService alumnoService, EmpresaService empresaService, AdministradorService administradorService, RolModuloService rolModuloService, ModulService moduloService, EmpresaDAO empresaDAO, AlumnoDAO alumnoDAO, AdministradorDAO administradorDAO, RolModuloDAO rolmoduloDAO, ModuloDAO moduloDAO) {
         staticAlumnoService = alumnoService;
         staticAlumnoService.setAlumnoDAO(alumnoDAO);
         staticEmpresaService = empresaService;
         staticEmpresaService.setEmpresa(empresaDAO);
         staticAdministradorService = administradorService;
         staticAdministradorService.setAdministradorDAO(administradorDAO);
+        staticRolModuloService = rolModuloService;
+        staticRolModuloService.setRolModuloDao(rolmoduloDAO);
+        staticModuloService = moduloService;
+        staticModuloService.setModulo(moduloDAO);
     }
+
+    private static String moduloRequeridoRuta;
 
     /**
      * Función para cargar la plantilla de la pantalla Principal.
@@ -67,8 +80,48 @@ public class CargarPantallaPrincipal {
      */
     public static String cargar(Model model, NavBarType tipo, String ruta, String archivo, String titulo, UserDetails user) {
 
+        //Comprobamos si el rol puede acceder al modulo.
+        String rolUsuario = user.getAuthorities().iterator().next().getAuthority();
+
+        String rutaSinCaracteresEspeciales = ruta.replaceAll("[^a-zA-Z0-9]", "");
+
+        switch (rutaSinCaracteresEspeciales) {
+            case "alumno":
+                moduloRequeridoRuta = "alumne";
+                break;
+            default:
+                moduloRequeridoRuta = ruta;
+        }
+
+        moduloRequeridoRuta = moduloRequeridoRuta.replaceAll("[^a-zA-Z0-9]", "");
+
+        List<Modulo> modulosDB = staticModuloService.llistarModuls();
+        Modulo accediendoA = modulosDB.stream().filter(modulo -> modulo.getNombre().equals(moduloRequeridoRuta)).findFirst().orElse(null);
+
+        if (accediendoA != null) {
+            boolean puedeAcceder = false;
+
+            for (RolModulo rolModulo : accediendoA.getRoles()) {
+                puedeAcceder = rolModulo.getRol().getNom().equals(rolUsuario);
+                if (puedeAcceder) {
+                    break;
+                }
+            }
+
+            if (!puedeAcceder) {
+                return "error";
+            }
+        }
+
         //TODO: Usuario que ha iniciado sesión
-        Usuario usuario = null;
+        Usuario usuario = staticAlumnoService.buscarAlumnoPorUsername(user.getUsername());
+        if (usuario == null) {
+            usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
+        }
+        if (usuario == null) {
+            usuario = staticEmpresaService.buscarPorUsername(user.getUsername());
+        }
+
         //Ruta del archvio de navegación
         String rutaNav = "";
         //Nombre del archvio de navegación sin .html
@@ -77,26 +130,14 @@ public class CargarPantallaPrincipal {
             case ALUMNO:
                 rutaNav = "alumno/";
                 archivoNav = "_navAlumno";
-                usuario = staticAlumnoService.buscarAlumnoPorUsername(user.getUsername());
-                if (usuario == null) {
-                    usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
-                }
                 break;
             case EMPRESA:
                 rutaNav = "empresa/";
                 archivoNav = "_navEmpresa";
-                usuario = staticEmpresaService.buscarPorUsername(user.getUsername());
-                if (usuario == null) {
-                    usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
-                }
-
                 break;
             case ADMINISTRADOR:
                 rutaNav = "administrador/";
                 archivoNav = "_navAdministrador";
-
-                //TODO: Usar el AdministradorService para obtener el admin.
-                usuario = staticAdministradorService.buscarAdministradorPorUsername(user.getUsername());
                 break;
             default:
                 throw new AssertionError();
