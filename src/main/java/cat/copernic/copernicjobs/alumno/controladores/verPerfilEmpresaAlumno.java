@@ -1,6 +1,5 @@
 package cat.copernic.copernicjobs.alumno.controladores;
 
-
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
 import cat.copernic.copernicjobs.general.utils.NavBarType;
@@ -26,15 +25,26 @@ public class verPerfilEmpresaAlumno {
 
     @Autowired
     EmpresaService empresaService;
+
+    /**
+     *
+     * Método que se encarga de mostrar la página de visualización de la
+     * información de una empresa para el alumno.
+     *
+     * @param empresaGet la empresa a mostrar.
+     * @param model el modelo utilizado para enviar información a la vista.
+     * @param username los detalles del usuario autenticado.
+     * @return la vista que muestra la información de la empresa para el alumno.
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureEmpresaAlumne/{id}")
-    public String inicio(Empresa empresaGet, Model model,@AuthenticationPrincipal UserDetails username) {
+    public String inicio(Empresa empresaGet, Model model, @AuthenticationPrincipal UserDetails username) {
         Empresa empresa = empresaService.cercarEmpresa(empresaGet);
         model.addAttribute("empresa", empresa);
 
         String ruta = "alumno/";
         String archivo = "verEmpresaAlumno";
 
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Empresa - " + empresa.getNombreEmpresa(),username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Empresa - " + empresa.getNombreEmpresa(), username);
     }
 }

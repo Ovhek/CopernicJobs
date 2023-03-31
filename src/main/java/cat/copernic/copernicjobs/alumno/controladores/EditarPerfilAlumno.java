@@ -54,6 +54,12 @@ public class EditarPerfilAlumno {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Función encargada de cargar la pantalla correspondiente a al ruta "alumne/editarPerfil".
+     * @param model Modelo Thymeleaf del HTML.
+     * @param username Objeto correspondiente a los detalles del usuario.
+     * @return HTML a mostrar.
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/editarPerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -73,6 +79,21 @@ public class EditarPerfilAlumno {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Editar Perfil", username);
     }
 
+    /**
+     * Función encargada de manjear la edición del perfil de usuario.
+     * @param btnValue Valor del botón presionado con el atributo name = button
+     * @param img Archivo de imagen
+     * @param curriculum Archivo PDF
+     * @param alumno Objeto Alumno que contiene los campos editados.
+     * @param errores Objeto para manejar los errores (validaciones).
+     * @param model Modelo del Thymeleaf del HTML.
+     * @param username Detalles de usuario del usuario actual.
+     * @param result Objeto que representa errores personalizados.
+     * @param redirectAttributes Objeto encargado de manejar atributos del redirect.
+     * @param passwordNueva String que representa la contraseña nueva que haya puesto el usuario.
+     * @param confirmaPasswordNueva String que representa la confirmación de la contraseá que haya puesto el usuario.
+     * @return 
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @PostMapping("/alumne/editarPerfil")
     public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Nullable @RequestParam(name = "profileImg") MultipartFile img, @Nullable @RequestParam(name = "profileCurriculum") MultipartFile curriculum, @Valid Alumno alumno, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {

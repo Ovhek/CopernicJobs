@@ -41,9 +41,9 @@ public class RegistratComEmpresa {
     }
 
     @PostMapping("/crearempresa")
-    public String crearEmpresa(@Valid Empresa empresa, Errors errores, BindingResult result, Model model, String contrasenyaRepetida){
+    public String crearEmpresa(@Valid Empresa empresa, Errors errores, BindingResult result, Model model, String password, String repeteix_contrasenya){
         
-        if (!empresa.getPassword().equals(contrasenyaRepetida)) {
+        if (!password.equals(repeteix_contrasenya)) {
             ObjectError error = new ObjectError("Contrasenya", messageSource.getMessage("error.contrasenyanocoincide", null, Locale.ENGLISH));
             result.addError(error);
         }

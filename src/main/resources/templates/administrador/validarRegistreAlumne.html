@@ -62,28 +62,10 @@ and open the template in the editor.
             <form method="post" th:action="@{/validarAlumno}" th:object="${alumno}">
                 <div>
                     <input type="hidden" th:field="*{id}"/>
-                    <input type="hidden" th:field="*{username}"/>
                     <input type="hidden" th:field="*{password}"/>
-                    <input type="hidden" th:field="*{baja}"/>
-                    <input type="hidden" th:field="*{fechaRegistro}"/>
+                    <input type="hidden" th:field="*{username}"/>
                     <input type="hidden" th:field="*{nombre}"/>
                     <input type="hidden" th:field="*{apellidos}"/>
-                    <input type="hidden" th:field="*{sexo}"/>
-                    <input type="hidden" th:field="*{sexoDesc}"/>
-                    <input type="hidden" th:field="*{codPostal}"/>
-                    <input type="hidden" th:field="*{municipio}"/>
-                    <input type="hidden" th:field="*{direccion}"/>
-                    <input type="hidden" th:field="*{movil}"/>
-                    <input type="hidden" th:field="*{correoContacto}"/>
-                    <input type="hidden" th:field="*{tarjetaSanitaria}"/>
-                    <input type="hidden" th:field="*{segSocial}"/>
-                    <input type="hidden" th:field="*{dni}"/>
-                    <input type="hidden" th:field="*{linkedin}"/>
-                    <input type="hidden" th:field="*{portafoliPersonal}"/>
-                    <input type="hidden" th:field="*{curriculumOnline}"/>
-                    <input type="hidden" th:field="*{pdfLink}"/>
-                    <input type="hidden" th:field="*{avatarLink}"/>
-
                     <button class="boton" type="submit">Validar</button>
             </form>
 
