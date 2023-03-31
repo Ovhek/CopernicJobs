@@ -14,6 +14,7 @@ import cat.copernic.copernicjobs.model.Oferta;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -51,7 +52,7 @@ public class crearOferta {
 
     @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa/crearoferta")
-    public String inicio(@AuthenticationPrincipal UserDetails user,Model model) {
+    public String inicio(@AuthenticationPrincipal UserDetails user, Model model) {
         Oferta oferta = new Oferta();
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
@@ -65,29 +66,29 @@ public class crearOferta {
 
     @PreAuthorize("hasAuthority('Empresa')")
     @PostMapping("/empresa/registraroferta")
-    public String registrarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errors) {
+    public String registrarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errors, @AuthenticationPrincipal UserDetails user, Model model) {
 
         if (btnOferta.equals("registrar")) {
-            guardarOferta(oferta,errors);
-            return "redirect:inici"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
-        }else{
+            return guardarOferta(oferta, errors, model, user);
+        } else {
             subirPDF();
         }
-        
-        return "redirect:/crearoferta";
+
+        return "redirect:/empresa/crearoferta";
         //else borrarOferta(oferta);
 
     }
-    
-    public void subirPDF(){
-        
-    
-    
+
+    public void subirPDF() {
+
     }
 
-    public String guardarOferta(@Valid Oferta oferta, Errors errors) {
+    public String guardarOferta(Oferta oferta, Errors errors, Model model, UserDetails user) {
         if (errors.hasErrors()) {
-            return "redirect:/misofertas";
+            List<String> erroresString = new ArrayList<>();
+            errors.getAllErrors().forEach(err -> erroresString.add(err.getDefaultMessage()));
+            model.addAttribute("errores", erroresString);
+            return inicio(user, model);
         } else {
             Empresa e = new Empresa();
             e.setId(3);
@@ -97,7 +98,7 @@ public class crearOferta {
             oferta.setFechaValidacion(LocalDate.now());
             oferta.setInscripciones(new ArrayList<Inscripcion>());
             ofertaService.afegirOferta(oferta); //Afegim el gos passat per paràmetre a la base de dades
-            return "redirect:/inici";
+            return "redirect:/empresa/inici";
         }
     }
 }

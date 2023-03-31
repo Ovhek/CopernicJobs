@@ -21,6 +21,16 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface AlumnoDAO extends UsuarioDAO<Alumno, Integer> {
 
+    /**
+     *
+     * Devuelve una lista de todos los objetos Alumno cuya propiedad "baja"
+     * coincide con el valor booleano indicado.
+     *
+     * @param baja El valor booleano que indica si los objetos Alumno deben
+     * tener su propiedad "baja" a true o a false.
+     * @return Una lista de objetos Alumno cuya propiedad "baja" coincide con el
+     * valor booleano indicado.
+     */
     List<Alumno> findAllByBaja(boolean baja);
 
 }
