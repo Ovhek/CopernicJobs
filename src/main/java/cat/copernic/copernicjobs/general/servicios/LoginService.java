@@ -30,12 +30,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Servicio encargado de validar el login.
  *
  * @author Alex
  */
-
-@Service ("userDetailsService")
-public class LoginService implements UserDetailsService{
+@Service("userDetailsService")
+public class LoginService implements UserDetailsService {
 
     @Autowired
     private AlumnoService alumnoService;
@@ -43,33 +43,48 @@ public class LoginService implements UserDetailsService{
     private EmpresaService empresaService;
     @Autowired
     private AdministradorService administradorService;
-    
+
     private MessageSource messageSource;
-    
+
+    /**
+     *
+     * Busca y carga los detalles de un usuario por su nombre de usuario.
+     *
+     * @param username El nombre de usuario del usuario a cargar.
+     * @return Los detalles del usuario cargado como un objeto UserDetails.
+     * @throws UsernameNotFoundException Si no se puede encontrar al usuario con
+     * el nombre de usuario dado, si está de baja o no ha sido validado.
+     */
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    
+
         Usuario usuario = (Alumno) alumnoService.buscarAlumnoPorUsername(username);
-        
-        if(usuario == null) usuario = (Empresa) empresaService.buscarPorUsername(username);
-        
-        if(usuario == null) usuario = (Administrador)administradorService.buscarAdministradorPorUsername(username);
-        
-        if(usuario == null) throw new UsernameNotFoundException(username);
-        
-        if(usuario.getFechaBaja() != null){
+
+        if (usuario == null) {
+            usuario = (Empresa) empresaService.buscarPorUsername(username);
+        }
+
+        if (usuario == null) {
+            usuario = (Administrador) administradorService.buscarAdministradorPorUsername(username);
+        }
+
+        if (usuario == null) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        if (usuario.getFechaBaja() != null) {
             throw new UsuarioBajaException("L'usuari està de baixa");
         }
-        if(usuario.getFechaValidacion() == null) throw new UsuarioNoValidado("L'usuari no està validat");
-        
+        if (usuario.getFechaValidacion() == null) {
+            throw new UsuarioNoValidado("L'usuari no està validat");
+        }
+
         var roles = new ArrayList<GrantedAuthority>();
-        
+
         roles.add(new SimpleGrantedAuthority(usuario.getRol().getNom()));
-        
+
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }
 
-
-    
 }
