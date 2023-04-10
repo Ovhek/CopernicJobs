@@ -79,7 +79,7 @@ public class RegistratComAlumne {
                 sexoDesc = "Invalid";
         }
 
-        alumno.setAvatarLink("files/img/default/logo.png");
+        alumno.setAvatarLink("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png");
         alumno.setSexoDesc(sexoDesc);
         alumno.setFechaRegistro(LocalDate.now());
         alumno.setPassword(EncriptarContrasenya.encryptar(alumno.getPassword()));

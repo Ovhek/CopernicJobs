@@ -51,7 +51,7 @@ public class VerModulos {
     private MessageSource messageSource;
 
     @PreAuthorize("hasAuthority('administrador')")
-    @GetMapping("/verModulos")
+    @GetMapping("/administrador/veureModuls")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         var roles = rolService.listarRoles();

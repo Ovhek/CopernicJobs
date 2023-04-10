@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
+ * DAO de la tabla Rol
  * @author joang
  */
 public interface RolDAO extends JpaRepository<Rol,Integer>{
