@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa;
 
+import cat.copernic.copernicjobs.alumno.servicios.InscripcionService;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
@@ -44,7 +45,7 @@ public class misOfertas {
         String archivo = "misofertas";
        
         if(empresa != null) model.addAttribute("ofertas", ofertaService.listarPorNombre(empresa.getNombreEmpresa()));
-
+        
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
