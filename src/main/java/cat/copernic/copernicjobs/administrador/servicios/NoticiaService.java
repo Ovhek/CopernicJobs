@@ -13,81 +13,66 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Esta clase implementa la interfaz NoticiaServiceInterface y proporciona los
+ * métodos para trabajar con la entidad Noticia en la capa de servicio. Utiliza
+ * un objeto NoticiaDAO para acceder a la capa de datos y gestionar las
+ * transacciones SQL.
  *
  * @author joang
  */
 @Service
-public class NoticiaService implements NoticiaServiceInterface{
+public class NoticiaService implements NoticiaServiceInterface {
 
-    /*Atribut que defineix una noticiaDAO. Mitjançant aquest atribut el control ja no 
-     *accedirà directament a la capa de dades, si no que accedirà mitjançant la capa de servei.
-    */
+    /**
+     * Atributo que define un objeto NoticiaDAO. A través de este atributo, la capa de servicio accede a la capa de datos.
+     */
     @Autowired
     private NoticiaDAO noticia;
-    
-    /*Quan treballem en la capa de servei amb classes de tipus DAO, com és el cas, estem
-     *treballant amb transaccions SQL, és a dir, quan fem una consulta a la BBDD, si aquesta
-     *ha estat un èxit, el sistema ha de fer un COMMIT, en cas contrari un ROLLBACK. Així doncs,
-     *mitjançant la notació @Transactional l'indiquem al sistema que el mètode és una transacció.
-     *Això permet que no hi hagi problemes si estem fent més d'una transacció al mateix temps.
-    */
 
-    /*LListar noticies de la taula noticia de la BBDD copernicjobs*/
+    /**
+     * Este método lista todas las noticias de la tabla noticia en la base de datos copernicjobs.
+     *
+     * @return Lista de objetos Noticia que representa las noticias en la base de datos.
+     */
     @Override
-    /*La notació @Transactional fa referència a la classe Transactional de Spring Framework.
-     *En aquest cas no hi haurà ni COMMITS, ni ROLLBACKS, ja que no modifiquem la informació
-     *de la BBDD, per tant, utilitzarem aquesta notació passant-li com a paràmetre readOnly=true
-     *perquè només hem de llegir de la BBDD.
-    */    
-    @Transactional(readOnly=true) 
+    @Transactional(readOnly = true)
     public List<Noticia> llistarNoticies() {
-        
-        /*Cridem al mètode findAll() de CrudRepository perquè ens retorni el llistat de noticies de la BBDD.
-         *findAll() retorna un objecte, per tant hem de fer un cast perquè l'objecte sigui un List de noticies
-        */
-        return (List<Noticia>) noticia.findAll(); 
+        return (List<Noticia>) noticia.findAll();
     }
-    
-    /*Afegir la noticia passada per paràmetre a la taula noticia de la BBDD copernicjobs*/
+
+    /**
+     * Este método agrega una noticia a la tabla noticia en la base de datos copernicjobs.
+     *
+     * @param noticia Objeto Noticia que representa la noticia a agregar en la base de datos.
+     */
     @Override
-    /*En aquest cas hi haurà COMMITS i ROLLBACKS, ja que modifiquem la informació de la BBDD, per tant,
-     *utilitzarem aquesta notació sense passar-li cap paràmetre perquè es puguin fer els COMMITS 
-     *i ROLLBACKS.
-    */ 
     @Transactional
     public void afegirNoticia(Noticia noticia) {
-        
-        /*Cridem al mètode save() de CrudRepository perquè afegeixi la noticia passada com a paràmetre,
-         *a la taula noticia de la BBDD copernicjobs.
-        */
-        this.noticia.save(noticia); 
+        this.noticia.save(noticia);
     }
-    
-    /*Eliminar la noticia passada per paràmetre de la taula noticia de la BBDD copernicjobs*/
-    @Override
-    @Transactional //Igual que en el mètode afegirGos, modifiquem la informació de la BBDD
-    public void eliminarNoticia(Noticia noticia) {
-        
-        /*Cridem al mètode delete() de CrudRepository perquè elimini la noticia passada com a paràmetre,
-         *de la taula noticia de la BBDD copernicjobs.
-        */
-        this.noticia.delete(noticia);
-        
-    }
-    
-    /*Cercar la noticia passada per paràmetre en la taula noticia de la BBDD copernicjobs*/
-    @Override
-    @Transactional(readOnly=true) //Igual que en el mètode llistarNoticies, no modifiquem la informació de la BBDD
-    public Noticia cercarNoticia(Noticia noticia) {
-        
-        /*Cridem al mètode findById() de CrudRepository perquè ens retorni la noticia passada com a paràmetre.
-         *El paràmetre que li passem a aquest mètode, ha de ser la clau primària de l'entitat, en el nostre 
-         *cas la noticia.
-         *
-         *Si la noticia no existeix retornarà null (orElse(null)).
-        */ 
 
+    /**
+     * Este método elimina una noticia de la tabla noticia en la base de datos copernicjobs.
+     *
+     * @param noticia Objeto Noticia que representa la noticia a eliminar de la base de datos.
+     */
+    @Override
+    @Transactional
+    public void eliminarNoticia(Noticia noticia) {
+        this.noticia.delete(noticia);
+
+    }
+
+    /**
+     * Este método busca una noticia en la tabla noticia en la base de datos copernicjobs.
+     *
+     * @param noticia Objeto Noticia que representa la noticia a buscar en la base de datos.
+     * @return Objeto Noticia que representa la noticia encontrada en la base de datos, o null si no se encuentra.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Noticia cercarNoticia(Noticia noticia) {
         return this.noticia.findById(noticia.getId()).orElse(null);
-        
+
     }
 }

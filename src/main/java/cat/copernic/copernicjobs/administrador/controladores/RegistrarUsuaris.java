@@ -16,11 +16,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
+ * Controlador para la funcionalidad de registrar usuarios en el sistema.
+ * Requiere autorización de tipo 'administrador' para acceder a las rutas
+ * asociadas. Este controlador maneja las solicitudes GET para la página de
+ * inicio de registro de usuarios. Carga un archivo HTML y lo añade a la
+ * plantilla de la página principal.
+ *
  * @author joang
  */
 @Controller
 public class RegistrarUsuaris {
 
+    /**
+     * Maneja las solicitudes GET para la página de inicio de registro de
+     * usuarios. Carga un archivo HTML y lo añade a la plantilla de la página
+     * principal.
+     *
+     * @param model El modelo utilizado para la vista.
+     * @param username Los detalles del usuario autenticado.
+     * @return El nombre de la vista a cargar.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/registrarUsuaris")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {

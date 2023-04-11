@@ -30,6 +30,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * Clase controladora que maneja las operaciones relacionadas con la
+ * visualización y edición de alumnos. Esta clase utiliza el servicio
+ * AlumnoService para interactuar con la base de datos y realizar operaciones
+ * CRUD en la entidad Alumno. Requiere autorización de usuario con el rol
+ * 'administrador' para acceder a las funciones.
  *
  * @author joang
  */
@@ -39,6 +44,24 @@ public class VerAlumno {
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
 
+    /**
+     * Método que maneja una petición POST en la ruta "/guardarAlumno". Este
+     * método permite guardar cambios en un objeto Alumno en la base de datos.
+     * Requiere autorización de usuario con el rol 'administrador'.
+     *
+     * @param btnValue Valor del botón de acción del formulario
+     * @param alumno Objeto Alumno con los datos modificados
+     * @param errores Objeto Errors que contiene los errores de validación del
+     * formulario
+     * @param model Objeto Model para agregar atributos a la vista
+     * @param result Objeto BindingResult que contiene los errores de validación
+     * del formulario
+     * @param redirectAttributes Objeto RedirectAttributes para agregar
+     * atributos a la redirección
+     * @param username Objeto UserDetails que contiene los detalles del usuario
+     * autenticado
+     * @return String con el nombre de la vista a la que se redirige
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarAlumno") //action=guardarAlumno
     public String guardarAlumno(@RequestParam(name = "button", required = false) String btnValue, @Valid Alumno alumno, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
@@ -111,7 +134,19 @@ public class VerAlumno {
 
         return "redirect:/verAlumnos"; //Retornem a la pàgina alumne mitjançant redirect
     }
-    
+
+    /**
+     * Método que maneja una petición GET en la ruta "/editarAlumno/{id}". Este
+     * método permite visualizar y editar los datos de un alumno en la vista
+     * correspondiente. Requiere autorización de usuario con el rol
+     * 'administrador'.
+     *
+     * @param alumno Objeto Alumno con los datos del alumno a editar
+     * @param model Objeto Model para agregar atributos a la vista
+     * @param username Objeto UserDetails que contiene los detalles del usuario
+     * autenticado
+     * @return String con el nombre de la vista a la que se redirige
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarAlumno/{id}")
     public String editar(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {

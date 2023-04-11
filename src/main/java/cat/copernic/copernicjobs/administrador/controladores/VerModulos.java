@@ -32,6 +32,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * Controlador para la funcionalidad de visualización y gestión de módulos en el
+ * panel de administrador.
+ *
+ * Este controlador maneja las peticiones GET y POST relacionadas con la
+ * visualización y gestión de módulos en el panel de administrador. Requiere la
+ * autorización del rol "administrador" para acceder a estas funcionalidades.
+ *
+ * Se encarga de cargar la página principal con la lista de módulos y roles,
+ * gestionar la selección de módulos y su visibilidad, y guardar los cambios
+ * realizados en la base de datos.
  *
  * @author joang
  */
@@ -46,10 +56,19 @@ public class VerModulos {
 
     @Autowired
     private RolModuloService rolModuloService;
-    
+
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Maneja las peticiones GET a /verModulos y carga la página principal de
+     * visualización y gestión de módulos en el panel de administrador.
+     *
+     * @param model El modelo de la vista.
+     * @param username Los detalles del usuario autenticado.
+     * @return El nombre de la plantilla de Thymeleaf para la página principal
+     * con la lista de módulos y roles.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/administrador/veureModuls")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -67,9 +86,21 @@ public class VerModulos {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
+    /**
+     * Maneja las peticiones POST a /administrador/guardar-modulos y guarda los
+     * cambios realizados en la visibilidad de los módulos seleccionados en la
+     * base de datos.
+     *
+     * @param checkModulos Los módulos seleccionados en los checkboxes.
+     * @param checkVisibles Los checkboxes de visibilidad de los módulos.
+     * @param redirectAttributes Atributos de redirección para mensajes de
+     * éxito.
+     * @return La redirección a la página principal de visualización y gestión
+     * de módulos.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/administrador/guardar-modulos")
-    public String guardar(@RequestParam(name = "modulos", required = false) List<String> checkModulos, @RequestParam(name = "visible", required = false) List<String> checkVisibles,RedirectAttributes redirectAttributes) {
+    public String guardar(@RequestParam(name = "modulos", required = false) List<String> checkModulos, @RequestParam(name = "visible", required = false) List<String> checkVisibles, RedirectAttributes redirectAttributes) {
         List<RolModulo> rolesModulosDB = rolModuloService.findAll();
         List<Rol> rolesDB = rolService.listarRoles();
         List<Modulo> modulosDB = moduloService.llistarModuls();

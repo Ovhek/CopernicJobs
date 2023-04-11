@@ -22,6 +22,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
+ * Controlador para la funcionalidad de ver alumnos en el sistema. Este
+ * controlador maneja las solicitudes HTTP relacionadas con la visualización de
+ * alumnos, incluyendo la página principal para listar alumnos y la página para
+ * ver los detalles de un alumno específico. Se requiere que el usuario tenga el
+ * rol de 'administrador' para acceder a estas funcionalidades.
  *
  * @author joang
  */
@@ -31,6 +36,15 @@ public class VerAlumnos {
     @Autowired
     private AlumnoService alumnoService;
 
+    /**
+     * Maneja las solicitudes GET en la ruta '/verAlumnos' para mostrar la
+     * página principal de listado de alumnos.
+     *
+     * @param model El modelo utilizado para pasar datos a la vista.
+     * @param username Detalles de autenticación del usuario actual.
+     * @return El nombre de la plantilla de la página principal de listado de
+     * alumnos.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/verAlumnos")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -45,6 +59,16 @@ public class VerAlumnos {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
+    /**
+     * Maneja las solicitudes GET en la ruta '/verAlumno/{id}' para mostrar la
+     * página de detalles de un alumno específico.
+     *
+     * @param alumno Objeto Alumno utilizado para obtener el ID del alumno cuyos
+     * detalles se desean ver.
+     * @param model El modelo utilizado para pasar datos a la vista.
+     * @param username Detalles de autenticación del usuario actual.
+     * @return El nombre de la plantilla de la página de detalles de un alumno.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/verAlumno/{id}")
     public String ver(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {

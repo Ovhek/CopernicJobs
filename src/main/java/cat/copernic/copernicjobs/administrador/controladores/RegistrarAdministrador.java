@@ -27,6 +27,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
+ * Controlador para el registro de administradores en la aplicación.
+ *
+ * Esta clase maneja las solicitudes HTTP relacionadas con el registro de
+ * administradores, incluyendo la validación de datos de entrada, la
+ * comprobación de autorización y la gestión de errores. Utiliza anotaciones de
+ * Spring como @Controller, @Autowired, @PreAuthorize,
+ *
+ * @GetMapping y @PostMapping para configurar y gestionar las rutas y acciones
+ * del controlador.
  *
  * @author joang
  */
@@ -39,6 +48,14 @@ public class RegistrarAdministrador {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Maneja las solicitudes GET a la ruta "/registrarAdministrador".
+     *
+     * @param model Modelo de datos para la vista.
+     * @param username Detalles del usuario autenticado.
+     * @return La vista de registro de administrador con los datos necesarios
+     * cargados.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/registrarAdministrador")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -55,6 +72,19 @@ public class RegistrarAdministrador {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
+    /**
+     * Maneja las solicitudes POST a la ruta "/registreAdministrador".
+     *
+     * @param administrador Objeto Administrador con los datos del formulario de
+     * registro.
+     * @param errores Errores de validación del formulario.
+     * @param result Resultado de la validación del formulario.
+     * @param contrasenyaRepetida Contraseña repetida del administrador.
+     * @param model Modelo de datos para la vista.
+     * @param username Detalles del usuario autenticado.
+     * @return Redirige a la vista de registro de usuarios o muestra errores en
+     * caso de que los haya.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/registreAdministrador")
     public String registrarAdministrador(@Valid Administrador administrador, Errors errores, BindingResult result, String contrasenyaRepetida, Model model, @AuthenticationPrincipal UserDetails username) {
