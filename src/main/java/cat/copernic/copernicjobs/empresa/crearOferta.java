@@ -90,8 +90,9 @@ public class crearOferta {
             model.addAttribute("errores", erroresString);
             return inicio(user, model);
         } else {
+            int id = empresaService.buscarPorUsername(user.getUsername()).getId();
             Empresa e = new Empresa();
-            e.setId(3);
+            e.setId(id);
             Empresa empresa = empresaService.cercarEmpresa(e);
             oferta.setEmpresa(empresa);
             oferta.setFechaPeticion(LocalDate.now());

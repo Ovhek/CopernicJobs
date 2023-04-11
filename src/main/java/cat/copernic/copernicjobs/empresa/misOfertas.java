@@ -37,7 +37,7 @@ public class misOfertas {
     public String inicio(Model model, @AuthenticationPrincipal UserDetails user) {
         
         Empresa empresa = empresaService.buscarPorUsername(user.getUsername());
-
+        
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
