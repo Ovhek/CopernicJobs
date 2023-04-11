@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
+ * Clase controladora que maneja la visualización del perfil de un
+ * administrador. Esta clase es un controlador de Spring MVC que gestiona las
+ * peticiones relacionadas con la visualización del perfil de un administrador
+ * en la interfaz de administrador.
  *
  * @author joang
  */
@@ -29,7 +33,16 @@ public class VerPerfilAdmin {
 
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AdministradorService administradorService; //Atribut per poder utilitzar les funcions CRUD de la interfície AdministradorDAO
-    
+
+    /**
+     * Maneja la petición GET para visualizar el perfil de un administrador.
+     *
+     * @param model El modelo de datos que se utilizará para enviar datos a la
+     * vista.
+     * @param username Objeto UserDetails que contiene la información del
+     * usuario autenticado.
+     * @return El nombre de la vista a la que se redireccionará.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/administrador/veurePerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {

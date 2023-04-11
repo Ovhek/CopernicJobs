@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * Controlador para la gestión de empresas.
  *
  * @author joang
  */
@@ -43,6 +44,23 @@ public class VerEmpresa {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Método POST para guardar una empresa en la base de datos.
+     *
+     * @param btnValue Valor del botón de acción del formulario.
+     * @param empresa Objeto Empresa que contiene los datos de la empresa a
+     * guardar.
+     * @param errores Objeto Errors que contiene los errores de validación del
+     * formulario.
+     * @param model Objeto Model para pasar datos a la vista.
+     * @param result Objeto BindingResult para manejar los errores de binding
+     * del formulario.
+     * @param redirectAttributes Objeto RedirectAttributes para agregar
+     * atributos para la redirección.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return Retorna una cadena de texto que representa la vista a mostrar o
+     * una redirección a otra URL.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarEmpresa") //action=guardarEmpresa
     public String guardarEmpresa(@RequestParam(name = "button", required = false) String btnValue, @Valid Empresa empresa, Errors errores, Model model, BindingResult result, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails username) {
@@ -115,6 +133,17 @@ public class VerEmpresa {
         return "redirect:/verEmpresas"; //Retornem a la pàgina alumne mitjançant redirect
     }
 
+    /**
+     * Método que permite editar una empresa, solo accesible por usuarios con
+     * autoridad de 'administrador'.
+     *
+     * @param empresa Objeto de tipo Empresa a editar.
+     * @param model Objeto de tipo Model que contiene los atributos para la
+     * vista.
+     * @param username Objeto de tipo UserDetails que representa al usuario
+     * autenticado.
+     * @return Nombre de la vista a cargar después de editar la empresa.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editarEmpresa/{id}")
     public String editar(Empresa empresa, Model model, @AuthenticationPrincipal UserDetails username) {

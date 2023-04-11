@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
+ * Controlador para registrar alumnos en el sistema.
  *
  * @author joang
  */
@@ -39,6 +40,13 @@ public class RegistrarAlumne {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Método para mostrar la página de inicio del registro de alumnos.
+     *
+     * @param model El modelo de datos a ser utilizado en la vista.
+     * @param username Detalles del usuario autenticado.
+     * @return La vista de la página de inicio del registro de alumnos.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/registrarAlumne")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -53,7 +61,20 @@ public class RegistrarAlumne {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
-    
+
+    /**
+     * Método para registrar un nuevo alumno en el sistema.
+     *
+     * @param alumno El objeto Alumno a ser registrado.
+     * @param errores Objeto Errors para manejar los errores de validación.
+     * @param result Objeto BindingResult para manejar los errores de
+     * validación.
+     * @param contrasenyaRepetida Contraseña repetida ingresada por el usuario.
+     * @param model El modelo de datos a ser utilizado en la vista.
+     * @param username Detalles del usuario autenticado.
+     * @return La vista de la página de registro de alumnos o la vista de
+     * redireccionamiento a la página de registro de usuarios.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/registreAlumne")
     public String registrarAlumne(@Valid Alumno alumno, Errors errores, BindingResult result, String contrasenyaRepetida, Model model, @AuthenticationPrincipal UserDetails username) {
@@ -104,8 +125,7 @@ public class RegistrarAlumne {
         alumno.setPassword(EncriptarContrasenya.encryptar(alumno.getPassword()));
         alumnoService.anadirAlumno(alumno);
 
-
-        model.addAttribute("registrado",true);
+        model.addAttribute("registrado", true);
 
         return "redirect:/registrarUsuaris";
     }

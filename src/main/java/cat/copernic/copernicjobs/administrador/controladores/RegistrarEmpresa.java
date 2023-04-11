@@ -27,6 +27,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
+ * Controlador para el registro de empresas.
+ *
+ * Esta clase maneja las solicitudes relacionadas con el registro de empresas en
+ * la aplicación. Contiene dos métodos, uno para cargar la pantalla de registro
+ * de empresas y otro para procesar la solicitud de registro de empresa.
  *
  * @author joang
  */
@@ -39,6 +44,13 @@ public class RegistrarEmpresa {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Método que carga la pantalla de registro de empresas.
+     *
+     * @param model El modelo de datos para la vista.
+     * @param username El nombre de usuario autenticado.
+     * @return La ruta de la plantilla de la página principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/registrarEmpresa")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -55,6 +67,18 @@ public class RegistrarEmpresa {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
+    /**
+     * Método que procesa la solicitud de registro de empresa.
+     *
+     * @param empresa La empresa a registrar.
+     * @param errores Los errores de validación del formulario.
+     * @param result El resultado de la validación del formulario.
+     * @param contrasenyaRepetida La contraseña repetida ingresada por el
+     * usuario.
+     * @param model El modelo de datos para la vista.
+     * @param username El nombre de usuario autenticado.
+     * @return La ruta de la plantilla de la página principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/registreEmpresa")
     public String registrarEmpresa(@Valid Empresa empresa, Errors errores, BindingResult result, String contrasenyaRepetida, Model model, @AuthenticationPrincipal UserDetails username) {
