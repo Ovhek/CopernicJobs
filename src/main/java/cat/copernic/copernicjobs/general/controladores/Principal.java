@@ -18,8 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
+ * Controlador de la pagina de inicio del ERP.
  *
- * @author Albert
+ * @author Alex
  */
 @Controller
 public class Principal {
@@ -27,6 +28,19 @@ public class Principal {
     @Autowired
     RolModuloService rolModuloService;
 
+    /**
+     *
+     * Método que se encarga de gestionar la vista principal de la aplicación.
+     * Obtiene la lista de módulos que están asociados al rol del usuario que ha
+     * iniciado sesión y comprueba su visibilidad. Si todos los módulos son
+     * invisibles, muestra un mensaje indicando que no hay módulos disponibles.
+     * Añade los módulos visibles al modelo y redirige a la vista principal.
+     *
+     * @param model el modelo utilizado por Spring MVC para el intercambio de
+     * datos con la vista
+     * @param username el usuario que ha iniciado sesión
+     * @return una cadena con el nombre de la vista principal
+     */
     @GetMapping("/inici")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
@@ -45,7 +59,9 @@ public class Principal {
             modulo.setVisibilidad(visibilidad);
         }
         boolean todosInvisibles = modulos.stream().allMatch(modulo -> !modulo.isVisibilidad());
-        if(todosInvisibles || modulos.isEmpty()) model.addAttribute("noHayModulos",true);
+        if (todosInvisibles || modulos.isEmpty()) {
+            model.addAttribute("noHayModulos", true);
+        }
         model.addAttribute("listaModulos", modulos);
 
         return "principal";

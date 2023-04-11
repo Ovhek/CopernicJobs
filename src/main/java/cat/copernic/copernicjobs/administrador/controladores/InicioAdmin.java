@@ -322,8 +322,9 @@ public class InicioAdmin {
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/validarAlumno")
     public String validacionAlumno(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
-        alumno.setFechaValidacion(LocalDate.now());
-        alumnoService.anadirAlumno(alumno);
+        Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
+        alumnoDB.setFechaValidacion(LocalDate.now());
+        alumnoService.anadirAlumno(alumnoDB);
         return "redirect:/administrador/inici";
     }
 

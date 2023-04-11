@@ -70,7 +70,7 @@ public class VerModulos {
      * con la lista de módulos y roles.
      */
     @PreAuthorize("hasAuthority('administrador')")
-    @GetMapping("/verModulos")
+    @GetMapping("/administrador/veureModuls")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
 
         var roles = rolService.listarRoles();

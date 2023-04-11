@@ -12,17 +12,27 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
+ * Controlador encargado de los archivos del sistema.
  *
- * @author Cole
+ * @author Alex
  */
 @Configuration
-public class FileController implements WebMvcConfigurer{
+public class FileController implements WebMvcConfigurer {
+
     @Autowired
     private MessageSource messageSource;
-        
+
+    /**
+     *
+     * Método para agregar manejadores de recursos a la configuración de la
+     * aplicación.
+     *
+     * @param registry objeto ResourceHandlerRegistry de Spring que permite
+     * registrar manejadores de recursos
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/files/**")
-                .addResourceLocations("file:"+messageSource.getMessage("ruta.recursos", null, Locale.ENGLISH));
+                .addResourceLocations("file:" + messageSource.getMessage("ruta.recursos", null, Locale.ENGLISH));
     }
 }

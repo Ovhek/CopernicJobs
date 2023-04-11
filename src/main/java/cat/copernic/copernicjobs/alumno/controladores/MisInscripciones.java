@@ -41,6 +41,20 @@ public class MisInscripciones {
     @Autowired
     AdministradorService administradorService;
 
+    /**
+     *
+     * Método que devuelve la vista de las inscripciones del alumno.
+     *
+     * @PreAuthorize Comprueba si el usuario tiene el rol de "alumne".
+     * @GetMapping Anotación que mapea la petición GET a la URL
+     * "/alumne/inscripcions" a este método.
+     * @param model Objeto Model utilizado para pasar atributos a la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @param request Objeto HttpServletRequest utilizado para recuperar el
+     * objeto inputFlashMap.
+     * @return Cadena de texto que representa la plantilla HTML de la vista de
+     * las inscripciones del alumno.
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/inscripcions")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username, HttpServletRequest request) {

@@ -11,8 +11,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author Cole
+ * Funciones que se utilizan en el Thymeleaf
+ * @author Alex
  */
 public final class ThymeleafFunctions {
     private static ThymeleafFunctions instance;
@@ -26,6 +26,12 @@ public final class ThymeleafFunctions {
         return instance;
     }
     
+    /**
+     * Comprueba si un rol tiene un modulo.
+     * @param rol El Rol
+     * @param modulo El Modulo
+     * @return 
+     */
     public boolean hasModulo(Rol rol, Modulo modulo) {
         for (RolModulo rolModulo : rol.getModulos()) {
             if(rolModulo.getModulo().equals(modulo)) return true;
@@ -33,6 +39,12 @@ public final class ThymeleafFunctions {
         return false;
     }
     
+    /**
+     * Comprueba si un modulo es visible para un rol.
+     * @param rol El Rol
+     * @param modulo El Modulo
+     * @return 
+     */
     public boolean isVisible(Rol rol, Modulo modulo) {
         for (RolModulo rolModulo : rol.getModulos()) {
             if(rolModulo.getModulo().equals(modulo)){

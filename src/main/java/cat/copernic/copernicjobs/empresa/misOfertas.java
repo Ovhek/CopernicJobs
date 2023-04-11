@@ -36,16 +36,14 @@ public class misOfertas {
     @GetMapping("/empresa/inici")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails user) {
         
-        int id = empresaService.buscarPorUsername(user.getUsername()).getId();
-        Empresa empresa = new Empresa();
-        empresa.setId(id);
-        Empresa emp = empresaService.cercarEmpresa(empresa);
+        Empresa empresa = empresaService.buscarPorUsername(user.getUsername());
+
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "misofertas";
        
-        model.addAttribute("ofertas", ofertaService.listarPorNombre(emp.getNombreEmpresa()));
+        if(empresa != null) model.addAttribute("ofertas", ofertaService.listarPorNombre(empresa.getNombreEmpresa()));
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);

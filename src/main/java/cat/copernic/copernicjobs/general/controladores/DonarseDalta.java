@@ -15,26 +15,21 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- *
- * @author Cole
+ * Controlador para darse de Alta
+ * @author Alex
  */
 @Controller
 public class DonarseDalta {
-    
-    @Autowired
-    AlumnoService alumnoService;
-    
+
+    /**
+     *
+     * Método para manejar la solicitud GET de la página de alta de un usuario.
+     *
+     * @return una cadena que indica la vista a la que se debe redirigir la
+     * respuesta
+     */
     @GetMapping("/donatDalta")
-    public String inicio(@AuthenticationPrincipal UserDetails user){
-        if(user != null) {
-            if (alumnoService.buscarAlumnoPorUsername(user.getUsername()) != null) {
-                Alumno alumno = alumnoService.buscarAlumnoPorUsername(user.getUsername());
-                alumno.setBaja(false);
-                alumnoService.anadirAlumno(alumno);
-                return "redirect:/inici";
-            }
-                
-        }
+    public String inicio() {
         return "darAlta";
     }
 }

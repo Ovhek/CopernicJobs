@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
@@ -30,13 +31,17 @@ public class Incidencia implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica al sistema com generem l'id, en el nostre cas autoincremental, per això fem servir IDENTITY
     @Column(name = "ID", nullable = false, unique = true)
     private int id;
+    
     @Column(name = "descripcion")
+    @NotEmpty(message = "{NotEmpty.incidencia.desc}")
     private String descripcion;
     @Column(name = "fechaIncidencia")
     private LocalDate fechaIncidencia;
     @Column(name = "estado")
     private int estado;
+    
     @Column (name="titulo")
+    @NotEmpty(message = "{NotEmpty.incidencia.titulo}")
     private String titulo;
     @OneToOne()
     @JoinColumn(name="usuario_id")
