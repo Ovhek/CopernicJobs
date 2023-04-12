@@ -25,28 +25,38 @@ import org.springframework.ui.Model;
  */
 @Controller
 public class veurePerfil {
-    
+
     @Autowired
     EmpresaService empresaService;
-    
+
+    /**
+     *
+     * Método que procesa la petición GET de visualizar el perfil de una empresa
+     * en el sistema.
+     *
+     * @param user El objeto UserDetails que representa al usuario que está
+     * realizando la búsqueda.
+     * @param model El objeto Model utilizado para almacenar y pasar datos a la
+     * vista.
+     * @return La plantilla HTML de la página principal de la empresa con los
+     * detalles del perfil de la empresa.
+     */
     @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa/veurePerfil")
-    public String inicio(@AuthenticationPrincipal UserDetails user,Model model){
+    public String inicio(@AuthenticationPrincipal UserDetails user, Model model) {
         int id = empresaService.buscarPorUsername(user.getUsername()).getId();
-        
-        
+
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "verperfilempresa";
         Empresa empresa = new Empresa();
         empresa.setId(id);
-        
+
         model.addAttribute("empresa", empresaService.cercarEmpresa(empresa));
-        
+
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Veure Perfil", user);
     }
-    
-    
+
 }

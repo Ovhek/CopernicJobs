@@ -39,6 +39,19 @@ public class crearOferta {
     @Autowired
     EmpresaService empresaService;
 
+    /**
+     *
+     * Método que retorna la página inicial de la sección de Empresa del
+     * proyecto.
+     *
+     * @param model el modelo que se utilizará para pasar información a la vista
+     * @return el nombre de la página a la que se redirige al usuario
+     * @throws Ninguna excepción es lanzada por esta función
+     * @PreAuthorize Esta anotación indica que el usuario debe tener autoridad
+     * de 'Empresa' para acceder a esta función
+     * @GetMapping Esta anotación indica que la función maneja solicitudes HTTP
+     * GET a la URL '/empresa'
+     */
     @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa") //Pàgina inicial dels gossos
     public String empresa(Model model) {
@@ -50,6 +63,26 @@ public class crearOferta {
         return "crearOferta"; //Retorna la pàgina iniciEnviarDades
     }
 
+    /**
+     *
+     * Método que retorna la página de inicio de la sección de Empresa del
+     * proyecto para crear una nueva oferta.
+     *
+     * @param user objeto que representa los detalles del usuario autenticado
+     * actualmente
+     *
+     * @param model el modelo que se utilizará para pasar información a la vista
+     *
+     * @return el nombre de la página a la que se redirige al usuario
+     *
+     * @throws Ninguna excepción es lanzada por esta función
+     *
+     * @PreAuthorize Esta anotación indica que el usuario debe tener autoridad
+     * de 'Empresa' para acceder a esta función
+     *
+     * @GetMapping Esta anotación indica que la función maneja solicitudes HTTP
+     * GET a la URL '/empresa/crearoferta'
+     */
     @PreAuthorize("hasAuthority('Empresa')")
     @GetMapping("/empresa/crearoferta")
     public String inicio(@AuthenticationPrincipal UserDetails user, Model model) {
@@ -64,14 +97,38 @@ public class crearOferta {
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Crear Oferta", user);
     }
 
+    /**
+     *
+     * Método que registra una oferta nueva creada por una empresa.
+     *
+     * @param btnOferta el botón de la oferta pulsado por el usuario
+     *
+     * @param oferta el objeto Oferta creado por la empresa
+     *
+     * @param errors la lista de errores que se producen en la validación del
+     * objeto Oferta
+     *
+     * @param user objeto que representa los detalles del usuario autenticado
+     * actualmente
+     *
+     * @param model el modelo que se utilizará para pasar información a la vista
+     *
+     * @return el nombre de la página a la que se redirige al usuario
+     *
+     * @throws Ninguna excepción es lanzada por esta función
+     *
+     * @PreAuthorize Esta anotación indica que el usuario debe tener autoridad
+     * de 'Empresa' para acceder a esta función
+     *
+     * @PostMapping Esta anotación indica que la función maneja solicitudes HTTP
+     * POST a la URL '/empresa/registraroferta'
+     */
     @PreAuthorize("hasAuthority('Empresa')")
     @PostMapping("/empresa/registraroferta")
     public String registrarOferta(@RequestParam(name = "boton") String btnOferta, @Valid Oferta oferta, Errors errors, @AuthenticationPrincipal UserDetails user, Model model) {
 
         if (btnOferta.equals("registrar")) {
             return guardarOferta(oferta, errors, model, user);
-        } else {
-            subirPDF();
         }
 
         return "redirect:/empresa/crearoferta";
@@ -79,10 +136,20 @@ public class crearOferta {
 
     }
 
-    public void subirPDF() {
-
-    }
-
+    /**
+     *
+     * Método que guarda una oferta nueva creada por una empresa en la base de
+     * datos.
+     *
+     * @param oferta el objeto Oferta creado por la empresa
+     * @param errors la lista de errores que se producen en la validación del
+     * objeto Oferta
+     * @param model el modelo que se utilizará para pasar información a la vista
+     * @param user objeto que representa los detalles del usuario autenticado
+     * actualmente
+     * @return el nombre de la página a la que se redirige al usuario
+     * @throws Ninguna excepción es lanzada por esta función
+     */
     public String guardarOferta(Oferta oferta, Errors errors, Model model, UserDetails user) {
         if (errors.hasErrors()) {
             List<String> erroresString = new ArrayList<>();
