@@ -51,4 +51,6 @@ public interface InscripcionServiceInterface {
      * @return Lista de inscripciones
      */
     public List<Inscripcion> buscarInscripcionPorOfertaId(int id);
+   
+    
 }

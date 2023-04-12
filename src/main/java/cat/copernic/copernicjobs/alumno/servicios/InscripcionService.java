@@ -5,6 +5,7 @@
 package cat.copernic.copernicjobs.alumno.servicios;
 
 import cat.copernic.copernicjobs.dao.InscripcionDAO;
+import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Inscripcion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

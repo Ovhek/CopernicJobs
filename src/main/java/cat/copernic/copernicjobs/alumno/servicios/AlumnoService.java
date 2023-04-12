@@ -8,6 +8,8 @@ import cat.copernic.copernicjobs.dao.AlumnoDAO;
 import cat.copernic.copernicjobs.general.servicios.*;
 import cat.copernic.copernicjobs.model.Alumno;
 import cat.copernic.copernicjobs.model.Incidencia;
+import cat.copernic.copernicjobs.model.Inscripcion;
+import cat.copernic.copernicjobs.model.Oferta;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,4 +99,5 @@ public class AlumnoService implements AlumnoServiceInterface {
     public Alumno buscarAlumnoPorUsername(String username) {
         return alumnoDAO.findByUsername(username);
     }
+    
 }

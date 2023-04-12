@@ -46,13 +46,13 @@
                         <p th:text="${oferta.seOfrece}"></p>
                     </div>
                     <div>
-                        <p><span>Alumnes Inscrits: </span><span>10</span></p>
+                        <p><span>Alumnes Inscrits: </span><span th:text="${numinscritos}"></span></p>
                     </div>
                 </div>
 
                 <div class="card-footer">
                     <div>
-                        <button class="boton" type="submit">Veure Alumnes</button>
+                        <a class="boton" th:href="@{/veralumnos/} + ${oferta.id}">Veure Alumnes</a>
                     </div>
                     <div>
                         <a class="boton" th:href="@{/empresa/editaroferta/} + ${oferta.id}">Editar Oferta</a>
