@@ -36,9 +36,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="col-lg-12 card p-4 mx-lg-5 my-3 alumnoCard" th:each="alumno : ${alumnos}">
                     <h5 class="align-self-center" th:text="${alumno.nombre} + ' ' + ${alumno.apellidos}"></h5>
                     <h5 class="align-self-center" th:text="${alumno.username}"></h5>
-                    <span>
-                        <a class="boton" th:href="@{/empresa/verAlumno/}+${alumno.id}">Accedeix</a>
-                    </span>
                 </div>
             </div>
         </div>
