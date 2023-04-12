@@ -98,6 +98,14 @@ public class EditarPerfilAlumno {
     @PostMapping("/alumne/editarPerfil")
     public String editarPerfilAlumno(@RequestParam(name = "button", required = false) String btnValue, @Nullable @RequestParam(name = "profileImg") MultipartFile img, @Nullable @RequestParam(name = "profileCurriculum") MultipartFile curriculum, @Valid Alumno alumno, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
 
+         if (btnValue != null) {
+
+            //Comprobamos que el botón pulsado es "Guardar Canvis"
+            if (btnValue.equals("cancelar")) {
+                return "redirect:/alumne/veurePerfil";
+            }
+         }
+         
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
@@ -198,9 +206,7 @@ public class EditarPerfilAlumno {
                         }
                     }
                 }
-            } else {
-                return "redirect:/alumne/veurePerfil";
-            }
+            } 
             String sexoDesc = "";
             switch (alumno.getSexo()) {
                 case 1:
