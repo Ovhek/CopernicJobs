@@ -57,17 +57,4 @@ public class veralumnos {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
     }
 
-    @PreAuthorize("hasAuthority('empresa')")
-    @GetMapping("/empresa/verAlumno/{id}")
-    public String ver(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
-
-        String ruta = "administrador/";
-
-        String archivo = "verAlumno";
-
-        model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
-
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
-
-    }
 }
