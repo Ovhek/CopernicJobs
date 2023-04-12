@@ -159,6 +159,6 @@ public class VerModulos {
         rolModuloService.guardarTodos(rolesModulosHabilitados);
         redirectAttributes.addFlashAttribute("CanvisGuardats", messageSource.getMessage("info.alumneguardat", null, Locale.ENGLISH));
 
-        return "redirect:/verModulos";
+        return "redirect:/administrador/verModulos";
     }
 }
