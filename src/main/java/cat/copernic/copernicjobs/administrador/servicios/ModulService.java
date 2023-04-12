@@ -23,6 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ModulService implements ModulServiceInterface {
 
+    public void setModulo(ModuloDAO modulo) {
+        this.modulo = modulo;
+    }
+
     @Autowired
     private ModuloDAO modulo;
 
