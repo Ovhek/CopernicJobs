@@ -22,6 +22,9 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
     @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :nombre")
     List<Oferta> findByNombreEmpresa(String nombre);
     
+    @Query("SELECT o FROM Oferta o WHERE o.tituloOferta = :titulo")
+    Oferta findByTituloOferta(String titulo);
+    
     List<Oferta> findByFechaValidacionBetween(LocalDate start, LocalDate end);
     
     //@Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :nombre")

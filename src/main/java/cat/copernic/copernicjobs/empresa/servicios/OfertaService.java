@@ -29,7 +29,13 @@ public class OfertaService implements OfertaServiceInterface {
     public List<Oferta> llistarOfertas() {
         return (List<Oferta>) ofertaDao.findAll();
     }
-
+    
+    @Override
+    public Oferta buscarPorTituloOferta(Oferta oferta) {
+        return (Oferta) ofertaDao.findByTituloOferta(oferta.getTituloOferta());
+    }
+    
+    
     @Override
     public void afegirOferta(Oferta oferta) {
         this.ofertaDao.save(oferta);
