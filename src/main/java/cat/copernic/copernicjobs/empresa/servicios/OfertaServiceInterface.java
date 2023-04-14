@@ -22,6 +22,8 @@ public interface OfertaServiceInterface {
     
     public Oferta cercarOferta(Oferta oferta); //Mètode que implementarem per cercar un gos
     
+    public Oferta buscarPorTituloOferta(Oferta oferta);
+    
     public List<Oferta> llistarOfertasUltimaSemana();
     
     public List<Oferta> ordenarOfertasAlfabetico();
