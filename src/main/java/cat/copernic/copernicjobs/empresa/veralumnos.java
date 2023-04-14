@@ -38,7 +38,20 @@ public class veralumnos {
 
     @Autowired
     private InscripcionService inscripcionService;
-    
+
+    /**
+     *
+     * Método que procesa la petición GET de visualizar los alumnos inscritos en
+     * una oferta.
+     *
+     * @param model El objeto Model utilizado para almacenar y pasar datos a la
+     * vista.
+     * @param username El objeto UserDetails que representa al usuario que está
+     * realizando la búsqueda.
+     * @param oferta El objeto Oferta que se está visualizando.
+     * @return La plantilla HTML de la página principal de la empresa con la
+     * lista de alumnos inscritos en la oferta.
+     */
     @PreAuthorize("hasAuthority('empresa')")
     @GetMapping("/veralumnos/{id}")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username, Oferta oferta) {
@@ -49,7 +62,7 @@ public class veralumnos {
         String archivo = "verAlumnos";
         List<Inscripcion> i = inscripcionService.buscarInscripcionPorOfertaId(oferta.getId());
         List<Alumno> alumnos = new ArrayList();
-        for(Inscripcion inscripcion : i){
+        for (Inscripcion inscripcion : i) {
             alumnos.add(inscripcion.getAlumno());
         }
         model.addAttribute("alumnos", alumnos);
