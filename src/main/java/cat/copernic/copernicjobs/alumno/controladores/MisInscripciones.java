@@ -27,7 +27,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
  *
- * @author Cole
+ * Controlador encargado de los endpoints de la sección MisInscripciones.
+ * @author Alex
  */
 @Controller
 public class MisInscripciones {

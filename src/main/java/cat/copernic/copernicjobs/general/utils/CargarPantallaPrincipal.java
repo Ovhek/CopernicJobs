@@ -28,6 +28,8 @@ import org.springframework.ui.Model;
  *
  * Función especializada en cargar la pantalla principal como plantilla para las
  * demás pantallas.
+ * 
+ * @author Alex
  */
 @Component
 public class CargarPantallaPrincipal {

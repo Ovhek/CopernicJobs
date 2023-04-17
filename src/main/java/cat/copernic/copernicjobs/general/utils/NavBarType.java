@@ -6,7 +6,7 @@ package cat.copernic.copernicjobs.general.utils;
 
 /**
  * Enum para especificar tipos de NavBar
- * @author Cole
+ * @author Alex
  */
 public enum NavBarType {
     ALUMNO,

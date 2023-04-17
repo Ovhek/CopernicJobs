@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author Cole
+ * Capa de servicios de la entidad Inscripcion.
+ * @author Alex
  */
 @Service
 public class InscripcionService implements InscripcionServiceInterface {

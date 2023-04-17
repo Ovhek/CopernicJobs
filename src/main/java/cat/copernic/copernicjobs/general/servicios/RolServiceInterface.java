@@ -9,8 +9,8 @@ import cat.copernic.copernicjobs.model.Rol;
 import java.util.List;
 
 /**
- *
- * @author Cole
+ * Interfaz para el servicio de Rol.
+ * @author Alex
  */
 public interface RolServiceInterface {
         

@@ -10,6 +10,7 @@ import java.util.List;
     
 /**
  *
+ * Interfaz para el Servicio para el DAO de Empresa.
  * @author Albert
  */
 public interface OfertaServiceInterface {

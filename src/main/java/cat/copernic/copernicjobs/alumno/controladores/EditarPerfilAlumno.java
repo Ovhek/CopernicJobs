@@ -43,6 +43,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
+ * Controlador encargado de los endpoints de la edición del perfil del alumno.
  * @author Alex
  */
 @Controller

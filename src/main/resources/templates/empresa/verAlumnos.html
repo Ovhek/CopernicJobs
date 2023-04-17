@@ -12,25 +12,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <h1>Alumnes</h1>
 
-        <div>
-            <div class="container">
-                <div class="row gx-0">
-                    <div class="col-md-9 my-3 mx-md-3 searchbar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="search-input" name="search-input">
-                        <button class="boton">Buscar</button>
-                    </div>
-                    <div class="custom-select col my-3 mx-md-3 searchbarselect align-self-center">
-                        <select id="sort-select" name="sort-select">
-                            <option value="0">Ordenar Per:</option>
-                            <option value="nombre">Nombre</option>
-                            <option value="fechaRegistro">Fecha Registro</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="container verempresa">
             <div class="row justify-content-center w-100">
                 <div class="col-lg-12 card p-4 mx-lg-5 my-3 alumnoCard" th:each="alumno : ${alumnos}">
@@ -39,7 +20,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
         </div>
-
-        <button class="boton">Generar Informe</button>
     </body>
 </html>

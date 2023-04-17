@@ -14,7 +14,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- *
+ * Clase entidad Administrador.
  * @author joang
  */
 @Data

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de ver perfil de empresa por parte del alumno.
+ * @author Alex
  */
 @Controller
 public class verPerfilEmpresaAlumno {

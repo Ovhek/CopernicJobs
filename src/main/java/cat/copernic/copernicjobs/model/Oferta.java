@@ -22,6 +22,7 @@ import org.hibernate.validator.constraints.URL;
 
 /**
  *
+ *  Clase entidad Oferta.
  * @author Albert
  */
 @Data

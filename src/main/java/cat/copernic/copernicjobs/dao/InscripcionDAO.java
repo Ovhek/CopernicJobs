@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * DAO para la integración de la entidad Inicidencia con la base de datos.
+ * 
+ * @author Alex
  */
 public interface InscripcionDAO extends JpaRepository<Inscripcion, Integer> {
 

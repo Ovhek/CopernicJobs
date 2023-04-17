@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
+ * Controlador encargado de los endpoints de ver oferta.
  * @author Albert
  */
 @Controller

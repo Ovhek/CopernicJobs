@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
+ * DAO del administrador.
  * @author joang
  */
 public interface AdministradorDAO extends UsuarioDAO<Administrador, Serializable>{

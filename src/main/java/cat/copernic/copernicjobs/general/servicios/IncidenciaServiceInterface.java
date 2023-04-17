@@ -9,8 +9,8 @@ import cat.copernic.copernicjobs.model.Incidencia;
 import java.util.List;
 
 /**
- *
- * @author Cole
+ * Interfaz para la capa de servicio del la entidad incidencias.
+ * @author Alex
  */
 public interface IncidenciaServiceInterface {
         

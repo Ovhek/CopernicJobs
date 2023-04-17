@@ -33,7 +33,7 @@ public class TestsEmpresaJUnit {
     @Autowired
     private EmpresaService empresaServiceJunit;
 
-    //Antes de cada test hacemos el setup y creamos un usuario.
+    //Creamos una empresa.
     @BeforeEach
     void setup() {
         empresa = new Empresa();
@@ -42,10 +42,11 @@ public class TestsEmpresaJUnit {
     }
     private Empresa empresa;
 
-    //Realizamos el test
-    @DisplayName("Eliminar Empresa con JUnit")
+
+    @DisplayName("Buscar Empresa con JUnit")
     @Test
     void testBuscarEmpresaJUnit() {
+        
         Empresa empresaEncontrada = empresaServiceJunit.buscarPorUsername(empresa.getUsername());
         Assertions.assertTrue(empresaEncontrada.getUsername().equals(empresa.getUsername()));
 

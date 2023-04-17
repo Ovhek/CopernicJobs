@@ -28,7 +28,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author joang
+ * Controlador encargado de los endpoints de ver alumnos.
+ * @author Albert
  */
 @Controller
 public class veralumnos {
@@ -67,7 +68,7 @@ public class veralumnos {
         }
         model.addAttribute("alumnos", alumnos);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Inici", username);
     }
 
 }

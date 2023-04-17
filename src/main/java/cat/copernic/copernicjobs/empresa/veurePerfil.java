@@ -21,7 +21,8 @@ import org.springframework.ui.Model;
 
 /**
  *
- * @author Cole
+ * Controlador encargado de los endpoints de ver el perfil de la empresa.
+ * @author Albert
  */
 @Controller
 public class veurePerfil {

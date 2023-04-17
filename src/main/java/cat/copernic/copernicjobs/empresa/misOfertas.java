@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
+ * Controlador encargado de los endpoints de ver las ofertas de la propia empresa.
  * @author Albert
  */
 @Controller
