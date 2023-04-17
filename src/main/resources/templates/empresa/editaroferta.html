@@ -8,7 +8,7 @@
     </style>
     <script src=""></script>
     <body>
-        
+
         <form method="post" th:action="@{/empresa/manejaroferta}" th:object="${oferta}">
             <input type="hidden" name="id" th:field="${oferta.id}"/>
             <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
@@ -49,6 +49,7 @@
 
                             </div>
                 </div>
+
         </form>
     </body>
 </html>
