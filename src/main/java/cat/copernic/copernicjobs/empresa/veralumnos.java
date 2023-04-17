@@ -67,7 +67,7 @@ public class veralumnos {
         }
         model.addAttribute("alumnos", alumnos);
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Inici", username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Inici", username);
     }
 
 }

@@ -79,6 +79,6 @@ public class editarPerfil {
         //Una vez actualizamos los datos, al añadir la empresa sobreescribira la actual.
         empresaService.afegirEmpresa(empresaEdit);
         //Una vez hecho esto, redireccionamos a mis ofertas.
-        return "redirect:empresa/verperfilempresa";
+        return "redirect:veurePerfil";
     }
 }
