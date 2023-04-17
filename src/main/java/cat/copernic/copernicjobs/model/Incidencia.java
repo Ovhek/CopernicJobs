@@ -20,7 +20,7 @@ import lombok.Data;
 
 
 /**
- *
+ * Clase entidad Incidencia.
  * @author joang
  */
 @Data

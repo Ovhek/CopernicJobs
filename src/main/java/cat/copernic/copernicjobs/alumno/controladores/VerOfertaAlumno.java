@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de ver las ofertas del alumno.
+ * @author Alex
  */
 @Controller
 public class VerOfertaAlumno {

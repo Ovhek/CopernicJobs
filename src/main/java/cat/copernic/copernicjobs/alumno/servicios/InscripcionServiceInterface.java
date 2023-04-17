@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  *  Interfaz para el servicio de la inscripcion.
+ * @author Alex
  */
 public interface InscripcionServiceInterface {
     

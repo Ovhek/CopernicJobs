@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- *
- * @author Cole
+ * Controlador de los endpoints del registro como alumno,
+ * @author Alex
  */
 @Controller
 public class RegistratComAlumne {

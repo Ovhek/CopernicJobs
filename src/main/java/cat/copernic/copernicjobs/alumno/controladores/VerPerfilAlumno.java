@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de ver el perfil del alumno.
+ * @author Alex
  */
 @Controller
 public class VerPerfilAlumno {

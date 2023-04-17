@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
+ * Controlador encargado de los endpoints de editar el perfil de empresa.
  * @author Albert
  */
 @Controller

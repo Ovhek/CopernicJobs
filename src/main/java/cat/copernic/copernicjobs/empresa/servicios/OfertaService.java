@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
+ * Servicio para el DAO de Oferta.
  * @author Albert
  */
 @Service

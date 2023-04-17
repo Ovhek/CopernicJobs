@@ -7,11 +7,15 @@ package cat.copernic.copernicjobs.errores;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- *
- * @author Cole
+ * Excepción que se lanza cuando un usuario está de baja y se intenta hacer login.
+ * @author Alex
  */
 public class UsuarioBajaException extends AuthenticationException{
     
+    /**
+     * Constructor que envia la excepción
+     * @param msg Mensaje de la excepción
+     */
     public UsuarioBajaException(String msg) {
         super(msg);
     }

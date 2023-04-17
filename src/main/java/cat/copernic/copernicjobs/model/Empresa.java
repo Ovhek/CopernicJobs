@@ -17,7 +17,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
 /**
- *
+ * Clase entidad Empresa.
  * @author Albert
  */
 @Data

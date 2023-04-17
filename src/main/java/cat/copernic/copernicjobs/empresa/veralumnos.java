@@ -28,7 +28,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author joang
+ * Controlador encargado de los endpoints de ver alumnos.
+ * @author Albert
  */
 @Controller
 public class veralumnos {

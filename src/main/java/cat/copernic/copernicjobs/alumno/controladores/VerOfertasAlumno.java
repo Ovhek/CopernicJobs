@@ -26,8 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de ver las ofertas del alumno.
+ * @author Alex
  */
 @Controller
 public class VerOfertasAlumno {

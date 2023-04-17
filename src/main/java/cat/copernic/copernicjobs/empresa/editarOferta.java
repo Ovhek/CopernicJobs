@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- *
+ * Controlador encargado de los endpoints de la edición de ofertas.
  * @author Albert
  */
 @Controller

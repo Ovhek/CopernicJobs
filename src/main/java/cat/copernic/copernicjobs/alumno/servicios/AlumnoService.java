@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author Cole
+ * Capa de servicios de la entidad alumno.
+ * @author Alex
  */
 @Service
 public class AlumnoService implements AlumnoServiceInterface {

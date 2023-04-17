@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- *
- * @author Cole
+ * DAO de la entidad Oferta.
+ * @author Alex
  */
 public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
 

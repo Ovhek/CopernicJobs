@@ -15,9 +15,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.Query;
 /**
  *
- * @author Cole
- */
-/**
+ * @author Alex
  * DAO para la integración de la entidad Usuario con la base de datos.
  */
 public interface AlumnoDAO extends UsuarioDAO<Alumno, Integer> {

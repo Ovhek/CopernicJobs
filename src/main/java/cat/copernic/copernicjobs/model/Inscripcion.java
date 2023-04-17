@@ -17,7 +17,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- *
+ * Clase entidad Inscripción.
  * @author Albert
  */
 @Data

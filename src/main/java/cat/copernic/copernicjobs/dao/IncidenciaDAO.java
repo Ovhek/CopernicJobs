@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * DAO para la integración de la entidad Inicidencia con la base de datos.
+ * @author joang
  */
 public interface IncidenciaDAO extends JpaRepository<Incidencia,Integer>{ 
     //Aqui podrem afegir altres mètodes que necessitem i que no estiguin definits a la interface CrudRepository,

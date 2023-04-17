@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de la edición del inicio del alumno.
+ * @author Alex
  */
 @Controller
 public class InicioAlumno {
