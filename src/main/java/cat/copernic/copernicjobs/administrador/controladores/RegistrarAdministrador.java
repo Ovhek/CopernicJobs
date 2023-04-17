@@ -116,6 +116,7 @@ public class RegistrarAdministrador {
         String sexoDesc = "";
 
         administrador.setFechaRegistro(LocalDate.now());
+        administrador.setFechaValidacion(LocalDate.now());
         administrador.setPassword(EncriptarContrasenya.encryptar(administrador.getPassword()));
         administradorService.anadirAdministrador(administrador);
 
