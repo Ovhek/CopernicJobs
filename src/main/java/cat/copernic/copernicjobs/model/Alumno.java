@@ -14,8 +14,8 @@ import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
 /**
- *
- * @author Cole
+ * Clase entidad Alumno.
+ * @author Alex
  */
 @Data
 @Entity

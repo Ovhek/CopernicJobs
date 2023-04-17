@@ -22,7 +22,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 /**
- *
+ * Clase entidad Noticia.
  * @author joang
  */
 @Data

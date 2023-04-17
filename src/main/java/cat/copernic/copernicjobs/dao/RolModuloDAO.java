@@ -14,13 +14,31 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
+ * DAO de la tabla RolModulo
  *
  * @author joang
  */
-public interface RolModuloDAO extends JpaRepository<RolModulo,Integer>{
+public interface RolModuloDAO extends JpaRepository<RolModulo, Integer> {
+
+    /**
+     *
+     * Busca los módulos asociados a un rol por su nombre.
+     *
+     * @param nombreRol el nombre del rol.
+     * @return una lista de los módulos asociados al rol.
+     */
     @Query("SELECT rm.modulo FROM RolModulo rm WHERE rm.rol.nom = :nombreRol")
     List<Modulo> findModulosByNombreRol(@Param("nombreRol") String nombreRol);
 
+    /**
+     *
+     * Devuelve una lista de roles que tienen acceso al módulo con el nombre
+     * especificado.
+     *
+     * @param nombreModulo El nombre del módulo.
+     * @return Una lista de roles que tienen acceso al módulo con el nombre
+     * especificado.
+     */
     @Query("SELECT rm.rol FROM RolModulo rm WHERE rm.modulo.nombre = :nombreModulo")
     List<Rol> findRolesByNombreModulo(@Param("nombreModulo") String nombreModulo);
 }

@@ -50,18 +50,45 @@ public class InicioAdmin {
      *ara accedirem a la base de dades mitjançant els mètodes d'aquesta classe, afegint una nova capa al 
      *nostre projecte.
      */
-    @Autowired//Anotació que injecta tots els mètodes i possibles dependències de NoticiaService al controlador
+    /**
+     * Servicio de Noticia utilizado para acceder a la base de datos y realizar
+     * operaciones con las noticias.
+     */
+    @Autowired
     private NoticiaService noticiaService;
 
+    /**
+     * Servicio de Alumno utilizado para acceder a la base de datos y realizar
+     * operaciones con los alumnos.
+     */
     @Autowired
     private AlumnoService alumnoService;
 
+    /**
+     * Servicio de Empresa utilizado para acceder a la base de datos y realizar
+     * operaciones con las empresas.
+     */
     @Autowired
     private EmpresaService empresaService;
 
+    /**
+     * Servicio de Oferta utilizado para acceder a la base de datos y realizar
+     * operaciones con las ofertas.
+     */
     @Autowired
     private OfertaService ofertaService;
 
+    /**
+     * Método que maneja las peticiones GET a la URL '/administrador/inici' para
+     * mostrar la página de inicio del administrador. Lista las noticias,
+     * alumnos, empresas y ofertas guardadas en la base de datos y las añade al
+     * modelo para su visualización en la página. Requiere autorización de tipo
+     * 'administrador'.
+     *
+     * @param model Modelo para la vista
+     * @param username Detalles del usuario autenticado
+     * @return Nombre de la plantilla de la página principal del administrador
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/administrador/inici") //Pàgina inicial d'admin
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -82,10 +109,16 @@ public class InicioAdmin {
 
     }
 
-    /*Definim el mètode per mostrar la pàgina amb el forumlari de les dades de la noticia passada com a paràmetre.
-     *Aquesta noticia, si no existeix, es crearà de manera automàtica amb els seu atributs buits (recordem que el 
-     *constructor construeix un objecte buit) en el moment que executem aquest mètode.
+    /**
+     * Método que maneja las peticiones GET a la URL '/crearNoticia' para
+     * mostrar la página de creación de noticias. Crea automáticamente una
+     * noticia con atributos vacíos si no existe. Requiere autorización de tipo
+     * 'administrador'.
      *
+     * @param noticia Noticia pasada como parámetro
+     * @param model Modelo para la vista
+     * @param username Detalles del usuario autenticado
+     * @return Nombre de la plantilla de la página de creación de noticias
      */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/crearNoticia") //URL a la pàgina amb el formulari de les dades de la noticia
@@ -98,12 +131,25 @@ public class InicioAdmin {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Noticia", username);
     }
 
-    /*Definim el mètode per assignar els valors introduïts en el formulari a l'objecte noticia
-     *passat com a paràmetre.
+    /**
+     * Definición del método para asignar los valores introducidos en el
+     * formulario a un objeto Noticia pasado como parámetro.
      *
-     *L'anotació @PostMapping, indica al sistema que el mètode que fem servir per enviar les dades és
-     *post. Com a paràmetre hem de passar el valor de l'action del formulari, d'aquesta manera el sistema 
-     *identifica el mètode al qual ha d'enviar les dades introduïdes mitjançant el formulari.
+     * La anotación @PostMapping indica que el método se utiliza para enviar los
+     * datos a través de una petición HTTP POST. El valor de la acción del
+     * formulario se pasa como parámetro en la URL, de esta manera el sistema
+     * identifica el método al cual debe enviar los datos introducidos en el
+     * formulario.
+     *
+     * @param noticia Objeto Noticia al cual se asignarán los valores del
+     * formulario.
+     * @param errors Objeto Errors que contiene los errores de validación del
+     * formulario.
+     * @param model Objeto Model utilizado para agregar atributos a la vista.
+     * @param username Objeto UserDetails que representa los detalles del
+     * usuario autenticado.
+     * @return La vista a la que se redirecciona después de procesar los datos
+     * del formulario.
      */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/guardarNoticia") //action=guardarNoticia
@@ -114,7 +160,7 @@ public class InicioAdmin {
 
             String archivo = "crearNoticia";
 
-            return cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo);
+            return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Noticia", username);
         }
 
         noticia.setFechaHora(LocalDate.now());
@@ -124,13 +170,25 @@ public class InicioAdmin {
         return "redirect:/administrador/inici"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
     }
 
-    /*Definim el mètode que ens retornarà la pàgina crearNoticia on se'ns mostraran les dades de la noticia
-     *amb l'idnoticia que enviem des de la pàgina inici.
-     *El sistema Spring associa l'idnoticia passada com a paràmetre en @GetMapping a la noticia 
-     *passat com a paràmetre en el mètode editar i crida automàticament al mètode setIdnoticia 
-     *de la classe Gos per fer aquesta associació, és a dir, el que fa és noticia.setIdnoticia(idnoticia).
-     *IMPORTANT: id ha de tenir el mateix nom que l'atribut id de la classe a la que fa referència,
-     *en el nostre cas la classe Noticia.
+    /**
+     * Definición del método que retorna la vista crearNoticia, en la cual se
+     * muestran los datos de la noticia con el idnoticia enviado desde la página
+     * inicial.
+     *
+     * El sistema Spring asocia el idnoticia pasado como parámetro en
+     *
+     * @GetMapping con el objeto Noticia pasado como parámetro en el método
+     * editar, y llama automáticamente al método setIdnoticia de la clase
+     * Noticia para realizar esta asociación, es decir, realiza
+     * noticia.setIdnoticia(idnoticia).
+     *
+     * @param noticia Objeto Noticia que se utilizará para obtener los datos de
+     * la noticia a editar.
+     * @param model Objeto Model utilizado para agregar atributos a la vista.
+     * @param username Objeto UserDetails que representa los detalles del
+     * usuario autenticado.
+     * @return La vista a la que se redirecciona después de obtener los datos de
+     * la noticia.
      */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/editar/{id}")
@@ -147,13 +205,21 @@ public class InicioAdmin {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Noticia", username);
     }
 
-    /*Definim el mètode per eliminar la noticia en la base de dades i finalment retornar
-     *a la pàgina d'inici. La noticia l'eliminarem mitjançant el mètode eliminarNoticia de
-     *la classe NoticiaService.
-     *El sistema per associar l'id de la noticia a l'objecte noticia passada per paràmetre, és el mateix
-     *que el del mètode editar.
-     *IMPORTANT: id ha de tenir el mateix nom que l'atribut id de la classe a la que fa referència,
-     *en el nostre cas la classe Noticia.
+    /**
+     * Definición del método para eliminar la noticia en la base de datos y
+     * redireccionar a la página de inicio.
+     *
+     * La noticia se elimina mediante el método eliminarNoticia de la clase
+     * NoticiaService.
+     *
+     * El sistema asocia el id de la noticia al objeto Noticia pasado como
+     * parámetro de la misma forma que en el método editar.
+     *
+     * @param noticia Objeto Noticia que se utilizará para obtener el id de la
+     * noticia a eliminar.
+     * @param username Objeto UserDetails que representa los detalles del
+     * usuario autenticado.
+     * @return La vista a la que se redirecciona después de eliminar la noticia.
      */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/eliminar/{id}")
@@ -166,6 +232,14 @@ public class InicioAdmin {
         return "redirect:/administrador/inici"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
     }
 
+    /**
+     * Método para validar un alumno.
+     *
+     * @param alumno Objeto Alumno a validar.
+     * @param model Modelo de datos para la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return String con la vista de carga de pantalla principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/validarRegistreAlumne/{id}")
     public String validarAlumne(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
@@ -179,6 +253,14 @@ public class InicioAdmin {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "ValidacioAlumne", username);
     }
 
+    /**
+     * Método para validar una empresa.
+     *
+     * @param empresa Objeto Empresa a validar.
+     * @param model Modelo de datos para la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return String con la vista de carga de pantalla principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/validarRegistreEmpresa/{id}")
     public String validarEmpresa(Empresa empresa, Model model, @AuthenticationPrincipal UserDetails username) {
@@ -192,6 +274,14 @@ public class InicioAdmin {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "ValidacioEmpresa", username);
     }
 
+    /**
+     * Método para validar una oferta.
+     *
+     * @param oferta Objeto Oferta a validar.
+     * @param model Modelo de datos para la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return String con la vista de carga de pantalla principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/validarOferta/{id}")
     public String validarOferta(Oferta oferta, Model model, @AuthenticationPrincipal UserDetails username) {
@@ -205,6 +295,14 @@ public class InicioAdmin {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "ValidacioOferta", username);
     }
 
+    /**
+     * Método para realizar la validación de una oferta.
+     *
+     * @param oferta Objeto Oferta a validar.
+     * @param model Modelo de datos para la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return String con la vista de carga de pantalla principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/validarOferta")
     public String validacionOferta(Oferta oferta, Model model, @AuthenticationPrincipal UserDetails username) {
@@ -213,14 +311,31 @@ public class InicioAdmin {
         return "redirect:/administrador/inici";
     }
 
+    /**
+     * Método para realizar la validación de un alumno.
+     *
+     * @param alumno Objeto Alumno a validar.
+     * @param model Modelo de datos para la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return String con la vista de carga de pantalla principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/validarAlumno")
     public String validacionAlumno(Alumno alumno, Model model, @AuthenticationPrincipal UserDetails username) {
-        alumno.setFechaValidacion(LocalDate.now());
-        alumnoService.anadirAlumno(alumno);
+        Alumno alumnoDB = alumnoService.buscarAlumno(alumno);
+        alumnoDB.setFechaValidacion(LocalDate.now());
+        alumnoService.anadirAlumno(alumnoDB);
         return "redirect:/administrador/inici";
     }
 
+    /**
+     * Método para realizar la validación de una empresa.
+     *
+     * @param empresa Objeto Empresa a validar.
+     * @param model Modelo de datos para la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return String con la vista de carga de pantalla principal.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/validarEmpresa")
     public String validacionEmpresa(Empresa empresa, Model model, @AuthenticationPrincipal UserDetails username) {

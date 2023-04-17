@@ -14,8 +14,8 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- *
- * @author Cole
+ * Clase entidad Persona.
+ * @author Alex
  */
 @Data
 @Entity

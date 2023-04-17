@@ -14,11 +14,28 @@ import java.util.List;
  */
 public interface ModulServiceInterface {
     
+    /**
+     * Función para listar modulos en la base de datos.
+     * @return  Lista de modulos.
+     */
     public List<Modulo> llistarModuls();
     
+    /**
+     * Función para añadir un modulo.
+     * @param modulo objeto modulo a añadir.
+     */
     public void afegirModul(Modulo modulo);
     
+    /**
+     * Función para eliminar un modulo.
+     * @param modulo objeto modulo a eliminar.
+     */
     public void eliminarModul(Modulo modulo);
     
+    /**
+     * Función que busca un objeto modulo en la base de datos.
+     * @param modulo objeto modulo a buscar.
+     * @return el objeto modulo si existe o null si no existe.
+     */
     public Modulo cercarModul(Modulo modulo);
 }

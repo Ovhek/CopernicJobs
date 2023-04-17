@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
+ * DAO de la entidad Noticia.
  * @author joang
  */
 public interface NoticiaDAO extends JpaRepository<Noticia, Integer> {

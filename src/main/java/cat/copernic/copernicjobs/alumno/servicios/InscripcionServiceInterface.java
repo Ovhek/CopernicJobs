@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  *  Interfaz para el servicio de la inscripcion.
+ * @author Alex
  */
 public interface InscripcionServiceInterface {
     
@@ -51,4 +52,6 @@ public interface InscripcionServiceInterface {
      * @return Lista de inscripciones
      */
     public List<Inscripcion> buscarInscripcionPorOfertaId(int id);
+   
+    
 }

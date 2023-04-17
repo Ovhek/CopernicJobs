@@ -18,8 +18,8 @@ import java.util.List;
 import lombok.Data;
 
 /**
- *
- * @author Cole
+ * Clase entidad RolModulo.
+ * @author Alex
  */
 @Data
 @Entity

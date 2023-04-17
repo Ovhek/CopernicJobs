@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
+ * Servicio para el DAO de Empresa.
  * @author Albert
  */
 @Service

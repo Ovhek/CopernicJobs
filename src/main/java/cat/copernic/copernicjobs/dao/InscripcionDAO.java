@@ -10,9 +10,30 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * DAO para la integración de la entidad Inicidencia con la base de datos.
+ * 
+ * @author Alex
  */
-public interface InscripcionDAO extends JpaRepository<Inscripcion,Integer>{ 
+public interface InscripcionDAO extends JpaRepository<Inscripcion, Integer> {
 
+    /**
+     *
+     * Devuelve una lista de todas las inscripciones realizadas por un alumno
+     * con el id especificado.
+     *
+     * @param id el id del alumno del que se desea obtener las inscripciones
+     * @return una lista de inscripciones realizadas por el alumno con el id
+     * especificado
+     */
     List<Inscripcion> findAllByAlumnoId(int id);
+
+    /**
+     *
+     * Encuentra todas las inscripciones correspondientes a una oferta
+     * determinada
+     *
+     * @param id el identificador de la oferta a buscar
+     * @return una lista de Inscripcion que contiene todas las inscripciones
+     * correspondientes a la oferta dada
+     */
     List<Inscripcion> findAllByOfertaId(int id);
 }

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de la página de protección de datos.
+ * @author Alex
  */
 @Controller
 public class ProteccionDatos {

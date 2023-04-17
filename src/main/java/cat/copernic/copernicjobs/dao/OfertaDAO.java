@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- *
- * @author Cole
+ * DAO de la entidad Oferta.
+ * @author Alex
  */
 public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
 
@@ -21,6 +21,9 @@ public interface OfertaDAO extends JpaRepository<Oferta, Integer> {
     
     @Query("SELECT o FROM Oferta o JOIN o.empresa e WHERE e.nombreEmpresa = :nombre")
     List<Oferta> findByNombreEmpresa(String nombre);
+    
+    @Query("SELECT o FROM Oferta o WHERE o.tituloOferta = :titulo")
+    Oferta findByTituloOferta(String titulo);
     
     List<Oferta> findByFechaValidacionBetween(LocalDate start, LocalDate end);
     

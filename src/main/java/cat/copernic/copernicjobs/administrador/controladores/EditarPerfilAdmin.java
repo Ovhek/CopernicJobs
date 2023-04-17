@@ -32,6 +32,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * Controlador para editar el perfil del administrador.
+ *
+ * Este controlador maneja las peticiones GET y POST para la edición del perfil
+ * del administrador. Proporciona funcionalidades para mostrar el perfil actual
+ * del administrador, validar y procesar la actualización del perfil y mostrar
+ * mensajes de error o información al usuario en caso de ser necesario.
  *
  * @author joang
  */
@@ -44,6 +50,15 @@ public class EditarPerfilAdmin {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * Método que maneja las peticiones GET para la página de inicio de edición
+     * de perfil del administrador.
+     *
+     * @param model El modelo de la vista.
+     * @param username El nombre de usuario del administrador autenticado.
+     * @return La vista de la página de inicio de edición de perfil del
+     * administrador.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping("/administrador/editarPerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -63,6 +78,29 @@ public class EditarPerfilAdmin {
         return CargarPantallaPrincipal.cargar(model, NavBarType.ADMINISTRADOR, ruta, archivo, "Editar Perfil", username);
     }
 
+    /**
+     * Método que maneja las peticiones POST para la actualización del perfil
+     * del administrador.
+     *
+     * @param btnValue El valor del botón de acción del formulario.
+     * @param administrador El objeto Administrador con los datos del perfil
+     * actualizado.
+     * @param errores El objeto Errors que contiene los errores de validación
+     * del formulario.
+     * @param model El modelo de la vista.
+     * @param username El nombre de usuario del administrador autenticado.
+     * @param result El objeto BindingResult que contiene los errores de enlace
+     * del formulario.
+     * @param redirectAttributes El objeto RedirectAttributes para redireccionar
+     * y agregar mensajes flash.
+     * @param passwordNueva La nueva contraseña ingresada por el administrador.
+     * @param confirmaPasswordNueva La confirmación de la nueva contraseña
+     * ingresada por el administrador.
+     * @return La vista de la página de inicio de edición de perfil del
+     * administrador si hay errores, o la página de visualización del perfil
+     * actualizado del administrador si la actualización se realiza
+     * correctamente.
+     */
     @PreAuthorize("hasAuthority('administrador')")
     @PostMapping("/editarPerfilAdministrador")
     public String editarPerfilAdministrador(@RequestParam(name = "button", required = false) String btnValue, @Valid Administrador administrador, Errors errores, Model model, @AuthenticationPrincipal UserDetails username, BindingResult result, RedirectAttributes redirectAttributes, String passwordNueva, String confirmaPasswordNueva) {
@@ -158,7 +196,7 @@ public class EditarPerfilAdmin {
                 return "redirect:/administrador/veurePerfil";
             }
             String sexoDesc = "";
-            
+
             administradorService.anadirAdministrador(administradorDB);
         }
         redirectAttributes.addFlashAttribute("CanvisGuardats", messageSource.getMessage("info.alumneguardat", null, Locale.ENGLISH));

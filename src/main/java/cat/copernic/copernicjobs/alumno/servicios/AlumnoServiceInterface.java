@@ -5,10 +5,13 @@
 package cat.copernic.copernicjobs.alumno.servicios;
 
 import cat.copernic.copernicjobs.model.Alumno;
+import cat.copernic.copernicjobs.model.Inscripcion;
+import cat.copernic.copernicjobs.model.Oferta;
 import java.util.List;
 
 /**
  *  Interfaz para el servicio de alumno.
+ * @author Alex
  */
 public interface AlumnoServiceInterface {
     

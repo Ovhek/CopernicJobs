@@ -17,7 +17,8 @@ import lombok.Data;
 
 /**
  *
- * @author Cole
+ * Clase entidad Modulo.
+ * @author Alex
  */
 @Data
 @Entity

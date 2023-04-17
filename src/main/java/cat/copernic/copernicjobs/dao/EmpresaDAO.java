@@ -13,21 +13,20 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author Cole
- */
-/**
+ * @author Alex
  * DAO para la integración de la entidad Usuario con la base de datos.
  */
-public interface EmpresaDAO extends UsuarioDAO<Empresa, Serializable>{ 
-    
-    Empresa findByNombreEmpresa(String nombre);
+public interface EmpresaDAO extends UsuarioDAO<Empresa, Serializable> {
+
     /**
-     * Obtener los usuarios basandonos en su rol
-     * 1 --> alumne
-     * 2 --> administrador
-     * 3 --> empresa
-     * @param baja ID del rol.
-     * @return Lista de usuarios.
+     *
+     * Devuelve la Empresa que coincide con el nombre proporcionado.
+     *
+     * @param nombre el nombre de la Empresa a buscar.
+     * @return la Empresa que coincide con el nombre proporcionado, o null si no
+     * se encuentra ninguna coincidencia.
      */
+    Empresa findByNombreEmpresa(String nombre);
+
     List<Empresa> findAllByBaja(boolean baja);
 }

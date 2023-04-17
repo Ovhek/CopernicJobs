@@ -4,6 +4,7 @@
  */
 package cat.copernic.copernicjobs.empresa;
 
+import cat.copernic.copernicjobs.alumno.servicios.InscripcionService;
 import cat.copernic.copernicjobs.empresa.servicios.EmpresaService;
 import cat.copernic.copernicjobs.empresa.servicios.OfertaService;
 import cat.copernic.copernicjobs.general.utils.CargarPantallaPrincipal;
@@ -21,56 +22,83 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
+ * Controlador encargado de los endpoints de ver las ofertas de la propia empresa.
  * @author Albert
  */
 @Controller
 public class misOfertas {
-    
+
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
     private OfertaService ofertaService;
-    
+
     @Autowired
     EmpresaService empresaService;
 
+    /**
+     *
+     * Método que se encarga de mostrar la página de inicio para una empresa,
+     * con un listado de las ofertas publicadas por la empresa.
+     *
+     * @param model el objeto Model que se utiliza para pasar datos a la vista
+     *
+     * @param user el objeto UserDetails que contiene los datos del usuario
+     * autenticado
+     *
+     * @return una cadena de texto que representa la ruta del archivo html a
+     * cargar
+     */
     @PreAuthorize("hasAuthority('empresa')")
     @GetMapping("/empresa/inici")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails user) {
-        
-        int id = empresaService.buscarPorUsername(user.getUsername()).getId();
-        Empresa empresa = new Empresa();
-        empresa.setId(id);
-        Empresa emp = empresaService.cercarEmpresa(empresa);
+
+        Empresa empresa = empresaService.buscarPorUsername(user.getUsername());
+
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "misofertas";
-       
-        model.addAttribute("ofertas", ofertaService.listarPorNombre(emp.getNombreEmpresa()));
+
+        if (empresa != null) {
+            model.addAttribute("ofertas", ofertaService.listarPorNombre(empresa.getNombreEmpresa()));
+        }
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
-    
+
+    /**
+     *
+     * Método que procesa la petición POST de buscar oferta de una empresa en el
+     * sistema.
+     *
+     * @param btnValue El valor del botón que se presionó para realizar la
+     * búsqueda de la oferta.
+     * @param buscar El texto a buscar dentro de las ofertas.
+     * @param ordenar El orden en el que se deben mostrar las ofertas.
+     * @param user El objeto UserDetails que representa al usuario que está
+     * realizando la búsqueda.
+     * @param model El objeto Model utilizado para almacenar y pasar datos a la
+     * vista.
+     * @return La plantilla HTML de la página principal de la empresa con la
+     * lista de ofertas filtradas y ordenadas.
+     */
     @PostMapping("/empresa/buscaroferta")
-    public String buscarOferta(@RequestParam(name = "buscar") String btnValue,@RequestParam(name = "search-input") String buscar,@RequestParam(name="sort-select") String ordenar, @AuthenticationPrincipal UserDetails user,Model model){
+    public String buscarOferta(@RequestParam(name = "buscar") String btnValue, @RequestParam(name = "search-input") String buscar, @RequestParam(name = "sort-select") String ordenar, @AuthenticationPrincipal UserDetails user, Model model) {
         int id = empresaService.buscarPorUsername(user.getUsername()).getId();
         Empresa empresa = new Empresa();
         empresa.setId(id);
         Empresa emp = empresaService.cercarEmpresa(empresa);
-        
-        
-        
+
         //if((buscar!=null)&&(ordenar!="0")){
-        model.addAttribute("ofertas",ofertaService.filtrarOfertasOrdenacion(buscar, ordenar, emp.getNombreEmpresa()));
-        
+        model.addAttribute("ofertas", ofertaService.filtrarOfertasOrdenacion(buscar, ordenar, emp.getNombreEmpresa()));
+
         //Ruta donde está el archivo html 
         String ruta = "empresa/";
         //nombre del archivo html
         String archivo = "misofertas";
-        
+
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.EMPRESA, ruta, archivo, "Les meves ofertes", user);
     }
 
-    
 }

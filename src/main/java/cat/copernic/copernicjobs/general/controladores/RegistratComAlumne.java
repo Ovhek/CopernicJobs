@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- *
- * @author Cole
+ * Controlador de los endpoints del registro como alumno,
+ * @author Alex
  */
 @Controller
 public class RegistratComAlumne {
@@ -79,7 +79,7 @@ public class RegistratComAlumne {
                 sexoDesc = "Invalid";
         }
 
-        alumno.setAvatarLink("files/img/default/logo.png");
+        alumno.setAvatarLink("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png");
         alumno.setSexoDesc(sexoDesc);
         alumno.setFechaRegistro(LocalDate.now());
         alumno.setPassword(EncriptarContrasenya.encryptar(alumno.getPassword()));

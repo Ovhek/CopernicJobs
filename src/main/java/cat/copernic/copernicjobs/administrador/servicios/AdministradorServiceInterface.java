@@ -22,20 +22,20 @@ public interface AdministradorServiceInterface {
     
     /**
      * Función para añadir un administrador.
-     * @param administrador objeto alumno a añadir.
+     * @param administrador objeto administrador a añadir.
      */
     public void anadirAdministrador(Administrador administrador); 
     
     /**
      * Función para eliminar un administrador.
-     * @param administrador objeto alumno a eliminar.
+     * @param administrador objeto administrador a eliminar.
      */
     public void eliminarAdministrador(Administrador administrador); 
     
     /**
-     * Función que busca un objeto alumno en la base de datos.
-     * @param administrador objeto alumno a buscar.
-     * @return el objeto alumno si exist o null si no existe.
+     * Función que busca un objeto administrador en la base de datos.
+     * @param administrador objeto administrador a buscar.
+     * @return el objeto administrador si exist o null si no existe.
      */
     public Administrador buscarAdministrador(Administrador administrador); 
 

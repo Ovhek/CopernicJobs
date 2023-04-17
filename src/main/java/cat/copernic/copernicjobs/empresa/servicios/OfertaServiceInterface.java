@@ -10,6 +10,7 @@ import java.util.List;
     
 /**
  *
+ * Interfaz para el Servicio para el DAO de Empresa.
  * @author Albert
  */
 public interface OfertaServiceInterface {
@@ -21,6 +22,8 @@ public interface OfertaServiceInterface {
     public void eliminarOferta(Oferta oferta); //Mètode que implementarem per eliminar un gos
     
     public Oferta cercarOferta(Oferta oferta); //Mètode que implementarem per cercar un gos
+    
+    public Oferta buscarPorTituloOferta(Oferta oferta);
     
     public List<Oferta> llistarOfertasUltimaSemana();
     

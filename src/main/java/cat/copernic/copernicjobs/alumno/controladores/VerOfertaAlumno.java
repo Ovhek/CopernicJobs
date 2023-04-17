@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de ver las ofertas del alumno.
+ * @author Alex
  */
 @Controller
 public class VerOfertaAlumno {
@@ -43,6 +43,19 @@ public class VerOfertaAlumno {
 
     private Alumno alumnoTemp = new Alumno();
 
+    /**
+     *
+     * Método que devuelve la vista de una oferta específica para un alumno.
+     *
+     * @PreAuthorize Comprueba si el usuario tiene el rol de "alumne".
+     * @GetMapping Anotación que mapea la petición GET a la URL
+     * "/alumne/veureOfertaAlumne/{id}" a este método.
+     * @param ofertaGet Objeto Oferta utilizado para obtener la oferta concreta.
+     * @param model Objeto Model utilizado para pasar atributos a la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return Cadena de texto que representa la plantilla HTML de la vista de
+     * una oferta específica para un alumno.
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veureOfertaAlumne/{id}")
     public String inicio(Oferta ofertaGet, Model model, @AuthenticationPrincipal UserDetails username) {
@@ -72,9 +85,21 @@ public class VerOfertaAlumno {
         });
 
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Oferta - " + oferta.getTituloOferta(),username);
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Oferta - " + oferta.getTituloOferta(), username);
     }
 
+    /**
+     *
+     * Método que inscribe a un alumno en una oferta.
+     *
+     * @PostMapping Anotación que mapea la petición POST a la URL "/in" a este
+     * método.
+     * @param ofertaGet Objeto Oferta utilizado para obtener la oferta en la que
+     * se va a inscribir el alumno.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return Cadena de texto que representa la redirección a la vista de una
+     * oferta específica para un alumno.
+     */
     @PostMapping("/in")
     public String inscribirAlumnoAOFerta(Oferta ofertaGet, @AuthenticationPrincipal UserDetails username) {
 
@@ -93,6 +118,17 @@ public class VerOfertaAlumno {
         return "redirect:/alumne/veureOfertaAlumne/" + oferta.getId();
     }
 
+    /**
+     *
+     * Método que se encarga de eliminar la inscripción de un alumno a una
+     * oferta determinada.
+     *
+     * @param ofertaGet la oferta de la cual se desea desinscribir el alumno.
+     * @param username el nombre del usuario autenticado que desea realizar la
+     * desinscripción.
+     * @return la redirección a la vista de la oferta de donde se ha realizado
+     * la desinscripción.
+     */
     @PostMapping("/des")
     public String desinscribirAlumnoAOFerta(Oferta ofertaGet, @AuthenticationPrincipal UserDetails username) {
 

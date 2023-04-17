@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de la edición del inicio del alumno.
+ * @author Alex
  */
 @Controller
 public class InicioAlumno {
@@ -31,6 +31,18 @@ public class InicioAlumno {
     @Autowired
     private OfertaService ofertaService;
 
+    /**
+     *
+     * Método que devuelve la vista de inicio del alumno.
+     *
+     * @PreAuthorize Comprueba si el usuario tiene el rol de "alumne".
+     * @GetMapping Anotación que mapea la petición GET a la URL "/alumne/inici"
+     * a este método.
+     * @param model Objeto Model utilizado para pasar atributos a la vista.
+     * @param username Objeto UserDetails que representa al usuario autenticado.
+     * @return Cadena de texto que representa la plantilla HTML de la vista de
+     * inicio del alumno.
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/inici")
     public String inicioAlumno(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -43,6 +55,5 @@ public class InicioAlumno {
         //Cargamos el archivo y lo añadimos a la plantilla de la página principal
         return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Inici", username);
     }
-
 
 }

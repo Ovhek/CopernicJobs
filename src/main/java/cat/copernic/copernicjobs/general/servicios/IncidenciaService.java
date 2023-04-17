@@ -13,37 +13,63 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Servicio para las incidencias
  *
- * @author Cole
+ * @author Alex
  */
 @Service
-public class IncidenciaService implements IncidenciaServiceInterface{
+public class IncidenciaService implements IncidenciaServiceInterface {
 
     @Autowired
     IncidenciaDAO incidenciaDAO;
-    
-    @Transactional(readOnly=true) 
+
+    /**
+     *
+     * Devuelve una lista de todas las incidencias.
+     *
+     * @return la lista de todas las incidencias.
+     */
+    @Transactional(readOnly = true)
     @Override
     public List<Incidencia> listarIncidencias() {
         return (List<Incidencia>) incidenciaDAO.findAll();
     }
 
+    /**
+     *
+     * Añade una incidencia.
+     *
+     * @param incidencia la incidencia a añadir.
+     */
     @Transactional
     @Override
     public void anadirIncidencia(Incidencia incidencia) {
         incidenciaDAO.save(incidencia);
     }
 
+    /**
+     *
+     * Elimina una incidencia.
+     *
+     * @param incidencia la incidencia a eliminar.
+     */
     @Transactional
     @Override
     public void eliminarIncidencia(Incidencia incidencia) {
         incidenciaDAO.delete(incidencia);
     }
 
-    @Transactional(readOnly=true) 
+    /**
+     *
+     * Busca una incidencia.
+     *
+     * @param incidencia la incidencia a buscar.
+     * @return la incidencia encontrada o null si no se encuentra.
+     */
+    @Transactional(readOnly = true)
     @Override
     public Incidencia buscarIncidencia(Incidencia incidencia) {
         return incidenciaDAO.findById(incidencia.getId()).orElse(null);
     }
-    
+
 }

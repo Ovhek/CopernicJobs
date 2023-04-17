@@ -17,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-6">
                         <div class="card py-5 mx-1 mt-5 row RowVerticalScroll" id="anuncis">
                             <h1>Anuncis</h1>
-                            <div class="card mt-5 col-lg-12 p-5 noticia" th:each="anuncio : ${anuncios}" th:if="${anuncio.rol.nom == 'alumne'}">
+                            <div class="card mt-5 col-lg-12 p-5 noticia" th:each="anuncio : ${anuncios}">
                                 <h3 th:text="${anuncio.titulo}"></h3>
                                 <p th:text="${anuncio.descripcion}"></p>
                             </div>

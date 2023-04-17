@@ -19,14 +19,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 /**
- *
- * @author Cole
+ * Controlador encargado de los endpoints de ver el perfil del alumno.
+ * @author Alex
  */
 @Controller
 public class VerPerfilAlumno {
 
     @Autowired //Anotació que injecta tots els mètodes i possibles dependències de UsuarioDAO
     private AlumnoService alumnoService; //Atribut per poder utilitzar les funcions CRUD de la interfície UsuarioDAO
+
+    /**
+     *
+     * Método que se encarga de mostrar el perfil del alumno.
+     *
+     * @param model el modelo utilizado para enviar información a la vista.
+     * @param username los detalles del usuario autenticado.
+     * @return la vista que muestra el perfil del alumno.
+     */
     @PreAuthorize("hasAuthority('alumne')")
     @GetMapping("/alumne/veurePerfil")
     public String inicio(Model model, @AuthenticationPrincipal UserDetails username) {
@@ -38,10 +47,9 @@ public class VerPerfilAlumno {
 
         Alumno alumno = new Alumno();
         alumno.setId(id);
-       
-        
-        model.addAttribute("alumno",alumnoService.buscarAlumno(alumno));
-        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Perfil",username);
+
+        model.addAttribute("alumno", alumnoService.buscarAlumno(alumno));
+        return CargarPantallaPrincipal.cargar(model, NavBarType.ALUMNO, ruta, archivo, "Perfil", username);
     }
 
 }
