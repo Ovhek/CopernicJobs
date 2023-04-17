@@ -12,44 +12,44 @@
         <form method="post" th:action="@{/empresa/manejaroferta}" th:object="${oferta}">
             <input type="hidden" name="id" th:field="${oferta.id}"/>
             <input type="hidden" name="fechaPeticion" th:field="${oferta.fechaPeticion}"/>
-                <div class="container">
-                        <div>
-                            <label for="uname"><b>Titol de l'oferta</b></label>
-                        </div>
-                            <div class="u-form-group u-form-message u-label-left">
-                                <textarea th:field="${oferta.tituloOferta}" id="message" name="uname" class="u-grey-10 u-input u-input-rectangle u-radius-7 u-input-3" required>
-                                </textarea>
-                            </div>
-                        <div>
-                            <label for="uname"><b>Descripció de l'oferta</b></label>
-                        </div>
-                        <div>
-                            <textarea name="textarea" rows="10" cols="50" th:field="${oferta.descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
-                            </textarea>
-                        </div>
-                        <div>
-                            <label for="uname"><b>Requisits de l'Alumne</b></label>
-                        </div>
-                        <div>
-                            <textarea name="requisitos" rows="10" cols="50" th:field="${oferta.requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
-                            </textarea>
-                        </div>
-                        <div>
-                            <label for="uname"><b>S'Ofereix</b></label>
-                        </div>
-                        <div>
-                            <textarea rows="10" cols="50" name="seOfrece" th:field="${oferta.seOfrece}"  placeholder="Introdueix lo que ofereix l'empresa">	
-                            </textarea>
-                        </div>
- 
-                            <div class="separacionBetween">
-                                <button type="submit" class="boton" name="boton" value="guardar">Guardar Canvis</button>
-
-                                <button type="submit" name="boton" class="boton cancelar" value="borrar">Esborrar Oferta</button>
-
-                            </div>
+            <div class="container">
+                <div>
+                    <label for="uname"><b>Titol de l'oferta</b></label>
+                </div>
+                <div class="u-form-group u-form-message u-label-left">
+                    <textarea th:field="${oferta.tituloOferta}" id="message" name="uname" class="u-grey-10 u-input u-input-rectangle u-radius-7 u-input-3" required>
+                    </textarea>
+                </div>
+                <div>
+                    <label for="uname"><b>Descripció de l'oferta</b></label>
+                </div>
+                <div>
+                    <textarea name="textarea" rows="10" cols="50" th:field="${oferta.descripcionOferta}" placeholder="Introdueix la descripció de l'Oferta">		
+                    </textarea>
+                </div>
+                <div>
+                    <label for="uname"><b>Requisits de l'Alumne</b></label>
+                </div>
+                <div>
+                    <textarea name="requisitos" rows="10" cols="50" th:field="${oferta.requisitosAlumno}" placeholder="Introdueix els Requisits de l'Alumne">
+                    </textarea>
+                </div>
+                <div>
+                    <label for="uname"><b>S'Ofereix</b></label>
+                </div>
+                <div>
+                    <textarea rows="10" cols="50" name="seOfrece" th:field="${oferta.seOfrece}"  placeholder="Introdueix lo que ofereix l'empresa">	
+                    </textarea>
                 </div>
 
+
+                <div class="separacionBetween">
+                    <button type="submit" class="boton" name="boton" value="guardar">Guardar Canvis</button>
+
+                    <button type="submit" name="boton" class="boton cancelar" value="borrar">Esborrar Oferta</button>
+
+                </div>
+            </div>
         </form>
     </body>
 </html>
