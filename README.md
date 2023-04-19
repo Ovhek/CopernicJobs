@@ -2,11 +2,17 @@
 
 ERP encargado de la bolsa de trabajo del instituto Utilizando Spring Boot Web, Thymeleaf y Java.
 
-#Javadoc
+# Javadoc
 https://ovhek.github.io/copernicjobs.github.io/
 
-#Base de Datos
+# Base de Datos
 https://github.com/Ovhek/CopernicJobs/blob/main/copernicjobs_06032023.sql
+
+# Memoria
+https://drive.google.com/file/d/1rdkia0QACOGv0y5avFya30AecbO2wOWT/view?usp=sharing
+
+# Demo
+https://www.youtube.com/watch?v=MJSj__cDyVA&feature=youtu.be
 
 #Imagenes
 <div>
