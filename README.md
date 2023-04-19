@@ -1,6 +1,6 @@
 # CopernicJobs
 
-ERP encargado de la bolsa de trabajo del instituto Utilizando Spring Boot Web, Thymeleaf y Java.
+ERP encargado de la bolsa de trabajo del instituto Utilizando Spring Boot Web, Thymeleaf, Lombok y Java, así como la implementación de Spring Boot Validations, Spring Boot Security y Spring Data JPA
 
 # Javadoc
 https://ovhek.github.io/copernicjobs.github.io/
